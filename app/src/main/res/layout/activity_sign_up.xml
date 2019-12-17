@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    tools:context=".LoginAndSignUp.SignUp">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editUserRegisterName"
+            android:hint="@string/user_name"
+            android:layout_margin="16dp"
+            android:textSize="15sp"
+            android:inputType="textEmailAddress"
+            android:drawableStart="@drawable/ic_person_black_24dp"
+            android:drawableLeft="@drawable/ic_person_black_24dp"
+            android:drawablePadding="10dp"/>
+
+        <EditText
+        android:layout_below="@+id/editUserRegisterName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editUserRegisterEmail"
+        android:hint="@string/user_email"
+        android:layout_margin="16dp"
+        android:textSize="15sp"
+        android:inputType="textEmailAddress"
+        android:drawableStart="@drawable/ic_email_black_24dp"
+        android:drawableLeft="@drawable/ic_email_black_24dp"
+        android:drawablePadding="10dp"/>
+
+        <EditText
+            android:layout_below="@+id/editUserRegisterEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editUserRegisterPhoneNo"
+            android:hint="@string/phone_no"
+            android:layout_margin="16dp"
+            android:textSize="15sp"
+            android:inputType="textEmailAddress"
+            android:drawableStart="@drawable/ic_phone_black_24dp"
+            android:drawableLeft="@drawable/ic_phone_black_24dp"
+            android:drawablePadding="10dp"/>
+
+        <EditText
+            android:layout_below="@+id/editUserRegisterPhoneNo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editUserRegisterCnic"
+            android:hint="@string/cnic"
+            android:layout_margin="16dp"
+            android:textSize="15sp"
+            android:inputType="textEmailAddress"
+            android:drawableStart="@drawable/ic_assignment_ind_black_24dp"
+            android:drawableLeft="@drawable/ic_assignment_ind_black_24dp"
+            android:drawablePadding="10dp"/>
+
+        <EditText
+        android:layout_below="@+id/editUserRegisterCnic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editUserRegisterPassword"
+        android:hint="@string/user_password"
+        android:layout_margin="16dp"
+        android:textSize="15sp"
+        android:inputType="textPassword"
+        android:drawableStart="@drawable/ic_remove_red_eye_black_24dp"
+        android:drawableLeft="@drawable/ic_remove_red_eye_black_24dp"
+        android:drawablePadding="10dp"/>
+
+        <EditText
+            android:layout_below="@+id/editUserRegisterPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editUserRegisterConfirmPassword"
+            android:hint="@string/confirm_password"
+            android:layout_margin="16dp"
+            android:textSize="15sp"
+            android:inputType="textPassword"
+            android:drawableStart="@drawable/ic_remove_red_eye_black_24dp"
+            android:drawableLeft="@drawable/ic_remove_red_eye_black_24dp"
+            android:drawablePadding="10dp"/>
+
+        <ImageButton
+            android:id="@+id/userSignUpBtn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/editUserRegisterConfirmPassword"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="16dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/login_bg"
+            android:src="@drawable/ic_arrow_forward_black_24dp"
+
+            />
+
+        <TextView
+            android:layout_below="@+id/userSignUpBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtAlreadyHaveAccount"
+            android:textColor="@color/blue_color"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:layout_margin="16dp"
+            android:textSize="15sp"
+            android:text="@string/already_have_account"/>
+
+
+    </RelativeLayout>
+
+
+
+</ScrollView>

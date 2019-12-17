@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginAndSignUp.Login">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editUserEmail"
+        android:hint="@string/user_email"
+        android:layout_margin="16dp"
+        android:textSize="15sp"
+        android:inputType="textEmailAddress"
+        android:drawableStart="@drawable/ic_email_black_24dp"
+        android:drawableLeft="@drawable/ic_email_black_24dp"
+        android:drawablePadding="10dp"/>
+
+    <EditText
+        android:layout_below="@+id/editUserEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editUserPassword"
+        android:hint="@string/user_password"
+        android:layout_margin="16dp"
+        android:textSize="15sp"
+        android:inputType="textPassword"
+        android:drawableStart="@drawable/ic_remove_red_eye_black_24dp"
+        android:drawableLeft="@drawable/ic_remove_red_eye_black_24dp"
+        android:drawablePadding="10dp"/>
+
+    <TextView
+        android:layout_below="@+id/editUserPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtForgetPassword"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="16dp"
+        android:textSize="12sp"
+        android:text="@string/forgot_password"
+        android:textColor="@color/blue_color"
+        />
+
+    <ImageButton
+        android:layout_below="@+id/txtForgetPassword"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:id="@+id/signInBtn"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/login_bg"
+        android:src="@drawable/ic_arrow_forward_black_24dp"
+
+        />
+
+    <TextView
+        android:layout_below="@+id/signInBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtAlreadyHaveAccount"
+        android:textColor="@color/blue_color"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:layout_margin="16dp"
+        android:textSize="15sp"
+        android:text="@string/create_new_account"/>
+
+
+</RelativeLayout>
