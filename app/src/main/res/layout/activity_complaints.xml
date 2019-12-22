@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/user_bg"
+    tools:context=".UserComplaint.ComplaintsMain.Complaints">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <!-- add tool bar to activity -->
+    <include layout="@layout/app_tool_bar"
+        android:id="@+id/complaint_tool_bar"/>
+
+    <!-- add Recycler view for total complaints -->
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginTop="4dp"
+        android:id="@+id/complaints_recycler_view"
+        android:layout_below="@+id/complaint_tool_bar"
+
+        >
+
+    </android.support.v7.widget.RecyclerView>
+
+    </RelativeLayout>
+
+    <!-- add floating action button -->
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/complain_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="addNewComplaint"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:layout_gravity="bottom|right"
+        android:layout_marginBottom="@dimen/fab_margin_bottom"
+        android:layout_marginRight="@dimen/fab_margin"
+        app:borderWidth="0dp"
+        app:pressedTranslationZ="12dp"
+        android:src="@drawable/ic_add_black_24dp"
+        app:backgroundTint="@color/txt_color"
+        app:elevation="0dp" />
+
+
+</android.support.design.widget.CoordinatorLayout>

@@ -30,6 +30,7 @@ dependencies {
     implementation 'com.android.support:cardview-v7:28.0.0' // card view
     implementation 'com.android.support:recyclerview-v7:28.0.0' // recycler view
     implementation 'com.android.support:design:28.0.0' // input text , snack bar etc
+    implementation 'com.borjabravo:readmoretextview:2.1.0' // expand views
 
 
 }

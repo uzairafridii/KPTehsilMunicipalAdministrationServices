@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/user_bg"
+    tools:context=".UserComplaint.ComplaintsMain.UserFeedBack">
+
+    <include layout="@layout/app_tool_bar"
+        android:id="@+id/feedback_tool_bar"/>
+
+    <TextView
+        android:layout_below="@+id/feedback_tool_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/feedback_title"
+        android:text="FeedBack Title"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="@dimen/txt_margin_left"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:id="@+id/feedback_image"
+        android:layout_marginTop="@dimen/edit_margin_top"
+        android:layout_below="@+id/feedback_title"
+        android:src="@drawable/ic_launcher_background"
+        android:layout_marginLeft="@dimen/edit_margin"
+        android:layout_marginRight="@dimen/edit_margin"
+        />
+
+    <TextView
+        android:layout_below="@+id/feedback_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/feedback_time"
+        android:text="@string/date_time"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/edit_margin"
+        android:layout_marginTop="8dp"
+        />
+
+    <TextView
+        android:layout_below="@+id/feedback_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/first_worker_name"
+        android:text="@string/worker_name"
+        android:textStyle="bold"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="@dimen/edit_margin"
+        android:layout_marginTop="8dp"
+        />
+
+    <TextView
+        android:layout_below="@+id/first_worker_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/second_worker_name"
+        android:text="@string/worker_name"
+        android:textStyle="bold"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="@dimen/edit_margin"
+        android:layout_marginTop="8dp"
+        />
+
+
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/worker_rating_bar"
+        android:layout_below="@id/rating_txt"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/edit_margin"
+        android:rating="2.5"
+        android:minHeight="10dp"
+        android:minWidth="10dp"
+        android:min="1"
+        android:stepSize="0.5"
+        />
+
+    <TextView
+        android:layout_below="@+id/second_worker_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rating_txt"
+        android:text="Rate Us"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/edit_margin"
+        android:layout_marginTop="@dimen/edit_margin_top"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:id="@+id/view"
+        android:layout_below="@id/worker_rating_bar"
+        android:background="#000"
+        android:layout_marginTop="4dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/linear_layout"
+        android:layout_marginTop="@dimen/edit_margin_top"
+        android:padding="7dp"
+        android:background="#fff"
+        android:layout_below="@id/view">
+
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:id="@+id/add_image_btn"
+            android:src="@drawable/ic_camera_alt_black_24dp"
+            android:layout_marginLeft="2dp"
+            android:padding="10dp"
+            android:background="@null"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:layout_weight="1"
+            />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/comment_edit_text"
+            android:layout_weight="8"
+            android:hint="Enter Your Message"
+            />
+       <Button
+           android:layout_width="wrap_content"
+           android:layout_height="30dp"
+           android:id="@+id/submit_feedback_btn"
+           android:text="@string/submit"
+           android:background="@color/txt_color"
+           android:textColor="#fff"
+           />
+
+
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>

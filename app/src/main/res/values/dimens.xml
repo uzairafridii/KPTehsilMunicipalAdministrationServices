@@ -1,0 +1,12 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="txt_view_margin_top">128dp</dimen>
+    <dimen name="txt_margin_left">16dp</dimen>
+    <dimen name="edit_margin_top">32dp</dimen>
+    <dimen name="edit_margin">16dp</dimen>
+    <dimen name="edit_margin_top_forgot">8dp</dimen>
+    <dimen name="fab_margin_bottom">64dp</dimen>
+    <dimen name="image_btn_margin_top">8dp</dimen>
+    <dimen name="drawable_padding">16dp</dimen>
+    <dimen name="edit_padding_left">20dp</dimen>
+</resources>

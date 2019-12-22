@@ -5,4 +5,6 @@
     <color name="colorAccent">#D81B60</color>
     <color name="blue_color">#2196F3</color>
     <color name="btn_bg_color">#889AF772</color>
+    <color name="txt_color">#C9E765</color>
+    <color name="pending">#FF0335</color>
 </resources>

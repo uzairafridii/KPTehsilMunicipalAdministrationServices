@@ -4,32 +4,58 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/user_login_bg"
     tools:context=".LoginAndSignUp.Login">
 
-    <EditText
-        android:layout_width="match_parent"
+
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/txtLogin"
+        android:layout_marginTop="@dimen/txt_view_margin_top"
+        android:layout_marginLeft="@dimen/txt_margin_left"
+        android:textColor="@color/txt_color"
+        android:layout_alignParentLeft="true"
+        android:gravity="center"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:text="@string/login_txt"/>
+
+    <EditText
+        android:layout_below="@+id/txtLogin"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:paddingLeft="20dp"
         android:id="@+id/editUserEmail"
         android:hint="@string/user_email"
-        android:layout_margin="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:textSize="15sp"
         android:inputType="textEmailAddress"
+        android:background="@drawable/edit_txt_bg"
         android:drawableStart="@drawable/ic_email_black_24dp"
         android:drawableLeft="@drawable/ic_email_black_24dp"
-        android:drawablePadding="10dp"/>
+        android:drawablePadding="16dp"
+        />
 
     <EditText
         android:layout_below="@+id/editUserEmail"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
+        android:paddingLeft="20dp"
         android:id="@+id/editUserPassword"
         android:hint="@string/user_password"
-        android:layout_margin="16dp"
+        android:layout_marginTop="@dimen/edit_margin_top"
+        android:layout_marginLeft="@dimen/edit_margin"
+        android:layout_marginRight="@dimen/edit_margin"
         android:textSize="15sp"
         android:inputType="textPassword"
+        android:background="@drawable/edit_txt_bg"
         android:drawableStart="@drawable/ic_remove_red_eye_black_24dp"
         android:drawableLeft="@drawable/ic_remove_red_eye_black_24dp"
-        android:drawablePadding="10dp"/>
+        android:drawablePadding="16dp"
+        />
 
     <TextView
         android:layout_below="@+id/editUserPassword"
@@ -37,7 +63,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/txtForgetPassword"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="16dp"
+        android:layout_marginRight="@dimen/edit_margin"
+        android:layout_marginTop="@dimen/edit_margin_top_forgot"
         android:textSize="12sp"
         android:text="@string/forgot_password"
         android:textColor="@color/blue_color"
@@ -45,26 +72,27 @@
 
     <ImageButton
         android:layout_below="@+id/txtForgetPassword"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="54dp"
+        android:layout_height="54dp"
         android:id="@+id/signInBtn"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginRight="@dimen/edit_margin"
+        android:layout_marginTop="@dimen/edit_margin_top"
         android:background="@drawable/login_bg"
         android:src="@drawable/ic_arrow_forward_black_24dp"
 
         />
 
-    <TextView
-        android:layout_below="@+id/signInBtn"
-        android:layout_width="match_parent"
+    <Button
+
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/txtAlreadyHaveAccount"
-        android:textColor="@color/blue_color"
+        android:id="@+id/txtCreateNewAccount"
+        android:background="@null"
         android:layout_centerHorizontal="true"
+        android:layout_below="@+id/signInBtn"
         android:gravity="center"
-        android:layout_margin="16dp"
+        android:layout_marginTop="@dimen/edit_margin"
         android:textSize="15sp"
         android:text="@string/create_new_account"/>
 

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">KP Tehsil Municipal Administration Services</string>
+    <string name="app_name">KP TMA Services</string>
     <string name="forgot_password">Forgot Password?</string>
     <string name="user_password">Password</string>
     <string name="user_email">Email</string>
@@ -9,4 +9,18 @@
     <string name="cnic">Cnic</string>
     <string name="already_have_account">Already have account?</string>
     <string name="create_new_account">Create new account?</string>
+    <string name="login_txt">Login</string>
+    <string name="signup">SignUp</string>
+    <string name="title_activity_complaints">Complaints</string>
+    <string name="dummy">I am trying to set ellipsize of text view. using the following code. I want to add at the end of truncated string after 3 dots. If this would be possible with same text view that would be great, or</string>
+    <string name="date_time">date/time</string>
+    <string name="complaint_status">complaint status</string>
+    <string name="pending">Pending</string>
+    <string name="completed">Completed</string>
+    <string name="upload_image">Upload Image</string>
+    <string name="enter_your_complaint_title">Enter your complaint title</string>
+    <string name="complaint_description">Description</string>
+    <string name="worker_name">worker name</string>
+    <string name="add_comment">Add Comment</string>
+    <string name="submit">Submit</string>
 </resources>
