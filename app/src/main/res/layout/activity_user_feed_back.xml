@@ -139,11 +139,16 @@
             />
        <Button
            android:layout_width="wrap_content"
-           android:layout_height="30dp"
+           android:layout_height="wrap_content"
+           style="@style/Widget.MaterialComponents.Button"
            android:id="@+id/submit_feedback_btn"
            android:text="@string/submit"
-           android:background="@color/txt_color"
+           android:backgroundTint="@color/txt_color"
            android:textColor="#fff"
+           app:iconSize="@dimen/edit_margin"
+           app:strokeWidth="2dp"
+           app:iconPadding="2dp"
+           app:cornerRadius="16dp"
            />
 
 

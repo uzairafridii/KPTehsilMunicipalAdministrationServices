@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".UserComplaint.ComplaintsMain.UserFeedBack"></activity>
+        <activity android:name=".WaterBills.WaterBills"></activity>
+        <activity android:name=".UserComplaint.ComplaintsMain.UserFeedBack" />
         <activity android:name=".UserComplaint.ComplaintsMain.AddComplaints" />
         <activity android:name=".UserComplaint.ComplaintsMain.Complaints" />
         <activity android:name=".LoginAndSignUp.SignUp" />
@@ -23,6 +24,7 @@
         <activity
             android:name=".Main.MainActivity"
             android:screenOrientation="locked" />
+
     </application>
 
 </manifest>

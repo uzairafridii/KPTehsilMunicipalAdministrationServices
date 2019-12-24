@@ -9,19 +9,25 @@
     <include layout="@layout/app_tool_bar"
         android:id="@+id/addComplain_tool_bar"/>
 
+
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_below="@id/addComplain_tool_bar"
         android:id="@+id/upload_image_btn"
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/txt_color"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="@dimen/edit_margin"
+        android:layout_marginTop="@dimen/edit_margin"
+        android:layout_below="@id/addComplain_tool_bar"
         android:text="@string/upload_image"
-        android:layout_marginLeft="@dimen/txt_margin_left"
-        android:layout_marginTop="@dimen/image_btn_margin_top"
-        android:background="@drawable/upload_image_btn_bg"
-        android:padding="6dp"
+        android:textSize="16sp"
+        app:iconSize="@dimen/edit_margin"
+        app:strokeWidth="2dp"
+        app:iconPadding="2dp"
+        app:icon="@drawable/ic_file_upload_black_24dp"
+        app:cornerRadius="16dp"/>
 
-
-        />
 
     <ImageView
         android:layout_width="40dp"
@@ -84,7 +90,7 @@
         />
 
 
-    <ImageButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_below="@+id/description_txt_field"
         android:layout_width="54dp"
         android:layout_height="54dp"
@@ -92,9 +98,10 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="@dimen/edit_margin"
         android:layout_marginTop="@dimen/edit_margin_top"
-        android:background="@drawable/login_bg"
+        android:backgroundTint="@color/txt_color"
         android:src="@drawable/ic_arrow_forward_black_24dp"
-
+        app:elevation="0dp"
+        app:fabSize="auto"
         />
 
 </RelativeLayout>

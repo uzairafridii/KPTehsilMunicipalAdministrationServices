@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".WaterBills.WaterBills">
+
+
+
+    <include layout="@layout/app_tool_bar"
+        android:id="@+id/water_bills_tool_bar"
+       />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_below="@+id/water_bills_tool_bar"
+        android:id="@+id/search_card_view"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:layout_marginLeft="@dimen/txt_margin_left"
+        android:layout_marginRight="@dimen/txt_margin_left"
+        android:layout_marginTop="8dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
+        app:contentPadding="@dimen/edit_margin"
+        app:cardPreventCornerOverlap="false"
+        app:cardUseCompatPadding="true"
+        >
+
+    <androidx.appcompat.widget.SearchView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:goIcon="@drawable/ic_search_black_24dp"
+        app:queryHint="search here"
+        app:commitIcon="@drawable/ic_search_black_24dp"
+        app:closeIcon="@drawable/ic_search_black_24dp"
+         >
+
+    </androidx.appcompat.widget.SearchView>
+
+    </androidx.cardview.widget.CardView>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:layout_below="@+id/search_card_view"
+        android:src="@drawable/ic_launcher_background"
+        android:layout_marginTop="@dimen/edit_margin"
+        android:id="@+id/user_bill"
+        />
+
+    <Button
+        android:id="@+id/download_btn"
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/txt_color"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/edit_margin"
+        android:layout_marginTop="@dimen/edit_margin"
+        android:layout_below="@id/user_bill"
+        android:text="Download"
+        android:textSize="16sp"
+        app:iconSize="@dimen/edit_margin"
+        app:strokeWidth="2dp"
+        app:icon="@drawable/ic_arrow_downward_black_24dp"
+        app:iconPadding="2dp"
+        app:cornerRadius="16dp"/>
+
+
+
+
+</RelativeLayout>

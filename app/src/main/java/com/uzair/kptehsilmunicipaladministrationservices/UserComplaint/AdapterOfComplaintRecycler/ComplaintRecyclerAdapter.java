@@ -2,12 +2,11 @@ package com.uzair.kptehsilmunicipaladministrationservices.UserComplaint.AdapterO
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -106,7 +105,7 @@ public class ComplaintRecyclerAdapter  extends RecyclerView.Adapter<ComplaintRec
         private void setComplaintStatus(String status)
         {
             complaintStatus = mView.findViewById(R.id.complaint_status);
-            if(status.equals(R.string.pending))
+            if(status.equals("Pending"))
             {
                 complaintStatus.setTextColor(ctx.getColor(R.color.pending));
                 complaintStatus.setText(status);

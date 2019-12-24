@@ -1,15 +1,16 @@
-package com.uzair.kptehsilmunicipaladministrationservices.UserComplaint.ComplaintsMain;
+package com.uzair.kptehsilmunicipaladministrationservices.WaterBills;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.uzair.kptehsilmunicipaladministrationservices.R;
 
-public class AddComplaints extends AppCompatActivity {
+public class WaterBills extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_complaints);
+        setContentView(R.layout.activity_water_bills);
+
     }
 }

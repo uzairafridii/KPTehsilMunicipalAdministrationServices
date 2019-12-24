@@ -1,19 +1,24 @@
 package com.uzair.kptehsilmunicipaladministrationservices.Main.HomeRecyclerAdapters;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.uzair.kptehsilmunicipaladministrationservices.FireFighting.FireFighting;
 import com.uzair.kptehsilmunicipaladministrationservices.Main.ModelOfHomeRecycler.HomeModel;
 import com.uzair.kptehsilmunicipaladministrationservices.R;
 import com.uzair.kptehsilmunicipaladministrationservices.UserComplaint.ComplaintsMain.Complaints;
+import com.uzair.kptehsilmunicipaladministrationservices.WaterBills.WaterBills;
 
 import java.util.List;
 
@@ -58,6 +63,17 @@ public class HomeRecyclerAdapter extends RecyclerView.Adapter<HomeRecyclerAdapte
                                    ctx.startActivity(new Intent(ctx , Complaints.class));
                                    break;
                     }
+                    case "Water Bills": {
+                        ctx.startActivity(new Intent(ctx , WaterBills.class));
+                        break;
+                    }
+                    case "Fire Brigade": {
+                        FireFighting bottomSheetDialog = FireFighting.newInstance();
+                        bottomSheetDialog.show(((AppCompatActivity) ctx).getSupportFragmentManager(), "Bottom Sheet Dialog Fragment");
+                        break;
+                    }
+
+
                     default:{
                         break;
                     }

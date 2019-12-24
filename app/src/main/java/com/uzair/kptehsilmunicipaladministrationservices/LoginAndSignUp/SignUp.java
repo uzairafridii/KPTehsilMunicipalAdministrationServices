@@ -1,6 +1,6 @@
 package com.uzair.kptehsilmunicipaladministrationservices.LoginAndSignUp;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.uzair.kptehsilmunicipaladministrationservices.R;
