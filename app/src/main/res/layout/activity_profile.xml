@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/user_bg"
+    tools:context=".UserProfile.Profile">
+
+    <include layout="@layout/app_tool_bar" android:id="@+id/profile_tool_bar"/>
+
+    <!-- image circle view -->
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_image"
+        android:layout_below="@+id/profile_tool_bar"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/profile"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/reycler_view_margin"
+        app:civ_border_width="2dp"
+        app:civ_border_color="#FF000000"/>
+
+
+    <!-- Scroll view -->
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/profile_image">
+
+        <!-- Inner Relative layout -->
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/edit_margin"
+            android:layout_marginRight="@dimen/edit_margin">
+
+
+            <!-- User Name edit text -->
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:id="@+id/profileNameTextInputLayout"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="@dimen/edit_margin_top"
+                app:boxStrokeColor="@color/txt_color"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:cursorVisible="false"
+                    android:enabled="false"
+                    android:clickable="false"
+                    android:hint="@string/user_name"
+                    android:inputType="text"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:textSize="15sp"
+                    android:background="@drawable/edit_txt_bg"
+                    android:drawableStart="@drawable/ic_person_black_24dp"
+                    android:drawableLeft="@drawable/ic_person_black_24dp"
+                    android:drawablePadding="@dimen/drawable_padding"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Email edit text -->
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:id="@+id/profileEmailTextInputLayout"
+                android:layout_below="@id/profileNameTextInputLayout"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="8dp"
+                app:boxStrokeColor="@color/txt_color"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/user_email"
+                    android:cursorVisible="false"
+                    android:enabled="false"
+                    android:clickable="false"
+                    android:inputType="textEmailAddress"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:textSize="15sp"
+                    android:background="@drawable/edit_txt_bg"
+                    android:drawableStart="@drawable/ic_email_black_24dp"
+                    android:drawableLeft="@drawable/ic_email_black_24dp"
+                    android:drawablePadding="@dimen/drawable_padding"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Phone edit text -->
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:id="@+id/profilePhoneTextInputLayout"
+                android:layout_below="@id/profileEmailTextInputLayout"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="8dp"
+                app:boxStrokeColor="@color/txt_color"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/phone_no"
+                    android:cursorVisible="false"
+                    android:enabled="false"
+                    android:clickable="false"
+                    android:inputType="number"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:textSize="15sp"
+                    android:background="@drawable/edit_txt_bg"
+                    android:drawableStart="@drawable/ic_phone_black_24dp"
+                    android:drawableLeft="@drawable/ic_phone_black_24dp"
+                    android:drawablePadding="@dimen/drawable_padding"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- CNIC edit text -->
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:id="@+id/profileCnicTextInputLayout"
+                android:layout_below="@id/profilePhoneTextInputLayout"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="8dp"
+                app:boxStrokeColor="@color/txt_color"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/cnic"
+                    android:cursorVisible="false"
+                    android:enabled="false"
+                    android:clickable="false"
+                    android:inputType="text"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:textSize="15sp"
+                    android:background="@drawable/edit_txt_bg"
+                    android:drawableStart="@drawable/ic_assignment_ind_black_24dp"
+                    android:drawableLeft="@drawable/ic_assignment_ind_black_24dp"
+                    android:drawablePadding="@dimen/drawable_padding"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+        </RelativeLayout>
+
+
+    </ScrollView>
+
+
+</RelativeLayout>

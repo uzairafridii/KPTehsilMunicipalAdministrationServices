@@ -7,9 +7,11 @@
     android:background="@drawable/user_bg"
     tools:context=".Main.MainActivity">
 
+    <!-- include tool bar in this activity -->
     <include layout="@layout/app_tool_bar"
         android:id="@+id/home_tool_bar"/>
 
+    <!-- Home services recycler view -->
 <androidx.recyclerview.widget.RecyclerView
     android:layout_width="wrap_content"
     android:layout_height="match_parent"

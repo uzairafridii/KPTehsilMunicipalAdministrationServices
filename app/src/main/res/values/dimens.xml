@@ -9,4 +9,5 @@
     <dimen name="image_btn_margin_top">8dp</dimen>
     <dimen name="drawable_padding">16dp</dimen>
     <dimen name="edit_padding_left">20dp</dimen>
+    <dimen name="reycler_view_margin">4dp</dimen>
 </resources>

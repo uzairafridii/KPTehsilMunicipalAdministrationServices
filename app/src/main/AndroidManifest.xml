@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".WaterBills.WaterBills"></activity>
+        <activity android:name=".UserProfile.Profile"></activity>
+        <activity android:name=".BuildingNoc.BuildingNocActivity" />
+        <activity android:name=".TaxesDetails.Taxes" />
+        <activity android:name=".WaterBills.WaterBills" />
         <activity android:name=".UserComplaint.ComplaintsMain.UserFeedBack" />
         <activity android:name=".UserComplaint.ComplaintsMain.AddComplaints" />
         <activity android:name=".UserComplaint.ComplaintsMain.Complaints" />
@@ -24,7 +27,6 @@
         <activity
             android:name=".Main.MainActivity"
             android:screenOrientation="locked" />
-
     </application>
 
 </manifest>

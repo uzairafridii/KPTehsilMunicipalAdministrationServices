@@ -26,4 +26,8 @@
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="contact_no">Contact No</string>
+    <string name="title_e_g_market">Title e.g market</string>
+    <string name="upload_map">Upload Map</string>
+    <string name="your_total_noc">Your Noc Details</string>
+    <string name="no_file_choosen">No file choosen</string>
 </resources>

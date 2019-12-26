@@ -56,10 +56,6 @@ public class MainActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        FireFighting bottomSheetDialog = FireFighting.newInstance();
-        bottomSheetDialog.show(getSupportFragmentManager(), "Bottom Sheet Dialog Fragment");
-
-
     }
 
     private void setHomeRecyclerItems()
