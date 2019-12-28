@@ -43,10 +43,5 @@ public class Profile extends AppCompatActivity {
         mToolbar.inflateMenu(R.menu.user_profile_menu);
         mToolbar.setTitle("Your Profile");
 
-
-
-
-
-
     }
 }

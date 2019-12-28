@@ -15,6 +15,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.uzair.kptehsilmunicipaladministrationservices.BuildingNoc.BuildingNocActivity;
+import com.uzair.kptehsilmunicipaladministrationservices.Certificates.BirthCertificate;
+import com.uzair.kptehsilmunicipaladministrationservices.Certificates.DeathCertificate;
 import com.uzair.kptehsilmunicipaladministrationservices.FireFighting.FireFighting;
 import com.uzair.kptehsilmunicipaladministrationservices.Main.ModelOfHomeRecycler.HomeModel;
 import com.uzair.kptehsilmunicipaladministrationservices.R;
@@ -80,6 +82,14 @@ public class HomeRecyclerAdapter extends RecyclerView.Adapter<HomeRecyclerAdapte
                     }
                     case "Taxes": {
                         ctx.startActivity(new Intent(ctx , Taxes.class));
+                        break;
+                    }
+                    case "Birth Certificate": {
+                        ctx.startActivity(new Intent(ctx , BirthCertificate.class));
+                        break;
+                    }
+                    case "Death Certificate": {
+                        ctx.startActivity(new Intent(ctx , DeathCertificate.class));
                         break;
                     }
 

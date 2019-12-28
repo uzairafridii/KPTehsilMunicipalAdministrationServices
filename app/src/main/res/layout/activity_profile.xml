@@ -16,10 +16,10 @@
         android:layout_below="@+id/profile_tool_bar"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:src="@drawable/profile"
+        android:src="@drawable/fire"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/reycler_view_margin"
-        app:civ_border_width="2dp"
+        app:civ_border_width="1dp"
         app:civ_border_color="#FF000000"/>
 
 

@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Certificates.BirthCertificate">
+
+    <include layout="@layout/app_tool_bar"
+        android:id="@+id/child_birth_certificate_tool_bar"
+       />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/child_birth_certificate_tool_bar"
+
+>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!-- applicant name edit text -->
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/applicantNameInBirthCertificate"
+                android:hint="@string/applicant_name"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/edit_margin"
+                />
+
+            <!-- applicant cnic edit text -->
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/applicantCnicInBirthCertificate"
+                android:layout_below="@id/applicantNameInBirthCertificate"
+                android:hint="@string/applicant_cnic"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                />
+
+            <!-- child name edit text -->
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/childNameInBirthCertificate"
+                android:layout_below="@id/applicantCnicInBirthCertificate"
+                android:hint="@string/child_name"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                />
+
+            <!-- child relation edit text -->
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/childRelationWithApplicantBirthCertificate"
+                android:layout_below="@id/childNameInBirthCertificate"
+                android:hint="@string/child_religion_with_applicant"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                />
+
+            <!-- child gender  -->
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:id="@+id/childGenderInBirthCertificate"
+                android:layout_below="@id/childRelationWithApplicantBirthCertificate"
+                android:hint="Select"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                android:spinnerMode="dropdown"
+                android:elevation="16dp"
+                style="@style/Widget.AppCompat.Spinner.DropDown"
+                />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#BDB8B8"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_below="@id/childGenderInBirthCertificate"
+                android:id="@+id/viewInChildCertificate"/>
+
+            <!-- child religion edit text -->
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/childReligionInBirthCertificate"
+                android:layout_below="@id/viewInChildCertificate"
+                android:hint="@string/religion"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                />
+
+            <!-- child father name edit text -->
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/childFatherNameInBirthCertificate"
+                android:layout_below="@id/childReligionInBirthCertificate"
+                android:hint="@string/father_name"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                />
+
+            <!-- child father cnic edit text -->
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/childFatherCnicInBirthCertificate"
+                android:layout_below="@id/childFatherNameInBirthCertificate"
+                android:hint="@string/father_cnic"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                />
+
+            <!-- child mother name edit text -->
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/childMotherNameInBirthCertificate"
+                android:layout_below="@id/childFatherCnicInBirthCertificate"
+                android:hint="@string/mother_name"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                />
+
+            <!-- child mother cnic edit text -->
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/childMotherCnicInBirthCertificate"
+                android:layout_below="@id/childMotherNameInBirthCertificate"
+                android:hint="@string/mother_cnic"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                />
+
+            <!-- child grand father name edit text -->
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/childGrandFatherNameInBirthCertificate"
+                android:layout_below="@id/childMotherCnicInBirthCertificate"
+                android:hint="@string/grand_father_name"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                />
+
+            <!-- child grand father cnic edit text -->
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/childGrandFatherCnicInBirthCertificate"
+                android:layout_below="@id/childGrandFatherNameInBirthCertificate"
+                android:hint="@string/grand_father_cnic"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                />
+
+            <!-- District of birth  edit text -->
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/childDistrictOfBirthInBirthCertificate"
+                android:layout_below="@id/childGrandFatherCnicInBirthCertificate"
+                android:hint="@string/district_of_birth"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                />
+
+            <!-- Date of birth -->
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="datePickerDialog"
+                android:id="@+id/childDateOfBirthInBirthCertificate"
+                android:layout_below="@id/childDistrictOfBirthInBirthCertificate"
+                android:hint="@string/date_of_birth"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                />
+
+
+            <!-- Vaccinated   edit text -->
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/childVaccinatedInBirthCertificate"
+                android:layout_below="@id/childDateOfBirthInBirthCertificate"
+                android:hint="@string/vaccinated"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                />
+
+            <!-- Place of birth edit text -->
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/childPlaceOfBirth"
+                android:layout_below="@id/childVaccinatedInBirthCertificate"
+                android:hint="@string/place_of_birth"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                />
+
+            <!-- Doctor or MidWife name edit text -->
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/doctorOrMidWifeNameInBirthCertificate"
+                android:layout_below="@id/childPlaceOfBirth"
+                android:hint="@string/doctor_or_midwife_name"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                />
+
+            <!-- Disability edit text -->
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/disabilityInBirthCertificate"
+                android:layout_below="@id/doctorOrMidWifeNameInBirthCertificate"
+                android:hint="@string/disability"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                />
+
+            <!-- Address edit text -->
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/addressInBirthCertificate"
+                android:layout_below="@id/disabilityInBirthCertificate"
+                android:hint="@string/address"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                />
+
+
+            <!-- Button upload noc -->
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:id="@+id/btnUploadCnicInChildCertificate"
+                android:layout_alignParentLeft="true"
+                android:textColor="@color/txt_color"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_below="@+id/addressInBirthCertificate"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/edit_margin"
+                android:textSize="15sp"
+                android:text="@string/upload_cnic"/>
+
+            <!-- Text no front side of cnic choosen -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtFrontOfCnic"
+                android:layout_below="@+id/btnUploadCnicInChildCertificate"
+                android:text="@string/choose_front_side"
+                android:layout_marginTop="@dimen/edit_margin_top"
+                android:layout_marginLeft="@dimen/txt_margin_left"
+                android:layout_centerHorizontal="true"
+                />
+
+            <!-- Image front cnic upload -->
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/chooseCnicFrontImage"
+                android:layout_below="@+id/btnUploadCnicInChildCertificate"
+                android:src="@mipmap/ic_launcher"
+                android:layout_marginTop="@dimen/edit_margin"
+                android:layout_marginLeft="@dimen/txt_margin_left"
+                android:visibility="invisible"
+                android:layout_centerHorizontal="true"
+                />
+
+            <!-- Text no front side of cnic choosen -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtBackOfCnic"
+                android:layout_below="@+id/txtFrontOfCnic"
+                android:text="@string/choose_front_side"
+                android:layout_marginTop="@dimen/edit_margin_top"
+                android:layout_marginLeft="@dimen/txt_margin_left"
+                android:layout_centerHorizontal="true"
+                />
+
+            <!-- Image front cnic upload -->
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/chooseCnicBackImage"
+                android:layout_below="@+id/txtFrontOfCnic"
+                android:src="@mipmap/ic_launcher"
+                android:layout_marginTop="@dimen/edit_margin"
+                android:layout_marginLeft="@dimen/txt_margin_left"
+                android:visibility="invisible"
+                android:layout_centerHorizontal="true"
+                />
+
+
+            <!-- Button Apply for children birth certificate -->
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.Button"
+                android:id="@+id/applyForChildBirthCertificate"
+                android:backgroundTint="@color/txt_color"
+                android:layout_marginLeft="@dimen/edit_margin_top"
+                android:layout_marginRight="@dimen/edit_margin_top"
+                android:layout_below="@+id/txtBackOfCnic"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/edit_margin"
+                android:layout_marginBottom="@dimen/edit_margin_top"
+                android:textSize="15sp"
+                android:text="@string/apply"
+                app:cornerRadius="16dp"/>
+
+
+
+        </RelativeLayout>
+
+
+    </ScrollView>
+
+
+
+</RelativeLayout>

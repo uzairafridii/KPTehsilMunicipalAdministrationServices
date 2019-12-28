@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Certificates.DeathCertificate">
+
+    <include layout="@layout/app_tool_bar"
+        android:id="@+id/death_certificate_tool_bar"
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/death_certificate_tool_bar"
+
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!-- applicant name edit text -->
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/applicantNameInDeathCertificate"
+                android:hint="@string/applicant_name"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/edit_margin"
+                />
+
+            <!-- applicant cnic edit text -->
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/applicantCnicInDeathCertificate"
+                android:layout_below="@id/applicantNameInDeathCertificate"
+                android:hint="@string/applicant_cnic"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                />
+
+            <!-- Deceased name edit text -->
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/deceasedNameInDeathCertificate"
+                android:layout_below="@id/applicantCnicInDeathCertificate"
+                android:hint="@string/deceased_name"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                />
+
+            <!-- Deceased cnic edit text -->
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/deceasedCnicDeathCertificate"
+                android:layout_below="@id/deceasedNameInDeathCertificate"
+                android:hint="@string/deceased_cnic"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                />
+
+            <!-- Relation with applicant edit text -->
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/relationWithApplicantsInDeathCertificate"
+                android:layout_below="@id/deceasedCnicDeathCertificate"
+                android:hint="@string/relation_with_applicant"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                />
+
+            <!-- Religion  edit text -->
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/religionInDeathCertificate"
+                android:layout_below="@id/relationWithApplicantsInDeathCertificate"
+                android:hint="@string/religion"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                />
+
+
+            <!-- Deceased father name edit text -->
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/deceasedFatherNameInDeathCertificate"
+                android:layout_below="@id/religionInDeathCertificate"
+                android:hint="@string/deceased_father_name"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                />
+
+            <!-- Deceased father cnic edit text -->
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/deceasedFatherCnicInDeathCertificate"
+                android:layout_below="@id/deceasedFatherNameInDeathCertificate"
+                android:hint="@string/deceased_father_cnic"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                />
+
+            <!-- Deceased mother name edit text -->
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/deceasedMotherNameInDeathCertificate"
+                android:layout_below="@id/deceasedFatherCnicInDeathCertificate"
+                android:hint="@string/deceased_mother_name"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                />
+
+            <!-- Deceased mother cnic edit text -->
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/deceasedMotherCnicInDeathCertificate"
+                android:layout_below="@id/deceasedMotherNameInDeathCertificate"
+                android:hint="@string/deceased_mother_cnic"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                />
+
+            <!-- husband name edit text -->
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/husbandNameInDeathCertificate"
+                android:layout_below="@id/deceasedMotherCnicInDeathCertificate"
+                android:hint="@string/husband_name"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                />
+
+            <!-- huband cnic edit text -->
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/husbandCnicInDeathCertifcate"
+                android:layout_below="@id/husbandNameInDeathCertificate"
+                android:hint="@string/husband_cnic"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                />
+
+            <!-- gravayard  edit text -->
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/gravayedNameInDeathCertificate"
+                android:layout_below="@id/husbandCnicInDeathCertifcate"
+                android:hint="@string/gravayard_name"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                />
+
+
+            <!-- Place of birth edit text -->
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/placeOfBirthInDeathCertificate"
+                android:layout_below="@id/gravayedNameInDeathCertificate"
+                android:hint="@string/place_of_birth"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                />
+
+            <!--  date of birth edit text -->
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/deceasedDateOfBirthInDeathCertificate"
+                android:layout_below="@id/placeOfBirthInDeathCertificate"
+                android:hint="@string/deceased_date_of_birth"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                />
+
+
+
+            <!-- Button upload noc -->
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:id="@+id/btnUploadCnicInDeathCertificate"
+                android:layout_alignParentLeft="true"
+                android:textColor="@color/txt_color"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_below="@+id/deceasedDateOfBirthInDeathCertificate"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/edit_margin"
+                android:textSize="15sp"
+                android:text="@string/upload_cnic"/>
+
+            <!-- Text no front side of cnic choosen -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtFrontOfCnic"
+                android:layout_below="@+id/btnUploadCnicInDeathCertificate"
+                android:text="@string/choose_front_side"
+                android:layout_marginTop="@dimen/edit_margin_top"
+                android:layout_marginLeft="@dimen/txt_margin_left"
+                android:layout_centerHorizontal="true"
+                />
+
+            <!-- Image front cnic upload -->
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/chooseCnicFrontImage"
+                android:layout_below="@+id/btnUploadCnicInDeathCertificate"
+                android:src="@mipmap/ic_launcher"
+                android:layout_marginTop="@dimen/edit_margin"
+                android:layout_marginLeft="@dimen/txt_margin_left"
+                android:visibility="invisible"
+                android:layout_centerHorizontal="true"
+                />
+
+            <!-- Text no front side of cnic choosen -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtBackOfCnic"
+                android:layout_below="@+id/txtFrontOfCnic"
+                android:text="@string/choose_front_side"
+                android:layout_marginTop="@dimen/edit_margin_top"
+                android:layout_marginLeft="@dimen/txt_margin_left"
+                android:layout_centerHorizontal="true"
+                />
+
+            <!-- Image front cnic upload -->
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/chooseCnicBackImage"
+                android:layout_below="@+id/txtFrontOfCnic"
+                android:src="@mipmap/ic_launcher"
+                android:layout_marginTop="@dimen/edit_margin"
+                android:layout_marginLeft="@dimen/txt_margin_left"
+                android:visibility="invisible"
+                android:layout_centerHorizontal="true"
+                />
+
+
+            <!-- Button Apply for children birth certificate -->
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.Button"
+                android:id="@+id/applyForDeathCertificate"
+                android:backgroundTint="@color/txt_color"
+                android:layout_marginLeft="@dimen/edit_margin_top"
+                android:layout_marginRight="@dimen/edit_margin_top"
+                android:layout_below="@+id/txtBackOfCnic"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/edit_margin"
+                android:layout_marginBottom="@dimen/edit_margin_top"
+                android:textSize="15sp"
+                android:text="@string/apply"
+                app:cornerRadius="16dp"/>
+
+
+
+        </RelativeLayout>
+
+
+    </ScrollView>
+
+
+</RelativeLayout>

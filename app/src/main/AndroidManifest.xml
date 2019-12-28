@@ -9,15 +9,35 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".UserProfile.Profile"></activity>
-        <activity android:name=".BuildingNoc.BuildingNocActivity" />
-        <activity android:name=".TaxesDetails.Taxes" />
-        <activity android:name=".WaterBills.WaterBills" />
-        <activity android:name=".UserComplaint.ComplaintsMain.UserFeedBack" />
-        <activity android:name=".UserComplaint.ComplaintsMain.AddComplaints" />
-        <activity android:name=".UserComplaint.ComplaintsMain.Complaints" />
-        <activity android:name=".LoginAndSignUp.SignUp" />
-        <activity android:name=".LoginAndSignUp.Login">
+        <activity android:name=".Certificates.DeathCertificate"></activity>
+        <activity android:name=".Certificates.BirthCertificate" />
+        <activity
+            android:name=".UserProfile.Profile"
+            android:screenOrientation="locked" />
+        <activity
+            android:name=".BuildingNoc.BuildingNocActivity"
+            android:screenOrientation="locked" />
+        <activity
+            android:name=".TaxesDetails.Taxes"
+            android:screenOrientation="locked" />
+        <activity
+            android:name=".WaterBills.WaterBills"
+            android:screenOrientation="locked" />
+        <activity
+            android:name=".UserComplaint.ComplaintsMain.UserFeedBack"
+            android:screenOrientation="locked" />
+        <activity
+            android:name=".UserComplaint.ComplaintsMain.AddComplaints"
+            android:screenOrientation="locked" />
+        <activity
+            android:name=".UserComplaint.ComplaintsMain.Complaints"
+            android:screenOrientation="locked" />
+        <activity
+            android:name=".LoginAndSignUp.SignUp"
+            android:screenOrientation="locked" />
+        <activity
+            android:name=".LoginAndSignUp.Login"
+            android:screenOrientation="locked">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
