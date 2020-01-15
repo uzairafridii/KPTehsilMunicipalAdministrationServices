@@ -1,7 +1,11 @@
 package com.uzair.kptehsilmunicipaladministrationservices.UserComplaint.ComplaintsMain;
 
 import android.content.Intent;
+
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +19,7 @@ import com.uzair.kptehsilmunicipaladministrationservices.R;
 
 public class UserFeedBack extends AppCompatActivity {
 
+    private Toolbar mToolbar;
     private TextView titleOfComplaint , workerFirstName, workerSecondName, dateAndTime , rateUs;
     private ImageView complaintImage;
     private RatingBar workerRating;
@@ -75,6 +80,18 @@ public class UserFeedBack extends AppCompatActivity {
         addCommentEdit = findViewById(R.id.comment_edit_text);
         cameraButton  = findViewById(R.id.add_image_btn);
         submitFeedBackBtn = findViewById(R.id.submit_feedback_btn);
+
+
+
+            //  app tool bar
+            mToolbar = findViewById(R.id.feedback_tool_bar);
+            setSupportActionBar(mToolbar);
+            setTitle("User Feedback");
+
+            // tool bar back arrow enabled
+            ActionBar actionBar = getSupportActionBar();
+            actionBar.setDisplayHomeAsUpEnabled(true);
+
 
     }
 }

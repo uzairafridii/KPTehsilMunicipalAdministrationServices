@@ -9,32 +9,53 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Certificates.DeathCertificate"></activity>
-        <activity android:name=".Certificates.BirthCertificate" />
+        <activity android:name=".Certificates.DeathCertificate"
+            android:screenOrientation="locked"
+            android:parentActivityName=".Main.MainActivity"></activity>
+
+        <activity android:name=".Certificates.BirthCertificate"
+            android:screenOrientation="locked"
+            android:parentActivityName=".Main.MainActivity"/>
+
         <activity
             android:name=".UserProfile.Profile"
-            android:screenOrientation="locked" />
+            android:screenOrientation="locked"
+            android:parentActivityName=".Main.MainActivity" />
+
         <activity
             android:name=".BuildingNoc.BuildingNocActivity"
-            android:screenOrientation="locked" />
+            android:screenOrientation="locked"
+            android:parentActivityName=".Main.MainActivity" />
+
         <activity
             android:name=".TaxesDetails.Taxes"
-            android:screenOrientation="locked" />
+            android:screenOrientation="locked"
+            android:parentActivityName=".Main.MainActivity" />
+
         <activity
             android:name=".WaterBills.WaterBills"
-            android:screenOrientation="locked" />
+            android:screenOrientation="locked"
+            android:parentActivityName=".Main.MainActivity"/>
+
         <activity
             android:name=".UserComplaint.ComplaintsMain.UserFeedBack"
-            android:screenOrientation="locked" />
+            android:screenOrientation="locked"
+            android:parentActivityName=".UserComplaint.ComplaintsMain.Complaints" />
+
         <activity
             android:name=".UserComplaint.ComplaintsMain.AddComplaints"
-            android:screenOrientation="locked" />
+            android:screenOrientation="locked"
+            android:parentActivityName=".UserComplaint.ComplaintsMain.Complaints" />
+
         <activity
             android:name=".UserComplaint.ComplaintsMain.Complaints"
-            android:screenOrientation="locked" />
+            android:screenOrientation="locked"
+            android:parentActivityName=".Main.MainActivity" />
+
         <activity
             android:name=".LoginAndSignUp.SignUp"
             android:screenOrientation="locked" />
+
         <activity
             android:name=".LoginAndSignUp.Login"
             android:screenOrientation="locked">
@@ -44,6 +65,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".Main.MainActivity"
             android:screenOrientation="locked" />

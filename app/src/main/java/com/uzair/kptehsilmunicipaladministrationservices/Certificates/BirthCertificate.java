@@ -1,6 +1,8 @@
 package com.uzair.kptehsilmunicipaladministrationservices.Certificates;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
@@ -16,6 +18,7 @@ import com.uzair.kptehsilmunicipaladministrationservices.R;
 import java.util.Calendar;
 
 public class BirthCertificate extends AppCompatActivity {
+    private Toolbar mToolbar;
     private EditText dateOfBirth;
     private Spinner childGender;
     private String[] gender = {"Male","Female"};
@@ -34,8 +37,17 @@ public class BirthCertificate extends AppCompatActivity {
 
        private void initViews()
        {
-           dateOfBirth = findViewById(R.id.childDateOfBirthInBirthCertificate);
-           childGender = findViewById(R.id.childGenderInBirthCertificate);
+              dateOfBirth = findViewById(R.id.childDateOfBirthInBirthCertificate);
+              childGender = findViewById(R.id.childGenderInBirthCertificate);
+
+               //  app tool bar
+               mToolbar = findViewById(R.id.child_birth_certificate_tool_bar);
+               setSupportActionBar(mToolbar);
+               setTitle("Birth Certificate Form");
+
+               // tool bar back arrow enabled
+               ActionBar actionBar = getSupportActionBar();
+               actionBar.setDisplayHomeAsUpEnabled(true);
        }
 
     // set values in spinner

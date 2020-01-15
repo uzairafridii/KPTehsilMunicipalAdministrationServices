@@ -9,7 +9,8 @@
     tools:context=".TaxesDetails.Taxes">
 
 
-    
+    <include layout="@layout/app_tool_bar"
+        android:id="@+id/taxes_tool_bar"/>
 
 
 </RelativeLayout>

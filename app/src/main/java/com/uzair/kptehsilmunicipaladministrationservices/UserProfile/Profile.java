@@ -4,7 +4,9 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -42,6 +44,7 @@ public class Profile extends AppCompatActivity {
         mToolbar = findViewById(R.id.profile_tool_bar);
         mToolbar.inflateMenu(R.menu.user_profile_menu);
         mToolbar.setTitle("Your Profile");
+
 
     }
 }

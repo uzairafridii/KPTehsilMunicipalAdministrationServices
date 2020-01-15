@@ -51,10 +51,8 @@ public class MainActivity extends AppCompatActivity {
         //  app tool bar
         mToolbar = findViewById(R.id.home_tool_bar);
         setSupportActionBar(mToolbar);
+        setTitle("Home");
 
-        // tool bar back arrow enabled
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
 
     }
 

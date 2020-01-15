@@ -3,9 +3,11 @@ package com.uzair.kptehsilmunicipaladministrationservices.UserComplaint.Complain
 import android.content.Intent;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
@@ -20,6 +22,7 @@ import java.util.Calendar;
 
 public class Complaints extends AppCompatActivity {
 
+    private Toolbar mToolbar;
     private RecyclerView complaintList;
     private FloatingActionButton floatingActionButton;
     private ArrayList<ComplaintModel> modelArrayList;
@@ -53,13 +56,14 @@ public class Complaints extends AppCompatActivity {
 
         modelArrayList = new ArrayList<>();
 
-        //  app tool bar
-       // mToolbar = findViewById(R.id.home_tool_bar);
-        //setSupportActionBar(mToolbar);
+         // app tool bar
+        mToolbar = findViewById(R.id.complaint_tool_bar);
+        setSupportActionBar(mToolbar);
+        setTitle("Your Complaints");
 
         // tool bar back arrow enabled
-     //   ActionBar actionBar = getSupportActionBar();
-       // actionBar.setDisplayHomeAsUpEnabled(true);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
 
     }
