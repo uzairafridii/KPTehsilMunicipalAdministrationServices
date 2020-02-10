@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.uzair.kptehsilmunicipaladministrationservices">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,6 +10,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <service
+            android:name="FirebaseMessagingService.FirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+
+
         <activity android:name=".Certificates.DeathCertificate"
             android:screenOrientation="locked"
             android:parentActivityName=".Main.MainActivity"></activity>
@@ -69,6 +81,12 @@
         <activity
             android:name=".Main.MainActivity"
             android:screenOrientation="locked" />
+
+
+
+
+
+
     </application>
 
 </manifest>

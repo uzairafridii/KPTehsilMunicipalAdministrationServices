@@ -24,7 +24,7 @@
     <!-- Email edit text -->
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:id="@+id/emailTextInputLayout"
+        android:id="@+id/emailTextInputLayoutLogin"
         android:layout_below="@id/txtLogin"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
@@ -38,44 +38,41 @@
             android:layout_height="wrap_content"
             android:hint="@string/user_email"
             android:inputType="textEmailAddress"
-            android:layout_marginTop="32dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp"
-            android:drawableStart="@drawable/ic_email_black_24dp"
-            android:drawableLeft="@drawable/ic_email_black_24dp"
+            android:drawableEnd="@drawable/ic_email_black_24dp"
+            android:drawableRight="@drawable/ic_email_black_24dp"
             android:drawablePadding="16dp"/>
 
+
+
     </com.google.android.material.textfield.TextInputLayout>
+
 
     <!-- Password edit text -->
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:id="@+id/passwordTextInputLayout"
-        android:layout_below="@id/emailTextInputLayout"
+        android:id="@+id/passwordTextInputLayoutLogin"
+        android:layout_below="@id/emailTextInputLayoutLogin"
         android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="@dimen/edit_margin_top"
+        android:layout_marginTop="@dimen/edit_margin"
+        android:layout_marginRight="@dimen/margin_16"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:boxStrokeColor="@color/txt_color">
+        app:boxStrokeColor="@color/txt_color"
+        app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/user_password"
             android:layout_marginTop="16dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp"
             android:inputType="textPassword"
-            android:drawableStart="@drawable/ic_remove_red_eye_black_24dp"
-            android:drawableLeft="@drawable/ic_remove_red_eye_black_24dp"
             android:drawablePadding="16dp"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <!-- forget password text view -->
     <TextView
-        android:layout_below="@+id/passwordTextInputLayout"
+        android:layout_below="@+id/passwordTextInputLayoutLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/txtForgetPassword"

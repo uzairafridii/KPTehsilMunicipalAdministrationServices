@@ -41,7 +41,7 @@
             android:id="@+id/userNameTextInputLayout"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            android:layout_marginTop="@dimen/edit_margin_top"
+            android:layout_marginTop="@dimen/edit_margin"
             app:boxStrokeColor="@color/txt_color"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -51,13 +51,9 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/user_name"
                 android:inputType="text"
-                android:layout_marginTop="8dp"
-                android:layout_marginLeft="4dp"
-                android:layout_marginRight="4dp"
                 android:textSize="15sp"
-                android:background="@drawable/edit_txt_bg"
-                android:drawableStart="@drawable/ic_person_black_24dp"
-                android:drawableLeft="@drawable/ic_person_black_24dp"
+                android:drawableEnd="@drawable/ic_person_black_24dp"
+                android:drawableRight="@drawable/ic_person_black_24dp"
                 android:drawablePadding="@dimen/drawable_padding"/>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -79,13 +75,9 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/user_email"
                 android:inputType="textEmailAddress"
-                android:layout_marginTop="8dp"
-                android:layout_marginLeft="4dp"
-                android:layout_marginRight="4dp"
                 android:textSize="15sp"
-                android:background="@drawable/edit_txt_bg"
-                android:drawableStart="@drawable/ic_email_black_24dp"
-                android:drawableLeft="@drawable/ic_email_black_24dp"
+                android:drawableEnd="@drawable/ic_email_black_24dp"
+                android:drawableRight="@drawable/ic_email_black_24dp"
                 android:drawablePadding="@dimen/drawable_padding"/>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -107,17 +99,12 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/phone_no"
                 android:inputType="number"
-                android:layout_marginTop="8dp"
-                android:layout_marginLeft="4dp"
-                android:layout_marginRight="4dp"
                 android:textSize="15sp"
-                android:background="@drawable/edit_txt_bg"
-                android:drawableStart="@drawable/ic_phone_black_24dp"
-                android:drawableLeft="@drawable/ic_phone_black_24dp"
+                android:drawableEnd="@drawable/ic_phone_black_24dp"
+                android:drawableRight="@drawable/ic_phone_black_24dp"
                 android:drawablePadding="@dimen/drawable_padding"/>
 
         </com.google.android.material.textfield.TextInputLayout>
-
 
         <!-- CNIC edit text -->
         <com.google.android.material.textfield.TextInputLayout
@@ -136,13 +123,9 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/cnic"
                 android:inputType="text"
-                android:layout_marginTop="8dp"
-                android:layout_marginLeft="4dp"
-                android:layout_marginRight="4dp"
                 android:textSize="15sp"
-                android:background="@drawable/edit_txt_bg"
-                android:drawableStart="@drawable/ic_assignment_ind_black_24dp"
-                android:drawableLeft="@drawable/ic_assignment_ind_black_24dp"
+                android:drawableEnd="@drawable/ic_assignment_ind_black_24dp"
+                android:drawableRight="@drawable/ic_assignment_ind_black_24dp"
                 android:drawablePadding="@dimen/drawable_padding"/>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -155,6 +138,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="8dp"
+            app:passwordToggleEnabled="true"
             app:boxStrokeColor="@color/txt_color"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -164,13 +148,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/user_password"
                 android:inputType="textPassword"
-                android:layout_marginTop="8dp"
-                android:layout_marginLeft="4dp"
-                android:layout_marginRight="4dp"
                 android:textSize="15sp"
-                android:background="@drawable/edit_txt_bg"
-                android:drawableStart="@drawable/ic_remove_red_eye_black_24dp"
-                android:drawableLeft="@drawable/ic_remove_red_eye_black_24dp"
                 android:drawablePadding="@dimen/drawable_padding"/>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -184,6 +162,7 @@
             android:layout_marginRight="16dp"
             android:layout_marginTop="8dp"
             app:boxStrokeColor="@color/txt_color"
+            app:passwordToggleEnabled="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -192,13 +171,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/confirm_password"
                 android:inputType="textPassword"
-                android:layout_marginTop="8dp"
-                android:layout_marginLeft="4dp"
-                android:layout_marginRight="4dp"
                 android:textSize="15sp"
-                android:background="@drawable/edit_txt_bg"
-                android:drawableStart="@drawable/ic_remove_red_eye_black_24dp"
-                android:drawableLeft="@drawable/ic_remove_red_eye_black_24dp"
                 android:drawablePadding="@dimen/drawable_padding"/>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -211,7 +184,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/txt_color"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/edit_margin"
+            android:layout_marginRight="@dimen/margin_16"
             android:layout_marginTop="8dp"
             android:src="@drawable/ic_arrow_forward_black_24dp"
             android:elevation="0dp"

@@ -10,4 +10,5 @@
     <dimen name="drawable_padding">16dp</dimen>
     <dimen name="edit_padding_left">20dp</dimen>
     <dimen name="reycler_view_margin">4dp</dimen>
+    <dimen name="margin_16">16dp</dimen>
 </resources>
