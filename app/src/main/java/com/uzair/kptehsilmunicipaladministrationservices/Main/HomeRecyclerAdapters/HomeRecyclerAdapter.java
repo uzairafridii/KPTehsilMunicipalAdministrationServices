@@ -84,12 +84,8 @@ public class HomeRecyclerAdapter extends RecyclerView.Adapter<HomeRecyclerAdapte
                         ctx.startActivity(new Intent(ctx , Taxes.class));
                         break;
                     }
-                    case "Birth Certificate": {
+                    case "Certificates": {
                         ctx.startActivity(new Intent(ctx , BirthCertificate.class));
-                        break;
-                    }
-                    case "Death Certificate": {
-                        ctx.startActivity(new Intent(ctx , DeathCertificate.class));
                         break;
                     }
 

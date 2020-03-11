@@ -45,7 +45,6 @@ public class SignUp extends AppCompatActivity
     // firebase auth
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
-    private FirebaseUser currentUser;
 
 
     @Override
@@ -89,7 +88,7 @@ public class SignUp extends AppCompatActivity
         phoneInput           = findViewById(R.id.userPhoneTextInputLayout);
         cnicInput            = findViewById(R.id.userCnicTextInputLayout);
 
-        mProgressDialog = new ProgressDialog(this);
+        mProgressDialog = new ProgressDialog(this , R.style.MyAlertDialogStyle);
 
         // buttons
         alreadyHaveAnAccount = findViewById(R.id.txtAlreadyHaveAccount);
@@ -98,7 +97,7 @@ public class SignUp extends AppCompatActivity
         // firebase
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference().child("TMA Lachi");
-        currentUser = mAuth.getCurrentUser();
+
 
     }
 
@@ -132,7 +131,6 @@ public class SignUp extends AppCompatActivity
             else
                 { // inner else body start
 
-
                 // progress dialog properties
                 mProgressDialog.setMessage("Registering...");
                 mProgressDialog.setCanceledOnTouchOutside(false);
@@ -143,7 +141,8 @@ public class SignUp extends AppCompatActivity
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
+
+                                if (task.isSuccessful()) { // susscess if
                                     mAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
@@ -155,8 +154,11 @@ public class SignUp extends AppCompatActivity
                                             }
                                         }
                                     }); // inner on complete body end
-                                }// if else body end
-
+                                }// if success  body end
+                                 else { // esle success
+                                     mProgressDialog.dismiss();
+                                    errorDialog(task.getException().getMessage());
+                                }
                             }
                         });//outer on complete body end
 
@@ -180,16 +182,44 @@ public class SignUp extends AppCompatActivity
     {
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
         alert.setTitle("Check Email");
-        alert.setMessage("Please Check and Verify Your Email ");
+        alert.setMessage("Please Verify Your Email ");
         alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+
                 startActivity(new Intent(SignUp.this , Login.class));
+                SignUp.this.finish();
+
+            }
+        }).setNeutralButton("Verify", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                Intent intent = new Intent(Intent.ACTION_MAIN);
+                intent.addCategory(Intent.CATEGORY_APP_EMAIL);
+                startActivity(intent);
             }
         });
         alert.show();
 
     }
+    
+    // show alert dialog for error
+    private void errorDialog(String message)
+    {
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle("Error");
+        alert.setMessage(message);
+        alert.setCancelable(false);
+        alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        alert.show();
+    }
+
 
     // insert user data in firebase database
     private void storeUserDataInDataBase(final String name , final String email , final String cnic,
@@ -200,7 +230,7 @@ public class SignUp extends AppCompatActivity
             public void onSuccess(InstanceIdResult instanceIdResult) {
 
                 String deviceToken = instanceIdResult.getToken();
-                String currentUserUid = currentUser.getUid();
+
 
                 Map<String , String > userRecord = new HashMap<>();
                 userRecord.put("user_name" , name);
@@ -211,7 +241,7 @@ public class SignUp extends AppCompatActivity
                 userRecord.put("user_confirm_password" , confPassword);
                 userRecord.put("device_token" , deviceToken);
 
-                mDatabase.child("Users").child(currentUserUid).setValue(userRecord).addOnCompleteListener(new OnCompleteListener<Void>() {
+                mDatabase.child("Users").child(mAuth.getCurrentUser().getUid()).setValue(userRecord).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
 

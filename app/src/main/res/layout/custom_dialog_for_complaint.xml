@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+   <ImageView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:src="@drawable/ic_check_black_24dp"
+       android:layout_gravity="center_horizontal"
+       android:layout_marginTop="@dimen/edit_margin"
+       android:background="@drawable/bg_for_dialog"
+       android:padding="@dimen/edit_margin"
+       />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your Complaint is Successfully Submitted"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/edit_margin"
+        android:textColor="#000"
+        />
+
+    <Button
+        android:id="@+id/btnOk"
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OK"
+        android:textSize="16sp"
+        android:layout_gravity="center_horizontal"
+        android:onClick="uploadComplaintImageBtn"
+        android:backgroundTint="@color/txt_color"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="@dimen/edit_margin"
+        android:layout_marginTop="@dimen/edit_margin"
+        android:layout_marginBottom="@dimen/edit_margin"
+         />
+
+</LinearLayout>

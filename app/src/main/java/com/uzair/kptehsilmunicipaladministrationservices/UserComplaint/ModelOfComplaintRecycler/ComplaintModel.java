@@ -1,16 +1,21 @@
 package com.uzair.kptehsilmunicipaladministrationservices.UserComplaint.ModelOfComplaintRecycler;
 
+import java.util.List;
+
 public class ComplaintModel
 {
-    private String title , description , status, dateAndTime;
-    private int image;
+    private String title , description , status, date;
+    private List<String> imageUrl;
 
-    public ComplaintModel(String title, String description, String status, String dateAndTime, int image) {
+    public ComplaintModel() {
+    }
+
+    public ComplaintModel(String title, String description, String status, String dateAndTime, List<String> image) {
         this.title = title;
         this.description = description;
         this.status = status;
-        this.dateAndTime = dateAndTime;
-        this.image = image;
+        this.date = dateAndTime;
+        this.imageUrl = image;
     }
 
     public String getTitle() {
@@ -37,19 +42,19 @@ public class ComplaintModel
         this.status = status;
     }
 
-    public String getDateAndTime() {
-        return dateAndTime;
+    public String getDate() {
+        return date;
     }
 
-    public void setDateAndTime(String dateAndTime) {
-        this.dateAndTime = dateAndTime;
+    public void setDate(String date) {
+        this.date = date;
     }
 
-    public int getImage() {
-        return image;
+    public List<String> getImageUrl() {
+        return imageUrl;
     }
 
-    public void setImage(int image) {
-        this.image = image;
+    public void setImageUrl(List<String> imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

@@ -5,12 +5,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/user_bg"
+
     tools:context=".UserComplaint.ComplaintsMain.Complaints">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+
+    <!-- add floating action button -->    <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
     <!-- add tool bar to activity -->
     <include layout="@layout/app_tool_bar"
         android:id="@+id/complaint_tool_bar"/>
@@ -27,22 +28,30 @@
 
     </androidx.recyclerview.widget.RecyclerView>
 
-    </RelativeLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressData"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:text="No Complaints"
+        android:layout_centerInParent="true"
+        />
 
-    <!-- add floating action button -->
+</RelativeLayout>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/complain_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="addNewComplaint"
         android:clickable="true"
-        android:foreground="?android:attr/selectableItemBackground"
         android:layout_gravity="bottom|right"
         android:layout_marginBottom="@dimen/fab_margin_bottom"
         android:layout_marginRight="@dimen/fab_margin"
-        app:borderWidth="0dp"
-        app:pressedTranslationZ="12dp"
         android:src="@drawable/ic_add_black_24dp"
+        app:borderWidth="0dp"
+        app:rippleColor="@color/white"
         app:backgroundTint="@color/txt_color"
         app:elevation="0dp" />
 

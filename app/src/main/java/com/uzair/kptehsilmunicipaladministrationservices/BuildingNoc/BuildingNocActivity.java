@@ -31,6 +31,7 @@ public class BuildingNocActivity extends AppCompatActivity {
         //  app tool bar
         mToolbar = findViewById(R.id.noc_tool_bar);
         setSupportActionBar(mToolbar);
+        mToolbar.setNavigationIcon(R.drawable.backicon);
         setTitle("Building Noc");
 
         // tool bar back arrow enabled

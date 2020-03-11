@@ -25,7 +25,7 @@
             android:layout_height="90dp"
             android:src="@mipmap/ic_launcher"
             android:id="@+id/home_recycler_image_view"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="@dimen/reycler_view_margin"
             android:layout_centerHorizontal="true"
             />
         <TextView
@@ -38,6 +38,10 @@
             android:textSize="16sp"
             android:layout_centerHorizontal="true"
             android:textStyle="bold|italic"
+            android:layout_marginLeft="@dimen/reycler_view_margin"
+            android:layout_marginRight="@dimen/reycler_view_margin"
+            android:layout_marginTop="@dimen/reycler_view_margin"
+            android:layout_marginBottom="@dimen/reycler_view_margin"
 
             />
 

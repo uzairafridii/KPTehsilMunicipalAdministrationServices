@@ -43,6 +43,7 @@ public class BirthCertificate extends AppCompatActivity {
                //  app tool bar
                mToolbar = findViewById(R.id.child_birth_certificate_tool_bar);
                setSupportActionBar(mToolbar);
+           mToolbar.setNavigationIcon(R.drawable.backicon);
                setTitle("Birth Certificate Form");
 
                // tool bar back arrow enabled

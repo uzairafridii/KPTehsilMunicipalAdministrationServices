@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    android:background="@drawable/user_login_bg"
+    android:background="@drawable/bg"
     tools:context=".LoginAndSignUp.SignUp">
 
     <!-- Sign Up text view -->
@@ -38,6 +38,7 @@
         <!-- User Name edit text -->
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:theme="@style/TextLabel"
             android:id="@+id/userNameTextInputLayout"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
@@ -49,6 +50,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/edit_margin"
+                android:paddingRight="@dimen/edit_margin"
                 android:hint="@string/user_name"
                 android:inputType="text"
                 android:textSize="15sp"
@@ -61,6 +64,7 @@
         <!-- Email edit text -->
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:theme="@style/TextLabel"
             android:id="@+id/emailTextInputLayout"
             android:layout_below="@id/userNameTextInputLayout"
             android:layout_marginLeft="16dp"
@@ -73,6 +77,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/edit_margin"
+                android:paddingRight="@dimen/edit_margin"
                 android:hint="@string/user_email"
                 android:inputType="textEmailAddress"
                 android:textSize="15sp"
@@ -85,6 +91,7 @@
         <!-- Phone edit text -->
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:theme="@style/TextLabel"
             android:id="@+id/userPhoneTextInputLayout"
             android:layout_below="@id/emailTextInputLayout"
             android:layout_marginLeft="16dp"
@@ -97,6 +104,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingRight="@dimen/edit_margin"
+                android:paddingLeft="@dimen/edit_margin"
                 android:hint="@string/phone_no"
                 android:inputType="number"
                 android:textSize="15sp"
@@ -109,6 +118,7 @@
         <!-- CNIC edit text -->
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:theme="@style/TextLabel"
             android:id="@+id/userCnicTextInputLayout"
             android:layout_below="@id/userPhoneTextInputLayout"
             android:layout_marginLeft="16dp"
@@ -121,6 +131,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/edit_margin"
+                android:paddingRight="@dimen/edit_margin"
                 android:hint="@string/cnic"
                 android:inputType="text"
                 android:textSize="15sp"
@@ -133,6 +145,7 @@
         <!-- Password edit text -->
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:theme="@style/TextLabel"
             android:id="@+id/userPasswordTextInputLayout"
             android:layout_below="@id/userCnicTextInputLayout"
             android:layout_marginLeft="16dp"
@@ -146,6 +159,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/edit_margin"
+                android:paddingRight="@dimen/edit_margin"
                 android:hint="@string/user_password"
                 android:inputType="textPassword"
                 android:textSize="15sp"
@@ -156,6 +171,7 @@
         <!-- Confirm password edit text -->
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:theme="@style/TextLabel"
             android:id="@+id/userConfirmPasswordTextInputLayout"
             android:layout_below="@id/userPasswordTextInputLayout"
             android:layout_marginLeft="16dp"
@@ -169,6 +185,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/edit_margin"
+                android:paddingRight="@dimen/edit_margin"
                 android:hint="@string/confirm_password"
                 android:inputType="textPassword"
                 android:textSize="15sp"
@@ -188,6 +206,8 @@
             android:layout_marginTop="8dp"
             android:src="@drawable/ic_arrow_forward_black_24dp"
             android:elevation="0dp"
+            app:borderWidth="0dp"
+            app:rippleColor="@color/txt_color"
             />
 
 

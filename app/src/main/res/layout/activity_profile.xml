@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/user_bg"
+
     tools:context=".UserProfile.Profile">
 
     <include layout="@layout/app_tool_bar" android:id="@+id/profile_tool_bar"/>
@@ -16,7 +16,7 @@
         android:layout_below="@+id/profile_tool_bar"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:src="@drawable/fire"
+        android:src="@drawable/ic_launcher_background"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/reycler_view_margin"
         app:civ_border_width="1dp"

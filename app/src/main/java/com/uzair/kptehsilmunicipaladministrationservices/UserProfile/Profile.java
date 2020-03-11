@@ -4,12 +4,18 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.uzair.kptehsilmunicipaladministrationservices.LoginAndSignUp.Login;
 import com.uzair.kptehsilmunicipaladministrationservices.R;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -19,12 +25,27 @@ public class Profile extends AppCompatActivity {
     private TextInputLayout userProfileName , userProfileEmail , userProfileCnic , userProfilePhone;
     private CircleImageView profileImage;
     private Toolbar mToolbar;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
          initView();
+
+        mToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item)
+            {
+                if(item.getItemId() == R.id.logout)
+                {
+                    mAuth.signOut();
+                    finish();
+                }
+
+                return true;
+            }
+        });
 
     }
 
@@ -45,6 +66,12 @@ public class Profile extends AppCompatActivity {
         mToolbar.inflateMenu(R.menu.user_profile_menu);
         mToolbar.setTitle("Your Profile");
 
+        //firebase
+        mAuth = FirebaseAuth.getInstance();
+
 
     }
+
+
+
 }

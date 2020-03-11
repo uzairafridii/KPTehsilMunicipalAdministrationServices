@@ -24,6 +24,7 @@ public class Taxes extends AppCompatActivity {
         //  app tool bar
         mToolbar = findViewById(R.id.taxes_tool_bar);
         setSupportActionBar(mToolbar);
+        mToolbar.setNavigationIcon(R.drawable.backicon);
         setTitle("Taxes Detail");
 
         // tool bar back arrow enabled

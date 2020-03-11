@@ -2,13 +2,18 @@ package com.uzair.kptehsilmunicipaladministrationservices.Main;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.uzair.kptehsilmunicipaladministrationservices.FireFighting.FireFighting;
+import com.uzair.kptehsilmunicipaladministrationservices.LoginAndSignUp.Login;
 import com.uzair.kptehsilmunicipaladministrationservices.Main.HomeRecyclerAdapters.HomeRecyclerAdapter;
 import com.uzair.kptehsilmunicipaladministrationservices.Main.ModelOfHomeRecycler.HomeModel;
 import com.uzair.kptehsilmunicipaladministrationservices.R;
@@ -23,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private HomeRecyclerAdapter homeRecyclerAdapter;
     private LinearLayoutManager mGridLayoutManager;
     private List<HomeModel> mHomeModel;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,10 +38,7 @@ public class MainActivity extends AppCompatActivity {
         initViews();
         setHomeRecyclerItems();
 
-        homeRecyclerAdapter = new HomeRecyclerAdapter(this , mHomeModel);
-        homeRecycler.setLayoutManager(mGridLayoutManager);
         homeRecycler.setAdapter(homeRecyclerAdapter);
-
         homeRecyclerAdapter.notifyDataSetChanged();
 
 
@@ -45,28 +48,45 @@ public class MainActivity extends AppCompatActivity {
     {
         homeRecycler = (RecyclerView) findViewById(R.id.homeRecyclerView);
         mGridLayoutManager = new GridLayoutManager(this , 2);
+        homeRecycler.setLayoutManager(mGridLayoutManager);
 
         mHomeModel = new ArrayList<>();
-
+        homeRecyclerAdapter = new HomeRecyclerAdapter(this , mHomeModel);
         //  app tool bar
         mToolbar = findViewById(R.id.home_tool_bar);
         setSupportActionBar(mToolbar);
         setTitle("Home");
 
+        // firebase
+        mAuth = FirebaseAuth.getInstance();
+
+
 
     }
 
+    // set items on recycler list
     private void setHomeRecyclerItems()
     {
         mHomeModel.add(new HomeModel("Complaints" , R.drawable.ic_launcher_background));
-        mHomeModel.add(new HomeModel("Water Bills" , R.drawable.bill));
-        mHomeModel.add(new HomeModel("Fire Brigade" , R.drawable.fire));
-        mHomeModel.add(new HomeModel("Building Noc" , R.drawable.noc));
-        mHomeModel.add(new HomeModel("Taxes" , R.drawable.taxes));
-        mHomeModel.add(new HomeModel("Birth Certificate" , R.drawable.birth));
-        mHomeModel.add(new HomeModel("Death Certificate" , R.drawable.death));
-        mHomeModel.add(new HomeModel("Marriage Certificate" , R.drawable.certificate));
-        mHomeModel.add(new HomeModel("Profile" , R.drawable.profile));
+        mHomeModel.add(new HomeModel("Water Bills" , R.drawable.ic_add_black_24dp));
+        mHomeModel.add(new HomeModel("Fire Brigade" , R.drawable.ic_launcher_background));
+        mHomeModel.add(new HomeModel("Building Noc" , R.drawable.ic_launcher_background));
+        mHomeModel.add(new HomeModel("Taxes" , R.drawable.ic_launcher_background));
+        mHomeModel.add(new HomeModel("Certificates" , R.drawable.ic_launcher_background));
+        mHomeModel.add(new HomeModel("Profile" , R.drawable.ic_launcher_background));
 
+    }
+
+    // on start to check user is logged in or not
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser == null)
+        {
+            startActivity(new Intent(this , Login.class));
+            this.finish();
+        }
     }
 }

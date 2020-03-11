@@ -9,43 +9,42 @@
     <include layout="@layout/app_tool_bar"
         android:id="@+id/addComplain_tool_bar"/>
 
+   <ScrollView
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:id="@+id/scrollView"
+       android:layout_below="@+id/addComplain_tool_bar"
+       >
 
-    <Button
-        android:id="@+id/upload_image_btn"
-        style="@style/Widget.MaterialComponents.Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/txt_color"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="@dimen/edit_margin"
-        android:layout_marginTop="@dimen/edit_margin"
-        android:layout_below="@id/addComplain_tool_bar"
-        android:text="@string/upload_image"
-        android:textSize="16sp"
-        app:iconSize="@dimen/edit_margin"
-        app:strokeWidth="2dp"
-        app:iconPadding="2dp"
-        app:icon="@drawable/ic_file_upload_black_24dp"
-        app:cornerRadius="16dp"/>
+    <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       >
 
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/complaint_title"
+            android:layout_margin="@dimen/edit_margin"
+            android:hint="@string/enter_your_complaint_title"
+            android:inputType="text"
+            />
 
-    <ImageView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_below="@id/addComplain_tool_bar"
-        android:id="@+id/complaint_image"
-        android:layout_toRightOf="@+id/upload_image_btn"
-        android:layout_marginLeft="6dp"
-        android:visibility="invisible"
-        android:layout_marginTop="@dimen/image_btn_margin_top"
-        android:src="@mipmap/ic_launcher"/>
-
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/complaint_description_edit_text"
+            android:layout_below="@+id/complaint_title"
+            android:layout_margin="@dimen/edit_margin"
+            android:hint="@string/complaint_description"
+            android:inputType="text|textMultiLine"
+            />
 
     <RadioGroup
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/radio_group"
-        android:layout_below="@+id/upload_image_btn"
+        android:layout_below="@+id/complaint_description_edit_text"
         android:layout_marginTop="8dp"
         android:layout_marginLeft="@dimen/edit_margin"
         android:orientation="horizontal">
@@ -55,6 +54,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/rd_btn_sanitation"
             android:text="Sanitation"
+            android:buttonTint="@color/txt_color"
             android:textSize="16sp"
             android:layout_marginRight="@dimen/edit_margin"
             />
@@ -64,44 +64,60 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Infrastructure"
+            android:buttonTint="@color/txt_color"
             android:textSize="16sp"
             android:layout_marginLeft="@dimen/edit_margin"/>
 
     </RadioGroup>
 
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/complaint_title"
-        android:layout_below="@+id/radio_group"
-        android:layout_margin="@dimen/edit_margin"
-        android:hint="@string/enter_your_complaint_title"
-        />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/description_txt_field"
-        android:layout_below="@+id/complaint_title"
-        android:layout_margin="@dimen/edit_margin"
-        android:hint="@string/complaint_description"
-        android:inputType="text|textMultiLine"
-        />
-
+        <Button
+            android:id="@+id/upload_image_btn"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="uploadComplaintImageBtn"
+            android:backgroundTint="@color/txt_color"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="@dimen/edit_margin"
+            android:layout_marginTop="@dimen/edit_margin"
+            android:text="@string/upload_image"
+            android:textSize="16sp"
+            android:layout_below="@id/radio_group"
+            app:iconSize="@dimen/edit_margin"
+            app:strokeWidth="2dp"
+            app:iconPadding="2dp"
+            app:icon="@drawable/ic_file_upload_black_24dp"
+            app:cornerRadius="16dp"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:layout_below="@+id/description_txt_field"
-        android:layout_width="54dp"
-        android:layout_height="54dp"
+        android:layout_below="@+id/radio_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/submit_complain_btn"
+        android:onClick="submitComplaintBtn"
         android:layout_alignParentRight="true"
         android:layout_marginRight="@dimen/edit_margin"
-        android:layout_marginTop="@dimen/edit_margin_top"
+        android:layout_marginTop="@dimen/edit_margin"
         android:backgroundTint="@color/txt_color"
         android:src="@drawable/ic_arrow_forward_black_24dp"
         app:elevation="0dp"
         app:fabSize="auto"
+        app:borderWidth="0dp"
+        app:rippleColor="@color/txt_color"
         />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/selectImagesRecyclerList"
+            android:layout_marginTop="@dimen/edit_margin"
+            android:layout_below="@id/upload_image_btn"
+            android:layout_marginLeft="@dimen/edit_margin"
+            android:layout_marginRight="@dimen/edit_margin"
+            />
+
+   </RelativeLayout>
+
+   </ScrollView>
 
 </RelativeLayout>
