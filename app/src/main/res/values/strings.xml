@@ -62,4 +62,7 @@
     <string name="husband_name">Husband Name</string>
     <string name="deceased_mother_name">Deceased Mother Name</string>
     <string name="deceased_mother_cnic">Deceased Mother Cnic</string>
+    <string name="driver_name">Driver Name</string>
+    <string name="name_of_driver">Name of Driver</string>
+    <string name="noc_status">Noc Status</string>
 </resources>

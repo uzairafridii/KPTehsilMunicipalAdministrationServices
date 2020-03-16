@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context=".TaxesDetails.Taxes">
+    tools:context=".AppModules.TaxesDetails.Taxes">
 
 
     <include layout="@layout/app_tool_bar"

@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Certificates.BirthCertificate">
+    tools:context=".AppModules.Certificates.BirthCertificate">
 
     <include layout="@layout/app_tool_bar"
         android:id="@+id/child_birth_certificate_tool_bar"

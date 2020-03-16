@@ -2,14 +2,11 @@ package com.uzair.kptehsilmunicipaladministrationservices;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.view.Window;
 import android.view.WindowManager;
 
-import com.uzair.kptehsilmunicipaladministrationservices.Main.MainActivity;
+import com.uzair.kptehsilmunicipaladministrationservices.AppModules.Main.MainActivity;
 
 import static java.lang.Thread.sleep;
 

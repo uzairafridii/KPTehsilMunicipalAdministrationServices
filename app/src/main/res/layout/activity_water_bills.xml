@@ -1,74 +1,189 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".WaterBills.WaterBills">
+    tools:context=".AppModules.WaterBills.WaterBills">
 
 
-
-    <include layout="@layout/app_tool_bar"
+    <include
         android:id="@+id/water_bills_tool_bar"
-       />
+        layout="@layout/app_tool_bar" />
 
-    <androidx.cardview.widget.CardView
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/water_bills_tool_bar"
-        android:id="@+id/search_card_view"
-        android:clickable="true"
-        android:foreground="?android:attr/selectableItemBackground"
-        android:layout_marginLeft="@dimen/txt_margin_left"
-        android:layout_marginRight="@dimen/txt_margin_left"
-        android:layout_marginTop="8dp"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="4dp"
-        app:contentPadding="@dimen/edit_margin"
-        app:cardPreventCornerOverlap="false"
-        app:cardUseCompatPadding="true"
         >
 
-    <androidx.appcompat.widget.SearchView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:goIcon="@drawable/ic_search_black_24dp"
-        app:queryHint="search here"
-        app:commitIcon="@drawable/ic_search_black_24dp"
-        app:closeIcon="@drawable/ic_search_black_24dp"
-         >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
 
-    </androidx.appcompat.widget.SearchView>
 
-    </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/search_card_view"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginLeft="@dimen/txt_margin_left"
+                android:layout_marginTop="@dimen/edit_margin_top_forgot"
+                android:layout_marginRight="@dimen/txt_margin_left"
+                app:cardCornerRadius="@dimen/edit_margin"
+                app:cardElevation="@dimen/margin_6"
+                app:cardUseCompatPadding="true"
+                >
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="350dp"
-        android:layout_below="@+id/search_card_view"
-        android:src="@drawable/ic_launcher_background"
-        android:layout_marginTop="@dimen/edit_margin"
-        android:id="@+id/user_bill"
-        />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/edit_margin"
+                    android:layout_marginRight="@dimen/reycler_view_margin"
 
-    <Button
-        android:id="@+id/download_btn"
-        style="@style/Widget.MaterialComponents.Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/txt_color"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="@dimen/edit_margin"
-        android:layout_marginTop="@dimen/edit_margin"
-        android:layout_below="@id/user_bill"
-        android:text="Download"
-        android:textSize="16sp"
-        app:iconSize="@dimen/edit_margin"
-        app:strokeWidth="2dp"
-        app:icon="@drawable/ic_arrow_downward_black_24dp"
-        app:iconPadding="2dp"
-        app:cornerRadius="16dp"/>
+                    >
+                    <EditText
+                        android:id="@+id/searchText"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@null"
+                        android:hint="Enter bill reference number"
+                        android:drawableLeft="@drawable/ic_search_black_24dp"
+                        android:drawablePadding="@dimen/reycler_view_margin"
+                        android:layout_toLeftOf="@id/searchButton"
+                        android:inputType="number"
+                        />
+
+                    <ImageButton
+                        android:onClick="searchBtnClick"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:id="@+id/searchButton"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="@dimen/reycler_view_margin"
+                        android:background="@null"
+                        android:clickable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:src="@drawable/search_btn_icon"
+                        />
+
+                </RelativeLayout>
+
+
+
+
+            </androidx.cardview.widget.CardView>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ownerNameTv"
+                android:text="Name : "
+                android:layout_below="@+id/search_card_view"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:textStyle="bold"
+                android:layout_marginTop="@dimen/edit_margin"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/ownerNameValue"
+                android:text="Uzair"
+                android:layout_below="@+id/search_card_view"
+                android:layout_toRightOf="@id/ownerNameTv"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/edit_margin"
+                android:visibility="invisible"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/connectionLocation"
+                android:text="Location : "
+                android:layout_below="@id/ownerNameTv"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/connectionLocationValue"
+                android:text="Location"
+                android:layout_below="@+id/ownerNameValue"
+                android:layout_toRightOf="@id/connectionLocation"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                android:visibility="invisible"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/connectionDate"
+                android:text="Connection Date : "
+                android:layout_below="@id/connectionLocation"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/connectionDateValue"
+                android:text="4/5/2020"
+                android:layout_below="@+id/connectionLocationValue"
+                android:layout_toRightOf="@id/connectionDate"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                android:visibility="invisible"
+                />
+
+
+            <ImageView
+                android:id="@+id/user_bill"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:scaleType="fitXY"
+                android:layout_below="@+id/connectionDate"
+                android:layout_marginTop="@dimen/edit_margin"
+                android:src="@drawable/ic_launcher_background" />
+
+            <Button
+                android:onClick="downloadBillBtnClick"
+                android:id="@+id/download_btn"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/user_bill"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="@dimen/edit_margin"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:backgroundTint="@color/txt_color"
+                android:text="Download"
+                android:textSize="16sp"
+                app:cornerRadius="@dimen/edit_margin"
+                app:icon="@drawable/ic_arrow_downward_black_24dp"
+                app:iconPadding="2dp"
+                app:iconSize="@dimen/edit_margin"
+                app:strokeWidth="2dp"
+                android:visibility="invisible"/>
+
+
+
+
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+
 
 
 

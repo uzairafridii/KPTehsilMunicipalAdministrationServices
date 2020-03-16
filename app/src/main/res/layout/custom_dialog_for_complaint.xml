@@ -18,6 +18,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/message"
         android:text="Your Complaint is Successfully Submitted"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/edit_margin"
@@ -35,7 +36,6 @@
         android:onClick="uploadComplaintImageBtn"
         android:backgroundTint="@color/txt_color"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="@dimen/edit_margin"
         android:layout_marginTop="@dimen/edit_margin"
         android:layout_marginBottom="@dimen/edit_margin"
          />

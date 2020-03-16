@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="120dp"
+        android:id="@+id/your_complaints_card_view"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:layout_marginLeft="@dimen/edit_margin"
+        android:layout_marginRight="@dimen/edit_margin"
+        android:layout_marginTop="@dimen/reycler_view_margin"
+        android:layout_marginBottom="@dimen/edit_margin_top_forgot"
+        app:cardCornerRadius="@dimen/edit_margin_top_forgot"
+        >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/relativeLayout"
+            android:gravity="center"
+            >
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@mipmap/ic_launcher"
+                android:id="@+id/noc_recycler_image_view"
+                android:layout_margin="@dimen/reycler_view_margin"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/title_of_noc_recycler_view"
+                android:layout_toRightOf="@id/noc_recycler_image_view"
+                android:layout_marginLeft="@dimen/reycler_view_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                android:text="Title of Complaint"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/noc_date_time"
+                android:layout_below="@id/title_of_noc_recycler_view"
+                android:layout_toRightOf="@+id/noc_recycler_image_view"
+                android:textSize="12sp"
+                android:layout_marginLeft="@dimen/reycler_view_margin"
+                android:text="@string/date_time"
+                android:drawableLeft="@drawable/ic_access_alarm_black_24dp"
+                android:drawablePadding="@dimen/reycler_view_margin"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/noc_status"
+                android:layout_toRightOf="@+id/noc_recycler_image_view"
+                android:layout_below="@id/noc_date_time"
+                android:layout_marginLeft="@dimen/reycler_view_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                android:text="@string/noc_status"
+                android:textColor="@color/pending"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                />
+
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+
+</RelativeLayout>

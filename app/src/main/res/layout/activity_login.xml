@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg"
-    tools:context=".LoginAndSignUp.Login">
+    tools:context=".AppModules.LoginAndSignUp.Login">
 
 <!-- Login text view -->
     <TextView
@@ -69,6 +69,7 @@
         android:layout_height="wrap_content"
         app:boxStrokeColor="@color/txt_color"
         app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/txt_color"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/emailTextInputLayoutLogin"

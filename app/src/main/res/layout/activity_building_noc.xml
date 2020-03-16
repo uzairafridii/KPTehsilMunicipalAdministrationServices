@@ -5,8 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
-    tools:context=".BuildingNoc.BuildingNocActivity">
+    tools:context=".AppModules.BuildingNoc.BuildingNocActivity">
 
     <!-- include tool bar in this activity -->
     <include layout="@layout/app_tool_bar"
@@ -21,6 +20,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="@dimen/edit_margin"
+        android:theme="@style/TextLabel"
         app:boxStrokeColor="@color/txt_color"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -42,6 +42,7 @@
         android:layout_height="wrap_content"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:id="@+id/btnUploadNoc"
+        android:onClick="selectImageFromGalleryButtonClick"
         android:layout_alignParentLeft="true"
         android:textColor="@color/txt_color"
         android:layout_marginLeft="@dimen/edit_margin"
@@ -65,15 +66,15 @@
 
     <!-- Image noc upload -->
     <ImageView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:id="@+id/chooseNocImage"
-        android:layout_below="@+id/nocTitleTextInputLayout"
-        android:layout_toRightOf="@id/btnUploadNoc"
+        android:layout_below="@+id/btnSubmitNoc"
         android:src="@mipmap/ic_launcher"
         android:layout_marginTop="@dimen/edit_margin"
         android:layout_marginLeft="@dimen/txt_margin_left"
         android:visibility="invisible"
+
         />
 
     <!-- Button submit noc -->
@@ -82,6 +83,7 @@
         android:layout_height="wrap_content"
         style="@style/Widget.MaterialComponents.Button"
         android:id="@+id/btnSubmitNoc"
+        android:onClick="submiNocDetailsButtonClick"
         android:backgroundTint="@color/txt_color"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="@dimen/edit_margin"
@@ -97,12 +99,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/txtYourTotalNoc"
-        android:layout_below="@+id/btnSubmitNoc"
+        android:layout_below="@+id/chooseNocImage"
         android:text="@string/your_total_noc"
         android:textSize="20sp"
         android:textStyle="bold"
         android:layout_marginTop="@dimen/edit_margin_top"
         android:layout_marginLeft="@dimen/txt_margin_left"
+        android:visibility="invisible"
         />
 
     <!-- Building Noc recycler view -->

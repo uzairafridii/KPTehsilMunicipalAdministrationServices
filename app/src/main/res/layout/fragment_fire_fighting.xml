@@ -6,17 +6,59 @@
     android:layout_height="250dp"
     android:id="@+id/frameLayout"
     android:background="#16B4B2B2"
-    tools:context=".FireFighting.FireFighting">
+    android:paddingBottom="@dimen/edit_margin"
+    tools:context=".AppModules.FireFighting.FireFighting">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp">
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/edit_margin">
+
+
+        <View
+            android:layout_width="50dp"
+            android:layout_height="4dp"
+            android:layout_marginTop="@dimen/reycler_view_margin"
+            android:id="@+id/viewIndicatorFireFighting"
+            android:background="@color/gray"
+            android:layout_centerHorizontal="true"
+            />
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/driver_txt_field"
+            android:text="@string/driver_name"
+            android:layout_below="@id/viewIndicatorFireFighting"
+            android:layout_marginLeft="@dimen/edit_margin"
+            android:layout_marginRight="@dimen/edit_margin"
+            android:layout_marginTop="@dimen/edit_margin"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/driver_txt_field"
+            android:id="@+id/nameOfDriver"
+            android:textColor="@color/txt_color"
+            android:text="@string/name_of_driver"
+            android:layout_marginLeft="@dimen/edit_margin"
+            android:layout_marginRight="@dimen/edit_margin"
+            android:textSize="20sp" />
+
+
+
+
 
      <TextView
-         android:layout_width="match_parent"
+         android:layout_width="wrap_content"
          android:layout_height="wrap_content"
          android:id="@+id/contact_txt_field"
          android:text="@string/contact_no"
+         android:layout_below="@id/nameOfDriver"
          android:layout_marginLeft="@dimen/edit_margin"
          android:layout_marginRight="@dimen/edit_margin"
          android:layout_marginTop="@dimen/edit_margin"
@@ -28,6 +70,7 @@
         android:layout_below="@id/contact_txt_field"
         android:id="@+id/phone_number"
         android:text="03047901748 "
+        android:textColor="@color/txt_color"
         android:layout_marginLeft="@dimen/edit_margin"
         android:layout_marginRight="@dimen/edit_margin"
         android:textSize="20sp" />
@@ -40,8 +83,8 @@
         android:foreground="?android:attr/selectableItemBackground"
         android:layout_toRightOf="@id/phone_number"
         android:layout_below="@id/contact_txt_field"
-        android:layout_marginLeft="@dimen/edit_margin"
-        android:src="@drawable/ic_local_phone_black_24dp"
+        android:layout_marginLeft="@dimen/edit_margin_top"
+        android:src="@drawable/ic_phone_black_24dp"
         android:background="@null"
         />
 
