@@ -3,12 +3,17 @@ package com.uzair.kptehsilmunicipaladministrationservices.Views;
 public interface ProfileView
 {
 
-    void getUserRecord(String userName , String userEmail , String userPhone , String userCnic , String userProfile);
+    // firebase callback
+    void getUserRecord(String userName , String userEmail , String userPhone , String userCnic);
+    void onLogout();
+    void showEditDialog();
 
-    void showErrorMessage(String message);
-
+    // progress dialog callbacks
     void showProgressDialog();
     void hideProgressDialog();
+
+    //error callback
+    void showErrorMessage(String message);
 
 
 }

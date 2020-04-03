@@ -117,7 +117,7 @@
         app:fabSize="auto"
         app:elevation="0dp"
         app:borderWidth="0dp"
-        app:rippleColor="@color/txt_color"
+        app:rippleColor="@color/white"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txtForgetPassword"
         />

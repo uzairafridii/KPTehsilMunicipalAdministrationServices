@@ -1,9 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AppModules.Certificates.CertificatesMain">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <include layout="@layout/app_tool_bar"
+        android:id="@+id/certificateMainToolbar"/>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/certificateRv"
+        android:layout_below="@+id/certificateMainToolbar"
+        android:layout_marginTop="@dimen/reycler_view_margin"
+        />
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="selectCertificateType"
+        android:id="@+id/fabCertificates"
+        android:backgroundTint="@color/txt_color"
+        android:src="@drawable/ic_add_black_24dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/fab_margin_bottom"
+        android:layout_marginRight="@dimen/edit_margin"
+        app:rippleColor="@color/white"
+        app:elevation="0dp"
+        app:borderWidth="0dp"
+        />
+
+
+
+</RelativeLayout>

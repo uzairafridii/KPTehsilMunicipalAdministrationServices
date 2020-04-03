@@ -23,20 +23,24 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.uzair.kptehsilmunicipaladministrationservices.AppModules.BottomSheets.StorePasswordBottomSheet;
 import com.uzair.kptehsilmunicipaladministrationservices.AppModules.Main.MainActivity;
+import com.uzair.kptehsilmunicipaladministrationservices.Models.LoginPresenterImplementer;
 import com.uzair.kptehsilmunicipaladministrationservices.R;
+import com.uzair.kptehsilmunicipaladministrationservices.Views.LoginView;
 
-public class Login extends AppCompatActivity {
+public class Login extends AppCompatActivity implements LoginView {
 
     public final static String SAVE_PASSWORD = "user_name_password";
     private SharedPreferences prefs;
-    private String saveEmail , savedPassword;
+    private String saveEmail, savedPassword , email , password;
     private Button createAccountBtn;
     private FloatingActionButton button;
-    private TextInputLayout userEmail , userPassword;
+    private TextInputLayout userEmail, userPassword;
     private ProgressDialog mProgess;
 
     // firebase
     private FirebaseAuth mAuth;
+
+    private LoginPresenterImplementer loginPresenterImplementer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,33 +54,10 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                String email = userEmail.getEditText().getText().toString().trim();
-                String password  = userPassword.getEditText().getText().toString().trim();
+                 email = userEmail.getEditText().getText().toString().trim();
+                 password = userPassword.getEditText().getText().toString().trim();
 
-                try
-                {
-                    if(!email.isEmpty() && !password.isEmpty())
-                    {
-                        mProgess.setMessage("Wait..");
-                        mProgess.setCanceledOnTouchOutside(false);
-                        mProgess.show();
-
-                        loginToApplication(email , password);
-
-                    }
-                    else
-                    {
-                        userEmail.setError("Required");
-                        userPassword.setError("Required");
-                    }
-                }
-                catch (Exception e)
-                {
-                    Toast.makeText(Login.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-
-
-
+                loginPresenterImplementer.login(mAuth, email, password, saveEmail, savedPassword);
 
             }
         });
@@ -91,92 +72,85 @@ public class Login extends AppCompatActivity {
         });
     }
 
-    private void initViews()
-    {
+    private void initViews() {
+        loginPresenterImplementer = new LoginPresenterImplementer(this);
+
         button = findViewById(R.id.signInBtn);
         createAccountBtn = findViewById(R.id.txtCreateNewAccount);
-        userEmail  = findViewById(R.id.emailTextInputLayoutLogin);
-        userPassword  = findViewById(R.id.passwordTextInputLayoutLogin);
+        userEmail = findViewById(R.id.emailTextInputLayoutLogin);
+        userPassword = findViewById(R.id.passwordTextInputLayoutLogin);
 
-        mProgess = new ProgressDialog(this , R.style.MyAlertDialogStyle);
+        mProgess = new ProgressDialog(this, R.style.MyAlertDialogStyle);
 
         // firebase
-        mAuth  = FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();
 
     }
 
     // move to signUp page
-    private void moveToRegisterPage()
-    {
-        Intent signUp = new Intent(Login.this , SignUp.class);
+    private void moveToRegisterPage() {
+        Intent signUp = new Intent(Login.this, SignUp.class);
         signUp.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(signUp);
         finish();
     }
 
-    // login with email
-    private void loginToApplication(final String email , final String password)
-    {
-        mAuth.signInWithEmailAndPassword(email , password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
 
-                try
-                {
-                    if(task.isSuccessful())
-                    {
-                        mProgess.dismiss();
+    @Override
+    public void showProgressDialog() {
 
-                        FirebaseUser currentUser = mAuth.getCurrentUser();
+        mProgess.setMessage("Please wait");
+        mProgess.setCanceledOnTouchOutside(false);
+        mProgess.show();
 
-                        if(currentUser.isEmailVerified())
-                        {
-                            //send data to bottom sheet in constructor
-
-                            if(!saveEmail.isEmpty() && !savedPassword.isEmpty())
-                            {
-                                Intent intent = new Intent(Login.this , MainActivity.class);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                startActivity(new Intent(intent));
-                                Login.this.finish();
-                            }
-                            else {
-                                new StorePasswordBottomSheet(email, password).show(getSupportFragmentManager(), "Save Password Dialog");
-                                clearAllFields();
-                           }
-                        }
-                        else
-                        {
-                            // show dialog please verify email
-                            mProgess.dismiss();
-
-                            showCheckEmailVerificationDiaglog("Please Verify Your Email");
-                            clearAllFields();
-                        }
-                    }
-                    else
-                    {
-                        mProgess.dismiss();
-                    //    Toast.makeText(Login.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                        passwordDialog(task.getException().getMessage());
-                    }
-                }
-                catch (Exception e)
-                {
-                    Toast.makeText(Login.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                    mProgess.dismiss();
-                }
-
-
-
-            }
-
-        });//  signIn om Completed body end
     }
 
-    // show alert dialog
-    private void showCheckEmailVerificationDiaglog(String message)
-    {
+    @Override
+    public void hideProgressDialog() {
+
+        mProgess.dismiss();
+    }
+
+    @Override
+    public void showMessage(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showPasswordErrorDialog(String passwordError) {
+        passwordErrorDialog(passwordError);
+    }
+
+    @Override
+    public void showEmailDialog(String error) {
+        showCheckEmailVerificationDiaglog(error);
+    }
+
+    @Override
+    public void moveToMainPage() {
+        Intent intent = new Intent(Login.this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(new Intent(intent));
+        Login.this.finish();
+    }
+
+    @Override
+    public void showSavePassordDialog() {
+
+        new StorePasswordBottomSheet(email, password).show(getSupportFragmentManager(), "Save Password Dialog");
+
+    }
+
+    @Override
+    public void clearAllFields() {
+
+        userEmail.getEditText().setText("");
+        userPassword.getEditText().setText("");
+    }
+
+
+    //  alert dialog
+    private void showCheckEmailVerificationDiaglog(String message) {
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
         alert.setTitle("Verify Email");
         alert.setMessage(message);
@@ -185,7 +159,7 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
-                  dialogInterface.dismiss();
+                dialogInterface.dismiss();
 
             }
         }).setNeutralButton("Verify", new DialogInterface.OnClickListener() {
@@ -201,8 +175,7 @@ public class Login extends AppCompatActivity {
 
     }
 
-    private void passwordDialog(String message)
-    {
+    private void passwordErrorDialog(String message) {
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
         alert.setTitle("Error");
         alert.setMessage(message);
@@ -210,19 +183,10 @@ public class Login extends AppCompatActivity {
         alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                  dialogInterface.dismiss();
+                dialogInterface.dismiss();
             }
         });
         alert.show();
-    }
-
-
-
-    // clear all input fields
-    private void clearAllFields()
-    {
-        userEmail.getEditText().setText("");
-        userPassword.getEditText().setText("");
     }
 
 
@@ -231,13 +195,14 @@ public class Login extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-         prefs = getSharedPreferences(SAVE_PASSWORD, MODE_PRIVATE);
-         saveEmail = prefs.getString("email", "");//"No name defined" is the default value.
-         savedPassword = prefs.getString("password", "");
+        prefs = getSharedPreferences(SAVE_PASSWORD, MODE_PRIVATE);
+        saveEmail = prefs.getString("email", "");//"No name defined" is the default value.
+        savedPassword = prefs.getString("password", "");
 
         userEmail.getEditText().setText(saveEmail);
         userPassword.getEditText().setText(savedPassword);
 
 
     }
+
 }

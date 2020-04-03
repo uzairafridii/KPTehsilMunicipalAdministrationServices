@@ -24,185 +24,227 @@
             <!-- applicant name edit text -->
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
+                android:background="@drawable/edit_txt_bg"
                 android:id="@+id/applicantNameInDeathCertificate"
                 android:hint="@string/applicant_name"
                 android:layout_marginLeft="@dimen/edit_margin"
                 android:layout_marginRight="@dimen/edit_margin"
                 android:layout_marginTop="@dimen/edit_margin"
+                android:paddingLeft="@dimen/edit_margin"
+                android:inputType="text"
                 />
 
             <!-- applicant cnic edit text -->
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
+                android:background="@drawable/edit_txt_bg"
                 android:id="@+id/applicantCnicInDeathCertificate"
                 android:layout_below="@id/applicantNameInDeathCertificate"
                 android:hint="@string/applicant_cnic"
                 android:layout_marginLeft="@dimen/edit_margin"
                 android:layout_marginRight="@dimen/edit_margin"
                 android:layout_marginTop="@dimen/reycler_view_margin"
+                android:paddingLeft="@dimen/edit_margin"
+                android:inputType="number"
                 />
 
             <!-- Deceased name edit text -->
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
+                android:background="@drawable/edit_txt_bg"
                 android:id="@+id/deceasedNameInDeathCertificate"
                 android:layout_below="@id/applicantCnicInDeathCertificate"
                 android:hint="@string/deceased_name"
                 android:layout_marginLeft="@dimen/edit_margin"
                 android:layout_marginRight="@dimen/edit_margin"
                 android:layout_marginTop="@dimen/reycler_view_margin"
+                android:paddingLeft="@dimen/edit_margin"
+                android:inputType="text"
                 />
 
             <!-- Deceased cnic edit text -->
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
+                android:background="@drawable/edit_txt_bg"
                 android:id="@+id/deceasedCnicDeathCertificate"
                 android:layout_below="@id/deceasedNameInDeathCertificate"
                 android:hint="@string/deceased_cnic"
                 android:layout_marginLeft="@dimen/edit_margin"
                 android:layout_marginRight="@dimen/edit_margin"
                 android:layout_marginTop="@dimen/reycler_view_margin"
+                android:paddingLeft="@dimen/edit_margin"
+                android:inputType="number"
                 />
 
             <!-- Relation with applicant edit text -->
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
+                android:background="@drawable/edit_txt_bg"
                 android:id="@+id/relationWithApplicantsInDeathCertificate"
                 android:layout_below="@id/deceasedCnicDeathCertificate"
                 android:hint="@string/relation_with_applicant"
                 android:layout_marginLeft="@dimen/edit_margin"
                 android:layout_marginRight="@dimen/edit_margin"
                 android:layout_marginTop="@dimen/reycler_view_margin"
+                android:paddingLeft="@dimen/edit_margin"
+                android:inputType="text"
                 />
 
             <!-- Religion  edit text -->
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
+                android:background="@drawable/edit_txt_bg"
                 android:id="@+id/religionInDeathCertificate"
                 android:layout_below="@id/relationWithApplicantsInDeathCertificate"
                 android:hint="@string/religion"
                 android:layout_marginLeft="@dimen/edit_margin"
                 android:layout_marginRight="@dimen/edit_margin"
                 android:layout_marginTop="@dimen/reycler_view_margin"
+                android:paddingLeft="@dimen/edit_margin"
+                android:inputType="text"
                 />
-
 
             <!-- Deceased father name edit text -->
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
+                android:background="@drawable/edit_txt_bg"
                 android:id="@+id/deceasedFatherNameInDeathCertificate"
                 android:layout_below="@id/religionInDeathCertificate"
                 android:hint="@string/deceased_father_name"
                 android:layout_marginLeft="@dimen/edit_margin"
                 android:layout_marginRight="@dimen/edit_margin"
                 android:layout_marginTop="@dimen/reycler_view_margin"
+                android:paddingLeft="@dimen/edit_margin"
+                android:inputType="text"
                 />
 
             <!-- Deceased father cnic edit text -->
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
+                android:background="@drawable/edit_txt_bg"
                 android:id="@+id/deceasedFatherCnicInDeathCertificate"
                 android:layout_below="@id/deceasedFatherNameInDeathCertificate"
                 android:hint="@string/deceased_father_cnic"
                 android:layout_marginLeft="@dimen/edit_margin"
                 android:layout_marginRight="@dimen/edit_margin"
                 android:layout_marginTop="@dimen/reycler_view_margin"
+                android:paddingLeft="@dimen/edit_margin"
+                android:inputType="number"
                 />
 
             <!-- Deceased mother name edit text -->
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
+                android:background="@drawable/edit_txt_bg"
                 android:id="@+id/deceasedMotherNameInDeathCertificate"
                 android:layout_below="@id/deceasedFatherCnicInDeathCertificate"
                 android:hint="@string/deceased_mother_name"
                 android:layout_marginLeft="@dimen/edit_margin"
                 android:layout_marginRight="@dimen/edit_margin"
                 android:layout_marginTop="@dimen/reycler_view_margin"
+                android:paddingLeft="@dimen/edit_margin"
+                android:inputType="text"
                 />
 
             <!-- Deceased mother cnic edit text -->
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
+                android:background="@drawable/edit_txt_bg"
                 android:id="@+id/deceasedMotherCnicInDeathCertificate"
                 android:layout_below="@id/deceasedMotherNameInDeathCertificate"
                 android:hint="@string/deceased_mother_cnic"
                 android:layout_marginLeft="@dimen/edit_margin"
                 android:layout_marginRight="@dimen/edit_margin"
                 android:layout_marginTop="@dimen/reycler_view_margin"
+                android:paddingLeft="@dimen/edit_margin"
+                android:inputType="number"
                 />
 
             <!-- husband name edit text -->
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
+                android:background="@drawable/edit_txt_bg"
                 android:id="@+id/husbandNameInDeathCertificate"
                 android:layout_below="@id/deceasedMotherCnicInDeathCertificate"
                 android:hint="@string/husband_name"
                 android:layout_marginLeft="@dimen/edit_margin"
                 android:layout_marginRight="@dimen/edit_margin"
                 android:layout_marginTop="@dimen/reycler_view_margin"
+                android:paddingLeft="@dimen/edit_margin"
+                android:inputType="text"
                 />
 
             <!-- huband cnic edit text -->
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
+                android:background="@drawable/edit_txt_bg"
                 android:id="@+id/husbandCnicInDeathCertifcate"
                 android:layout_below="@id/husbandNameInDeathCertificate"
                 android:hint="@string/husband_cnic"
                 android:layout_marginLeft="@dimen/edit_margin"
                 android:layout_marginRight="@dimen/edit_margin"
                 android:layout_marginTop="@dimen/reycler_view_margin"
+                android:paddingLeft="@dimen/edit_margin"
+                android:inputType="number"
                 />
 
             <!-- gravayard  edit text -->
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
+                android:background="@drawable/edit_txt_bg"
                 android:id="@+id/gravayedNameInDeathCertificate"
                 android:layout_below="@id/husbandCnicInDeathCertifcate"
                 android:hint="@string/gravayard_name"
                 android:layout_marginLeft="@dimen/edit_margin"
                 android:layout_marginRight="@dimen/edit_margin"
                 android:layout_marginTop="@dimen/reycler_view_margin"
+                android:paddingLeft="@dimen/edit_margin"
+                android:inputType="text"
                 />
 
 
             <!-- Place of birth edit text -->
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
+                android:background="@drawable/edit_txt_bg"
                 android:id="@+id/placeOfBirthInDeathCertificate"
                 android:layout_below="@id/gravayedNameInDeathCertificate"
                 android:hint="@string/place_of_birth"
                 android:layout_marginLeft="@dimen/edit_margin"
                 android:layout_marginRight="@dimen/edit_margin"
                 android:layout_marginTop="@dimen/reycler_view_margin"
+                android:paddingLeft="@dimen/edit_margin"
+                android:inputType="text"
                 />
 
             <!--  date of birth edit text -->
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
+                android:background="@drawable/edit_txt_bg"
                 android:id="@+id/deceasedDateOfBirthInDeathCertificate"
                 android:layout_below="@id/placeOfBirthInDeathCertificate"
                 android:hint="@string/deceased_date_of_birth"
                 android:layout_marginLeft="@dimen/edit_margin"
                 android:layout_marginRight="@dimen/edit_margin"
                 android:layout_marginTop="@dimen/reycler_view_margin"
+                android:paddingLeft="@dimen/edit_margin"
+                android:inputType="text|date"
                 />
-
-
 
             <!-- Button upload noc -->
             <Button

@@ -37,7 +37,6 @@ public class SignUp extends AppCompatActivity
 
     private ProgressDialog mProgressDialog;
 
-
     // firebase auth
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
@@ -116,24 +115,21 @@ public class SignUp extends AppCompatActivity
         userPassword = passwordInput.getEditText().getText().toString().trim();
         userConfirmPassword = confirmPasswordInput.getEditText().getText().toString().trim();
 
-        if( !userName.isEmpty() && !userEmail.isEmpty()
-           && !userCnic.isEmpty() && !userPhone.isEmpty()
-           && !userPassword.isEmpty()  && !userConfirmPassword.isEmpty() )
-        {
-            if(!userConfirmPassword.equals(userPassword))
-            {
-                confirmPasswordInput.setError("Password must be same");
-            }
-            else
-                { // inner else body start
+        try {
 
-                // progress dialog properties
-                mProgressDialog.setMessage("Registering...");
-                mProgressDialog.setCanceledOnTouchOutside(false);
-                mProgressDialog.setCancelable(false);
-                mProgressDialog.show();
+            if (!userName.isEmpty() && !userEmail.isEmpty()
+                    && !userCnic.isEmpty() && !userPhone.isEmpty()
+                    && !userPassword.isEmpty() && !userConfirmPassword.isEmpty()) {
+                if (!userConfirmPassword.equals(userPassword)) {
+                    confirmPasswordInput.setError("Password must be same");
+                } else { // inner else body start
 
-                try {
+                    // progress dialog properties
+                    mProgressDialog.setMessage("Registering...");
+                    mProgressDialog.setCanceledOnTouchOutside(false);
+                    mProgressDialog.setCancelable(false);
+                    mProgressDialog.show();
+
 
                     mAuth.createUserWithEmailAndPassword(userEmail, userPassword)
                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -160,25 +156,21 @@ public class SignUp extends AppCompatActivity
                                 }
                             });//outer on complete body end
 
-                }
-                catch (Exception e)
-                {
-                    Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                    mProgressDialog.dismiss();
-                }
+                } // inner else body end
+            }// outer if body end
+            else {
+                nameInput.setError("Required");
+                emailInput.setError("Required");
+                cnicInput.setError("Required");
+                phoneInput.setError("Required");
+                passwordInput.setError("Required");
+                confirmPasswordInput.setError("Required");
+            }
 
-            } // inner else body end
-        }// outer if body end
-        else
-        {
-            nameInput.setError("Required");
-            emailInput.setError("Required");
-            cnicInput.setError("Required");
-            phoneInput.setError("Required");
-            passwordInput.setError("Required");
-            confirmPasswordInput.setError("Required");
-        }
-
+    } catch (Exception e)
+    {
+        Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+    }
 
     }
 

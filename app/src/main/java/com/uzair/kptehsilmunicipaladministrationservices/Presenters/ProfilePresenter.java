@@ -8,6 +8,7 @@ public interface ProfilePresenter
 
     void getUserProfileData(DatabaseReference dbRef , FirebaseAuth userAuth);
 
+    void onUpdateChildren();
 
-
+    void signOut(FirebaseAuth userAuth);
 }

@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.uzair.kptehsilmunicipaladministrationservices.AppModules.BuildingNoc.BuildingNocActivity;
 import com.uzair.kptehsilmunicipaladministrationservices.AppModules.Certificates.BirthCertificate;
+import com.uzair.kptehsilmunicipaladministrationservices.AppModules.Certificates.CertificatesMain;
 import com.uzair.kptehsilmunicipaladministrationservices.AppModules.FireFighting.FireFighting;
 import com.uzair.kptehsilmunicipaladministrationservices.AppModules.Main.ModelOfHomeRecycler.HomeModel;
 import com.uzair.kptehsilmunicipaladministrationservices.R;
@@ -82,7 +83,7 @@ public class HomeRecyclerAdapter extends RecyclerView.Adapter<HomeRecyclerAdapte
                         break;
                     }
                     case "Certificates": {
-                        ctx.startActivity(new Intent(ctx , BirthCertificate.class));
+                        ctx.startActivity(new Intent(ctx , CertificatesMain.class));
                         break;
                     }
 

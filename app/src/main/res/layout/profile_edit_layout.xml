@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/edit_margin">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/profileText"
+        android:text="Edit Profile"
+        android:textSize="24sp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/reycler_view_margin"
+        android:textStyle="bold"
+        />
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/changeName"
+        android:hint="Enter User Name"
+        android:background="@drawable/edit_txt_bg"
+        android:layout_marginLeft="@dimen/edit_margin"
+        android:layout_marginRight="@dimen/edit_margin"
+        android:layout_marginTop="@dimen/edit_margin"
+        android:paddingLeft="@dimen/edit_margin"
+        android:inputType="text"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/changePhoneNo"
+        android:hint="Enter Phone Number"
+        android:background="@drawable/edit_txt_bg"
+        android:layout_marginLeft="@dimen/edit_margin"
+        android:layout_marginRight="@dimen/edit_margin"
+        android:layout_marginTop="@dimen/edit_margin"
+        android:paddingLeft="@dimen/edit_margin"
+        android:inputType="number"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/saveChangesButton"
+        android:text="Save Changes"
+        android:layout_gravity="right"
+        android:backgroundTint="@color/txt_color"
+        android:layout_marginRight="@dimen/edit_margin"
+        android:layout_marginTop="@dimen/edit_margin"
+        />
+
+    <!--<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_marginLeft="@dimen/edit_margin"
+        android:layout_marginRight="@dimen/edit_margin"
+        android:layout_marginTop="@dimen/edit_margin"
+        >
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/changeImageButton"
+            android:layout_weight="1"
+            android:text="Change Image"
+            android:layout_marginRight="@dimen/edit_margin"
+            android:backgroundTint="@color/txt_color"
+            />
+
+
+
+
+    </LinearLayout>
+
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:id="@+id/changeImage"
+        android:src="@drawable/avatar"
+        android:layout_marginLeft="@dimen/edit_margin"
+        android:layout_marginTop="@dimen/edit_margin"
+        android:layout_gravity="center_horizontal"
+        android:visibility="invisible"
+        />
+ -->
+
+
+
+
+</LinearLayout>

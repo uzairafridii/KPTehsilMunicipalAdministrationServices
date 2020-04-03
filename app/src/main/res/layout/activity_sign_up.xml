@@ -209,7 +209,7 @@
             android:src="@drawable/ic_arrow_forward_black_24dp"
             android:elevation="0dp"
             app:borderWidth="0dp"
-            app:rippleColor="@color/txt_color"
+            app:rippleColor="@color/white"
             />
 
 

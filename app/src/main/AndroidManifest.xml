@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
 
     <application
         android:allowBackup="true"
@@ -14,7 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_foreground"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AppModules.Certificates.CertificatesMain"></activity>
+        <activity android:name=".AppModules.Certificates.CertificatesMain"
+            android:screenOrientation="locked" android:parentActivityName=".AppModules.Main.MainActivity"></activity>
         <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,6 +24,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
         <service
             android:name=".AppModules.FirebaseMessagingService.FirebaseMessagingService"
             android:exported="false">
@@ -30,13 +34,16 @@
             </intent-filter>
         </service>
 
+
+
+
         <activity
             android:name=".AppModules.Certificates.DeathCertificate"
-            android:parentActivityName=".AppModules.Main.MainActivity"
+            android:parentActivityName=".AppModules.Certificates.CertificatesMain"
             android:screenOrientation="locked" />
         <activity
             android:name=".AppModules.Certificates.BirthCertificate"
-            android:parentActivityName=".AppModules.Main.MainActivity"
+            android:parentActivityName=".AppModules.Certificates.CertificatesMain"
             android:screenOrientation="locked" />
         <activity
             android:name=".AppModules.UserProfile.Profile"

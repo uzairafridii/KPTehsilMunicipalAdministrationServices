@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/edit_margin"
+    tools:context=".AppModules.BottomSheets.CertificateBottomSheetDialog">
+
+
+    <View
+        android:layout_width="50dp"
+        android:layout_height="4dp"
+        android:layout_marginTop="@dimen/reycler_view_margin"
+        android:id="@+id/viewIndicatorFireFighting"
+        android:background="@color/gray"
+        android:layout_gravity="center_horizontal"
+        />
+
+
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/radioGroup"
+        >
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/birthRadioBtn"
+            android:text="Birth Certificate"
+            android:buttonTint="@color/txt_color"
+            android:layout_margin="@dimen/edit_margin"
+            />
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/deathRadioBtn"
+            android:text="Death Certificate"
+            android:buttonTint="@color/txt_color"
+            android:layout_marginLeft="@dimen/edit_margin"
+            android:layout_marginRight="@dimen/edit_margin"
+            />
+
+    </RadioGroup>
+
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/nextBtn"
+        android:text="Next"
+        android:backgroundTint="@color/txt_color"
+        android:layout_marginLeft="@dimen/edit_margin"
+        android:layout_marginRight="@dimen/edit_margin"
+        android:layout_marginTop="@dimen/fab_margin_bottom"
+        />
+
+
+</LinearLayout>
