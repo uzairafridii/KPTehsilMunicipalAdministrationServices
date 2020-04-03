@@ -5,6 +5,9 @@ import com.google.firebase.auth.FirebaseAuth;
 public interface LoginPresenter
 {
 
-    void login(FirebaseAuth mAuth , String userEmail , String userPassword , String saveEmail , String savePassword);
+    void login(FirebaseAuth mAuth , String userEmail ,
+               String userPassword , String saveEmail ,
+               String savePassword);
+
 
 }

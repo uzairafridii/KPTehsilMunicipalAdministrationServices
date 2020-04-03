@@ -23,7 +23,8 @@ import com.uzair.kptehsilmunicipaladministrationservices.Presenters.LoginPresent
 import com.uzair.kptehsilmunicipaladministrationservices.Views.LoginView;
 
 public class LoginPresenterImplementer implements LoginPresenter {
-    LoginView loginView;
+
+    private LoginView loginView;
 
     public LoginPresenterImplementer(LoginView loginView) {
         this.loginView = loginView;
@@ -61,10 +62,11 @@ public class LoginPresenterImplementer implements LoginPresenter {
 
                         FirebaseUser currentUser = mAuth.getCurrentUser();
 
+                        // check email is verified or not
                         if (currentUser.isEmailVerified()) {
-                            //send data to bottom sheet in constructor
 
                             if (!savedEmail.isEmpty() && !savedPassword.isEmpty()) {
+
                                 loginView.moveToMainPage();
                             } else {
 

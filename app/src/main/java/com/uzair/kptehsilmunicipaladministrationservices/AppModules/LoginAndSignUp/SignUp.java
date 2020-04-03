@@ -23,19 +23,21 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
+import com.uzair.kptehsilmunicipaladministrationservices.Models.SignUpPresenterImplementer;
 import com.uzair.kptehsilmunicipaladministrationservices.R;
+import com.uzair.kptehsilmunicipaladministrationservices.Views.SignUpView;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class SignUp extends AppCompatActivity
+public class SignUp extends AppCompatActivity implements SignUpView
 {
     private TextInputLayout nameInput , emailInput , phoneInput , cnicInput , passwordInput , confirmPasswordInput;
     private Button alreadyHaveAnAccount;
     private FloatingActionButton signUpBtn;
     private String userName , userEmail , userCnic , userPhone , userPassword , userConfirmPassword;
-
     private ProgressDialog mProgressDialog;
+    private SignUpPresenterImplementer signUpPresenterImplementer;
 
     // firebase auth
     private FirebaseAuth mAuth;
@@ -55,7 +57,18 @@ public class SignUp extends AppCompatActivity
             @Override
             public void onClick(View view) {
 
-                registerUsers();
+                userName = nameInput.getEditText().getText().toString().trim();
+                userEmail = emailInput.getEditText().getText().toString().trim();
+                userCnic = cnicInput.getEditText().getText().toString().trim();
+                userPhone = phoneInput.getEditText().getText().toString().trim();
+                userPassword = passwordInput.getEditText().getText().toString().trim();
+                userConfirmPassword = confirmPasswordInput.getEditText().getText().toString().trim();
+
+                // call register to app method of implementer
+                signUpPresenterImplementer.registerToApp(mDatabase , mAuth,
+                         userName , userEmail ,userCnic , userPassword , userConfirmPassword , userPhone);
+
+
             }
         });
 
@@ -75,6 +88,7 @@ public class SignUp extends AppCompatActivity
     // inflate views
     private void initViews()
     {
+        signUpPresenterImplementer = new SignUpPresenterImplementer(this);
         // input fields
         confirmPasswordInput = findViewById(R.id.userConfirmPasswordTextInputLayout);
         passwordInput        = findViewById(R.id.userPasswordTextInputLayout);
@@ -91,7 +105,7 @@ public class SignUp extends AppCompatActivity
 
         // firebase
         mAuth = FirebaseAuth.getInstance();
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("TMA Lachi");
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
 
     }
@@ -103,75 +117,6 @@ public class SignUp extends AppCompatActivity
         signUp.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(signUp);
         finish();
-    }
-
-    // user registration
-    private void registerUsers()
-    {
-        userName = nameInput.getEditText().getText().toString().trim();
-        userEmail = emailInput.getEditText().getText().toString().trim();
-        userCnic = cnicInput.getEditText().getText().toString().trim();
-        userPhone = phoneInput.getEditText().getText().toString().trim();
-        userPassword = passwordInput.getEditText().getText().toString().trim();
-        userConfirmPassword = confirmPasswordInput.getEditText().getText().toString().trim();
-
-        try {
-
-            if (!userName.isEmpty() && !userEmail.isEmpty()
-                    && !userCnic.isEmpty() && !userPhone.isEmpty()
-                    && !userPassword.isEmpty() && !userConfirmPassword.isEmpty()) {
-                if (!userConfirmPassword.equals(userPassword)) {
-                    confirmPasswordInput.setError("Password must be same");
-                } else { // inner else body start
-
-                    // progress dialog properties
-                    mProgressDialog.setMessage("Registering...");
-                    mProgressDialog.setCanceledOnTouchOutside(false);
-                    mProgressDialog.setCancelable(false);
-                    mProgressDialog.show();
-
-
-                    mAuth.createUserWithEmailAndPassword(userEmail, userPassword)
-                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-
-                                    if (task.isSuccessful()) { // susscess if
-                                        mAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
-                                            @Override
-                                            public void onComplete(@NonNull Task<Void> task) {
-                                                if (task.isSuccessful()) {
-                                                    //store use data in database
-                                                    storeUserDataInDataBase(userName, userEmail, userPhone, userCnic, userPassword, userConfirmPassword);
-                                                    clearAllFields();
-                                                    mProgressDialog.dismiss();
-                                                }
-                                            }
-                                        }); // inner on complete body end
-                                    }// if success  body end
-                                    else { // esle success
-                                        mProgressDialog.dismiss();
-                                        errorDialog(task.getException().getMessage());
-                                    }
-                                }
-                            });//outer on complete body end
-
-                } // inner else body end
-            }// outer if body end
-            else {
-                nameInput.setError("Required");
-                emailInput.setError("Required");
-                cnicInput.setError("Required");
-                phoneInput.setError("Required");
-                passwordInput.setError("Required");
-                confirmPasswordInput.setError("Required");
-            }
-
-    } catch (Exception e)
-    {
-        Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
-    }
-
     }
 
     // show alert dialog
@@ -202,7 +147,7 @@ public class SignUp extends AppCompatActivity
     }
     
     // show alert dialog for error
-    private void errorDialog(String message)
+    private void messageDialog(String message)
     {
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
         alert.setTitle("Error");
@@ -218,54 +163,40 @@ public class SignUp extends AppCompatActivity
     }
 
 
-    // insert user data in firebase database
-    private void storeUserDataInDataBase(final String name , final String email , final String cnic,
-                                         final String phone , final String password , final String confPassword)
-    {
-        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(new OnSuccessListener<InstanceIdResult>() {
-            @Override
-            public void onSuccess(InstanceIdResult instanceIdResult) {
-
-                String deviceToken = instanceIdResult.getToken();
-
-
-                Map<String , String > userRecord = new HashMap<>();
-                userRecord.put("user_name" , name);
-                userRecord.put("user_email" , email);
-                userRecord.put("user_phone" , cnic);
-                userRecord.put("user_cnic" , phone);
-                userRecord.put("user_password" , password);
-                userRecord.put("user_confirm_password" , confPassword);
-                userRecord.put("device_token" , deviceToken);
-
-                mDatabase.child("Users").child(mAuth.getCurrentUser().getUid()).setValue(userRecord).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-
-                        if (task.isSuccessful()) {
-                            showCheckEmailVerificationDiaglog();
-
-                        }
-                        else
-                        {
-                            Toast.makeText(SignUp.this, "Not Register", Toast.LENGTH_SHORT).show();
-                        }
-
-                    }
-                });
-            }
-        });
+    @Override
+    public void showProgressBar() {
+        mProgressDialog.setMessage("Registering...");
+        mProgressDialog.setCanceledOnTouchOutside(false);
+        mProgressDialog.setCancelable(false);
+        mProgressDialog.show();
     }
 
+    @Override
+    public void hideProgressBar() {
 
-    // clear all input fields
-    private void clearAllFields()
-    {
+        mProgressDialog.dismiss();
+    }
+
+    @Override
+    public void clearAllFields() {
         nameInput.getEditText().setText("");
         emailInput.getEditText().setText("");
         phoneInput.getEditText().setText("");
         cnicInput.getEditText().setText("");
         passwordInput.getEditText().setText("");
         confirmPasswordInput.getEditText().setText("");
+    }
+
+
+    @Override
+    public void showMessage(String message)
+    {
+       messageDialog(message);
+    }
+
+    @Override
+    public void showEmailVerificationDialog(String verifyMessage)
+    {
+         showCheckEmailVerificationDiaglog();
     }
 }

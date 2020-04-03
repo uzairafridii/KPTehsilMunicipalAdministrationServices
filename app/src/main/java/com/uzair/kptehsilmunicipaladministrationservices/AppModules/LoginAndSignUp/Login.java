@@ -57,6 +57,7 @@ public class Login extends AppCompatActivity implements LoginView {
                  email = userEmail.getEditText().getText().toString().trim();
                  password = userPassword.getEditText().getText().toString().trim();
 
+                 // call presenterimplemneter login method
                 loginPresenterImplementer.login(mAuth, email, password, saveEmail, savedPassword);
 
             }
@@ -87,6 +88,7 @@ public class Login extends AppCompatActivity implements LoginView {
 
     }
 
+
     // move to signUp page
     private void moveToRegisterPage() {
         Intent signUp = new Intent(Login.this, SignUp.class);
@@ -96,6 +98,7 @@ public class Login extends AppCompatActivity implements LoginView {
     }
 
 
+    // callback methods
     @Override
     public void showProgressDialog() {
 
@@ -149,7 +152,7 @@ public class Login extends AppCompatActivity implements LoginView {
     }
 
 
-    //  alert dialog
+    //  alert dialogs
     private void showCheckEmailVerificationDiaglog(String message) {
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
         alert.setTitle("Verify Email");

@@ -75,16 +75,17 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    // on start to check user is logged in or not
+    // on start to check user is logged in  and verify email or not
     @Override
     protected void onStart() {
         super.onStart();
 
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser == null)
-        {
-            startActivity(new Intent(this , Login.class));
-            this.finish();
-        }
+
+            if (currentUser == null || !currentUser.isEmailVerified()) {
+                startActivity(new Intent(this, Login.class));
+                this.finish();
+            }
+
     }
 }
