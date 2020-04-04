@@ -25,9 +25,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/complaint_title"
+            android:background="@drawable/edit_txt_bg"
             android:layout_margin="@dimen/edit_margin"
             android:hint="@string/enter_your_complaint_title"
             android:inputType="text"
+            android:padding="@dimen/edit_margin_top_forgot"
             />
 
         <EditText
@@ -35,12 +37,14 @@
             android:layout_height="wrap_content"
             android:id="@+id/complaint_description_edit_text"
             android:layout_below="@+id/complaint_title"
+            android:background="@drawable/edit_txt_bg"
             android:layout_margin="@dimen/edit_margin"
             android:hint="@string/complaint_description"
             android:inputType="text|textMultiLine"
+            android:padding="@dimen/edit_margin_top_forgot"
             />
 
-    <RadioGroup
+       <RadioGroup
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/radio_group"
@@ -69,7 +73,6 @@
             android:layout_marginLeft="@dimen/edit_margin"/>
 
     </RadioGroup>
-
         <Button
             android:id="@+id/upload_image_btn"
             style="@style/Widget.MaterialComponents.Button"

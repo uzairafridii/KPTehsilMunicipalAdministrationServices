@@ -31,7 +31,9 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.uzair.kptehsilmunicipaladministrationservices.AppModules.UserComplaint.AdapterOfComplaintRecycler.AdapterForImagesRecycler;
+import com.uzair.kptehsilmunicipaladministrationservices.Models.AddComplaintsPresenterImplementer;
 import com.uzair.kptehsilmunicipaladministrationservices.R;
+import com.uzair.kptehsilmunicipaladministrationservices.Views.AddComplaintsView;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -42,7 +44,8 @@ import java.util.Map;
 
 import static java.lang.Thread.sleep;
 
-public class AddComplaints extends AppCompatActivity {
+public class AddComplaints extends AppCompatActivity implements AddComplaintsView
+{
 
     public static final int REQUEST_CODE = 1;
     private static int counter  = 0;
@@ -53,9 +56,9 @@ public class AddComplaints extends AppCompatActivity {
     private ProgressDialog progressDialog;
 
     private AdapterForImagesRecycler adapter;
-
-    private List<String> imageUrls;
     private List<Uri> imageUriList;
+
+    private AddComplaintsPresenterImplementer presenterImplementer;
     private DatabaseReference mDatabaseReference;
     private StorageReference mStorageReference;
     private FirebaseAuth mAuth;
@@ -72,6 +75,9 @@ public class AddComplaints extends AppCompatActivity {
     }
 
     private void initViews() {
+
+        presenterImplementer = new AddComplaintsPresenterImplementer(this);
+
         //  app tool bar
         mToolbar = findViewById(R.id.addComplain_tool_bar);
         setSupportActionBar(mToolbar);
@@ -95,7 +101,6 @@ public class AddComplaints extends AppCompatActivity {
 
         // recycler view
         imageUriList = new ArrayList<>();
-        imageUrls  = new ArrayList<>();
 
 
         //firebase
@@ -121,35 +126,25 @@ public class AddComplaints extends AppCompatActivity {
 
     // submit complaint button click
     public void submitComplaintBtn(View view) {
+
         String title = editTextTitle.getText().toString();
         String description = editTextDescription.getText().toString();
-        progressDialog.setMessage("Uploading please wait...");
-        progressDialog.setTitle("Complaint Data");
-        progressDialog.setCanceledOnTouchOutside(false);
 
-
-        if (!title.isEmpty() && !description.isEmpty() && imageUriList.size() != 0) {
 
                 if(sanitation.isChecked())
                 {
-                    progressDialog.show();
-                    Toast.makeText(this, "Sanitation is selected", Toast.LENGTH_SHORT).show();
-                    createUrlsForImages(title , description, "sanitation");
+                    presenterImplementer.storeComplaintDataToFirebase(mDatabaseReference ,mAuth , mStorageReference
+                    ,title , description , "Sanitation" , imageUriList);
                 }
                 else if(infrastructure.isChecked())
                 {
-                    progressDialog.show();
-                    Toast.makeText(this, "Infrastructure one is selected", Toast.LENGTH_SHORT).show();
-                    createUrlsForImages(title , description, "infrastructure");
+                    presenterImplementer.storeComplaintDataToFirebase(mDatabaseReference ,mAuth , mStorageReference
+                            ,title , description , "Infrastructure" , imageUriList);
                 }
                 else {
                 Toast.makeText(this, "Please select your any department", Toast.LENGTH_SHORT).show();
             }
 
-        } else {
-            editTextTitle.setError("Required");
-            editTextDescription.setError("Required");
-        }
 
     }
 
@@ -163,7 +158,7 @@ public class AddComplaints extends AppCompatActivity {
             ClipData clipData = data.getClipData();
             if (clipData != null) {
                 for (int i = 0; i < clipData.getItemCount(); i++) {
-                    //add images to arralist
+                    //add images to arraylist
                     imageUriList.add(clipData.getItemAt(i).getUri());
 
                     setRecyclerView(imageUriList);
@@ -173,11 +168,13 @@ public class AddComplaints extends AppCompatActivity {
             {
                 Uri uri = data.getData();
                 imageUriList.add(uri);
+                setRecyclerView(imageUriList);
             }
         }
 
-    }
 
+
+    }
 
     // set select image in recycler view
     private void setRecyclerView(List<Uri> uris)
@@ -189,96 +186,57 @@ public class AddComplaints extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
-    // method to create download urls for images
-    private void createUrlsForImages(final String title , final String description , final String field) {
-        int uploads;
-        for (uploads = 0; uploads < imageUriList.size(); uploads++) {
 
-            Uri Image = imageUriList.get(uploads);
+     private void successDailog()
+        {
+            View myView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.custom_dialog_for_complaint , null);
+            AlertDialog.Builder alert = new AlertDialog.Builder(AddComplaints.this);
+            alert.setView(myView);
 
-            // storage reference to add images
-            final StorageReference imagename = mStorageReference.child("ComplaintsImages").child("image/" + Image.getLastPathSegment());
-            
-            imagename.putFile(imageUriList.get(uploads)).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            final AlertDialog dialog = alert.create();
+            dialog.setCancelable(false);
+            dialog.setCanceledOnTouchOutside(false);
+            dialog.show();
+
+            myView.findViewById(R.id.btnOk).setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    // to get download url
-                    imagename.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                        @Override
-                        public void onSuccess(Uri uri) {
-                            counter = counter + 1;
-                            String url = String.valueOf(uri);
-                            imageUrls.add(url);
-
-                            if(counter == imageUriList.size()) {
-                                // add urls and data to firebase
-                                addDataToFirebase(imageUrls, title, description, field);
-                            }
-
-                        }
-                    });
+                public void onClick(View view) {
+                    dialog.dismiss();
                 }
             });
         }
 
-
+    @Override
+    public void showProgressBar() {
+        progressDialog.setMessage("Uploading please wait...");
+        progressDialog.setTitle("Complaint Data");
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
     }
 
+    @Override
+    public void hideProgressBar() {
 
-    // method to add data to firebase database
-    private void addDataToFirebase(List<String> urls, String titleOfComp , String desc , String fieldOfComplaint /*, int count*/)
+        progressDialog.dismiss();
+    }
+
+    @Override
+    public void showSuccessDialog()
     {
-        // if arraylist conatain all urls then upload the data to database
-      //  if(count == imageUriList.size()) {
-        String date = DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
-            Map dataOfComplaint = new HashMap<>();
-            dataOfComplaint.put("imageUrl", urls);
-            dataOfComplaint.put("date", date);
-            dataOfComplaint.put("title", titleOfComp);
-            dataOfComplaint.put("description", desc);
-            dataOfComplaint.put("status","Pending");
-            dataOfComplaint.put("field", fieldOfComplaint);
-            mDatabaseReference.child(mAuth.getCurrentUser().getUid()).push().setValue(dataOfComplaint)
-                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
+       successDailog();
+    }
 
-                            if (task.isSuccessful()) {
-                                Toast.makeText(AddComplaints.this, "SuccessFully Added", Toast.LENGTH_SHORT).show();
-                                progressDialog.cancel();
+    @Override
+    public void showMessage(String message)
+    {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
 
-                                View myView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.custom_dialog_for_complaint , null);
-                                AlertDialog.Builder alert = new AlertDialog.Builder(AddComplaints.this);
-                                alert.setView(myView);
-
-                                final AlertDialog dialog = alert.create();
-                                dialog.setCancelable(false);
-                                dialog.setCanceledOnTouchOutside(false);
-                                dialog.show();
-
-                                myView.findViewById(R.id.btnOk).setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View view) {
-                                        dialog.dismiss();
-                                    }
-                                });
-
-
-                            } else {
-                                Toast.makeText(AddComplaints.this, "Error in uploading", Toast.LENGTH_SHORT).show();
-                                progressDialog.cancel();
-                            }
-                        }
-                    });
-        }
-   // }
-
-
-
-
-
-
-
+    @Override
+    public void clearAllFields() {
+        editTextTitle.setText("");
+        editTextDescription.setText("");
+    }
 }
 
 

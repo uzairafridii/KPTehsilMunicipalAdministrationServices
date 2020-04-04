@@ -107,6 +107,7 @@ public class SignUpPresenterImplementer implements SignUpPresenter
                                          final String name , final String email , final String cnic,
                                          final String phone , final String password , final String confPassword)
     {
+
         FirebaseInstanceId.getInstance().getInstanceId()
                 .addOnSuccessListener(new OnSuccessListener<InstanceIdResult>() {
             @Override
