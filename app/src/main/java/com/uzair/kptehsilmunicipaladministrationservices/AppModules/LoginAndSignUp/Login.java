@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -208,4 +209,8 @@ public class Login extends AppCompatActivity implements LoginView {
 
     }
 
+    public void forogtPassword(View view)
+    {
+        startActivity(new Intent(Login.this , ForgotPassword.class));
+    }
 }

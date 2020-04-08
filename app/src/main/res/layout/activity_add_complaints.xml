@@ -21,37 +21,81 @@
        android:layout_height="match_parent"
        >
 
-        <EditText
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/complaint_title"
-            android:background="@drawable/edit_txt_bg"
-            android:layout_margin="@dimen/edit_margin"
-            android:hint="@string/enter_your_complaint_title"
-            android:inputType="text"
-            android:padding="@dimen/edit_margin_top_forgot"
+            android:id="@+id/textComplainTitle"
+            android:text="Complaint Title :"
+            android:textColor="@android:color/black"
+            android:layout_marginLeft="@dimen/edit_margin"
+            android:layout_marginTop="@dimen/edit_margin"
+            android:textStyle="bold"
+            android:textSize="16sp"
             />
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/complaint_description_edit_text"
-            android:layout_below="@+id/complaint_title"
+            android:layout_height="40dp"
+            android:id="@+id/complaint_title"
             android:background="@drawable/edit_txt_bg"
-            android:layout_margin="@dimen/edit_margin"
+            android:layout_marginLeft="@dimen/edit_margin"
+            android:layout_marginRight="@dimen/edit_margin"
+            android:layout_marginTop="@dimen/margin_6"
+            android:hint="@string/title_hint"
+            android:inputType="text"
+            android:textSize="12sp"
+            android:padding="@dimen/edit_margin_top_forgot"
+            android:layout_below="@id/textComplainTitle"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textComplainDescription"
+            android:text="Complaint Description :"
+            android:textColor="@android:color/black"
+            android:layout_marginLeft="@dimen/edit_margin"
+            android:layout_marginTop="@dimen/edit_margin"
+            android:layout_below="@+id/complaint_title"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:id="@+id/complaint_description_edit_text"
+            android:layout_below="@+id/textComplainDescription"
+            android:background="@drawable/edit_txt_bg"
+            android:layout_marginLeft="@dimen/edit_margin"
+            android:layout_marginRight="@dimen/edit_margin"
+            android:layout_marginTop="@dimen/margin_6"
             android:hint="@string/complaint_description"
             android:inputType="text|textMultiLine"
+            android:textSize="12sp"
             android:padding="@dimen/edit_margin_top_forgot"
             />
 
        <RadioGroup
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/radio_group"
+           android:weightSum="4"
         android:layout_below="@+id/complaint_description_edit_text"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/edit_margin"
         android:layout_marginLeft="@dimen/edit_margin"
         android:orientation="horizontal">
+
+           <RadioButton
+               android:id="@+id/rd_btn_infrastructure"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="Infrastructure"
+               android:layout_weight="3"
+               android:buttonTint="@color/txt_color"
+               android:textSize="16sp"
+               />
 
         <RadioButton
             android:layout_width="wrap_content"
@@ -60,59 +104,33 @@
             android:text="Sanitation"
             android:buttonTint="@color/txt_color"
             android:textSize="16sp"
-            android:layout_marginRight="@dimen/edit_margin"
+            android:layout_weight="1"
             />
 
-        <RadioButton
-            android:id="@+id/rd_btn_infrastructure"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Infrastructure"
-            android:buttonTint="@color/txt_color"
-            android:textSize="16sp"
-            android:layout_marginLeft="@dimen/edit_margin"/>
+
 
     </RadioGroup>
 
 
-       <LinearLayout
-           android:onClick="addLocationClick"
-           android:layout_width="wrap_content"
-           android:layout_height="30dp"
-           android:orientation="horizontal"
-           android:background="@drawable/search_view_bg"
-           android:layout_below="@id/radio_group"
-           android:id="@+id/locationLayout"
-           android:paddingLeft="@dimen/margin_6"
-           android:paddingRight="@dimen/margin_6"
-           android:paddingTop="@dimen/reycler_view_margin"
-           android:layout_marginLeft="@dimen/edit_margin"
-           android:layout_marginTop="@dimen/edit_margin"
-           android:clickable="true"
-           android:foreground="?android:attr/selectableItemBackground"
-           >
-           <ImageButton
-               android:id="@+id/locationBtn"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:background="@null"
-               android:backgroundTint="@color/txt_color"
-               android:layout_alignParentLeft="true"
-               android:src="@drawable/ic_location_on_black_24dp"
-               android:layout_below="@id/radio_group"
-               android:layout_marginTop="@dimen/reycler_view_margin"
-               />
-           <TextView
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:id="@+id/textAddLocation"
-               android:text="Add Location"
-               android:textColor="@color/txt_color"
-               android:layout_toRightOf="@id/locationBtn"
-               android:layout_below="@id/radio_group"
-               />
-
-       </LinearLayout>
+        <Button
+            android:onClick="addLocationClick"
+            android:id="@+id/location"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/txt_color"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/edit_margin"
+            android:layout_marginTop="@dimen/edit_margin"
+            android:textAllCaps="false"
+            android:text="Add Location"
+            android:textSize="12sp"
+            android:layout_below="@id/radio_group"
+            app:iconSize="@dimen/size_12"
+            app:strokeWidth="2dp"
+            app:iconPadding="2dp"
+            app:icon="@drawable/ic_location_on_black_24dp"
+            app:cornerRadius="16dp"/>
 
         <Button
             android:id="@+id/upload_image_btn"
@@ -123,11 +141,11 @@
             android:backgroundTint="@color/txt_color"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="@dimen/edit_margin"
-            android:layout_marginTop="@dimen/reycler_view_margin"
+            android:layout_marginTop="@dimen/edit_margin"
             android:textAllCaps="false"
             android:text="@string/upload_image"
             android:textSize="12sp"
-            android:layout_below="@id/locationLayout"
+            android:layout_below="@id/radio_group"
             app:iconSize="@dimen/size_12"
             app:strokeWidth="2dp"
             app:iconPadding="2dp"
@@ -135,14 +153,14 @@
             app:cornerRadius="16dp"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:layout_below="@+id/locationLayout"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
+        android:layout_below="@+id/location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/submit_complain_btn"
         android:onClick="submitComplaintBtn"
         android:layout_alignParentRight="true"
         android:layout_marginRight="@dimen/edit_margin"
-        android:layout_marginTop="@dimen/reycler_view_margin"
+        android:layout_marginTop="@dimen/edit_margin"
         android:backgroundTint="@color/txt_color"
         android:src="@drawable/ic_arrow_forward_black_24dp"
         app:elevation="0dp"
@@ -157,7 +175,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/selectImagesRecyclerList"
             android:layout_marginTop="@dimen/edit_margin"
-            android:layout_below="@id/upload_image_btn"
+            android:layout_below="@id/submit_complain_btn"
             android:layout_marginLeft="@dimen/edit_margin"
             android:layout_marginRight="@dimen/edit_margin"
             />

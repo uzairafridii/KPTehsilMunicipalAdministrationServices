@@ -89,6 +89,9 @@
 
     <!-- forget password text view -->
     <TextView
+        android:onClick="forogtPassword"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
         android:layout_below="@+id/passwordTextInputLayoutLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

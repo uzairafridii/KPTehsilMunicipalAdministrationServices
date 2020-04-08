@@ -3,7 +3,7 @@
 
     <string name="app_name">KP TMA Services</string>
     <string name="map_api_key">AIzaSyC25fz7R_AYrRD5v6spK89aW9yt2Oiafl4</string>
-<!--    <string name="map_api_key">AIzaSyCubPvXQn2hFPNuju8aEGeQIgrOIrcieBg</string>-->
+    <!--    <string name="map_api_key">AIzaSyCubPvXQn2hFPNuju8aEGeQIgrOIrcieBg</string>-->
     <string name="forgot_password">Forgot Password?</string>
     <string name="user_password">Password</string>
     <string name="user_email">Email</string>
@@ -22,8 +22,8 @@
     <string name="pending">Pending</string>
     <string name="completed">Completed</string>
     <string name="upload_image">Upload Image</string>
-    <string name="enter_your_complaint_title">Enter your complaint title</string>
-    <string name="complaint_description">Description</string>
+    <string name="title_hint">e.g : Cleanliness of street</string>
+    <string name="complaint_description">Describe your complaint here</string>
     <string name="worker_name">worker name</string>
     <string name="add_comment">Add Comment</string>
     <string name="submit">Submit</string>
