@@ -65,13 +65,13 @@ public class MainActivity extends AppCompatActivity {
     // set items on recycler list
     private void setHomeRecyclerItems()
     {
-        mHomeModel.add(new HomeModel("Complaints" , R.drawable.ic_launcher_background));
-        mHomeModel.add(new HomeModel("Water Bills" , R.drawable.ic_launcher_background));
-        mHomeModel.add(new HomeModel("Fire Brigade" , R.drawable.ic_launcher_background));
-        mHomeModel.add(new HomeModel("Building Noc" , R.drawable.ic_launcher_background));
+        mHomeModel.add(new HomeModel("Complaints" , R.drawable.complain));
+        mHomeModel.add(new HomeModel("Water Bills" , R.drawable.bill));
+        mHomeModel.add(new HomeModel("Fire Brigade" , R.drawable.fire));
+        mHomeModel.add(new HomeModel("Building Noc" , R.drawable.noc));
         mHomeModel.add(new HomeModel("Taxes" , R.drawable.ic_launcher_background));
         mHomeModel.add(new HomeModel("Certificates" , R.drawable.ic_launcher_background));
-        mHomeModel.add(new HomeModel("Profile" , R.drawable.ic_launcher_background));
+        mHomeModel.add(new HomeModel("Profile" , R.drawable.avatar));
 
     }
 

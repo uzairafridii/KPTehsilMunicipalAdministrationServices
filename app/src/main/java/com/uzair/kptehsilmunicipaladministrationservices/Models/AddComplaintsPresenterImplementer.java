@@ -50,7 +50,7 @@ public class AddComplaintsPresenterImplementer implements AddComplaintsPresenter
         }
         else
         {
-            addComplaintsView.showMessage("Please All fields are required");
+            addComplaintsView.showMessage("Sorry! select image and fill the fields");
         }
 
     }
@@ -101,6 +101,9 @@ public class AddComplaintsPresenterImplementer implements AddComplaintsPresenter
             List<String> urls, String titleOfComp , String desc , String fieldOfComplaint)
     {
         // if arraylist conatain all urls then upload the data to database
+        DatabaseReference dbAddCompRef = mDatabaseReference.push();
+
+
         String date = DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
         Map dataOfComplaint = new HashMap<>();
         dataOfComplaint.put("imageUrl", urls);
@@ -109,9 +112,10 @@ public class AddComplaintsPresenterImplementer implements AddComplaintsPresenter
         dataOfComplaint.put("description", desc);
         dataOfComplaint.put("status","Pending");
         dataOfComplaint.put("field", fieldOfComplaint);
+        dataOfComplaint.put("pushKey", dbAddCompRef.getRef().getKey());
         dataOfComplaint.put("uid", mAuth.getCurrentUser().getUid());
 
-        mDatabaseReference.push().setValue(dataOfComplaint)
+        dbAddCompRef.setValue(dataOfComplaint)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {

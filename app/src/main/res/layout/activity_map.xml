@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AppModules.UserComplaint.ComplaintsMain.MapActivity">
+
+
+    <fragment
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/map"
+        app:layout_constraintTop_toBottomOf="@id/searchView"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/addLocationButton"
+        />
+
+    <SearchView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/search_view_bg"
+        android:queryBackground="@null"
+        android:id="@+id/searchView"
+        android:layout_marginLeft="@dimen/edit_margin"
+        android:layout_marginRight="@dimen/edit_margin"
+        android:layout_marginTop="@dimen/image_btn_margin_top"
+        android:queryHint="Search Here"
+        android:elevation="6dp"
+        android:autofillHints="Lachi"
+        android:iconifiedByDefault="false"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+
+    <Button
+        android:onClick="sendLocationToComplaintData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/addLocationButton"
+        android:text="Add Location"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:backgroundTint="@color/txt_color"
+        android:layout_marginBottom="@dimen/margin_6"
+        android:layout_marginLeft="@dimen/fab_margin_bottom"
+        android:layout_marginRight="@dimen/fab_margin_bottom"
+        app:cornerRadius="@dimen/edit_margin"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

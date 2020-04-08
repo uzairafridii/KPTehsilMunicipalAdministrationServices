@@ -18,7 +18,8 @@
     android:layout_below="@+id/home_tool_bar"
     android:id="@+id/homeRecyclerView"
     android:layout_centerHorizontal="true"
-    android:layout_marginBottom="46dp">
+    android:layout_marginTop="@dimen/edit_padding_left"
+    android:layout_marginBottom="@dimen/edit_margin">
 
 </androidx.recyclerview.widget.RecyclerView>
 

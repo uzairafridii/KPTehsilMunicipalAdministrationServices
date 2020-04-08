@@ -10,6 +10,7 @@
         android:id="@+id/home_card_view"
         android:clickable="true"
         android:foreground="?android:attr/selectableItemBackground"
+        android:layout_marginTop="@dimen/reycler_view_margin"
         android:layout_margin="8dp"
         app:cardCornerRadius="8dp"
         app:cardElevation="4dp"
@@ -37,11 +38,10 @@
             android:text="Name of Service"
             android:textSize="16sp"
             android:layout_centerHorizontal="true"
-            android:textStyle="bold|italic"
+            android:textStyle="bold"
             android:layout_marginLeft="@dimen/reycler_view_margin"
             android:layout_marginRight="@dimen/reycler_view_margin"
-            android:layout_marginTop="@dimen/reycler_view_margin"
-            android:layout_marginBottom="@dimen/reycler_view_margin"
+            android:layout_marginBottom="@dimen/image_btn_margin_top"
 
             />
 

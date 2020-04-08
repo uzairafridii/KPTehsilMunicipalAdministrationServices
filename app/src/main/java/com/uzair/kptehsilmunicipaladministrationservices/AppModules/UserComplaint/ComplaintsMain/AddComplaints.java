@@ -15,6 +15,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -71,7 +72,10 @@ public class AddComplaints extends AppCompatActivity implements AddComplaintsVie
 
         initViews();
 
+        double lat = getIntent().getDoubleExtra("lat" , 0.0);
+        double lng = getIntent().getDoubleExtra("lng" , 0.0);
 
+        Log.d("ResultLocation", "onCreate: "+lat+"\n"+lng);
     }
 
     private void initViews() {
@@ -148,11 +152,19 @@ public class AddComplaints extends AppCompatActivity implements AddComplaintsVie
 
     }
 
+    // add location click
+    public void addLocationClick(View view)
+    {
+      Intent intent = new Intent(AddComplaints.this , MapActivity.class);
+      startActivity(intent);
+      this.finish();
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        //check condition for Gallery image picker request code
         if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
 
             ClipData clipData = data.getClipData();
@@ -187,8 +199,7 @@ public class AddComplaints extends AppCompatActivity implements AddComplaintsVie
     }
 
 
-     private void successDailog()
-        {
+     private void successDailog() {
             View myView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.custom_dialog_for_complaint , null);
             AlertDialog.Builder alert = new AlertDialog.Builder(AddComplaints.this);
             alert.setView(myView);
@@ -202,6 +213,8 @@ public class AddComplaints extends AppCompatActivity implements AddComplaintsVie
                 @Override
                 public void onClick(View view) {
                     dialog.dismiss();
+                    startActivity(new Intent(AddComplaints.this , Complaints.class));
+                    AddComplaints.this.finish();
                 }
             });
         }
@@ -216,7 +229,6 @@ public class AddComplaints extends AppCompatActivity implements AddComplaintsVie
 
     @Override
     public void hideProgressBar() {
-
         progressDialog.dismiss();
     }
 
@@ -228,8 +240,7 @@ public class AddComplaints extends AppCompatActivity implements AddComplaintsVie
 
     @Override
     public void showMessage(String message)
-    {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    { Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -237,6 +248,7 @@ public class AddComplaints extends AppCompatActivity implements AddComplaintsVie
         editTextTitle.setText("");
         editTextDescription.setText("");
     }
+
 }
 
 
