@@ -38,7 +38,7 @@ public class AddComplaintsPresenterImplementer implements AddComplaintsPresenter
     public void storeComplaintDataToFirebase(DatabaseReference dbRef, FirebaseAuth mAuth,
                                              StorageReference mStorageReference, String title,
                                              String description, String field,
-                                             List<Uri> imageUriList)
+                                             List<Uri> imageUriList , double lat , double lng)
     {
         if (!title.isEmpty() && !description.isEmpty() && imageUriList.size() != 0)
         {
@@ -46,7 +46,7 @@ public class AddComplaintsPresenterImplementer implements AddComplaintsPresenter
 
             createUrlsForImagesAndStoreData(dbRef, mAuth, mStorageReference,
                     title, description, field,
-                    imageUriList);
+                    imageUriList , lat , lng);
         }
         else
         {
@@ -60,8 +60,9 @@ public class AddComplaintsPresenterImplementer implements AddComplaintsPresenter
     // method to create download urls for images and store data to firebase
     private void createUrlsForImagesAndStoreData(final DatabaseReference dbRef, final FirebaseAuth mAuth,
                                                  StorageReference mStorageReference,
-                                     final String title , final String description ,
-                                     final String field , final List<Uri> imageUriList) {
+                                                 final String title , final String description ,
+                                                 final String field , final List<Uri> imageUriList,
+                                                 final double lat , final double lng) {
 
 
         for (int uploads = 0; uploads < imageUriList.size(); uploads++) {
@@ -84,7 +85,7 @@ public class AddComplaintsPresenterImplementer implements AddComplaintsPresenter
 
                             if(counter == imageUriList.size()) {
                                 // add urls and data to firebase
-                                addDataToFirebase(dbRef , mAuth ,imageUrls, title, description, field);
+                                addDataToFirebase(dbRef , mAuth ,imageUrls, title, description, field , lat , lng);
                             }
 
                         }
@@ -96,9 +97,11 @@ public class AddComplaintsPresenterImplementer implements AddComplaintsPresenter
 
     }
 
+
     // method to add data to firebase database
     private void addDataToFirebase(DatabaseReference mDatabaseReference, FirebaseAuth mAuth,
-            List<String> urls, String titleOfComp , String desc , String fieldOfComplaint)
+            List<String> urls, String titleOfComp , String desc , String fieldOfComplaint,
+                                   double lat , double lng)
     {
         // if arraylist conatain all urls then upload the data to database
         DatabaseReference dbAddCompRef = mDatabaseReference.push();
@@ -112,6 +115,8 @@ public class AddComplaintsPresenterImplementer implements AddComplaintsPresenter
         dataOfComplaint.put("description", desc);
         dataOfComplaint.put("status","Pending");
         dataOfComplaint.put("field", fieldOfComplaint);
+        dataOfComplaint.put("latitude", lat);
+        dataOfComplaint.put("longitude", lng);
         dataOfComplaint.put("pushKey", dbAddCompRef.getRef().getKey());
         dataOfComplaint.put("uid", mAuth.getCurrentUser().getUid());
 

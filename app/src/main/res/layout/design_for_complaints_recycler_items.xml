@@ -9,7 +9,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
-        android:layout_height="120dp"
+        android:layout_height="wrap_content"
         android:id="@+id/your_complaints_card_view"
         android:clickable="true"
         android:foreground="?android:attr/selectableItemBackground"
@@ -27,8 +27,8 @@
             >
 
             <ImageView
-                android:layout_width="100dp"
-                android:layout_height="80dp"
+                android:layout_width="80dp"
+                android:layout_height="60dp"
                 android:src="@mipmap/ic_launcher"
                 android:id="@+id/complaint_recycler_image_view"
                 android:layout_margin="4dp"
@@ -47,11 +47,14 @@
 
             <com.borjabravo.readmoretextview.ReadMoreTextView
                 android:id="@+id/desc_of_complaint_recycler_view"
-                android:layout_below="@+id/title_of_complaint_recycler_view"
+                android:layout_below="@id/title_of_complaint_recycler_view"
                 android:layout_toRightOf="@+id/complaint_recycler_image_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="4dp"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_marginBottom="@dimen/edit_margin"
                 android:text="@string/dummy"
                 app:trimLength="70"
                 app:showTrimExpandedText="true"
@@ -64,8 +67,8 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="@dimen/reycler_view_margin"
-                android:layout_below="@id/complaint_recycler_image_view"
+                android:layout_marginTop="@dimen/edit_margin"
+                android:layout_below="@id/desc_of_complaint_recycler_view"
                 android:id="@+id/view"
                 android:background="#000"
                 />

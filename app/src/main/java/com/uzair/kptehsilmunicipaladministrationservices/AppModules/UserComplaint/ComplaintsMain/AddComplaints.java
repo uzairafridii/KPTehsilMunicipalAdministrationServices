@@ -49,7 +49,6 @@ public class AddComplaints extends AppCompatActivity implements AddComplaintsVie
 {
 
     public static final int REQUEST_CODE = 1;
-    private static int counter  = 0;
     private Toolbar mToolbar;
     private EditText editTextTitle, editTextDescription;
     private RadioButton sanitation, infrastructure;
@@ -58,7 +57,7 @@ public class AddComplaints extends AppCompatActivity implements AddComplaintsVie
 
     private AdapterForImagesRecycler adapter;
     private List<Uri> imageUriList;
-
+    private  double lat , lng;
     private AddComplaintsPresenterImplementer presenterImplementer;
     private DatabaseReference mDatabaseReference;
     private StorageReference mStorageReference;
@@ -72,10 +71,7 @@ public class AddComplaints extends AppCompatActivity implements AddComplaintsVie
 
         initViews();
 
-        double lat = getIntent().getDoubleExtra("lat" , 0.0);
-        double lng = getIntent().getDoubleExtra("lng" , 0.0);
 
-        Log.d("ResultLocation", "onCreate: "+lat+"\n"+lng);
     }
 
     private void initViews() {
@@ -138,15 +134,15 @@ public class AddComplaints extends AppCompatActivity implements AddComplaintsVie
                 if(sanitation.isChecked())
                 {
                     presenterImplementer.storeComplaintDataToFirebase(mDatabaseReference ,mAuth , mStorageReference
-                    ,title , description , "Sanitation" , imageUriList);
+                    ,title , description , "Sanitation" , imageUriList , lat , lng);
                 }
                 else if(infrastructure.isChecked())
                 {
                     presenterImplementer.storeComplaintDataToFirebase(mDatabaseReference ,mAuth , mStorageReference
-                            ,title , description , "Infrastructure" , imageUriList);
+                            ,title , description , "Infrastructure" , imageUriList ,lat , lng);
                 }
                 else {
-                Toast.makeText(this, "Please select your any department", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Please select your department", Toast.LENGTH_SHORT).show();
             }
 
 
@@ -156,8 +152,7 @@ public class AddComplaints extends AppCompatActivity implements AddComplaintsVie
     public void addLocationClick(View view)
     {
       Intent intent = new Intent(AddComplaints.this , MapActivity.class);
-      startActivity(intent);
-      this.finish();
+      startActivityForResult(intent , 110);
     }
 
     @Override
@@ -185,6 +180,19 @@ public class AddComplaints extends AppCompatActivity implements AddComplaintsVie
         }
 
 
+        // Check that it is the SecondActivity with an OK result
+        if (requestCode == 110 && resultCode == RESULT_OK) {
+
+                // Get String data from Intent
+                lat = data.getDoubleExtra("lat" , 0.0);
+                lng = data.getDoubleExtra("lng" , 0.0);
+
+                Log.d("ResultLocation", "onCreate: "+lat+"\n"+lng);
+        }
+        else
+        {
+            Log.d("locationResult", "onActivityResult: null value ");
+        }
 
     }
 

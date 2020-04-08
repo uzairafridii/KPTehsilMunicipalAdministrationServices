@@ -1,5 +1,7 @@
 package com.uzair.kptehsilmunicipaladministrationservices.AppModules.UserComplaint.ComplaintsMain;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 
 import com.bumptech.glide.Glide;
@@ -112,6 +114,40 @@ public class Complaints extends AppCompatActivity implements ComplaintHomeView
          adapterForComplaintsRV = new AdapterForComplaintsRV(getApplicationContext() , list , this);
          complaintRecyclerList.setAdapter(adapterForComplaintsRV);
     }
+
+    @Override
+    public void onShowStatusDialog(String message , int vector)
+    {
+      successDailog(message , vector);
+    }
+
+
+    private void successDailog(String message , int vector)
+    {
+        View myView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.custom_dialog , null);
+        AlertDialog.Builder alert = new AlertDialog.Builder(Complaints.this);
+        alert.setView(myView);
+
+        final AlertDialog dialog = alert.create();
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+
+        TextView textView = myView.findViewById(R.id.message);
+        ImageView imageView = myView.findViewById(R.id.imageView);
+
+        imageView.setImageResource(vector);
+
+        textView.setText(message);
+
+        myView.findViewById(R.id.btnOk).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+    }
+
 
 
 }

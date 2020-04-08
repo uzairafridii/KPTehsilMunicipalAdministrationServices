@@ -12,7 +12,7 @@ public interface AddComplaintsPresenter
 {
 
     void storeComplaintDataToFirebase(DatabaseReference dbRef , FirebaseAuth mAuth, StorageReference mStorageReference,
-                                      final String title , final String description ,
-                                      final String field , final List<Uri> imageUriList);
+                                       String title ,  String description , String field ,
+                                       List<Uri> imageUriList , double lat , double lng);
 
 }

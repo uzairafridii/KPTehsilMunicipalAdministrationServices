@@ -282,12 +282,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     public void sendLocationToComplaintData(View view)
     {
         Toast.makeText(this, "Complaint Location is Added", Toast.LENGTH_SHORT).show();
+
         Intent intent = new Intent(MapActivity.this, AddComplaints.class);
         intent.putExtra("lat", currentLat);
         intent.putExtra("lng", currentLong);
-        startActivity(intent);
-
-        this.finish();
+        setResult(RESULT_OK, intent);
+        finish();
 
     }
 

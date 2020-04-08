@@ -1,6 +1,8 @@
 package com.uzair.kptehsilmunicipaladministrationservices.AppModules.UserComplaint.AdapterOfComplaintRecycler;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.view.LayoutInflater;
@@ -16,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.uzair.kptehsilmunicipaladministrationservices.AppModules.UserComplaint.ComplaintsMain.Complaints;
+import com.uzair.kptehsilmunicipaladministrationservices.AppModules.UserComplaint.ComplaintsMain.UserFeedBack;
 import com.uzair.kptehsilmunicipaladministrationservices.AppModules.UserComplaint.ModelOfComplaintRecycler.ComplaintModel;
 import com.uzair.kptehsilmunicipaladministrationservices.R;
 import com.uzair.kptehsilmunicipaladministrationservices.Views.ComplaintHomeView;
@@ -27,12 +29,12 @@ public class AdapterForComplaintsRV extends RecyclerView.Adapter<AdapterForCompl
 {
     private Context context;
     private List<ComplaintModel> list;
-    private ComplaintHomeView view;
+    private ComplaintHomeView complaintHomeView;
 
-    public AdapterForComplaintsRV(Context context, List<ComplaintModel> list , ComplaintHomeView view) {
+    public AdapterForComplaintsRV(Context context, List<ComplaintModel> list , ComplaintHomeView complaintHomeView) {
         this.context = context;
         this.list = list;
-        this.view = view;
+        this.complaintHomeView = complaintHomeView;
     }
 
     @NonNull
@@ -51,31 +53,53 @@ public class AdapterForComplaintsRV extends RecyclerView.Adapter<AdapterForCompl
     public void onBindViewHolder(@NonNull MyComplaintHolder myComplaintHolder, int position)
     {
         // binding data in views
-         ComplaintModel complaintModel = list.get(position);
+         final ComplaintModel complaintModel = list.get(position);
 
         myComplaintHolder.setComplaintTitle(complaintModel.getTitle());
         myComplaintHolder.setComplaintDescription(complaintModel.getDescription());
         myComplaintHolder.setComplaintTime(complaintModel.getDate());
         myComplaintHolder.setComplaintStatus(complaintModel.getStatus());
         myComplaintHolder.setComplaintImage(complaintModel.getImageUrl());
+
+
+        myComplaintHolder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if(complaintModel.getStatus().equals("Pending"))
+                {
+                    complaintHomeView.onShowStatusDialog("Sorry your complaint is in Pending" , R.drawable.ic_cancel_black_24dp);
+                }
+                else if(complaintModel.getStatus().equals("In-Progress"))
+                {
+                   complaintHomeView.onShowStatusDialog("Your complaint is In-Progress", R.drawable.ic_data_usage_black_24dp);
+                }
+                else
+                {
+                    context.startActivity(new Intent(context , UserFeedBack.class));
+                }
+
+            }
+        });
+
     }
 
     @Override
     public int getItemCount() {
         if(list.size() > 0)
         {
-             view.noItemTextHide();
+             complaintHomeView.noItemTextHide();
             return list.size();
         }
         else
         {
-            view.noItemTextShow();
+            complaintHomeView.noItemTextShow();
             return 0;
         }
 
     }
 
-    // view holder class
+    // complaintHomeView holder class
     public class MyComplaintHolder extends RecyclerView.ViewHolder {
         private TextView complaintTitle, complaintDescription, complaintTime, complaintStatus;
         private ImageView complaintImage;
@@ -109,7 +133,7 @@ public class AdapterForComplaintsRV extends RecyclerView.Adapter<AdapterForCompl
             if (status.equals("Pending")) {
                 complaintStatus.setTextColor(Color.RED);
                 complaintStatus.setText(status);
-            } else if(status.equals("In Progress")) {
+            } else if(status.equals("In-Progress")) {
                 complaintStatus.setTextColor(Color.GREEN);
                 complaintStatus.setText(status);
             }
