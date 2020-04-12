@@ -38,34 +38,6 @@ public class UserFeedBack extends AppCompatActivity {
         String title = intent.getStringExtra("title");
         String status = intent.getStringExtra("status");
 
-        if(status.equals("Completed")) {
-            titleOfComplaint.setText(title);
-
-            titleOfComplaint.setVisibility(View.VISIBLE);
-            workerSecondName.setVisibility(View.VISIBLE);
-            workerFirstName.setVisibility(View.VISIBLE);
-            workerRating.setVisibility(View.VISIBLE);
-            submitFeedBackBtn.setVisibility(View.VISIBLE);
-            complaintImage.setVisibility(View.VISIBLE);
-            cameraButton.setVisibility(View.VISIBLE);
-            addCommentEdit.setVisibility(View.VISIBLE);
-            dateAndTime.setVisibility(View.VISIBLE);
-            rateUs.setVisibility(View.VISIBLE);
-
-        }
-        else {
-
-            titleOfComplaint.setVisibility(View.GONE);
-            workerSecondName.setVisibility(View.GONE);
-            workerFirstName.setVisibility(View.GONE);
-            workerRating.setVisibility(View.GONE);
-            submitFeedBackBtn.setVisibility(View.GONE);
-            complaintImage.setVisibility(View.GONE);
-            cameraButton.setVisibility(View.GONE);
-            addCommentEdit.setVisibility(View.GONE);
-            dateAndTime.setVisibility(View.GONE);
-            rateUs.setVisibility(View.GONE);
-        }
     }
 
     private void initViews()

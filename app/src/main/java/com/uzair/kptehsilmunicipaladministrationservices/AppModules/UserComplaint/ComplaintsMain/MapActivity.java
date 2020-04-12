@@ -69,7 +69,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private FusedLocationProviderClient mLocationService;
     private SearchView searchView;
     private Circle circle;
-    private MapPresenter mapPresenterImplementer;
+    private MapPresenterImplementer mapPresenterImplementer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,9 +85,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
                 mMap.clear();
 
-                String searchLocation = searchView.getQuery().toString().toUpperCase();
+                String searchLocation = searchView.getQuery().toString().trim();
 
-                mapPresenterImplementer.searchLocation(searchLocation);
+                mapPresenterImplementer.searchLocation(searchLocation.toUpperCase());
 
                 return false;
             }
@@ -191,9 +191,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     // get the user current location
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
-    public void onGetCurrentLocation()
-    {
-        // if permission not enable then return back
+    public void onGetCurrentLocation() {
         if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                     && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
@@ -213,8 +211,10 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
                     getLngLat(location.getLongitude(), location.getLatitude(), "Your Current Location");
 
-                } else {
-                    Toast.makeText(MapActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    Toast.makeText(MapActivity.this, "Please try again", Toast.LENGTH_SHORT).show();
                 }
             }
         });

@@ -202,6 +202,7 @@
 
             <!-- Date of birth -->
             <EditText
+                android:onClick="clickOnDateOfBirthField"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:background="@drawable/edit_txt_bg"
@@ -214,7 +215,6 @@
                 android:paddingLeft="@dimen/edit_margin"
                 android:inputType="text|date"
                 />
-
 
             <!-- Vaccinated   edit text -->
             <EditText
@@ -305,9 +305,9 @@
                android:background="@android:drawable/btn_dropdown"
                />
 
-
             <!-- Button upload noc -->
             <Button
+                android:onClick="uploadCnicImages"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
@@ -335,15 +335,15 @@
 
             <!-- Image front cnic upload -->
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:id="@+id/chooseCnicFrontImage"
                 android:layout_below="@+id/btnUploadCnicInChildCertificate"
                 android:src="@mipmap/ic_launcher"
                 android:layout_marginTop="@dimen/edit_margin"
                 android:layout_marginLeft="@dimen/txt_margin_left"
                 android:visibility="invisible"
-                android:layout_centerHorizontal="true"
+                android:layout_alignParentLeft="true"
                 />
 
             <!-- Text no front side of cnic choosen -->
@@ -360,20 +360,21 @@
 
             <!-- Image front cnic upload -->
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:id="@+id/chooseCnicBackImage"
-                android:layout_below="@+id/txtFrontOfCnic"
+                android:layout_below="@+id/btnUploadCnicInChildCertificate"
                 android:src="@mipmap/ic_launcher"
                 android:layout_marginTop="@dimen/edit_margin"
                 android:layout_marginLeft="@dimen/txt_margin_left"
                 android:visibility="invisible"
-                android:layout_centerHorizontal="true"
+                android:layout_toRightOf="@+id/chooseCnicFrontImage"
                 />
 
 
             <!-- Button Apply for children birth certificate -->
             <Button
+                android:onClick="submitCertificateForm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 style="@style/Widget.MaterialComponents.Button"
@@ -381,7 +382,7 @@
                 android:backgroundTint="@color/txt_color"
                 android:layout_marginLeft="@dimen/edit_margin_top"
                 android:layout_marginRight="@dimen/edit_margin_top"
-                android:layout_below="@+id/txtBackOfCnic"
+                android:layout_below="@+id/chooseCnicBackImage"
                 android:gravity="center"
                 android:layout_marginTop="@dimen/edit_margin"
                 android:layout_marginBottom="@dimen/edit_margin_top"

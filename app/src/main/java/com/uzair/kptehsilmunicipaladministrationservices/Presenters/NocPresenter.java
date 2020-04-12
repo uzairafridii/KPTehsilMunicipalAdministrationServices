@@ -18,9 +18,6 @@ public interface NocPresenter
 
     void readYourNoc(DatabaseReference reference , FirebaseAuth firebaseAuth);
 
-
-
-
     // select and preview image gallery methods
     void chooseGalleryClick();
     void previewImage(Uri uri);

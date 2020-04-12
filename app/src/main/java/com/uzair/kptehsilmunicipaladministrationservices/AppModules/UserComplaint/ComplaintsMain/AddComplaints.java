@@ -180,8 +180,8 @@ public class AddComplaints extends AppCompatActivity implements AddComplaintsVie
         }
 
 
-        // Check that it is the SecondActivity with an OK result
-        if (requestCode == 110 && resultCode == RESULT_OK) {
+        // Check location result with an OK result
+        if (requestCode == 110 && resultCode == RESULT_OK && data != null) {
 
                 // Get String data from Intent
                 lat = data.getDoubleExtra("lat" , 0.0);
@@ -189,10 +189,7 @@ public class AddComplaints extends AppCompatActivity implements AddComplaintsVie
 
                 Log.d("ResultLocation", "onCreate: "+lat+"\n"+lng);
         }
-        else
-        {
-            Log.d("locationResult", "onActivityResult: null value ");
-        }
+
 
     }
 

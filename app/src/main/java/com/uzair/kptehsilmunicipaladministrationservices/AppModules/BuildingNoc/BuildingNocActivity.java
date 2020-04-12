@@ -59,43 +59,38 @@ public class BuildingNocActivity extends AppCompatActivity implements NocView {
         setContentView(R.layout.activity_building_noc);
 
         initViews();
-        // load your noc when activity created
+
+        // load your noc
         presenterImplementer.readYourNoc(mDatabaseRef , mAuth);
 
     }
 
 
     private void initViews() {
-        // presenter implementation
+
         presenterImplementer = new NocPresenterImplementer(BuildingNocActivity.this);
 
-        // progress dialog
         mProgressDialog = new ProgressDialog(this, R.style.MyAlertDialogStyle);
 
-        //  app tool bar
         mToolbar = findViewById(R.id.noc_tool_bar);
         setSupportActionBar(mToolbar);
         setTitle("Building Noc");
 
-        // tool bar back arrow enabled
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeAsUpIndicator(R.drawable.backicon);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        // text, image & edit views
         txtNoFileChoose = findViewById(R.id.txtNoFileChoose);
         tvNocTitle = findViewById(R.id.nocTitleTextInputLayout);
         txtYourTotalNoc = findViewById(R.id.txtYourTotalNoc);
         chooseNocImage = findViewById(R.id.chooseNocImage);
 
-        // recyclerView
         nocRvList = findViewById(R.id.nocRecyclerView);
         layoutManager = new LinearLayoutManager(this);
         layoutManager.setReverseLayout(true);
         layoutManager.setStackFromEnd(true);
         nocRvList.setLayoutManager(layoutManager);
 
-        // firebase
         mAuth = FirebaseAuth.getInstance();
         mDatabaseRef = FirebaseDatabase.getInstance().getReference();
         mStorageRef = FirebaseStorage.getInstance().getReference();
@@ -110,7 +105,7 @@ public class BuildingNocActivity extends AppCompatActivity implements NocView {
 
     // submit noc details button click
     public void submiNocDetailsButtonClick(View view) {
-        //Todo: submit all details to firebase
+
         String title = tvNocTitle.getEditText().getText().toString();
         presenterImplementer.sendNocDataToFirebase(mDatabaseRef, mAuth, mStorageRef, imageUri, title);
     }

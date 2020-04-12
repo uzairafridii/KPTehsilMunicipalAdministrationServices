@@ -98,6 +98,7 @@ public class MapPresenterImplementer implements MapPresenter
                             double lat = jsonObject.getJSONObject("geometry").getJSONObject("location")
                                     .getDouble("lat");
 
+                            Log.d("locationResult", "onResponse: "+lng +"\n"+lat);
 
                             mapView.getLatLng(lat , lng);
 

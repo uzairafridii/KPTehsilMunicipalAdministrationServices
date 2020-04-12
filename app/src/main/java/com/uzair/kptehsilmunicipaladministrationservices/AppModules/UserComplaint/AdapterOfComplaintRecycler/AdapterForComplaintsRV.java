@@ -127,6 +127,7 @@ public class AdapterForComplaintsRV extends RecyclerView.Adapter<AdapterForCompl
             complaintTime.setText(time);
         }
 
+        @SuppressLint("ResourceAsColor")
         @RequiresApi(api = Build.VERSION_CODES.M)
         private void setComplaintStatus(String status) {
             complaintStatus = mView.findViewById(R.id.complaint_status);
@@ -134,7 +135,7 @@ public class AdapterForComplaintsRV extends RecyclerView.Adapter<AdapterForCompl
                 complaintStatus.setTextColor(Color.RED);
                 complaintStatus.setText(status);
             } else if(status.equals("In-Progress")) {
-                complaintStatus.setTextColor(Color.GREEN);
+                complaintStatus.setTextColor(R.color.txt_color);
                 complaintStatus.setText(status);
             }
             else {
