@@ -112,6 +112,7 @@ public class BirthCertificatePresenterImplementer implements BirthCertificatePre
                                     formData.put("date" , date);
                                     formData.put("pushKey" , dbRef.getRef().getKey());
                                     formData.put("uid" , mAuth.getCurrentUser().getUid());
+                                    formData.put("cnicImages" , urls);
 
 
 
