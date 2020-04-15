@@ -22,12 +22,9 @@ public class DeathCertificate extends AppCompatActivity {
     private void initViews()
     {
 
-        //  app tool bar
         mToolbar = findViewById(R.id.death_certificate_tool_bar);
         setSupportActionBar(mToolbar);
         setTitle("Death Certificate Form");
-
-        // tool bar back arrow enabled
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeAsUpIndicator(R.drawable.backicon);
         actionBar.setDisplayHomeAsUpEnabled(true);

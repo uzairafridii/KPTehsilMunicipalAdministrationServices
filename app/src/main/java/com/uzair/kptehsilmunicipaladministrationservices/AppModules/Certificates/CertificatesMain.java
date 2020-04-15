@@ -9,16 +9,25 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.view.View;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.uzair.kptehsilmunicipaladministrationservices.Models.CertificateMainPresenterImplementer;
+import com.uzair.kptehsilmunicipaladministrationservices.Presenters.CertificateMainPresenter;
 import com.uzair.kptehsilmunicipaladministrationservices.R;
 import com.uzair.kptehsilmunicipaladministrationservices.Views.CertificateMainView;
+
+import java.util.List;
 
 public class CertificatesMain extends AppCompatActivity implements CertificateMainView {
 
     private Toolbar mToolbar;
     private RecyclerView certificateRecyclerView;
     private LinearLayoutManager layoutManager;
-    private CertificateMainPresenterImplementer mainPresenterImplementer;
+    private CertificateMainPresenter mainPresenterImplementer;
+
+    private DatabaseReference dbRef;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,17 +36,17 @@ public class CertificatesMain extends AppCompatActivity implements CertificateMa
 
         initViews();
 
+        mainPresenterImplementer.retrieveAllCertificates(dbRef , mAuth);
+
+
     }
 
     private void initViews()
     {
 
-        //  app tool bar
         mToolbar = findViewById(R.id.certificateMainToolbar);
         setSupportActionBar(mToolbar);
         setTitle("Your Certificates");
-
-        // tool bar back arrow enabled
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeAsUpIndicator(R.drawable.backicon);
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -51,11 +60,21 @@ public class CertificatesMain extends AppCompatActivity implements CertificateMa
 
 
         mainPresenterImplementer = new CertificateMainPresenterImplementer(this,this);
+
+        dbRef = FirebaseDatabase.getInstance().getReference().child("Certificates");
+        mAuth = FirebaseAuth.getInstance();
     }
 
     // fab button click to select certificate type
     public void selectCertificateType(View view)
     {
        mainPresenterImplementer.showBottomSheet();
+    }
+
+    @Override
+    public void setAdapter(List<CertificateModel> modelList)
+    {
+        AdapterForCertificateRv adapter = new AdapterForCertificateRv(this, modelList);
+        certificateRecyclerView.setAdapter(adapter);
     }
 }

@@ -47,7 +47,7 @@ public class BirthCertificatePresenterImplementer implements BirthCertificatePre
                              final String fCnic, final String mName, final String mCnic, final String gFatherName,
                              final String gFatherCnic, final String distOfBirth, final String dob, final String vaccinated,
                              final String placeOfBirth, final String mideWife, final String disability, final String address,
-                             final String gender, final List<Uri> uriList)
+                             final String gender, final String uc ,final List<Uri> uriList)
     {
 
 
@@ -83,6 +83,7 @@ public class BirthCertificatePresenterImplementer implements BirthCertificatePre
                                 String url = String.valueOf(uri);
                                 urls.add(url);
 
+                                // counter is equal to urls arraylist then upload all urls and data
                                 if( counter  == uriList.size()) {
 
                                     String date = DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
@@ -109,10 +110,12 @@ public class BirthCertificatePresenterImplementer implements BirthCertificatePre
                                     formData.put("address" , address);
                                     formData.put("placeOfBirth" , placeOfBirth);
                                     formData.put("gender" , gender);
+                                    formData.put("unionCouncil" , uc);
                                     formData.put("date" , date);
                                     formData.put("pushKey" , dbRef.getRef().getKey());
                                     formData.put("uid" , mAuth.getCurrentUser().getUid());
                                     formData.put("cnicImages" , urls);
+                                    formData.put("status" , "Pending");
 
 
 

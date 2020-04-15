@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/certificateCard"
+        android:clickable="true"
+        android:layout_marginLeft="@dimen/edit_margin"
+        android:layout_marginRight="@dimen/edit_margin"
+        android:layout_marginTop="@dimen/margin_6"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/margin_6"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/appliName"
+                android:text="Applicant Name : "
+                android:textColor="@color/txt_color"
+                android:textStyle="bold"
+                android:layout_marginLeft="@dimen/reycler_view_margin"
+
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/appliNameValue"
+                android:layout_toRightOf="@id/appliName"
+                android:text="Name of Applicant"
+                android:textColor="@color/txt_color"
+                android:textStyle="bold"
+                android:layout_marginLeft="@dimen/reycler_view_margin"
+                android:layout_marginRight="@dimen/reycler_view_margin"
+                />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/certificateType"
+                android:layout_below="@id/appliNameValue"
+                android:text="Certificate Type : "
+                android:textColor="@color/txt_color"
+                android:textStyle="bold"
+                android:layout_marginLeft="@dimen/reycler_view_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/certificateTypeValue"
+                android:layout_below="@id/appliNameValue"
+                android:layout_toRightOf="@id/certificateType"
+                android:text="Certificate Type"
+                android:textColor="@color/txt_color"
+                android:textStyle="bold"
+                android:layout_marginLeft="@dimen/reycler_view_margin"
+                android:layout_marginRight="@dimen/reycler_view_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/dateOfApply"
+                android:layout_below="@id/certificateTypeValue"
+                android:text="Apply Date : "
+                android:textColor="@color/txt_color"
+                android:textStyle="bold"
+                android:layout_marginLeft="@dimen/reycler_view_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/dateValue"
+                android:layout_below="@id/certificateTypeValue"
+                android:layout_toRightOf="@id/certificateType"
+                android:text="Date of apply"
+                android:textColor="@color/txt_color"
+                android:textStyle="bold"
+                android:layout_marginLeft="@dimen/reycler_view_margin"
+                android:layout_marginRight="@dimen/reycler_view_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                />
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/certificateStatus"
+                android:layout_below="@id/dateValue"
+                android:text="status : "
+                android:textColor="@color/txt_color"
+                android:textStyle="bold"
+                android:layout_marginLeft="@dimen/reycler_view_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/statusValue"
+                android:layout_below="@id/dateValue"
+                android:layout_toRightOf="@id/certificateType"
+                android:text="status"
+                android:textColor="@color/txt_color"
+                android:textStyle="bold"
+                android:layout_marginLeft="@dimen/reycler_view_margin"
+                android:layout_marginRight="@dimen/reycler_view_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                />
+
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

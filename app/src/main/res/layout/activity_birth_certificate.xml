@@ -305,17 +305,31 @@
                android:background="@android:drawable/btn_dropdown"
                />
 
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:id="@+id/ucSpinner"
+                android:layout_below="@id/childGenderInBirthCertificate"
+                android:hint="Select"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                android:spinnerMode="dropdown"
+                android:background="@android:drawable/btn_dropdown"
+                />
+
             <!-- Button upload noc -->
             <Button
                 android:onClick="uploadCnicImages"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:id="@+id/btnUploadCnicInChildCertificate"
                 android:layout_alignParentLeft="true"
                 android:textColor="@color/txt_color"
                 android:layout_marginLeft="@dimen/edit_margin"
-                android:layout_below="@+id/childGenderInBirthCertificate"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_below="@+id/ucSpinner"
                 android:gravity="center"
                 android:layout_marginTop="@dimen/edit_margin"
                 android:textSize="15sp"
@@ -380,8 +394,8 @@
                 style="@style/Widget.MaterialComponents.Button"
                 android:id="@+id/applyForChildBirthCertificate"
                 android:backgroundTint="@color/txt_color"
-                android:layout_marginLeft="@dimen/edit_margin_top"
-                android:layout_marginRight="@dimen/edit_margin_top"
+                android:layout_marginLeft="@dimen/txt_margin_left"
+                android:layout_marginRight="@dimen/txt_margin_left"
                 android:layout_below="@+id/chooseCnicBackImage"
                 android:gravity="center"
                 android:layout_marginTop="@dimen/edit_margin"

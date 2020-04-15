@@ -1,7 +1,9 @@
 package com.uzair.kptehsilmunicipaladministrationservices.AppModules.Main;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -86,6 +88,32 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(this, Login.class));
                 this.finish();
             }
+
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setMessage("Do you want to close the app?");
+        alert.setTitle("TMA App");
+        alert.setCancelable(false);
+        alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                MainActivity.this.finish();
+
+            }
+        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                dialogInterface.dismiss();
+            }
+        });
+
+        alert.show();
 
     }
 }

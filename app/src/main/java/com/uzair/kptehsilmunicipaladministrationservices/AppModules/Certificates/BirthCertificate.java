@@ -49,9 +49,10 @@ public class BirthCertificate extends AppCompatActivity implements AdapterView.O
     private static final int REQUEST_GALLERY_PHOTO = 1220;
     private List<Uri> cnicImages = new ArrayList<>();
     private Toolbar mToolbar;
-    private Spinner childGender;
+    private Spinner childGender , unionCouncilSpinner;
     private String[] gender = {"Male", "Female"};
-    private String selectedGender;
+    private String[] unionCouncils = {"Uc Lachi Payan", "Uc Lachi Bala" , "UC Sudal", "UC Mandoori" , "Uc Darmalak"};
+    private String selectedGender , selectedUC;
     private ImageView frontSide, backSide;
     private EditText applicantName, applicantCnic, childName, childRelation, religion, fatherName, fatherCnic,
             motherName, motherCnic, grandFatherName, grandFatherCnic, districtOfBirth, dateOfBirth,
@@ -110,6 +111,9 @@ public class BirthCertificate extends AppCompatActivity implements AdapterView.O
         childGender = findViewById(R.id.childGenderInBirthCertificate);
         childGender.setOnItemSelectedListener(this);
 
+        unionCouncilSpinner = findViewById(R.id.ucSpinner);
+        unionCouncilSpinner.setOnItemSelectedListener(this);
+
         //  app tool bar
         mToolbar = findViewById(R.id.child_birth_certificate_tool_bar);
         setSupportActionBar(mToolbar);
@@ -128,7 +132,15 @@ public class BirthCertificate extends AppCompatActivity implements AdapterView.O
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
-         selectedGender = adapterView.getItemAtPosition(i).toString();
+        if (adapterView.getId() == R.id.ucSpinner)
+        {
+            selectedUC = adapterView.getItemAtPosition(i).toString();
+        }
+        if (adapterView.getId() == R.id.childGenderInBirthCertificate)
+        {
+
+            selectedGender = adapterView.getItemAtPosition(i).toString();
+        }
     }
 
     @Override
@@ -180,8 +192,8 @@ public class BirthCertificate extends AppCompatActivity implements AdapterView.O
     @Override
     public void setSpinnerAdapter() {
 
-        ArrayAdapter genderAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, gender);
-        childGender.setAdapter(genderAdapter);
+       setSpinnerAdapter(childGender , gender);
+       setSpinnerAdapter(unionCouncilSpinner , unionCouncils);
     }
 
     @Override
@@ -271,7 +283,7 @@ public class BirthCertificate extends AppCompatActivity implements AdapterView.O
                 child_father, child_father_cnic, child_mother_name , child_mother_cnic ,
                 child_grand_father_name ,child_grand_father_cnic, child_district_of_birth ,
                 child_date_of_birth , child_vaccinated , child_place_of_birth ,
-                doctor_or_mide_wife_name, child_disability, child_address , selectedGender, cnicImages);
+                doctor_or_mide_wife_name, child_disability, child_address , selectedGender,selectedUC ,cnicImages);
 
     }
 
@@ -296,5 +308,11 @@ public class BirthCertificate extends AppCompatActivity implements AdapterView.O
       address.setText("");
       placeOfBirth.setText("");
       vaccinated.setText("");
+    }
+
+    private void setSpinnerAdapter(Spinner spinner , String[] list)
+    {
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, list);
+        spinner.setAdapter(adapter);
     }
 }

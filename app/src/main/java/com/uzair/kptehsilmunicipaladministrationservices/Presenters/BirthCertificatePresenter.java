@@ -16,7 +16,8 @@ public interface BirthCertificatePresenter
                       String name , String cnic, String childName , String religion , String relation,
                       String fName , String fCnic , String mName , String mCnic , String gFatherName ,
                       String gFatherCnic , String distOfBirth , String dob , String vaccinated ,
-                      String placeOfBirth , String mideWife , String disability , String address , String gender, List<Uri> uriList);
+                      String placeOfBirth , String mideWife , String disability , String address , String gender,
+                      String uc,List<Uri> uriList);
 
     void onSetSpinnerAdapter();
     void chooseGalleryClick();
