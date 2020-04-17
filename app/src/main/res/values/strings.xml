@@ -1,5 +1,17 @@
 <resources>
 
+    <string-array name="gender">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+
+    <string-array name="UC">
+        <item>UC Lachi Payan</item>
+        <item>UC Lachi Bala</item>
+        <item>UC Mandoori</item>
+        <item>UC Sudal</item>
+        <item>UC Darmalak</item>
+    </string-array>
 
     <string name="app_name">KP TMA Services</string>
     <string name="map_api_key">AIzaSyC25fz7R_AYrRD5v6spK89aW9yt2Oiafl4</string>
@@ -70,4 +82,5 @@
     <string name="name_of_driver">Name of Driver</string>
     <string name="noc_status">Noc Status</string>
     <string name="title_activity_maps">Map</string>
+
 </resources>

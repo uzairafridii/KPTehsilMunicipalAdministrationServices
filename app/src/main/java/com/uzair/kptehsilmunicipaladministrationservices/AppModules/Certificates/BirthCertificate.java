@@ -50,14 +50,11 @@ public class BirthCertificate extends AppCompatActivity implements AdapterView.O
     private List<Uri> cnicImages = new ArrayList<>();
     private Toolbar mToolbar;
     private Spinner childGender , unionCouncilSpinner;
-    private String[] gender = {"Male", "Female"};
-    private String[] unionCouncils = {"Uc Lachi Payan", "Uc Lachi Bala" , "UC Sudal", "UC Mandoori" , "Uc Darmalak"};
     private String selectedGender , selectedUC;
     private ImageView frontSide, backSide;
     private EditText applicantName, applicantCnic, childName, childRelation, religion, fatherName, fatherCnic,
             motherName, motherCnic, grandFatherName, grandFatherCnic, districtOfBirth, dateOfBirth,
             vaccinated, placeOfBirth, doctorOrMideWifeName, disability, address;
-
     private String appli_name , appli_cnic , child_name , child_relation , child_religion , child_father,
             child_father_cnic, child_mother_name , child_mother_cnic, child_grand_father_name , child_grand_father_cnic,
             child_district_of_birth, child_date_of_birth ,child_vaccinated ,child_place_of_birth,
@@ -83,6 +80,7 @@ public class BirthCertificate extends AppCompatActivity implements AdapterView.O
 
     }
 
+    // initiate all views
     private void initViews() {
 
         applicantName = findViewById(R.id.applicantNameInBirthCertificate);
@@ -132,10 +130,13 @@ public class BirthCertificate extends AppCompatActivity implements AdapterView.O
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
+        // if spinner equal union council then this will if will be call
         if (adapterView.getId() == R.id.ucSpinner)
         {
             selectedUC = adapterView.getItemAtPosition(i).toString();
         }
+
+        // if select gender than this if will be call
         if (adapterView.getId() == R.id.childGenderInBirthCertificate)
         {
 
@@ -148,6 +149,8 @@ public class BirthCertificate extends AppCompatActivity implements AdapterView.O
 
     // select date from date picker on date of birth filed click
     public void clickOnDateOfBirthField(View view) {
+
+        // get the current date here
         Calendar c = Calendar.getInstance();
         int mYear = c.get(Calendar.YEAR);
         int mMonth = c.get(Calendar.MONTH);
@@ -155,6 +158,7 @@ public class BirthCertificate extends AppCompatActivity implements AdapterView.O
 
         Log.d("DateOfBirth", "clickOnDateOfBirthField: " + mYear + "\n" + mMonth + "\n" + mDay);
 
+        // time picker dialog to pick date
         DatePickerDialog datePickerDialog = new DatePickerDialog(this,
                 new DatePickerDialog.OnDateSetListener() {
 
@@ -192,9 +196,11 @@ public class BirthCertificate extends AppCompatActivity implements AdapterView.O
     @Override
     public void setSpinnerAdapter() {
 
-       setSpinnerAdapter(childGender , gender);
-       setSpinnerAdapter(unionCouncilSpinner , unionCouncils);
+        //set spinner adapter for both  gender and uc
+        setSpinnerAdapter(childGender , getResources().getStringArray(R.array.gender));
+       setSpinnerAdapter(unionCouncilSpinner , getResources().getStringArray(R.array.UC));
     }
+
 
     @Override
     public void chooseGallery() {
@@ -207,6 +213,7 @@ public class BirthCertificate extends AppCompatActivity implements AdapterView.O
         startActivityForResult(intent, REQUEST_GALLERY_PHOTO);
     }
 
+    // preview the cnic images
     @Override
     public void displayImagePreview(List<Uri> mFileUri)
     {
@@ -258,7 +265,7 @@ public class BirthCertificate extends AppCompatActivity implements AdapterView.O
     // submit form button click
     public void submitCertificateForm(View view)
     {
-
+          // first get values from form
         appli_name = applicantName.getText().toString();
         appli_cnic = applicantCnic.getText().toString();
         child_name = childName.getText().toString();
@@ -278,6 +285,7 @@ public class BirthCertificate extends AppCompatActivity implements AdapterView.O
         child_disability = disability.getText().toString();
         child_address =  address.getText().toString();
 
+        // then call onSubmit method presenter
         birthCertificatePresenter.onSubmitForm(databaseReference, storageReference, mAuth,
                  appli_name , appli_cnic , child_name , child_religion , child_relation ,
                 child_father, child_father_cnic, child_mother_name , child_mother_cnic ,
@@ -287,6 +295,7 @@ public class BirthCertificate extends AppCompatActivity implements AdapterView.O
 
     }
 
+    // clear all editext fields
     @Override
     public void clearAllFileds()
     {
@@ -308,6 +317,11 @@ public class BirthCertificate extends AppCompatActivity implements AdapterView.O
       address.setText("");
       placeOfBirth.setText("");
       vaccinated.setText("");
+
+      // clear images array
+        cnicImages.clear();
+
+
     }
 
     private void setSpinnerAdapter(Spinner spinner , String[] list)

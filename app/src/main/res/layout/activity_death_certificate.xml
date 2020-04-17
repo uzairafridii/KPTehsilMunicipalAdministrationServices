@@ -246,16 +246,33 @@
                 android:inputType="text|date"
                 />
 
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:id="@+id/ucSpinnerInDeath"
+                android:layout_below="@id/deceasedDateOfBirthInDeathCertificate"
+                android:hint="Select"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                android:spinnerMode="dropdown"
+                android:background="@android:drawable/btn_dropdown"
+                />
+
+
             <!-- Button upload noc -->
             <Button
-                android:layout_width="wrap_content"
+                android:onClick="openGalleryButtonClick"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:id="@+id/btnUploadCnicInDeathCertificate"
                 android:layout_alignParentLeft="true"
                 android:textColor="@color/txt_color"
                 android:layout_marginLeft="@dimen/edit_margin"
-                android:layout_below="@+id/deceasedDateOfBirthInDeathCertificate"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_below="@+id/ucSpinnerInDeath"
                 android:gravity="center"
                 android:layout_marginTop="@dimen/edit_margin"
                 android:textSize="15sp"
@@ -275,15 +292,14 @@
 
             <!-- Image front cnic upload -->
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:id="@+id/chooseCnicFrontImage"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:id="@+id/chooseCnicFrontImageInDeath"
                 android:layout_below="@+id/btnUploadCnicInDeathCertificate"
                 android:src="@mipmap/ic_launcher"
                 android:layout_marginTop="@dimen/edit_margin"
                 android:layout_marginLeft="@dimen/txt_margin_left"
                 android:visibility="invisible"
-                android:layout_centerHorizontal="true"
                 />
 
             <!-- Text no front side of cnic choosen -->
@@ -300,28 +316,29 @@
 
             <!-- Image front cnic upload -->
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:id="@+id/chooseCnicBackImage"
-                android:layout_below="@+id/txtFrontOfCnic"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:id="@+id/chooseCnicBackImageInDeath"
+                android:layout_below="@+id/btnUploadCnicInDeathCertificate"
+                android:layout_toRightOf="@id/chooseCnicFrontImageInDeath"
                 android:src="@mipmap/ic_launcher"
                 android:layout_marginTop="@dimen/edit_margin"
                 android:layout_marginLeft="@dimen/txt_margin_left"
                 android:visibility="invisible"
-                android:layout_centerHorizontal="true"
                 />
 
 
             <!-- Button Apply for children birth certificate -->
             <Button
+                android:onClick="submitFormBtnClick"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 style="@style/Widget.MaterialComponents.Button"
                 android:id="@+id/applyForDeathCertificate"
                 android:backgroundTint="@color/txt_color"
-                android:layout_marginLeft="@dimen/edit_margin_top"
-                android:layout_marginRight="@dimen/edit_margin_top"
-                android:layout_below="@+id/txtBackOfCnic"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_below="@+id/chooseCnicBackImageInDeath"
                 android:gravity="center"
                 android:layout_marginTop="@dimen/edit_margin"
                 android:layout_marginBottom="@dimen/edit_margin_top"

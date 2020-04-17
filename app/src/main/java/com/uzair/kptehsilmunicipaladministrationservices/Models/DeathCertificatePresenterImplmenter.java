@@ -1,11 +1,7 @@
 package com.uzair.kptehsilmunicipaladministrationservices.Models;
 
-import android.app.DatePickerDialog;
 import android.content.Context;
 import android.net.Uri;
-import android.util.Log;
-import android.widget.DatePicker;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -16,8 +12,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.uzair.kptehsilmunicipaladministrationservices.Presenters.BirthCertificatePresenter;
-import com.uzair.kptehsilmunicipaladministrationservices.Views.BirthCertificateView;
+import com.uzair.kptehsilmunicipaladministrationservices.Presenters.DeathCertificatePresenter;
+import com.uzair.kptehsilmunicipaladministrationservices.Views.DeathCertificateView;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -26,60 +22,57 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class BirthCertificatePresenterImplementer implements BirthCertificatePresenter
+public class DeathCertificatePresenterImplmenter implements DeathCertificatePresenter
 {
 
-    private BirthCertificateView birthView;
+    private DeathCertificateView deathView;
     private Context context;
     private List<String> urls = new ArrayList<>();
     private  int counter = 0;
 
-    public BirthCertificatePresenterImplementer(BirthCertificateView birthView, Context context) {
-        this.birthView = birthView;
+    public DeathCertificatePresenterImplmenter(DeathCertificateView deathView, Context context) {
+        this.deathView = deathView;
         this.context = context;
     }
 
-
     @Override
     public void onSubmitForm(final DatabaseReference dbRef, StorageReference storeRef, final FirebaseAuth mAuth,
-                             final String name, final String cnic, final String childName,
-                             final String religion, final String relation, final String fName,
-                             final String fCnic, final String mName, final String mCnic, final String gFatherName,
-                             final String gFatherCnic, final String distOfBirth, final String dob, final String vaccinated,
-                             final String placeOfBirth, final String mideWife, final String disability, final String address,
-                             final String gender, final String uc ,final List<Uri> uriList)
+                             final String name, final String cnic, final String deceasedName, final String deceasedCnic,
+                             final String religion, final String relation, final String fName, final String fCnic, final String mName,
+                             final String mCnic, final String husbandName, final String husbandCnic, final String deceasedDateOfBirth,
+                             final String gravyardName, final String placeOfBirth, final String uc, final List<Uri> uriList)
     {
 
 
-        if( dbRef != null && storeRef != null && mAuth != null && !uriList.isEmpty() &&
-                !name.isEmpty() && !cnic.isEmpty() && !childName.isEmpty() &&
-                !religion.isEmpty() && !relation.isEmpty() && !fName.isEmpty() &&
-                !fCnic.isEmpty() && !mName.isEmpty() && !mCnic.isEmpty() &&
-                !gFatherCnic.isEmpty() && !gFatherName.isEmpty() && !distOfBirth.isEmpty()
-                && !dob.isEmpty() && !vaccinated.isEmpty() && !placeOfBirth.isEmpty() &&
-                !mideWife.isEmpty() && !disability.isEmpty() && !address.isEmpty() &&
-                !gender.isEmpty() )
+        if(dbRef != null && storeRef !=null && mAuth != null &&
+           !name.isEmpty() && !cnic.isEmpty() && !deceasedName.isEmpty() && !deceasedCnic.isEmpty() &&
+           !religion.isEmpty() && !relation.isEmpty() && !fName.isEmpty() && !fCnic.isEmpty() &&
+           !mName.isEmpty() && !mCnic.isEmpty() && !husbandName.isEmpty() && !husbandCnic.isEmpty() &&
+           !deceasedDateOfBirth.isEmpty() && ! gravyardName.isEmpty() && !placeOfBirth.isEmpty() && !uc.isEmpty()
+        && !uriList.isEmpty())
         {
 
 
-            birthView.onShowProgressDialog();
+
+
+            deathView.onShowProgressDialog();
 
             for (int i = 0; i < uriList.size(); i++) {
 
                 Uri Image = uriList.get(i);
 
                 // storage reference to add images
-                final StorageReference imagename = storeRef.child("BirthCertificateImages")
+                final StorageReference imagePath = storeRef.child("DeathCertificateImages")
                         .child("image/" + Image.getLastPathSegment());
 
-                imagename.putFile(uriList.get(i)).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                imagePath.putFile(uriList.get(i)).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         // to get download url
-                        imagename.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        imagePath.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
                             public void onSuccess(Uri uri) {
-                                 counter = counter + 1;
+                                counter = counter + 1;
                                 String url = String.valueOf(uri);
                                 urls.add(url);
 
@@ -90,34 +83,28 @@ public class BirthCertificatePresenterImplementer implements BirthCertificatePre
 
                                     Map formData = new HashMap<>();
 
-                                    formData.put("certificateType" , "Birth");
+                                    formData.put("certificateType" , "Death");
                                     formData.put("applicantName" , name);
                                     formData.put("applicantCnic" , cnic);
-                                    formData.put("childName" , childName);
+                                    formData.put("deceasedName" , deceasedName);
+                                    formData.put("deceasedCnic" , deceasedCnic);
                                     formData.put("religion" , religion);
                                     formData.put("relation" , relation);
                                     formData.put("fatherName" , fName);
                                     formData.put("fatherCnic" , fCnic);
                                     formData.put("motherName" , mName);
                                     formData.put("motherCnic" , mCnic);
-                                    formData.put("grandFatherName" , gFatherName);
-                                    formData.put("grandFatherCnic" , gFatherCnic);
-                                    formData.put("districtOfBirth" , distOfBirth);
-                                    formData.put("dateOfBirth" , dob);
-                                    formData.put("disability" , disability);
-                                    formData.put("vaccinated" , vaccinated);
-                                    formData.put("doctorOrMideWife" , mideWife);
-                                    formData.put("address" , address);
+                                    formData.put("husbandName" , husbandName);
+                                    formData.put("husbandCnic" , husbandCnic);
                                     formData.put("placeOfBirth" , placeOfBirth);
-                                    formData.put("gender" , gender);
                                     formData.put("unionCouncil" , uc);
+                                    formData.put("gravyard" , gravyardName);
+                                    formData.put("deceasedDateOfBirth" , deceasedDateOfBirth);
                                     formData.put("date" , date);
                                     formData.put("pushKey" , dbRef.getRef().getKey());
                                     formData.put("uid" , mAuth.getCurrentUser().getUid());
                                     formData.put("cnicImages" , urls);
                                     formData.put("status" , "Pending");
-
-
 
 
 
@@ -128,17 +115,18 @@ public class BirthCertificatePresenterImplementer implements BirthCertificatePre
 
                                                     if (task.isSuccessful()) {
 
-                                                        birthView.onDismissProgressDialog();
-                                                        birthView.clearAllFileds();
-                                                        birthView.showMessage("SuccessFully Apply");
+                                                        deathView.onDismissProgressDialog();
+                                                        deathView.clearAllFileds();
+                                                        deathView.showMessage("SuccessFully Apply");
 
                                                     } else {
 
-                                                        birthView.showMessage("Error in uploading");
-                                                        birthView.onDismissProgressDialog();
+                                                        deathView.showMessage("Error in uploading");
+                                                        deathView.onDismissProgressDialog();
                                                     }
                                                 }
                                             });
+
 
                                 }
 
@@ -152,37 +140,43 @@ public class BirthCertificatePresenterImplementer implements BirthCertificatePre
         }
         else
         {
-           birthView.showMessage("Please cnic and all fields are required");
+            deathView.showMessage("Please cnic and all fields are require");
         }
 
 
 
     }
 
+
+
+
     @Override
-    public void onSetSpinnerAdapter()
-    {
-       birthView.setSpinnerAdapter();
+    public void onSetSpinnerAdapter() {
+
+        deathView.setSpinnerAdapter();
     }
 
     @Override
     public void chooseGalleryClick() {
-            birthView.chooseGallery();
+
+        deathView.chooseGallery();
     }
 
     @Override
-    public void previewImage(List<Uri> uri) {
+    public void previewImage(List<Uri> uri)
+    {
         if (uri.size() > 2)
         {
-            birthView.showMessage("Please select front and back side image only");
+            deathView.showMessage("Please select front and back side image only");
         }
         else if(uri.size() < 2 )
         {
-            birthView.showMessage("select front and back side image of cnic");
+            deathView.showMessage("select front and back side image of cnic");
         }
         else
-            {
-            birthView.displayImagePreview(uri);
+        {
+            deathView.displayImagePreview(uri);
         }
+
     }
 }

@@ -110,12 +110,12 @@ public class Profile extends AppCompatActivity implements ProfileView
     @Override
     public void showEditDialog() {
 
+        // inflate the custom edit layout
         final View myView = LayoutInflater.from(this).inflate(R.layout.profile_edit_layout, null);
         AlertDialog.Builder alert = new AlertDialog.Builder(Profile.this);
         alert.setView(myView);
 
         final AlertDialog dialog = alert.create();
-        dialog.setCancelable(false);
         dialog.setCanceledOnTouchOutside(false);
         dialog.show();
 
@@ -123,6 +123,7 @@ public class Profile extends AppCompatActivity implements ProfileView
         final EditText name = myView.findViewById(R.id.changeName);
         final EditText phone = myView.findViewById(R.id.changePhoneNo);
 
+        // button save changes click
         myView.findViewById(R.id.saveChangesButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -132,6 +133,7 @@ public class Profile extends AppCompatActivity implements ProfileView
 
                 if(!userName.isEmpty() && !userPhone.isEmpty())
                 {
+                    // store updated user name and phone number
                     final Map<String , Object> updateRecord = new HashMap<>();
                     updateRecord.put("user_name",userName);
                     updateRecord.put("user_phone", userPhone);
