@@ -68,15 +68,14 @@ public class AdapterForComplaintsRV extends RecyclerView.Adapter<AdapterForCompl
 
                 if(complaintModel.getStatus().equals("Pending"))
                 {
-                    complaintHomeView.onShowStatusDialog("Sorry your complaint is in Pending" , R.drawable.ic_cancel_black_24dp);
-                }
-                else if(complaintModel.getStatus().equals("In-Progress"))
-                {
-                   complaintHomeView.onShowStatusDialog("Your complaint is In-Progress", R.drawable.ic_data_usage_black_24dp);
+                    complaintHomeView.onShowStatusDialog("Sorry your complaint is in Pending");
                 }
                 else
                 {
-                    context.startActivity(new Intent(context , UserFeedBack.class));
+                    Intent intent  = new Intent(context , UserFeedBack.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("pushKey" , complaintModel.getPushkey());
+                    context.startActivity(intent);
                 }
 
             }
@@ -129,13 +128,12 @@ public class AdapterForComplaintsRV extends RecyclerView.Adapter<AdapterForCompl
 
         @SuppressLint("ResourceAsColor")
         @RequiresApi(api = Build.VERSION_CODES.M)
-        private void setComplaintStatus(String status) {
+        private void setComplaintStatus(String status)
+        {
             complaintStatus = mView.findViewById(R.id.complaint_status);
-            if (status.equals("Pending")) {
+            if (status.equals("Pending"))
+            {
                 complaintStatus.setTextColor(Color.RED);
-                complaintStatus.setText(status);
-            } else if(status.equals("In-Progress")) {
-                complaintStatus.setTextColor(R.color.txt_color);
                 complaintStatus.setText(status);
             }
             else {
@@ -149,14 +147,11 @@ public class AdapterForComplaintsRV extends RecyclerView.Adapter<AdapterForCompl
 
             complaintImage = mView.findViewById(R.id.complaint_recycler_image_view);
 
-            for (int i = 0; i < imageUrl.size(); i++) {
                 Glide.with(context)
                         .load(imageUrl.get(0))
                         .placeholder(R.drawable.giphyloading)
                         .diskCacheStrategy(DiskCacheStrategy.DATA)
                         .into(complaintImage);
-
-            }
 
 
         }

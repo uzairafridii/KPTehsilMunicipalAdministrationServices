@@ -13,7 +13,7 @@ public interface ComplaintHomeView
 
     void setAdapter(List<ComplaintModel> modelList);
 
-    void onShowStatusDialog(String message , int vector);
+    void onShowStatusDialog(String message);
 
 
 

@@ -4,18 +4,25 @@ import java.util.List;
 
 public class ComplaintModel
 {
-    private String title , description , status, date;
+    private String title , description , status, date , pushKey;
     private List<String> imageUrl;
 
     public ComplaintModel() {
     }
 
-    public ComplaintModel(String title, String description, String status, String dateAndTime, List<String> image) {
+    public ComplaintModel(String title, String description, String status,
+                          String dateAndTime , String pushKey, List<String> image)
+    {
         this.title = title;
         this.description = description;
         this.status = status;
         this.date = dateAndTime;
+        this.pushKey = pushKey;
         this.imageUrl = image;
+    }
+
+    public String getPushkey() {
+        return pushKey;
     }
 
     public String getTitle() {

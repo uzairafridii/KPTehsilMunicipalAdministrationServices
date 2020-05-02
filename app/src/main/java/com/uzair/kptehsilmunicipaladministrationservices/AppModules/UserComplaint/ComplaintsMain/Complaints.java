@@ -63,7 +63,8 @@ public class Complaints extends AppCompatActivity implements ComplaintHomeView
 
     }
 
-    private void initViews() {
+    private void initViews()
+    {
 
         presenterImplementer = new ComplaintHomePresenterImplementer(this);
 
@@ -116,13 +117,13 @@ public class Complaints extends AppCompatActivity implements ComplaintHomeView
     }
 
     @Override
-    public void onShowStatusDialog(String message , int vector)
+    public void onShowStatusDialog(String message)
     {
-      successDailog(message , vector);
+      successDailog(message);
     }
 
 
-    private void successDailog(String message , int vector)
+    private void successDailog(String message )
     {
         View myView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.custom_dialog , null);
         AlertDialog.Builder alert = new AlertDialog.Builder(Complaints.this);
@@ -134,10 +135,6 @@ public class Complaints extends AppCompatActivity implements ComplaintHomeView
         dialog.show();
 
         TextView textView = myView.findViewById(R.id.message);
-        ImageView imageView = myView.findViewById(R.id.imageView);
-
-        imageView.setImageResource(vector);
-
         textView.setText(message);
 
         myView.findViewById(R.id.btnOk).setOnClickListener(new View.OnClickListener() {
