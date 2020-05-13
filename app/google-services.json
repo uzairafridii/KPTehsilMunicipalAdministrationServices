@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "204723285836",
+    "firebase_url": "https://tma-services.firebaseio.com",
+    "project_id": "tma-services",
+    "storage_bucket": "tma-services.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:204723285836:android:cf90b92b4938f561f0a9e9",
+        "android_client_info": {
+          "package_name": "com.uzair.kptehsilmunicipaladministrationservices"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "204723285836-3botdlu4ev1c79kocv2ha7fb22bjs968.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.uzair.kptehsilmunicipaladministrationservices",
+            "certificate_hash": "d12b938be2c84ed0417f1e83e6bc91ebafee6900"
+          }
+        },
+        {
+          "client_id": "204723285836-no195dl8vj89ck3pl2eoggkaqt3hnmlr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7fC6ry8q-CNYhJ7uWitF8SZfq3yS6Axc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "204723285836-no195dl8vj89ck3pl2eoggkaqt3hnmlr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
