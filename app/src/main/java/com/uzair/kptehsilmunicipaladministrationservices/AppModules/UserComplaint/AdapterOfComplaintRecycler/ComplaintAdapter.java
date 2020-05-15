@@ -25,13 +25,13 @@ import com.uzair.kptehsilmunicipaladministrationservices.Views.ComplaintHomeView
 
 import java.util.List;
 
-public class AdapterForComplaintsRV extends RecyclerView.Adapter<AdapterForComplaintsRV.MyComplaintHolder>
+public class ComplaintAdapter extends RecyclerView.Adapter<ComplaintAdapter.MyComplaintHolder>
 {
     private Context context;
     private List<ComplaintModel> list;
     private ComplaintHomeView complaintHomeView;
 
-    public AdapterForComplaintsRV(Context context, List<ComplaintModel> list , ComplaintHomeView complaintHomeView) {
+    public ComplaintAdapter(Context context, List<ComplaintModel> list , ComplaintHomeView complaintHomeView) {
         this.context = context;
         this.list = list;
         this.complaintHomeView = complaintHomeView;

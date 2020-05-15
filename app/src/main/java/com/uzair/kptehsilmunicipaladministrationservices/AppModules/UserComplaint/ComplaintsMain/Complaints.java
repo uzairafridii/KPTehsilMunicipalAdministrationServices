@@ -1,37 +1,25 @@
 package com.uzair.kptehsilmunicipaladministrationservices.AppModules.UserComplaint.ComplaintsMain;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Build;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.Toolbar;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.uzair.kptehsilmunicipaladministrationservices.AppModules.UserComplaint.AdapterOfComplaintRecycler.AdapterForComplaintsRV;
+import com.uzair.kptehsilmunicipaladministrationservices.AppModules.UserComplaint.AdapterOfComplaintRecycler.ComplaintAdapter;
 import com.uzair.kptehsilmunicipaladministrationservices.Models.ComplaintHomePresenterImplementer;
 import com.uzair.kptehsilmunicipaladministrationservices.R;
 import com.uzair.kptehsilmunicipaladministrationservices.AppModules.UserComplaint.ModelOfComplaintRecycler.ComplaintModel;
@@ -45,7 +33,7 @@ public class Complaints extends AppCompatActivity implements ComplaintHomeView
     private Toolbar mToolbar;
     private RecyclerView complaintRecyclerList;
     private LinearLayoutManager layoutManager;
-    private AdapterForComplaintsRV adapterForComplaintsRV;
+    private ComplaintAdapter complaintAdapter;
     private TextView noItemTv;
     private ComplaintHomePresenterImplementer presenterImplementer;
     //firebase
@@ -112,8 +100,8 @@ public class Complaints extends AppCompatActivity implements ComplaintHomeView
     @Override
     public void setAdapter(List<ComplaintModel> list)
     {
-         adapterForComplaintsRV = new AdapterForComplaintsRV(getApplicationContext() , list , this);
-         complaintRecyclerList.setAdapter(adapterForComplaintsRV);
+         complaintAdapter = new ComplaintAdapter(getApplicationContext() , list , this);
+         complaintRecyclerList.setAdapter(complaintAdapter);
     }
 
     @Override
