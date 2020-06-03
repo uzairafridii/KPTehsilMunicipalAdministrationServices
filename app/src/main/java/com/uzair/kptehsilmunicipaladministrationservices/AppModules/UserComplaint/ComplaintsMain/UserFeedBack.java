@@ -103,10 +103,11 @@ public class UserFeedBack extends AppCompatActivity implements UserFeedBackView
         presenter.addFirstWorkerRating(ratingRef , String.valueOf(workerRating.getRating()), addCommentEdit.getText().toString(),
                 workerFirstName.getText().toString() , userAuth.getCurrentUser().getUid(), imageUri , complaintPushKey);
 
-
-        presenter.addSecondWorkerRating(ratingRef , String.valueOf(workerRating.getRating()), addCommentEdit.getText().toString(),
-                workerSecondName.getText().toString() , userAuth.getCurrentUser().getUid(), imageUri , complaintPushKey);
-
+        // if both workers are added then do this
+        if(!workerSecondName.getText().toString().isEmpty()) {
+            presenter.addSecondWorkerRating(ratingRef, String.valueOf(workerRating.getRating()), addCommentEdit.getText().toString(),
+                    workerSecondName.getText().toString(), userAuth.getCurrentUser().getUid(), imageUri, complaintPushKey);
+        }
     }
 
     // feedback view callbacks method
@@ -137,11 +138,18 @@ public class UserFeedBack extends AppCompatActivity implements UserFeedBackView
         titleOfComplaint.setText(title);
         workerFirstName.setText(firstWorker);
         Log.d("workerS", "onSetDataInTextViews: "+firstWorker +"\n"+secondWorker);
-        workerSecondName.setText(secondWorker);
+
+        if(!secondWorker.isEmpty())
+        { workerSecondName.setText(",\t"+secondWorker);}else
+        {
+            workerSecondName.setVisibility(View.INVISIBLE);
+        }
+
         dateAndTime.setText(date);
         Glide.with(this)
                 .load(imageUrl.get(0))
                 .placeholder(R.drawable.logo)
+                .centerCrop()
                 .into(feedBackImage);
 
     }

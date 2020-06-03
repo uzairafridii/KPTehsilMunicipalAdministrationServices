@@ -24,6 +24,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -52,8 +53,9 @@ public class BirthCertificate extends AppCompatActivity implements AdapterView.O
     private Spinner childGender , unionCouncilSpinner;
     private String selectedGender , selectedUC;
     private ImageView frontSide, backSide;
+    private TextView dateOfBirth;
     private EditText applicantName, applicantCnic, childName, childRelation, religion, fatherName, fatherCnic,
-            motherName, motherCnic, grandFatherName, grandFatherCnic, districtOfBirth, dateOfBirth,
+            motherName, motherCnic, grandFatherName, grandFatherCnic, districtOfBirth,
             vaccinated, placeOfBirth, doctorOrMideWifeName, disability, address;
     private String appli_name , appli_cnic , child_name , child_relation , child_religion , child_father,
             child_father_cnic, child_mother_name , child_mother_cnic, child_grand_father_name , child_grand_father_cnic,

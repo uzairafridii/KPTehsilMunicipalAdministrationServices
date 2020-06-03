@@ -15,7 +15,7 @@ public interface DeathCertificatePresenter
                       String name , String cnic, String deceasedName, String deceasedCnic , String religion , String relation,
                       String fName , String fCnic , String mName , String mCnic , String husbandName ,
                       String husbandCnic ,String deceasedDateOfBirth , String gravyardName,
-                      String placeOfBirth, String uc, List<Uri> uriList);
+                      String placeOfBirth, String uc,String gender ,List<Uri> uriList);
 
     void onSetSpinnerAdapter();
     void chooseGalleryClick();

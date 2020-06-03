@@ -88,7 +88,7 @@ public class UserFeedBackPresenterImplementer implements UserFeedBackPresenter
                                            final Uri imageUrl, final String complaintKey)
     {
 
-        if(dbRef!= null && !comment.isEmpty() && !workerName.isEmpty())
+        if(dbRef!= null && !comment.isEmpty() && !workerName.isEmpty() && imageUrl != null)
         {
             feedBackView.showProgressBar();
 
@@ -131,7 +131,7 @@ public class UserFeedBackPresenterImplementer implements UserFeedBackPresenter
         }
         else
         {
-            feedBackView.showMessage("Please rating and comment is require");
+            feedBackView.showMessage("Please rating, feedback image and comment is require");
         }
 
     }
@@ -142,47 +142,45 @@ public class UserFeedBackPresenterImplementer implements UserFeedBackPresenter
                                        final String uid , final String pushKey , final String complaintKey)
     {
         final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Ratings");
-        final StorageReference imageRef = FirebaseStorage.getInstance().getReference()
-                .child("RatingImages").child(image.getLastPathSegment());
+            final StorageReference imageRef = FirebaseStorage.getInstance().getReference()
+                    .child("RatingImages").child(image.getLastPathSegment());
 
-        // store image
-        imageRef.putFile(image).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+            // store image
+            imageRef.putFile(image).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-                // get download url of image
-                imageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                    @Override
-                    public void onSuccess(Uri uri)
-                    {
-                        // store data into firebase database
-                        Map<String , Object> ratingData = new HashMap();
-                        ratingData.put("user_rating", rating);
-                        ratingData.put("comment", comment);
-                        ratingData.put("image", uri.toString());
-                        ratingData.put("user_id", uid);
-                        ratingData.put("worker_id", pushKey);
-                        ratingData.put("complaint_key", complaintKey);
+                    // get download url of image
+                    imageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            // store data into firebase database
+                            Map<String, Object> ratingData = new HashMap();
+                            ratingData.put("user_rating", rating);
+                            ratingData.put("comment", comment);
+                            ratingData.put("image", uri.toString());
+                            ratingData.put("user_id", uid);
+                            ratingData.put("worker_id", pushKey);
+                            ratingData.put("complaint_key", complaintKey);
 
-                        databaseReference.push().setValue(ratingData).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task)
-                            {
-                                if (task.isSuccessful())
-                                {
-                                    // call update average method to update the average rating of workers
-                                    updateAverageRating(pushKey);
-                                    feedBackView.showMessage("Successfully added");
-                                    feedBackView.hideProgressBar();
+                            databaseReference.push().setValue(ratingData).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        // call update average method to update the average rating of workers
+                                        updateAverageRating(pushKey);
+                                        feedBackView.showMessage("Successfully added");
+                                        feedBackView.hideProgressBar();
+                                    }
                                 }
-                            }
-                        });
+                            });
 
 
-                    }
-                });
-            }
-        });
+                        }
+                    });
+                }
+            });
+
 
     }
 
@@ -208,8 +206,8 @@ public class UserFeedBackPresenterImplementer implements UserFeedBackPresenter
                                 DatabaseReference dbRef  = FirebaseDatabase.getInstance().getReference().child("Worker List");
 
                                 Map rating  = new HashMap<>();
-                                rating.put("average_rating",total/counter);
-                                rating.put("total_reviews",counter);
+                                rating.put("average_rating",String.valueOf(total/counter));
+                                rating.put("total_reviews",String.valueOf(counter));
                                 dbRef.child(key).updateChildren(rating);
 
 

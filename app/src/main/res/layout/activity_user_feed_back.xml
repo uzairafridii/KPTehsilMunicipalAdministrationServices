@@ -6,187 +6,188 @@
     android:layout_height="match_parent"
     tools:context=".AppModules.UserComplaint.ComplaintsMain.UserFeedBack">
 
-    <include layout="@layout/app_tool_bar"
-        android:id="@+id/feedback_tool_bar"/>
+    <include
+        android:id="@+id/feedback_tool_bar"
+        layout="@layout/app_tool_bar" />
 
 
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/scrollViewInFeedback"
-        android:layout_below="@+id/feedback_tool_bar"
-        >
-
-    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/feedback_tool_bar">
 
-        >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/feedback_title"
-            android:text="FeedBack Title"
-            android:layout_marginTop="8dp"
-            android:layout_marginLeft="@dimen/txt_margin_left"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            />
-
-
-        <TextView
-            android:layout_below="@+id/feedback_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/feedback_time"
-            android:text="@string/date_time"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            android:layout_marginLeft="@dimen/edit_margin"
-
-            />
-
-        <TextView
-            android:layout_below="@id/feedback_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/workersNames"
-            android:text="Workers :"
-            android:textStyle="bold"
-            android:textSize="14sp"
-            android:textColor="@android:color/black"
-            android:layout_marginLeft="@dimen/edit_margin"
-            android:layout_marginTop="@dimen/edit_margin"
-            />
-
-        <TextView
-            android:layout_below="@+id/workersNames"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/first_worker_name"
-            android:text="@string/worker_name"
-            android:textStyle="bold"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="@dimen/edit_margin"
-            android:layout_marginTop="8dp"
-            />
-
-        <TextView
-            android:layout_below="@+id/first_worker_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/second_worker_name"
-            android:text="@string/worker_name"
-            android:textStyle="bold"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="@dimen/edit_margin"
-            android:layout_marginTop="8dp"
-            />
-
-        <ImageView
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="220dp"
-            android:id="@+id/feedback_image"
-            android:layout_marginTop="@dimen/edit_margin_top"
-            android:layout_below="@+id/second_worker_name"
-            android:src="@drawable/ic_launcher_background"
-            android:layout_marginLeft="@dimen/edit_margin"
-            android:layout_marginRight="@dimen/edit_margin"
-            />
+            android:layout_height="wrap_content">
 
-        <RatingBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/worker_rating_bar"
-            style="@style/Widget.AppCompat.RatingBar"
-            android:backgroundTint="@color/yellow"
-            android:layout_below="@id/rating_txt"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/edit_margin"
-            android:rating="2.5"
-            android:minHeight="10dp"
-            android:minWidth="10dp"
-            android:min="1"
-            android:stepSize="0.5"
-            />
+            <ImageView
+                android:id="@+id/feedback_image"
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/edit_margin_top"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:src="@drawable/ic_launcher_background" />
 
-        <TextView
-            android:layout_below="@+id/feedback_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/rating_txt"
-            android:text="Rate Us"
-            android:textStyle="bold"
-            android:textSize="18sp"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/edit_margin"
-            android:layout_marginTop="@dimen/edit_margin_top"
-            />
+            <TextView
+                android:id="@+id/feedback_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/feedback_image"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/txt_margin_left"
+                android:text="@string/date_time"
+                android:textSize="12sp"
+                android:textStyle="bold"
 
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:id="@+id/commentImage"
-            android:visibility="invisible"
-            android:src="@drawable/ic_launcher_background"
-            android:layout_below="@id/worker_rating_bar"
-            android:layout_marginLeft="@dimen/edit_margin"
-            android:layout_marginTop="@dimen/reycler_view_margin"
-            />
+                />
 
-    </RelativeLayout>
+            <RatingBar
+                android:id="@+id/worker_rating_bar"
+                style="@style/Widget.AppCompat.RatingBar.Indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/feedback_time"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:min="1"
+                android:minWidth="10dp"
+                android:minHeight="10dp"
+                android:progressTint="@color/yellow"
+                android:rating="2.5"
+                android:stepSize="0.5"
+                android:isIndicator="false"/>
 
-</ScrollView>
+            <TextView
+                android:id="@+id/feedback_title_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/worker_rating_bar"
+                android:layout_marginLeft="@dimen/txt_margin_left"
+                android:layout_marginTop="8dp"
+                android:text="Complaint Title : "
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/feedback_title"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_below="@id/feedback_title_text"
+                android:layout_marginLeft="@dimen/txt_margin_left"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="@dimen/txt_margin_left"
+                android:background="@drawable/edit_txt_bg"
+                android:paddingLeft="@dimen/margin_6"
+                android:paddingTop="@dimen/margin_6"
+                android:paddingBottom="@dimen/margin_6"
+                android:text="FeedBack Title"
+                android:textSize="16sp" />
 
 
+            <TextView
+                android:id="@+id/workersNames"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/feedback_title"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/image_btn_margin_top"
+                android:text="Workers :"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/workerNamesLayout"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_below="@id/workersNames"
+                android:layout_marginLeft="@dimen/txt_margin_left"
+                android:layout_marginTop="@dimen/margin_6"
+                android:layout_marginRight="@dimen/txt_margin_left"
+                android:background="@drawable/edit_txt_bg"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/margin_6">
+
+                <TextView
+                    android:id="@+id/first_worker_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/workersNames"
+                    android:layout_gravity="center"
+                    android:text="@string/worker_name"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/second_worker_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/workersNames"
+                    android:layout_gravity="center"
+                    android:paddingLeft="@dimen/margin_6"
+                    android:layout_toRightOf="@id/first_worker_name"
+                    android:text="@string/worker_name"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+
+            <ImageView
+                android:id="@+id/commentImage"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_below="@id/workerNamesLayout"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/margin_6"
+                android:src="@drawable/ic_launcher_background"
+                android:visibility="invisible" />
+
+        </RelativeLayout>
+
+    </ScrollView>
 
 
     <LinearLayout
+        android:id="@+id/linear_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:id="@+id/linear_layout"
+        android:layout_alignParentBottom="true"
         android:layout_marginBottom="@dimen/reycler_view_margin"
-        android:padding="7dp"
         android:background="@null"
-        android:layout_alignParentBottom="true">
+        android:orientation="horizontal"
+        android:padding="7dp">
 
         <ImageButton
-            android:onClick="addCommentImageButtonClick"
+            android:id="@+id/add_image_btn_in_feedback"
             android:layout_width="40dp"
             android:layout_height="50dp"
-            android:id="@+id/add_image_btn_in_feedback"
-            android:src="@drawable/ic_camera_alt_black_24dp"
             android:layout_marginLeft="2dp"
-            android:padding="10dp"
+            android:layout_weight="1"
             android:background="@null"
             android:clickable="true"
             android:foreground="?android:attr/selectableItemBackground"
-            android:layout_weight="1"
-            />
+            android:onClick="addCommentImageButtonClick"
+            android:padding="10dp"
+            android:src="@drawable/ic_camera_alt_black_24dp" />
 
         <EditText
+            android:id="@+id/comment_edit_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/comment_edit_text"
             android:layout_weight="8"
-            android:hint="Enter your comment"
-            />
-       <Button
-           android:onClick="addRatingButtonClick"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           style="@style/Widget.MaterialComponents.Button"
-           android:id="@+id/submit_feedback_btn"
-           android:text="@string/submit"
-           android:backgroundTint="@color/txt_color"
-           android:textColor="#fff"
-           app:iconSize="@dimen/edit_margin"
-           app:strokeWidth="2dp"
-           app:iconPadding="2dp"
-           app:cornerRadius="16dp"
-           />
+            android:hint="Enter your comment" />
+
+        <Button
+            android:id="@+id/submit_feedback_btn"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/txt_color"
+            android:onClick="addRatingButtonClick"
+            android:text="@string/submit"
+            android:textColor="#fff"
+            app:cornerRadius="16dp"
+            app:iconPadding="2dp"
+            app:iconSize="@dimen/edit_margin"
+            app:strokeWidth="2dp" />
 
 
     </LinearLayout>

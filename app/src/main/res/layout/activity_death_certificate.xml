@@ -260,6 +260,20 @@
                 android:background="@android:drawable/btn_dropdown"
                 />
 
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:id="@+id/genderSpinnerInDeath"
+                android:layout_below="@id/ucSpinnerInDeath"
+                android:hint="Select"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                android:spinnerMode="dropdown"
+                android:background="@android:drawable/btn_dropdown"
+                />
+
+
 
             <!-- Button upload noc -->
             <Button
@@ -272,7 +286,7 @@
                 android:textColor="@color/txt_color"
                 android:layout_marginLeft="@dimen/edit_margin"
                 android:layout_marginRight="@dimen/edit_margin"
-                android:layout_below="@+id/ucSpinnerInDeath"
+                android:layout_below="@+id/genderSpinnerInDeath"
                 android:gravity="center"
                 android:layout_marginTop="@dimen/edit_margin"
                 android:textSize="15sp"

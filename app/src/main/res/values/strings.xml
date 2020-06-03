@@ -74,8 +74,8 @@
     <string name="deceased_father_cnic">Deceased Father Cnic</string>
     <string name="deceased_date_of_birth">Deceased Date of Birth</string>
     <string name="gravayard_name">Gravayard Name</string>
-    <string name="husband_cnic">Husband Cnic</string>
-    <string name="husband_name">Husband Name</string>
+    <string name="husband_cnic">Husband/Wife Cnic</string>
+    <string name="husband_name">Husband/Wife Name</string>
     <string name="deceased_mother_name">Deceased Mother Name</string>
     <string name="deceased_mother_cnic">Deceased Mother Cnic</string>
     <string name="driver_name">Driver Name</string>

@@ -201,7 +201,7 @@
                 />
 
             <!-- Date of birth -->
-            <EditText
+            <TextView
                 android:onClick="clickOnDateOfBirthField"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
@@ -213,6 +213,7 @@
                 android:layout_marginRight="@dimen/edit_margin"
                 android:layout_marginTop="@dimen/reycler_view_margin"
                 android:paddingLeft="@dimen/edit_margin"
+                android:gravity="center"
                 android:inputType="text|date"
                 />
 

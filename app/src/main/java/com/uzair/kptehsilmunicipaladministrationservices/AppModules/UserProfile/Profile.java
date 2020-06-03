@@ -93,7 +93,7 @@ public class Profile extends AppCompatActivity implements ProfileView
 
         //firebase
         mAuth = FirebaseAuth.getInstance();
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference().child("TMA Lachi").child("Users");
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference().child("Users");
 
 
     }
@@ -189,7 +189,6 @@ public class Profile extends AppCompatActivity implements ProfileView
 
 
     // error callbacks
-
     @Override
     public void showErrorMessage(String message) {
 

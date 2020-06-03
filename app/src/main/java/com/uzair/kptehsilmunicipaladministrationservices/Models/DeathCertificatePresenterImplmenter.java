@@ -40,7 +40,7 @@ public class DeathCertificatePresenterImplmenter implements DeathCertificatePres
                              final String name, final String cnic, final String deceasedName, final String deceasedCnic,
                              final String religion, final String relation, final String fName, final String fCnic, final String mName,
                              final String mCnic, final String husbandName, final String husbandCnic, final String deceasedDateOfBirth,
-                             final String gravyardName, final String placeOfBirth, final String uc, final List<Uri> uriList)
+                             final String gravyardName, final String placeOfBirth, final String uc, final String gender, final List<Uri> uriList)
     {
 
 
@@ -49,7 +49,7 @@ public class DeathCertificatePresenterImplmenter implements DeathCertificatePres
            !religion.isEmpty() && !relation.isEmpty() && !fName.isEmpty() && !fCnic.isEmpty() &&
            !mName.isEmpty() && !mCnic.isEmpty() && !husbandName.isEmpty() && !husbandCnic.isEmpty() &&
            !deceasedDateOfBirth.isEmpty() && ! gravyardName.isEmpty() && !placeOfBirth.isEmpty() && !uc.isEmpty()
-        && !uriList.isEmpty())
+        &&!gender.isEmpty() &&!uriList.isEmpty())
         {
 
 
@@ -105,6 +105,7 @@ public class DeathCertificatePresenterImplmenter implements DeathCertificatePres
                                     formData.put("uid" , mAuth.getCurrentUser().getUid());
                                     formData.put("cnicImages" , urls);
                                     formData.put("status" , "Pending");
+                                    formData.put("gender" , gender);
 
 
 

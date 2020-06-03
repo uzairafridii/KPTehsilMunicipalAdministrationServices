@@ -38,17 +38,16 @@ public class DeathCertificate extends AppCompatActivity implements AdapterView.O
     private Toolbar mToolbar;
     private static final int REQUEST_GALLERY_PHOTO = 1100;
     private List<Uri> cnicImages = new ArrayList<>();
-    private Spinner unionCouncilSpinner;
+    private Spinner unionCouncilSpinner,genderSpinner;
     private String selectedUC;
     private ImageView frontSide, backSide;
-
 
     private EditText applicantName, applicantCnic, deceasedName, deceasedCnic, relation, religion, fatherName, fatherCnic,
             motherName, motherCnic, husbandName, husbandCnic, gravyardName, placeOfBirth, deceasedDateOfBirth;
 
     private String appli_name , appli_cnic , deceased_name, deceased_cnic,  deceased_relation , deceased_religion , deceased_father,
             deceased_father_cnic, deceased_mother_name , deceased_mother_cnic, husband_name , husband_cnic,
-            gravyard,place_of_birth, deceased_date_of_birth;
+            gravyard,place_of_birth, deceased_date_of_birth , deceasedGender;
 
 
     private DeathCertificatePresenter deathCertificatePresenter;
@@ -93,6 +92,8 @@ public class DeathCertificate extends AppCompatActivity implements AdapterView.O
 
         unionCouncilSpinner = findViewById(R.id.ucSpinnerInDeath);
         unionCouncilSpinner.setOnItemSelectedListener(this);
+        genderSpinner = findViewById(R.id.genderSpinnerInDeath);
+        genderSpinner.setOnItemSelectedListener(this);
 
 
         mToolbar = findViewById(R.id.death_certificate_tool_bar);
@@ -112,10 +113,16 @@ public class DeathCertificate extends AppCompatActivity implements AdapterView.O
 
     }
 
+    // spinner callback methods
     @Override
-    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l)
-    {
-        selectedUC = adapterView.getItemAtPosition(i).toString();
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        if (adapterView.getId() == R.id.ucSpinnerInDeath) {
+            selectedUC = adapterView.getItemAtPosition(i).toString();
+        }
+        else if(adapterView.getId() == R.id.genderSpinnerInDeath)
+        {
+            deceasedGender = adapterView.getItemAtPosition(i).toString();
+        }
     }
 
     @Override
@@ -148,9 +155,8 @@ public class DeathCertificate extends AppCompatActivity implements AdapterView.O
     public void setSpinnerAdapter() {
 
         // spinner adapter of union council
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item,
-                                                         getResources().getStringArray(R.array.UC));
-        unionCouncilSpinner.setAdapter(adapter);
+        setSpinnerAdaptersForGenderAndUc(unionCouncilSpinner , getResources().getStringArray(R.array.UC));
+        setSpinnerAdaptersForGenderAndUc(genderSpinner , getResources().getStringArray(R.array.gender));
     }
 
     @Override
@@ -239,7 +245,7 @@ public class DeathCertificate extends AppCompatActivity implements AdapterView.O
         deathCertificatePresenter.onSubmitForm(databaseReference , storageReference , mAuth,
                 appli_name , appli_cnic , deceased_name, deceased_cnic, deceased_religion, deceased_relation,
                 deceased_father, deceased_father_cnic, deceased_mother_name, deceased_mother_cnic, husband_name,
-                husband_cnic, deceased_date_of_birth, gravyard, place_of_birth, selectedUC , cnicImages);
+                husband_cnic, deceased_date_of_birth, gravyard, place_of_birth, selectedUC, deceasedGender , cnicImages);
 
     }
 
@@ -268,5 +274,13 @@ public class DeathCertificate extends AppCompatActivity implements AdapterView.O
         // clear images array
         cnicImages.clear();
 
+    }
+
+
+    private void setSpinnerAdaptersForGenderAndUc(Spinner spinner, String[] array)
+    {
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item,
+                array);
+        spinner.setAdapter(adapter);
     }
 }
