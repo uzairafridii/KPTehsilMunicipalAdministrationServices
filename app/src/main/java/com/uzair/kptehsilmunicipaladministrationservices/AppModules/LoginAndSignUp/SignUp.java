@@ -120,31 +120,6 @@ public class SignUp extends AppCompatActivity implements SignUpView
     }
 
     // show alert dialog
-    private void showCheckEmailVerificationDiaglog()
-    {
-        AlertDialog.Builder alert = new AlertDialog.Builder(this);
-        alert.setTitle("Check Email");
-        alert.setMessage("Please Verify Your Email ");
-        alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-
-                startActivity(new Intent(SignUp.this , Login.class));
-                SignUp.this.finish();
-
-            }
-        }).setNeutralButton("Verify", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-
-                Intent intent = new Intent(Intent.ACTION_MAIN);
-                intent.addCategory(Intent.CATEGORY_APP_EMAIL);
-                startActivity(intent);
-            }
-        });
-        alert.show();
-
-    }
     
     // show alert dialog for error
     private void messageDialog(String message)
@@ -194,9 +169,30 @@ public class SignUp extends AppCompatActivity implements SignUpView
        messageDialog(message);
     }
 
+    // email verification dialog
     @Override
-    public void showEmailVerificationDialog(String verifyMessage)
+    public void showEmailVerificationDialog()
     {
-         showCheckEmailVerificationDiaglog();
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle("Check Email");
+        alert.setMessage("Please Verify Your Email ");
+        alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                startActivity(new Intent(SignUp.this , Login.class));
+                SignUp.this.finish();
+
+            }
+        }).setNeutralButton("Verify", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                Intent intent = new Intent(Intent.ACTION_MAIN);
+                intent.addCategory(Intent.CATEGORY_APP_EMAIL);
+                startActivity(intent);
+            }
+        });
+        alert.show();
     }
 }

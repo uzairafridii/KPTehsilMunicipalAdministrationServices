@@ -132,7 +132,7 @@ public class SignUpPresenterImplementer implements SignUpPresenter
 
                         if (task.isSuccessful()) {
 
-                          signUpView.showEmailVerificationDialog("");
+                          signUpView.showEmailVerificationDialog();
                         }
                         else
                         {

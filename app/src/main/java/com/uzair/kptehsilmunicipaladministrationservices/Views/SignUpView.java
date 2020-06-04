@@ -8,6 +8,6 @@ public interface SignUpView
 
     void clearAllFields();
     void showMessage(String message);
-    void showEmailVerificationDialog(String verifyMessage);
+    void showEmailVerificationDialog();
 
 }

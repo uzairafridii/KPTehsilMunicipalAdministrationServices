@@ -12,15 +12,23 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.uzair.kptehsilmunicipaladministrationservices.AppModules.BottomSheets.StorePasswordBottomSheet;
 import com.uzair.kptehsilmunicipaladministrationservices.AppModules.LoginAndSignUp.Login;
 import com.uzair.kptehsilmunicipaladministrationservices.AppModules.Main.MainActivity;
 import com.uzair.kptehsilmunicipaladministrationservices.Presenters.LoginPresenter;
 import com.uzair.kptehsilmunicipaladministrationservices.Views.LoginView;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class LoginPresenterImplementer implements LoginPresenter {
 
@@ -58,20 +66,44 @@ public class LoginPresenterImplementer implements LoginPresenter {
 
                 try {
                     if (task.isSuccessful()) {
-                        loginView.hideProgressDialog();
 
-                        FirebaseUser currentUser = mAuth.getCurrentUser();
+                        final FirebaseUser currentUser = mAuth.getCurrentUser();
 
                         // check email is verified or not
                         if (currentUser.isEmailVerified()) {
 
                             if (!savedEmail.isEmpty() && !savedPassword.isEmpty()) {
 
-                                loginView.moveToMainPage();
-                            } else {
+                                // get the device token
+                                FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(new OnSuccessListener<InstanceIdResult>() {
+                                    @Override
+                                    public void onSuccess(InstanceIdResult instanceIdResult) {
+
+                                        // update the device token whe user logged into app
+                                        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference()
+                                                .child("Users").child(currentUser.getUid());
+
+                                        Map<String , Object> updateToken = new HashMap<>();
+                                        updateToken.put("device_token",instanceIdResult.getToken());
+
+                                        dbRef.updateChildren(updateToken).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+
+                                                if(task.isSuccessful())
+                                                {
+                                                    loginView.hideProgressDialog();
+                                                    loginView.showSavePassordDialog();
+                                                }
+                                            }
+                                        });
+
+                                    }
+                                });
+                            }
+                            else {
 
                                 loginView.showSavePassordDialog();
-                                //   new StorePasswordBottomSheet(email, password).show(, "Save Password Dialog");
                                 loginView.clearAllFields();
 
                             }// end save password if else

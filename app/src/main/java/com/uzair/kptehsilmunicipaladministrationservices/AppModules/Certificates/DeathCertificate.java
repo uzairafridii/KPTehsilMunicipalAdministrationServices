@@ -5,18 +5,22 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.ClipData;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,6 +34,7 @@ import com.uzair.kptehsilmunicipaladministrationservices.R;
 import com.uzair.kptehsilmunicipaladministrationservices.Views.DeathCertificateView;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class DeathCertificate extends AppCompatActivity implements AdapterView.OnItemSelectedListener ,
@@ -41,11 +46,12 @@ public class DeathCertificate extends AppCompatActivity implements AdapterView.O
     private Spinner unionCouncilSpinner,genderSpinner;
     private String selectedUC;
     private ImageView frontSide, backSide;
+    private TextView deceasedDateOfBirth;
 
-    private EditText applicantName, applicantCnic, deceasedName, deceasedCnic, relation, religion, fatherName, fatherCnic,
-            motherName, motherCnic, husbandName, husbandCnic, gravyardName, placeOfBirth, deceasedDateOfBirth;
+    private EditText deceasedName, deceasedCnic, relation, religion, fatherName, fatherCnic,
+            motherName, motherCnic, husbandName, husbandCnic, gravyardName, placeOfBirth;
 
-    private String appli_name , appli_cnic , deceased_name, deceased_cnic,  deceased_relation , deceased_religion , deceased_father,
+    private String deceased_name, deceased_cnic,  deceased_relation , deceased_religion , deceased_father,
             deceased_father_cnic, deceased_mother_name , deceased_mother_cnic, husband_name , husband_cnic,
             gravyard,place_of_birth, deceased_date_of_birth , deceasedGender;
 
@@ -69,9 +75,6 @@ public class DeathCertificate extends AppCompatActivity implements AdapterView.O
 
     private void initViews()
     {
-
-        applicantName = findViewById(R.id.applicantNameInDeathCertificate);
-        applicantCnic = findViewById(R.id.applicantCnicInDeathCertificate);
         deceasedName  = findViewById(R.id.deceasedNameInDeathCertificate);
         deceasedCnic  = findViewById(R.id.deceasedCnicDeathCertificate);
         relation  =  findViewById(R.id.relationWithApplicantsInDeathCertificate);
@@ -106,7 +109,7 @@ public class DeathCertificate extends AppCompatActivity implements AdapterView.O
 
         deathCertificatePresenter = new DeathCertificatePresenterImplmenter(this, this);
 
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("Certificates").push();
+        databaseReference = FirebaseDatabase.getInstance().getReference();
         storageReference = FirebaseStorage.getInstance().getReference().child("CertificatesImage");
 
         mAuth = FirebaseAuth.getInstance();
@@ -224,8 +227,6 @@ public class DeathCertificate extends AppCompatActivity implements AdapterView.O
     public void submitFormBtnClick(View view)
     {
         // first get values from form
-        appli_name = applicantName.getText().toString();
-        appli_cnic = applicantCnic.getText().toString();
         deceased_name = deceasedName.getText().toString();
         deceased_cnic = deceasedCnic.getText().toString();
         deceased_relation =  relation.getText().toString();
@@ -243,7 +244,7 @@ public class DeathCertificate extends AppCompatActivity implements AdapterView.O
 
 
         deathCertificatePresenter.onSubmitForm(databaseReference , storageReference , mAuth,
-                appli_name , appli_cnic , deceased_name, deceased_cnic, deceased_religion, deceased_relation,
+                deceased_name, deceased_cnic, deceased_religion, deceased_relation,
                 deceased_father, deceased_father_cnic, deceased_mother_name, deceased_mother_cnic, husband_name,
                 husband_cnic, deceased_date_of_birth, gravyard, place_of_birth, selectedUC, deceasedGender , cnicImages);
 
@@ -254,9 +255,6 @@ public class DeathCertificate extends AppCompatActivity implements AdapterView.O
     @Override
     public void clearAllFileds()
     {
-
-        applicantName.setText("");
-        applicantCnic.setText("");
         deceasedName.setText("");
         deceasedCnic.setText("");
         fatherName.setText("");
@@ -279,8 +277,34 @@ public class DeathCertificate extends AppCompatActivity implements AdapterView.O
 
     private void setSpinnerAdaptersForGenderAndUc(Spinner spinner, String[] array)
     {
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item,
-                array);
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, array);
         spinner.setAdapter(adapter);
+    }
+
+    // click on date of birth text view
+    public void deceasedDateOfBirthDialog(View view)
+    {
+        // get the current date here
+        Calendar c = Calendar.getInstance();
+        int mYear = c.get(Calendar.YEAR);
+        int mMonth = c.get(Calendar.MONTH);
+        int mDay = c.get(Calendar.DAY_OF_MONTH);
+
+        Log.d("DateOfBirth", "clickOnDateOfBirthField: " + mYear + "\n" + mMonth + "\n" + mDay);
+
+        // time picker dialog to pick date
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this,
+                new DatePickerDialog.OnDateSetListener() {
+
+                    @Override
+                    public void onDateSet(DatePicker view, int year,
+                                          int monthOfYear, int dayOfMonth) {
+
+                        deceasedDateOfBirth.setText(dayOfMonth + "-" + (monthOfYear) + "-" + year);
+
+
+                    }
+                }, mYear, mMonth, mDay);
+        datePickerDialog.show();
     }
 }

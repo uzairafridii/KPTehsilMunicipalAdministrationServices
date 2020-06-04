@@ -47,7 +47,6 @@ public class ProfilePresenterImplementer implements ProfilePresenter
     @Override
     public void getUserProfileData(DatabaseReference dbRef, FirebaseAuth userAuth) {
 
-        view.showErrorMessage("GetUser profile method");
         if(dbRef != null && userAuth != null)
         {
             view.showProgressDialog();
@@ -66,7 +65,6 @@ public class ProfilePresenterImplementer implements ProfilePresenter
                         String userCnic = dataSnapshot.child("user_cnic").getValue().toString();
 
                         view.getUserRecord(userName, userEmail, userPhone, userCnic);
-                        view.showErrorMessage(userName);
                         view.hideProgressDialog();
                     }
                     else

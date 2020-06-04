@@ -13,7 +13,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.uzair.kptehsilmunicipaladministrationservices.Presenters.BirthCertificatePresenter;
@@ -42,8 +45,7 @@ public class BirthCertificatePresenterImplementer implements BirthCertificatePre
 
     @Override
     public void onSubmitForm(final DatabaseReference dbRef, StorageReference storeRef, final FirebaseAuth mAuth,
-                             final String name, final String cnic, final String childName,
-                             final String religion, final String relation, final String fName,
+                             final String childName, final String religion, final String relation, final String fName,
                              final String fCnic, final String mName, final String mCnic, final String gFatherName,
                              final String gFatherCnic, final String distOfBirth, final String dob, final String vaccinated,
                              final String placeOfBirth, final String mideWife, final String disability, final String address,
@@ -52,8 +54,8 @@ public class BirthCertificatePresenterImplementer implements BirthCertificatePre
 
 
         if( dbRef != null && storeRef != null && mAuth != null && !uriList.isEmpty() &&
-                !name.isEmpty() && !cnic.isEmpty() && !childName.isEmpty() &&
-                !religion.isEmpty() && !relation.isEmpty() && !fName.isEmpty() &&
+                !childName.isEmpty() && !religion.isEmpty() &&
+                !relation.isEmpty() && !fName.isEmpty() &&
                 !fCnic.isEmpty() && !mName.isEmpty() && !mCnic.isEmpty() &&
                 !gFatherCnic.isEmpty() && !gFatherName.isEmpty() && !distOfBirth.isEmpty()
                 && !dob.isEmpty() && !vaccinated.isEmpty() && !placeOfBirth.isEmpty() &&
@@ -86,59 +88,78 @@ public class BirthCertificatePresenterImplementer implements BirthCertificatePre
                                 // counter is equal to urls arraylist then upload all urls and data
                                 if( counter  == uriList.size()) {
 
-                                    String date = DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
-
-                                    Map formData = new HashMap<>();
-
-                                    formData.put("certificateType" , "Birth");
-                                    formData.put("applicantName" , name);
-                                    formData.put("applicantCnic" , cnic);
-                                    formData.put("childName" , childName);
-                                    formData.put("religion" , religion);
-                                    formData.put("relation" , relation);
-                                    formData.put("fatherName" , fName);
-                                    formData.put("fatherCnic" , fCnic);
-                                    formData.put("motherName" , mName);
-                                    formData.put("motherCnic" , mCnic);
-                                    formData.put("grandFatherName" , gFatherName);
-                                    formData.put("grandFatherCnic" , gFatherCnic);
-                                    formData.put("districtOfBirth" , distOfBirth);
-                                    formData.put("dateOfBirth" , dob);
-                                    formData.put("disability" , disability);
-                                    formData.put("vaccinated" , vaccinated);
-                                    formData.put("doctorOrMideWife" , mideWife);
-                                    formData.put("address" , address);
-                                    formData.put("placeOfBirth" , placeOfBirth);
-                                    formData.put("gender" , gender);
-                                    formData.put("unionCouncil" , uc);
-                                    formData.put("date" , date);
-                                    formData.put("pushKey" , dbRef.getRef().getKey());
-                                    formData.put("uid" , mAuth.getCurrentUser().getUid());
-                                    formData.put("cnicImages" , urls);
-                                    formData.put("status" , "Pending");
-
-
-
-
-
-                                    dbRef.setValue(formData)
-                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    dbRef.child("Users").child(mAuth.getCurrentUser().getUid())
+                                            .addValueEventListener(new ValueEventListener() {
                                                 @Override
-                                                public void onComplete(@NonNull Task<Void> task) {
+                                                public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+                                                {
+                                                    String date = DateFormat.getDateTimeInstance().
+                                                            format(Calendar.getInstance().getTime());
 
-                                                    if (task.isSuccessful()) {
+                                                    // get the applicant name and cnic
+                                                    String userName = dataSnapshot.child("user_name").getValue().toString();
+                                                    String userCnic = dataSnapshot.child("user_cnic").getValue().toString();
 
-                                                        birthView.onDismissProgressDialog();
-                                                        birthView.clearAllFileds();
-                                                        birthView.showMessage("SuccessFully Apply");
+                                                    // push key ref
+                                                    DatabaseReference databaseRef = dbRef.child("Certificates").push();
 
-                                                    } else {
+                                                    Map formData = new HashMap<>();
+                                                    formData.put("certificateType" , "Birth");
+                                                    formData.put("applicantName" , userName);
+                                                    formData.put("applicantCnic" , userCnic);
+                                                    formData.put("childName" , childName);
+                                                    formData.put("religion" , religion);
+                                                    formData.put("relation" , relation);
+                                                    formData.put("fatherName" , fName);
+                                                    formData.put("fatherCnic" , fCnic);
+                                                    formData.put("motherName" , mName);
+                                                    formData.put("motherCnic" , mCnic);
+                                                    formData.put("grandFatherName" , gFatherName);
+                                                    formData.put("grandFatherCnic" , gFatherCnic);
+                                                    formData.put("districtOfBirth" , distOfBirth);
+                                                    formData.put("dateOfBirth" , dob);
+                                                    formData.put("disability" , disability);
+                                                    formData.put("vaccinated" , vaccinated);
+                                                    formData.put("doctorOrMideWife" , mideWife);
+                                                    formData.put("address" , address);
+                                                    formData.put("placeOfBirth" , placeOfBirth);
+                                                    formData.put("gender" , gender);
+                                                    formData.put("unionCouncil" , uc);
+                                                    formData.put("date" , date);
+                                                    formData.put("pushKey" , databaseRef.getRef().getKey());
+                                                    formData.put("uid" , mAuth.getCurrentUser().getUid());
+                                                    formData.put("cnicImages" , urls);
+                                                    formData.put("status" , "Pending");
 
-                                                        birthView.showMessage("Error in uploading");
-                                                        birthView.onDismissProgressDialog();
-                                                    }
+
+                                                    databaseRef.setValue(formData)
+                                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                @Override
+                                                                public void onComplete(@NonNull Task<Void> task) {
+
+                                                                    if (task.isSuccessful()) {
+
+                                                                        birthView.onDismissProgressDialog();
+                                                                        birthView.clearAllFileds();
+                                                                        birthView.showMessage("SuccessFully Apply");
+
+                                                                    } else {
+
+                                                                        birthView.showMessage("Error in uploading");
+                                                                        birthView.onDismissProgressDialog();
+                                                                    }
+                                                                }
+                                                            });
+
+
+
+
+
                                                 }
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError databaseError) {}
                                             });
+
 
                                 }
 

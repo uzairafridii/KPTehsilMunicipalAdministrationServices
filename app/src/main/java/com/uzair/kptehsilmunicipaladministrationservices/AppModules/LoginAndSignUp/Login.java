@@ -131,14 +131,6 @@ public class Login extends AppCompatActivity implements LoginView {
     }
 
     @Override
-    public void moveToMainPage() {
-        Intent intent = new Intent(Login.this, MainActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(new Intent(intent));
-        Login.this.finish();
-    }
-
-    @Override
     public void showSavePassordDialog() {
 
         new StorePasswordBottomSheet(email, password).show(getSupportFragmentManager(), "Save Password Dialog");

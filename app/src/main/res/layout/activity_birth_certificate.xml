@@ -15,40 +15,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/child_birth_certificate_tool_bar"
-
 >
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
-            <!-- applicant name edit text -->
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:background="@drawable/edit_txt_bg"
-                android:id="@+id/applicantNameInBirthCertificate"
-                android:hint="@string/applicant_name"
-                android:layout_marginLeft="@dimen/edit_margin"
-                android:layout_marginRight="@dimen/edit_margin"
-                android:layout_marginTop="@dimen/edit_margin"
-                android:paddingLeft="@dimen/edit_margin"
-                android:inputType="text"
-                />
-
-            <!-- applicant cnic edit text -->
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:background="@drawable/edit_txt_bg"
-                android:id="@+id/applicantCnicInBirthCertificate"
-                android:layout_below="@id/applicantNameInBirthCertificate"
-                android:hint="@string/applicant_cnic"
-                android:layout_marginLeft="@dimen/edit_margin"
-                android:layout_marginRight="@dimen/edit_margin"
-                android:layout_marginTop="@dimen/reycler_view_margin"
-                android:paddingLeft="@dimen/edit_margin"
-                android:inputType="number"
-                />
 
             <!-- child name edit text -->
             <EditText
@@ -56,11 +26,10 @@
                 android:layout_height="40dp"
                 android:background="@drawable/edit_txt_bg"
                 android:id="@+id/childNameInBirthCertificate"
-                android:layout_below="@id/applicantCnicInBirthCertificate"
                 android:hint="@string/child_name"
                 android:layout_marginLeft="@dimen/edit_margin"
                 android:layout_marginRight="@dimen/edit_margin"
-                android:layout_marginTop="@dimen/reycler_view_margin"
+                android:layout_marginTop="@dimen/margin_6"
                 android:paddingLeft="@dimen/edit_margin"
                 android:inputType="text"
                 />
@@ -213,7 +182,7 @@
                 android:layout_marginRight="@dimen/edit_margin"
                 android:layout_marginTop="@dimen/reycler_view_margin"
                 android:paddingLeft="@dimen/edit_margin"
-                android:gravity="center"
+                android:gravity="center|left"
                 android:inputType="text|date"
                 />
 

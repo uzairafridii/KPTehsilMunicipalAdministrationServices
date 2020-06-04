@@ -13,7 +13,7 @@ public interface BirthCertificatePresenter
 {
 
     void onSubmitForm(DatabaseReference dbRef, StorageReference storeRef , FirebaseAuth mAuth,
-                      String name , String cnic, String childName , String religion , String relation,
+                      String childName , String religion , String relation,
                       String fName , String fCnic , String mName , String mCnic , String gFatherName ,
                       String gFatherCnic , String distOfBirth , String dob , String vaccinated ,
                       String placeOfBirth , String mideWife , String disability , String address , String gender,

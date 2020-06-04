@@ -10,7 +10,6 @@ public interface LoginView
     void showPasswordErrorDialog(String passwordError);
     void showEmailDialog(String error);
 
-    void moveToMainPage();
     void showSavePassordDialog();
 
     void clearAllFields();

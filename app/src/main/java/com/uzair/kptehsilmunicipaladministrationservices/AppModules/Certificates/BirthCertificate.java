@@ -54,10 +54,10 @@ public class BirthCertificate extends AppCompatActivity implements AdapterView.O
     private String selectedGender , selectedUC;
     private ImageView frontSide, backSide;
     private TextView dateOfBirth;
-    private EditText applicantName, applicantCnic, childName, childRelation, religion, fatherName, fatherCnic,
+    private EditText  childName, childRelation, religion, fatherName, fatherCnic,
             motherName, motherCnic, grandFatherName, grandFatherCnic, districtOfBirth,
             vaccinated, placeOfBirth, doctorOrMideWifeName, disability, address;
-    private String appli_name , appli_cnic , child_name , child_relation , child_religion , child_father,
+    private String  child_name , child_relation , child_religion , child_father,
             child_father_cnic, child_mother_name , child_mother_cnic, child_grand_father_name , child_grand_father_cnic,
             child_district_of_birth, child_date_of_birth ,child_vaccinated ,child_place_of_birth,
             doctor_or_mide_wife_name , child_disability , child_address;
@@ -85,8 +85,6 @@ public class BirthCertificate extends AppCompatActivity implements AdapterView.O
     // initiate all views
     private void initViews() {
 
-        applicantName = findViewById(R.id.applicantNameInBirthCertificate);
-        applicantCnic = findViewById(R.id.applicantCnicInBirthCertificate);
         childName = findViewById(R.id.childNameInBirthCertificate);
         childRelation = findViewById(R.id.childNameInBirthCertificate);
         religion = findViewById(R.id.childReligionInBirthCertificate);
@@ -123,7 +121,7 @@ public class BirthCertificate extends AppCompatActivity implements AdapterView.O
         actionBar.setDisplayHomeAsUpEnabled(true);
 
 
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("Certificates").push();
+        databaseReference = FirebaseDatabase.getInstance().getReference();
         storageReference = FirebaseStorage.getInstance().getReference().child("CertificatesImage");
 
         mAuth = FirebaseAuth.getInstance();
@@ -197,7 +195,6 @@ public class BirthCertificate extends AppCompatActivity implements AdapterView.O
 
     @Override
     public void setSpinnerAdapter() {
-
         //set spinner adapter for both  gender and uc
         setSpinnerAdapter(childGender , getResources().getStringArray(R.array.gender));
        setSpinnerAdapter(unionCouncilSpinner , getResources().getStringArray(R.array.UC));
@@ -268,8 +265,6 @@ public class BirthCertificate extends AppCompatActivity implements AdapterView.O
     public void submitCertificateForm(View view)
     {
           // first get values from form
-        appli_name = applicantName.getText().toString();
-        appli_cnic = applicantCnic.getText().toString();
         child_name = childName.getText().toString();
         child_relation =  childRelation.getText().toString();
         child_religion = religion.getText().toString();
@@ -289,7 +284,7 @@ public class BirthCertificate extends AppCompatActivity implements AdapterView.O
 
         // then call onSubmit method presenter
         birthCertificatePresenter.onSubmitForm(databaseReference, storageReference, mAuth,
-                 appli_name , appli_cnic , child_name , child_religion , child_relation ,
+                 child_name , child_religion , child_relation ,
                 child_father, child_father_cnic, child_mother_name , child_mother_cnic ,
                 child_grand_father_name ,child_grand_father_cnic, child_district_of_birth ,
                 child_date_of_birth , child_vaccinated , child_place_of_birth ,
@@ -301,8 +296,6 @@ public class BirthCertificate extends AppCompatActivity implements AdapterView.O
     @Override
     public void clearAllFileds()
     {
-      applicantName.setText("");
-      applicantCnic.setText("");
       childName.setText("");
       fatherName.setText("");
       fatherCnic.setText("");

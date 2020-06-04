@@ -70,6 +70,7 @@ public class FirebrigadePresenterImplementer implements FirebrigadePresenter
 
     }
 
+    // get driver record details
     @Override
     public void getDriverNameAndPhoneNumber(DatabaseReference dbRef)
     {
@@ -93,6 +94,7 @@ public class FirebrigadePresenterImplementer implements FirebrigadePresenter
 
     }
 
+    // store data in firebase
     @Override
     public void sendNotification(final DatabaseReference reference , final FirebaseAuth auth , final String uid)
     {
@@ -100,14 +102,16 @@ public class FirebrigadePresenterImplementer implements FirebrigadePresenter
 
             if(view.checkPhonePermission() && view.isLocationEnabled())
             {
+                // if location is 0 then get the user current location
                 if(lat == 0 && lng == 0)
                     {
                         getLastLocation();
-                        view.onErrorMessage("Sorry! click again to send notification");
+                        view.onErrorMessage("Something went wrong click again");
 
                     }
                 else
                 {
+                    // store data in firebase
                     String date = DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
                     Map<String, String> fireMap = new HashMap<>();
                     fireMap.put("lat", String.valueOf(lat));
@@ -122,6 +126,7 @@ public class FirebrigadePresenterImplementer implements FirebrigadePresenter
 
                             if (task.isSuccessful()) {
 
+                                // store notification data in firebase
                                 addNotificationData(auth , uid);
 
                             }
@@ -141,14 +146,16 @@ public class FirebrigadePresenterImplementer implements FirebrigadePresenter
 
         }
 
-
-
     }
 
+    // notification method
     private void addNotificationData(FirebaseAuth auth, String uid)
     {
+        // store receiver uid and current user uid for notification
+
         DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference().child("Notification")
                 .child("fire_fighting");
+
         Map<String, String> fireNotification = new HashMap<>();
         fireNotification.put("from", auth.getCurrentUser().getUid());
         dbRef.child(uid).push().setValue(fireNotification).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -164,6 +171,7 @@ public class FirebrigadePresenterImplementer implements FirebrigadePresenter
         });
     }
 
+    // get the UID of infra head
     @Override
     public void getInfraHeadUid(DatabaseReference dbRef)
     {
@@ -190,6 +198,7 @@ public class FirebrigadePresenterImplementer implements FirebrigadePresenter
     }
 
 
+    // get the current location of user
     @Override
     public void getLastLocation() {
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(context);
