@@ -12,14 +12,24 @@
         android:id="@+id/noc_tool_bar"/>
 
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/titleTextInNoc"
+        android:text="Map Title : "
+        android:textStyle="bold"
+        android:layout_below="@+id/noc_tool_bar"
+        android:layout_marginTop="@dimen/edit_margin"
+        android:layout_marginLeft="@dimen/edit_margin"
+        />
     <!-- Title edit text -->
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:id="@+id/nocTitleTextInputLayout"
-        android:layout_below="@id/noc_tool_bar"
+        android:layout_below="@id/titleTextInNoc"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginTop="@dimen/edit_margin"
+        android:layout_marginTop="@dimen/reycler_view_margin"
         android:theme="@style/TextLabel"
         app:boxStrokeColor="@color/txt_color"
         android:layout_width="match_parent"
@@ -57,10 +67,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/txtNoFileChoose"
-        android:layout_below="@+id/nocTitleTextInputLayout"
-        android:layout_toRightOf="@+id/btnUploadNoc"
+        android:layout_below="@+id/btnUploadNoc"
         android:text="@string/no_file_choosen"
-        android:layout_marginTop="@dimen/edit_margin_top"
+        android:layout_marginTop="@dimen/reycler_view_margin"
         android:layout_marginLeft="@dimen/txt_margin_left"
         />
 
@@ -85,14 +94,14 @@
         android:id="@+id/btnSubmitNoc"
         android:onClick="submiNocDetailsButtonClick"
         android:backgroundTint="@color/txt_color"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="@dimen/edit_margin"
-        android:layout_below="@+id/btnUploadNoc"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/edit_margin"
+        android:layout_below="@+id/nocTitleTextInputLayout"
         android:gravity="center"
         android:layout_marginTop="@dimen/edit_margin"
         android:textSize="15sp"
         android:text="@string/submit"
-        app:cornerRadius="16dp"/>
+        app:cornerRadius="@dimen/size_12"/>
 
     <!-- Text your noc details -->
     <TextView

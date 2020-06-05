@@ -65,17 +65,21 @@ public class UserFeedBackPresenterImplementer implements UserFeedBackPresenter
 
     @Override
     public void addFirstWorkerRating(final DatabaseReference databaseRef, final String rating, final String comment,
-                                     String firstWorkerName, final String uid, final Uri imageUrl, final String complaintKey)
+                                     String firstWorkerName, final String uid,
+                                     final Uri imageUrl, final String complaintKey, String complaintType)
     {
-         getWorkerIdAndStoreRating(databaseRef ,rating , comment , firstWorkerName , uid , imageUrl , complaintKey);
+         getWorkerIdAndStoreRating(databaseRef ,rating , comment , firstWorkerName , uid ,
+                 imageUrl , complaintKey , complaintType);
 
     }
 
     @Override
     public void addSecondWorkerRating(DatabaseReference databaseRef, String rating, String comment,
-                                      String secondWorkerName, String uid, Uri imageUrl, String complaintKey)
+                                      String secondWorkerName, String uid,
+                                      Uri imageUrl, String complaintKey,String complaintType)
     {
-        getWorkerIdAndStoreRating(databaseRef ,rating , comment , secondWorkerName , uid , imageUrl , complaintKey);
+        getWorkerIdAndStoreRating(databaseRef ,rating , comment , secondWorkerName ,
+                uid , imageUrl , complaintKey , complaintType);
 
     }
 
@@ -85,7 +89,7 @@ public class UserFeedBackPresenterImplementer implements UserFeedBackPresenter
     // get worker id and store rating
     private void getWorkerIdAndStoreRating(DatabaseReference dbRef, final String rating,
                                            final String comment, String workerName, final String uid,
-                                           final Uri imageUrl, final String complaintKey)
+                                           final Uri imageUrl, final String complaintKey , final String complaintType)
     {
 
         if(dbRef!= null && !comment.isEmpty() && !workerName.isEmpty() && imageUrl != null)
@@ -102,7 +106,7 @@ public class UserFeedBackPresenterImplementer implements UserFeedBackPresenter
                     public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s)
                     {
                         pushKey = dataSnapshot.child("pushKey").getValue().toString();
-                        addRatingIntoDatabase(rating, comment, imageUrl, uid, pushKey, complaintKey);
+                        addRatingIntoDatabase(rating, comment, imageUrl, uid, pushKey, complaintKey , complaintType);
                     }
 
                     @Override
@@ -139,7 +143,8 @@ public class UserFeedBackPresenterImplementer implements UserFeedBackPresenter
 
     // add  worker rating method
     private void addRatingIntoDatabase(final String rating , final String comment , final Uri image ,
-                                       final String uid , final String pushKey , final String complaintKey)
+                                       final String uid , final String pushKey ,
+                                       final String complaintKey , final String complaintType)
     {
         final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Ratings");
             final StorageReference imageRef = FirebaseStorage.getInstance().getReference()
@@ -167,20 +172,49 @@ public class UserFeedBackPresenterImplementer implements UserFeedBackPresenter
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
-                                        // call update average method to update the average rating of workers
+                                        /*
+                                        call update average method to update the average rating of workers
+                                        and add notification data method to send notification
+                                         */
                                         updateAverageRating(pushKey);
+                                        addNotificationData(uid , complaintType);
                                         feedBackView.showMessage("Successfully added");
                                         feedBackView.hideProgressBar();
                                     }
                                 }
                             });
-
-
                         }
                     });
                 }
-            });
+            }); }
 
+
+            // send notification data to firebase
+    private void addNotificationData(final String uid, String complaintType)
+    {
+        final DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference();
+        dbRef.child("WorkersHead").orderByChild("department").equalTo(complaintType)
+                .addChildEventListener(new ChildEventListener() {
+                    @Override
+                    public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s)
+                    {
+                        String workerHeadUid = dataSnapshot.child("uid").getValue().toString();
+
+                        Map<String , String> notificationData = new HashMap<>();
+                        notificationData.put("from", uid);
+
+                        dbRef.child("Notifications").child("RatingNotifications")
+                                .child(workerHeadUid).push().setValue(notificationData);
+                    }
+                    @Override
+                    public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {}
+                    @Override
+                    public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {}
+                    @Override
+                    public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {}
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {}
+                });
 
     }
 

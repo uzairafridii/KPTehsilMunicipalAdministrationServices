@@ -40,7 +40,7 @@ public class UserFeedBack extends AppCompatActivity implements UserFeedBackView
     private RatingBar workerRating;
     private Uri imageUri;
     private EditText addCommentEdit;
-    private String complaintPushKey;
+    private String complaintPushKey , complaintType;
     private ProgressDialog progressDialog;
     private UserFeedBackPresenter presenter;
     private DatabaseReference dbRef , ratingRef;
@@ -61,6 +61,7 @@ public class UserFeedBack extends AppCompatActivity implements UserFeedBackView
     {
         presenter = new UserFeedBackPresenterImplementer(this);
         complaintPushKey = getIntent().getStringExtra("pushKey");
+        complaintType = getIntent().getStringExtra("complaintType");
         Log.d("complaintKey", "initViews: "+complaintPushKey);
 
         titleOfComplaint = findViewById(R.id.feedback_title);
@@ -100,14 +101,17 @@ public class UserFeedBack extends AppCompatActivity implements UserFeedBackView
     public void addRatingButtonClick(View view)
     {
         // add workers rating
-        presenter.addFirstWorkerRating(ratingRef , String.valueOf(workerRating.getRating()), addCommentEdit.getText().toString(),
-                workerFirstName.getText().toString() , userAuth.getCurrentUser().getUid(), imageUri , complaintPushKey);
+        presenter.addFirstWorkerRating(ratingRef , String.valueOf(workerRating.getRating()),
+                addCommentEdit.getText().toString(), workerFirstName.getText().toString() ,
+                userAuth.getCurrentUser().getUid(), imageUri , complaintPushKey , complaintType);
 
         // if both workers are added then do this
         if(!workerSecondName.getText().toString().isEmpty()) {
-            presenter.addSecondWorkerRating(ratingRef, String.valueOf(workerRating.getRating()), addCommentEdit.getText().toString(),
-                    workerSecondName.getText().toString(), userAuth.getCurrentUser().getUid(), imageUri, complaintPushKey);
+            presenter.addSecondWorkerRating(ratingRef, String.valueOf(workerRating.getRating()),
+                    addCommentEdit.getText().toString(), workerSecondName.getText().toString(),
+                    userAuth.getCurrentUser().getUid(), imageUri, complaintPushKey,complaintType);
         }
+
     }
 
     // feedback view callbacks method

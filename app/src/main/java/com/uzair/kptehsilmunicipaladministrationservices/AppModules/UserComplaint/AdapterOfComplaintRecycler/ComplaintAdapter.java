@@ -74,7 +74,8 @@ public class ComplaintAdapter extends RecyclerView.Adapter<ComplaintAdapter.MyCo
                 {
                     Intent intent  = new Intent(context , UserFeedBack.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.putExtra("pushKey" , complaintModel.getPushkey());
+                    intent.putExtra("pushKey" , complaintModel.getPushKey());
+                    intent.putExtra("complaintType" , complaintModel.getField());
                     context.startActivity(intent);
                 }
 

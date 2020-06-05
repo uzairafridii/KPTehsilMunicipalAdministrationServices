@@ -4,12 +4,17 @@ import android.net.Uri;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -67,10 +72,10 @@ public class AddComplaintsPresenterImplementer implements AddComplaintsPresenter
 
         for (int uploads = 0; uploads < imageUriList.size(); uploads++) {
 
-            Uri Image = imageUriList.get(uploads);
+            Uri image = imageUriList.get(uploads);
 
             // storage reference to add images
-            final StorageReference imagename = mStorageReference.child("ComplaintsImages").child("image/" + Image.getLastPathSegment());
+            final StorageReference imagename = mStorageReference.child("ComplaintsImages").child("image/" + image.getLastPathSegment());
 
             imagename.putFile(imageUriList.get(uploads)).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
@@ -99,8 +104,8 @@ public class AddComplaintsPresenterImplementer implements AddComplaintsPresenter
 
 
     // method to add data to firebase database
-    private void addDataToFirebase(DatabaseReference mDatabaseReference, FirebaseAuth mAuth,
-            List<String> urls, String titleOfComp , String desc , String fieldOfComplaint,
+    private void addDataToFirebase(DatabaseReference mDatabaseReference, final FirebaseAuth mAuth,
+                                   List<String> urls, String titleOfComp , String desc , final String fieldOfComplaint,
                                    double lat , double lng)
     {
         // if arraylist conatain all urls then upload the data to database
@@ -127,9 +132,12 @@ public class AddComplaintsPresenterImplementer implements AddComplaintsPresenter
 
                         if (task.isSuccessful()) {
 
+                            // add notification data to firebase
+                            addNotificationData(fieldOfComplaint , mAuth.getCurrentUser().getUid());
+
                             addComplaintsView.hideProgressBar();
                             addComplaintsView.clearAllFields();
-                            addComplaintsView.showSuccessDialog();
+                           // addComplaintsView.showSuccessDialog();
 
                         } else {
 
@@ -138,6 +146,45 @@ public class AddComplaintsPresenterImplementer implements AddComplaintsPresenter
                         }
                     }
                 });
+    }
+
+    // send notification data to firebase
+    private void addNotificationData(String fieldOfComplaint , final String currentUserUid)
+    {
+        final DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference();
+        dbRef.child("WorkersHead").orderByChild("department").equalTo(fieldOfComplaint)
+                .addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s)
+            {
+                String workerHeadUid = dataSnapshot.child("uid").getValue().toString();
+
+                Map<String, String> notificationData = new HashMap<>();
+                notificationData.put("from", currentUserUid);
+
+                dbRef.child("Notifications").child("ComplaintNotification").child(workerHeadUid)
+                        .push().setValue(notificationData).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+
+                        if(task.isSuccessful())
+                        {
+                            addComplaintsView.showSuccessDialog();
+                        }
+                    }
+                });
+
+            }
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {}
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {}
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {}
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {}
+        });
+
     }
 
 

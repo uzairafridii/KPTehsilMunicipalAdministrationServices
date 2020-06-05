@@ -82,8 +82,6 @@ public class AddComplaints extends AppCompatActivity implements AddComplaintsVie
         mToolbar = findViewById(R.id.addComplain_tool_bar);
         setSupportActionBar(mToolbar);
         setTitle("Add Complaint");
-
-        // tool bar back arrow enabled
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeAsUpIndicator(R.drawable.backicon);
         actionBar.setDisplayHomeAsUpEnabled(true);
