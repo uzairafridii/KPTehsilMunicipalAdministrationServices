@@ -18,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,6 +43,7 @@ public class FireFighting extends BottomSheetDialogFragment implements Firebriga
     private TextView phoneNumber , driverName;
     private FirebrigadePresenterImplementer implementer;
     private String infraHeadUid;
+    private ProgressBar progressBar;
     private DatabaseReference dbRef;
     private FirebaseAuth mAuth;
 
@@ -91,6 +93,8 @@ public class FireFighting extends BottomSheetDialogFragment implements Firebriga
     {
         implementer = new FirebrigadePresenterImplementer(this, getContext());
 
+        progressBar = myView.findViewById(R.id.progresBar);
+
         callBtn = myView.findViewById(R.id.call_image_btn);
         notificationBtn = myView.findViewById(R.id.notificaty_image_btn);
 
@@ -102,25 +106,21 @@ public class FireFighting extends BottomSheetDialogFragment implements Firebriga
 
         implementer.getDriverNameAndPhoneNumber(dbRef);
         implementer.getInfraHeadUid(dbRef);
+        implementer.getLastLocation();
     }
 
 
     @Override
     public void onErrorMessage(String message) {
 
-        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
     }
 
     @Override
     public boolean checkPhonePermission() {
 
-        if (ContextCompat.checkSelfPermission(getContext(),
-                Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED &&
-                ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION)
-                        == PackageManager.PERMISSION_GRANTED &&
-                ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION)
-                        == PackageManager.PERMISSION_GRANTED
-        )
+        if (ActivityCompat.checkSelfPermission(getContext(),
+                Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED)
         {
             return true;
         }
@@ -129,11 +129,31 @@ public class FireFighting extends BottomSheetDialogFragment implements Firebriga
     }
 
     @Override
-    public void requestPermission() {
+    public boolean checkLocationPermission()
+    {
+        if(ActivityCompat.checkSelfPermission(getContext(),
+                Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(getContext(),
+                        Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
 
+            return  true;
+        }
+
+        return false;
+    }
+
+    @Override
+    public void requestPermission() {
         ActivityCompat.requestPermissions(getActivity(),
-                new String[]{Manifest.permission.CALL_PHONE, Manifest.permission.ACCESS_FINE_LOCATION
+                new String[]{Manifest.permission.CALL_PHONE}, REQUEST_CODE);
+    }
+
+    @Override
+    public void requestLocationPermission() {
+        ActivityCompat.requestPermissions(getActivity(),
+                new String[]{Manifest.permission.ACCESS_FINE_LOCATION
                         , Manifest.permission.ACCESS_COARSE_LOCATION}, REQUEST_CODE);
+
     }
 
     @Override
@@ -153,11 +173,10 @@ public class FireFighting extends BottomSheetDialogFragment implements Firebriga
                 Toast.makeText(getContext(), "Permission granted", Toast.LENGTH_SHORT).show();
             }
             else {
-                Toast.makeText(getContext(), "Permission Denied", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Unable to send notification ", Toast.LENGTH_SHORT).show();
             }
 
     }
-
 
     @Override
     public void onSetPhoneNumberAndDriverName(String name, String phoneNum) {
@@ -174,8 +193,15 @@ public class FireFighting extends BottomSheetDialogFragment implements Firebriga
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        implementer.getLastLocation();
+    public void showProgressDialog()
+    {
+        progressBar.setVisibility(View.VISIBLE);
     }
+
+    @Override
+    public void hideProgressDialog() {
+
+        progressBar.setVisibility(View.GONE);
+    }
+
 }

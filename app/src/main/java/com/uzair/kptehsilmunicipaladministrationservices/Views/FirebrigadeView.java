@@ -6,11 +6,19 @@ public interface FirebrigadeView
 
     boolean checkPhonePermission();
 
+    boolean checkLocationPermission();
+
     void requestPermission();
+
+    void requestLocationPermission();
 
     boolean isLocationEnabled();
 
     void onSetPhoneNumberAndDriverName(String name, String phoneNumber);
 
     void infraHeadUid(String uid);
+
+    void showProgressDialog();
+
+    void hideProgressDialog();
 }

@@ -46,6 +46,7 @@ public class FirebrigadePresenterImplementer implements FirebrigadePresenter
         this.context = context;
     }
 
+    // call intent
     @Override
     public void callDriver(String phoneNumber)
     {
@@ -76,15 +77,24 @@ public class FirebrigadePresenterImplementer implements FirebrigadePresenter
     {
         if ((dbRef != null))
         {
+            view.showProgressDialog();
             dbRef.child("Fire Fighting").child("Driver Details")
                     .addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot)
                         {
-                            String name = dataSnapshot.child("driverName").getValue().toString();
-                            String phone = dataSnapshot.child("driverPhone").getValue().toString();
+                            if(dataSnapshot.hasChildren()) {
+                                String name = dataSnapshot.child("driverName").getValue().toString();
+                                String phone = dataSnapshot.child("driverPhone").getValue().toString();
 
-                            view.onSetPhoneNumberAndDriverName(name , phone);
+                                view.onSetPhoneNumberAndDriverName(name, phone);
+                                view.hideProgressDialog();
+                            }
+                            else
+                            {
+                                view.onErrorMessage("No Driver Data found");
+                                view.hideProgressDialog();
+                            }
 
                         }
                         @Override
@@ -100,52 +110,45 @@ public class FirebrigadePresenterImplementer implements FirebrigadePresenter
     {
         if(reference != null && auth != null && !uid.isEmpty()) {
 
-            if(view.checkPhonePermission() && view.isLocationEnabled())
-            {
-                // if location is 0 then get the user current location
-                if(lat == 0 && lng == 0)
-                    {
+                if(view.isLocationEnabled()) {
+                    // if location is 0 then get the user current location
+                    if (lat == 0 && lng == 0) {
                         getLastLocation();
                         view.onErrorMessage("Something went wrong click again");
 
                     }
-                else
-                {
-                    // store data in firebase
-                    String date = DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
-                    Map<String, String> fireMap = new HashMap<>();
-                    fireMap.put("lat", String.valueOf(lat));
-                    fireMap.put("lng", String.valueOf(lng));
-                    fireMap.put("uid", auth.getCurrentUser().getUid());
-                    fireMap.put("date", date);
+                    else {
+                        view.showProgressDialog();
+                        // store data in firebase
+                        String date = DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
+                        Map<String, String> fireMap = new HashMap<>();
+                        fireMap.put("lat", String.valueOf(lat));
+                        fireMap.put("lng", String.valueOf(lng));
+                        fireMap.put("uid", auth.getCurrentUser().getUid());
+                        fireMap.put("date", date);
 
-                    reference.child("Fire Fighting").child("Fire Brigade Request")
-                            .push().setValue(fireMap).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
+                        reference.child("Fire Fighting").child("Fire Brigade Request")
+                                .push().setValue(fireMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
 
-                            if (task.isSuccessful()) {
+                                if (task.isSuccessful()) {
 
-                                // store notification data in firebase
-                                addNotificationData(auth , uid);
+                                    // store notification data in firebase
+                                    addNotificationData(auth, uid);
 
+                                }
                             }
-                        }
-                    });
+                        });
+                    }
                 }
-
-
-                }else
+                else
                 {
                     view.onErrorMessage("Turn on GPS");
                     Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
                     context.startActivity(intent);
                 }
-
-
-
         }
-
     }
 
     // notification method
@@ -153,7 +156,7 @@ public class FirebrigadePresenterImplementer implements FirebrigadePresenter
     {
         // store receiver uid and current user uid for notification
 
-        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference().child("Notification")
+        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference().child("Notifications")
                 .child("fire_fighting");
 
         Map<String, String> fireNotification = new HashMap<>();
@@ -164,6 +167,7 @@ public class FirebrigadePresenterImplementer implements FirebrigadePresenter
 
                 if(task.isSuccessful())
                 {
+                    view.hideProgressDialog();
                     view.onErrorMessage("Notification send to TMA Staff");
                 }
 
@@ -176,7 +180,7 @@ public class FirebrigadePresenterImplementer implements FirebrigadePresenter
     public void getInfraHeadUid(DatabaseReference dbRef)
     {
         if(dbRef != null) {
-            dbRef.child("Workers Head").orderByChild("department").equalTo("Infrastructure")
+            dbRef.child("WorkersHead").orderByChild("department").equalTo("Infrastructure")
                     .addChildEventListener(new ChildEventListener() {
                         @Override
                         public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s)
@@ -203,7 +207,7 @@ public class FirebrigadePresenterImplementer implements FirebrigadePresenter
     public void getLastLocation() {
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(context);
 
-        if (view.checkPhonePermission()) {
+        if (view.checkLocationPermission()) {
             if (view.isLocationEnabled()) {
                 mFusedLocationClient.getLastLocation().addOnCompleteListener(
                         new OnCompleteListener<Location>() {
@@ -227,7 +231,7 @@ public class FirebrigadePresenterImplementer implements FirebrigadePresenter
                 context.startActivity(intent);
             }
         } else {
-            view.requestPermission();
+            view.requestLocationPermission();
         }
     }
 

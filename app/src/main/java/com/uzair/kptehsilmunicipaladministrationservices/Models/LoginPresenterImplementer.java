@@ -103,6 +103,7 @@ public class LoginPresenterImplementer implements LoginPresenter {
                             }
                             else {
 
+                                loginView.hideProgressDialog();
                                 loginView.showSavePassordDialog();
                                 loginView.clearAllFields();
 
