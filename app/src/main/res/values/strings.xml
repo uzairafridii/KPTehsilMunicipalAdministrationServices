@@ -14,8 +14,7 @@
     </string-array>
 
     <string name="app_name">KP TMA Services</string>
-    <string name="map_api_key">AIzaSyC25fz7R_AYrRD5v6spK89aW9yt2Oiafl4</string>
-    <!--    <string name="map_api_key">AIzaSyCubPvXQn2hFPNuju8aEGeQIgrOIrcieBg</string>-->
+    <string name="map_api_key"></string>
     <string name="forgot_password">Forgot Password?</string>
     <string name="user_password">Password</string>
     <string name="user_email">Email</string>

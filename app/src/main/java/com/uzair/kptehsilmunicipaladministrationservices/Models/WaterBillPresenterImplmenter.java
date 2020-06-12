@@ -58,8 +58,8 @@ public class WaterBillPresenterImplmenter implements WaterBillPresenter
                     if(dataSnapshot.hasChildren())
                     {
                         String name = dataSnapshot.child("ownerName").getValue().toString();
-                        String date = dataSnapshot.child("locationDate").getValue().toString();
-                        String location = dataSnapshot.child("locAddress").getValue().toString();
+                        String date = dataSnapshot.child("connectionDate").getValue().toString();
+                        String location = dataSnapshot.child("connectionAddress").getValue().toString();
                         String imageUrl = dataSnapshot.child("bill_image").getValue().toString();
                         view.showErrorMessage(name);
                         view.getUserRecord(name , date, location , imageUrl);

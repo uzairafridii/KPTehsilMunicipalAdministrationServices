@@ -65,7 +65,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 {
 
     private GoogleMap mMap;
-    private double currentLat, currentLong;
+    private double currentLat, currentLong , searchPlaceLat , searchPlaceLng;
     private FusedLocationProviderClient mLocationService;
     private SearchView searchView;
     private Circle circle;
@@ -209,7 +209,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     currentLat = location.getLatitude();
                     currentLong = location.getLongitude();
 
-                    getLngLat(location.getLongitude(), location.getLatitude(), "Your Current Location");
+                    setLatLngAndMoveCamera(location.getLongitude(), location.getLatitude(), "Your Current Location");
 
                 }
                 else
@@ -235,7 +235,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     @Override
     public void getLatLng(double lat, double lng) {
 
-        getLngLat(lat , lat , "Your Search Location");
+        searchPlaceLat = lat;
+        searchPlaceLng = lng;
+        setLatLngAndMoveCamera(searchPlaceLat , searchPlaceLng , "Your Search Location");
     }
 
     // check where the permission is granted or not after request
@@ -248,16 +250,15 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         }
     }
 
-    // move to the current location
+
     @RequiresApi(api = Build.VERSION_CODES.M)
-    private void getLngLat(double lng, double lat, String locationName) {
+    private void setLatLngAndMoveCamera(double lat , double lng , String title)
+    {
 
-        LatLng latLng = new LatLng(lat, lng);
-        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 19);
-
+        LatLng latLng = new LatLng(searchPlaceLat, searchPlaceLng);
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 22);
         mMap.animateCamera(cameraUpdate);
-
-        setMarker(latLng, locationName);
+        setMarker(latLng, title);
     }
 
     // set marker on the current location
@@ -284,8 +285,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         Toast.makeText(this, "Complaint Location is Added", Toast.LENGTH_SHORT).show();
 
         Intent intent = new Intent(MapActivity.this, AddComplaints.class);
-        intent.putExtra("lat", currentLat);
-        intent.putExtra("lng", currentLong);
+        intent.putExtra("lat", searchPlaceLat);
+        intent.putExtra("lng", searchPlaceLng);
         setResult(RESULT_OK, intent);
         finish();
 

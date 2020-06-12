@@ -68,61 +68,26 @@ public class MapPresenterImplementer implements MapPresenter
     @Override
     public void searchLocation(String location)
     {
+        Geocoder geocoder  = new Geocoder(context);
 
-        String url = "https://maps.googleapis.com/maps/api/geocode/json?address="
-                + location + "Lachi Kohat&key=AIzaSyC25fz7R_AYrRD5v6spK89aW9yt2Oiafl4";
+        List<Address> addressList = null;
 
+        try {
+            addressList = geocoder.getFromLocationName(location+" Lachi Kohat Kpk"  ,1);
 
-        RequestQueue queue = Volley.newRequestQueue(context);
+            if(addressList.size() > 0)
+            {
+                Address address = addressList.get(0);
+                mapView.getLatLng(address.getLatitude(), address.getLongitude());
 
-        // Request a string response from the provided URL.
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>() {
-                    @RequiresApi(api = Build.VERSION_CODES.M)
-                    @Override
-                    public void onResponse(String response) {
-
-                        try {
-
-                            JSONObject json = new JSONObject(response);
-
-                            JSONArray locationResult = json.getJSONArray("results");
-
-                            JSONObject jsonObject = locationResult.getJSONObject(0);
-
-                            // get longitude
-                            double lng = jsonObject.getJSONObject("geometry").getJSONObject("location")
-                                    .getDouble("lng");
-
-                            //get latitude
-                            double lat = jsonObject.getJSONObject("geometry").getJSONObject("location")
-                                    .getDouble("lat");
-
-                            Log.d("locationResult", "onResponse: "+lng +"\n"+lat);
-
-                            mapView.getLatLng(lat , lng);
-
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            Log.d("locationError", "onResponse: " + e.getMessage());
-                        }
-
-
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.d("onError", "onErrorResponse: " + error.getMessage());
             }
-        });
-
-        // Add the request to the RequestQueue.
-        queue.add(stringRequest);
-
-
-
-
-
+            else
+            {
+                Toast.makeText(context, "Please enter complete address with teshil and district ", Toast.LENGTH_LONG).show();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.d("locationGeocoder", "searchLocation: "+e.getMessage());
+        }
     }
 }
