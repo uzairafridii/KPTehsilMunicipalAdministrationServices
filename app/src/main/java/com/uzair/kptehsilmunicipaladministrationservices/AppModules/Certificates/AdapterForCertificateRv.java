@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.uzair.kptehsilmunicipaladministrationservices.R;
+import com.uzair.kptehsilmunicipaladministrationservices.Views.CertificateMainView;
 
 import java.util.List;
 
@@ -19,10 +20,12 @@ public class AdapterForCertificateRv extends RecyclerView.Adapter<AdapterForCert
 
     private Context context;
     private List<CertificateModel> certificateModelList;
+    private CertificateMainView certificateMainView;
 
-    public AdapterForCertificateRv(Context context, List<CertificateModel> certificateModelList) {
+    public AdapterForCertificateRv(Context context, List<CertificateModel> certificateModelList, CertificateMainView certificateMainView) {
         this.context = context;
         this.certificateModelList = certificateModelList;
+        this.certificateMainView = certificateMainView;
     }
 
     @NonNull
@@ -49,7 +52,16 @@ public class AdapterForCertificateRv extends RecyclerView.Adapter<AdapterForCert
 
     @Override
     public int getItemCount() {
-        return certificateModelList.size();
+        if(certificateModelList.size() > 0)
+        {
+            certificateMainView.hideNoItemFoundLayout();
+            return certificateModelList.size();
+        }
+        else
+        {
+            certificateMainView.noItemFound();
+            return 0;
+        }
     }
 
     public class MyCertiicateViewHolder extends RecyclerView.ViewHolder

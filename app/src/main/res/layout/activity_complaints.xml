@@ -9,35 +9,55 @@
 
     <!-- add floating action button -->
     <RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <!-- add tool bar to activity -->
-    <include
-        android:id="@+id/complaint_tool_bar"
-        layout="@layout/app_tool_bar" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <!-- add tool bar to activity -->
+        <include
+            android:id="@+id/complaint_tool_bar"
+            layout="@layout/app_tool_bar" />
 
-    <!-- add Recycler view for total complaints -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/complaints_recycler_view"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/complaint_tool_bar"
-        android:layout_marginTop="4dp"
+        <!-- add Recycler view for total complaints -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/complaints_recycler_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/complaint_tool_bar"
+            android:layout_marginTop="4dp"
 
-        >
+            >
 
-    </androidx.recyclerview.widget.RecyclerView>
+        </androidx.recyclerview.widget.RecyclerView>
 
-    <TextView
-        android:id="@+id/progressData"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="No Complaints"
-        android:textSize="16sp"
-        android:textStyle="bold" />
 
-</RelativeLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_centerInParent="true"
+            android:id="@+id/progressData"
+
+            >
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:id="@+id/imageNotFound"
+                android:src="@drawable/not_found"
+                android:layout_gravity="center_horizontal"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/notFoundText"
+                android:text="No Complaints Found"
+                android:layout_gravity="center_horizontal"
+                android:textStyle="bold"
+                />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/complain_fab"

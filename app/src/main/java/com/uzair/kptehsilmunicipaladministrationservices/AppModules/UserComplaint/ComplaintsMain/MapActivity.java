@@ -231,6 +231,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     }
 
 
+    // show map on location
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void getLatLng(double lat, double lng) {

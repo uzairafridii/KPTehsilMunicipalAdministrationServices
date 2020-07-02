@@ -230,7 +230,8 @@
                 android:layout_marginRight="@dimen/edit_margin"
                 android:layout_marginTop="@dimen/reycler_view_margin"
                 android:spinnerMode="dropdown"
-                android:background="@android:drawable/btn_dropdown"
+                android:background="@drawable/spinner_bg"
+                android:elevation="@dimen/margin_6"
                 />
 
             <androidx.appcompat.widget.AppCompatSpinner
@@ -243,7 +244,8 @@
                 android:layout_marginRight="@dimen/edit_margin"
                 android:layout_marginTop="@dimen/reycler_view_margin"
                 android:spinnerMode="dropdown"
-                android:background="@android:drawable/btn_dropdown"
+                android:background="@drawable/spinner_bg"
+                android:elevation="@dimen/margin_6"
                 />
 
 

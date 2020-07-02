@@ -156,7 +156,7 @@ public class FirebrigadePresenterImplementer implements FirebrigadePresenter
     {
         // store receiver uid and current user uid for notification
 
-        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference().child("Notifications")
+        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference().child("notifications")
                 .child("fire_fighting");
 
         Map<String, String> fireNotification = new HashMap<>();

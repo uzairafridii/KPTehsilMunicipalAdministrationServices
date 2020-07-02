@@ -1,128 +1,276 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:orientation="vertical"
     tools:context=".AppModules.UserProfile.Profile">
 
-    <include layout="@layout/app_tool_bar" android:id="@+id/profile_tool_bar"/>
-
-    <!-- image circle view -->
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/profile_image"
-        android:layout_below="@+id/profile_tool_bar"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:src="@drawable/avatar"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/edit_margin"
-        app:civ_border_width="1dp"
-        app:civ_border_color="@color/txt_color"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/userNameInProfile"
-        android:text="User name"
-        android:textStyle="bold"
-        android:textSize="22sp"
-        android:layout_below="@+id/profile_image"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/reycler_view_margin"
-        />
+    <include
+        android:id="@+id/profile_tool_bar"
+        layout="@layout/app_tool_bar" />
 
 
-    <!-- Scroll view -->
     <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/edit_margin"
-        android:layout_below="@+id/userNameInProfile">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/edit_margin">
 
-        <!-- Inner Relative layout -->
         <RelativeLayout
-            android:layout_width="wrap_content"
+            android:id="@+id/layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/edit_margin"
+            android:layout_gravity="center_horizontal"
             android:layout_marginLeft="@dimen/edit_margin"
-            android:layout_marginRight="@dimen/edit_margin">
+            android:layout_marginRight="@dimen/edit_margin"
+            android:padding="@dimen/margin_6">
 
-
-            <TextView
-                android:layout_width="wrap_content"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/profileCard"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/emailTv"
-                android:text="User Email  : "
-                android:textStyle="bold"
-                android:textSize="16sp"
-                />
+                android:layout_marginLeft="@dimen/reycler_view_margin"
+                android:layout_marginTop="50dp"
+                android:layout_marginRight="@dimen/reycler_view_margin"
+                android:elevation="10dp"
+                android:paddingBottom="@dimen/edit_margin"
+                app:cardCornerRadius="@dimen/edit_margin"
+                app:cardElevation="8dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/emailValueTv"
-                android:text="uzair@gmail.com"
-                android:layout_toRightOf="@+id/emailTv"
-                android:layout_marginLeft="@dimen/edit_margin"
-                android:textSize="14sp"
-                />
 
-            <TextView
-                android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="70dp"
+                    android:layout_marginBottom="@dimen/edit_margin"
+                    android:paddingBottom="@dimen/edit_margin">
+
+                    <TextView
+                        android:id="@+id/userNameInProfile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/reycler_view_margin"
+                        android:layout_marginBottom="@dimen/edit_margin"
+                        android:text="User name"
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/emailTv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/userNameInProfile"
+                        android:text="User Email  : "
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/emailValueTv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/userNameInProfile"
+                        android:layout_marginLeft="@dimen/edit_margin"
+                        android:layout_toRightOf="@+id/emailTv"
+                        android:text="uzair@gmail.com"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/phoneNumberTv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/emailTv"
+                        android:layout_marginTop="@dimen/edit_margin"
+                        android:text="Phone No    : "
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/phoneNUmberValueTv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/emailTv"
+                        android:layout_marginLeft="@dimen/edit_margin"
+                        android:layout_marginTop="@dimen/edit_margin"
+                        android:layout_toRightOf="@+id/phoneNumberTv"
+                        android:text="0303403054"
+                        android:textSize="14sp" />
+
+
+                    <TextView
+                        android:id="@+id/cnicTv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/phoneNumberTv"
+                        android:layout_marginTop="@dimen/edit_margin"
+                        android:text="User Cnic    : "
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/cnicValueTv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/phoneNumberTv"
+                        android:layout_marginLeft="@dimen/edit_margin"
+                        android:layout_marginTop="@dimen/edit_margin"
+                        android:layout_toRightOf="@+id/phoneNumberTv"
+                        android:text="3523523"
+                        android:textSize="14sp" />
+
+                </RelativeLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/phoneNumberTv"
-                android:layout_below="@+id/emailTv"
-                android:text="Phone No    : "
-                android:textStyle="bold"
-                android:textSize="16sp"
+                android:layout_below="@+id/profileCard"
+                android:layout_marginLeft="@dimen/reycler_view_margin"
                 android:layout_marginTop="@dimen/edit_margin"
+                android:layout_marginRight="@dimen/reycler_view_margin"
+                android:layout_marginBottom="@dimen/margin_6"
+                android:paddingBottom="@dimen/edit_margin"
+                android:paddingTop="@dimen/edit_margin"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="@dimen/margin_6"
+                    app:cardElevation="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/reycler_view_margin"
+                        android:layout_marginBottom="@dimen/margin_6">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:text="Total Complaints"
+                            android:textStyle="bold"
+                            android:textSize="14sp"
+                            android:textColor="@color/txt_color"
+                            android:gravity="center_horizontal"/>
+
+                        <TextView
+                            android:id="@+id/totalComplaints"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:text="0"
+                            android:textStyle="bold"
+                            android:textColor="@color/txt_color"
+                            android:layout_marginTop="@dimen/margin_6"/>
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="@dimen/margin_6"
+                    app:cardElevation="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/reycler_view_margin"
+                        android:layout_marginBottom="@dimen/margin_6">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:text="Completed Complaints"
+                            android:textStyle="bold"
+                            android:textSize="14sp"
+                            android:textColor="@android:color/holo_blue_dark"
+                            android:gravity="center_horizontal"/>
+
+                        <TextView
+                            android:id="@+id/completedComplaints"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:text="0"
+                            android:textStyle="bold"
+                            android:textColor="@android:color/holo_blue_dark"
+                            android:layout_marginTop="@dimen/margin_6"/>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="@dimen/margin_6"
+                    app:cardElevation="10dp">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/reycler_view_margin"
+                        android:layout_marginBottom="@dimen/margin_6">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:text="Pending Complaints"
+                            android:textStyle="bold"
+                            android:textSize="14sp"
+                            android:textColor="@android:color/holo_red_dark"
+                            android:gravity="center_horizontal"/>
+
+                        <TextView
+                            android:id="@+id/pendingComplaints"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:text="0"
+                            android:textStyle="bold"
+                            android:textColor="@android:color/holo_red_dark"
+                            android:layout_marginTop="@dimen/margin_6"/>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_image"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_centerHorizontal="true"
+                android:elevation="10dp"
+                android:src="@drawable/avator_colored"
+
+
                 />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/phoneNUmberValueTv"
-                android:layout_below="@+id/emailTv"
-                android:text="0303403054"
-                android:layout_toRightOf="@+id/phoneNumberTv"
-                android:layout_marginLeft="@dimen/edit_margin"
-                android:textSize="14sp"
-                android:layout_marginTop="@dimen/edit_margin"
-                />
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/cnicTv"
-                android:layout_below="@+id/phoneNumberTv"
-                android:text="User Cnic    : "
-                android:textStyle="bold"
-                android:textSize="16sp"
-                android:layout_marginTop="@dimen/edit_margin"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/cnicValueTv"
-                android:layout_below="@+id/phoneNumberTv"
-                android:text="3523523"
-                android:layout_toRightOf="@+id/phoneNumberTv"
-                android:layout_marginLeft="@dimen/edit_margin"
-                android:textSize="14sp"
-                android:layout_marginTop="@dimen/edit_margin"
-                />
-
-
 
         </RelativeLayout>
 
 
     </ScrollView>
 
-
-</RelativeLayout>
+</LinearLayout>

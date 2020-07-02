@@ -13,10 +13,13 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 import com.uzair.kptehsilmunicipaladministrationservices.AppModules.LoginAndSignUp.Login;
 import com.uzair.kptehsilmunicipaladministrationservices.AppModules.Main.HomeRecyclerAdapters.HomeRecyclerAdapter;
 import com.uzair.kptehsilmunicipaladministrationservices.AppModules.Main.ModelOfHomeRecycler.HomeModel;
+import com.uzair.kptehsilmunicipaladministrationservices.Models.ComplaintHomePresenterImplementer;
 import com.uzair.kptehsilmunicipaladministrationservices.Models.MainPagePresenterImplementer;
+import com.uzair.kptehsilmunicipaladministrationservices.Presenters.ComplaintHomePresenter;
 import com.uzair.kptehsilmunicipaladministrationservices.Presenters.MainPagePresenter;
 import com.uzair.kptehsilmunicipaladministrationservices.R;
 import com.uzair.kptehsilmunicipaladministrationservices.Views.MainPageView;
@@ -40,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements MainPageView
 
         initViews();
         mainPagePresenter.setHomeRecyclerAdapter();
+
     }
 
     private void initViews()
@@ -61,12 +65,16 @@ public class MainActivity extends AppCompatActivity implements MainPageView
     @Override
     protected void onStart() {
         super.onStart();
-
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
             if (currentUser == null || !currentUser.isEmailVerified()) {
                 startActivity(new Intent(this, Login.class));
                 this.finish();
+            }
+            else
+            {
+                mainPagePresenter.updateToken(mAuth);
+
             }
 
     }

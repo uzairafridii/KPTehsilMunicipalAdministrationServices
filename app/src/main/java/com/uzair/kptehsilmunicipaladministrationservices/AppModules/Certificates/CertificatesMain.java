@@ -8,6 +8,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -25,7 +28,7 @@ public class CertificatesMain extends AppCompatActivity implements CertificateMa
     private RecyclerView certificateRecyclerView;
     private LinearLayoutManager layoutManager;
     private CertificateMainPresenter mainPresenterImplementer;
-
+    private LinearLayout noItemTv;
     private DatabaseReference dbRef;
     private FirebaseAuth mAuth;
 
@@ -35,9 +38,7 @@ public class CertificatesMain extends AppCompatActivity implements CertificateMa
         setContentView(R.layout.activity_certificates_main);
 
         initViews();
-
         mainPresenterImplementer.retrieveAllCertificates(dbRef , mAuth);
-
 
     }
 
@@ -51,6 +52,8 @@ public class CertificatesMain extends AppCompatActivity implements CertificateMa
         actionBar.setHomeAsUpIndicator(R.drawable.backicon);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
+
+        noItemTv = findViewById(R.id.progressData);
 
         certificateRecyclerView = findViewById(R.id.certificateRv);
         layoutManager = new LinearLayoutManager(this);
@@ -74,7 +77,17 @@ public class CertificatesMain extends AppCompatActivity implements CertificateMa
     @Override
     public void setAdapter(List<CertificateModel> modelList)
     {
-        AdapterForCertificateRv adapter = new AdapterForCertificateRv(this, modelList);
+        AdapterForCertificateRv adapter = new AdapterForCertificateRv(this, modelList ,this);
         certificateRecyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public void noItemFound() {
+        noItemTv.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideNoItemFoundLayout() {
+        noItemTv.setVisibility(View.GONE);
     }
 }

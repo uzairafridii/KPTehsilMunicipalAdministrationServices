@@ -21,25 +21,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <service
-            android:name=".AppModules.FirebaseMessagingService.FirebaseMessagingService"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
-
-        <uses-library
-            android:name="org.apache.http.legacy"
-            android:required="false" />
-
-        <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="@string/map_api_key" />
-
         <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -94,7 +75,14 @@
         <activity
             android:name=".AppModules.UserComplaint.ComplaintsMain.Complaints"
             android:parentActivityName=".AppModules.Main.MainActivity"
-            android:screenOrientation="locked" />
+            android:screenOrientation="locked" >
+                <intent-filter>
+                    <action android:name="com.uzair.kptehsilmunicipaladministrationservices_TARGET_NOTIFICATION" />
+
+                    <category android:name="android.intent.category.DEFAULT" />
+                </intent-filter>
+        </activity>
+
         <activity
             android:name=".AppModules.LoginAndSignUp.SignUp"
             android:screenOrientation="locked" />
@@ -104,6 +92,34 @@
         <activity
             android:name=".AppModules.Main.MainActivity"
             android:screenOrientation="locked" />
+
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/map_api_key" />
+
+
+        <service
+            android:name=".AppModules.FirebaseMessagingService.FirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/logo" />
+
+
+
     </application>
 
 </manifest>

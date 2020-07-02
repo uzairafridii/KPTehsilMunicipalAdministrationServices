@@ -1,12 +1,22 @@
 package com.uzair.kptehsilmunicipaladministrationservices.Models;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-
+import android.view.LayoutInflater;
+import android.view.View;
 import androidx.appcompat.app.AlertDialog;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.uzair.kptehsilmunicipaladministrationservices.AppModules.Main.MainActivity;
 import com.uzair.kptehsilmunicipaladministrationservices.AppModules.Main.ModelOfHomeRecycler.HomeModel;
 import com.uzair.kptehsilmunicipaladministrationservices.Presenters.MainPagePresenter;
@@ -14,7 +24,9 @@ import com.uzair.kptehsilmunicipaladministrationservices.R;
 import com.uzair.kptehsilmunicipaladministrationservices.Views.MainPageView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MainPagePresenterImplementer implements MainPagePresenter
 {
@@ -33,7 +45,9 @@ public class MainPagePresenterImplementer implements MainPagePresenter
         AlertDialog.Builder alert = new AlertDialog.Builder(context);
         alert.setMessage("Do you want to close the app?");
         alert.setTitle("TMA App");
+        alert.setIcon(R.drawable.logo);
         alert.setCancelable(false);
+
         alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -42,7 +56,7 @@ public class MainPagePresenterImplementer implements MainPagePresenter
 
 
             }
-        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+        }).setNeutralButton("No", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
@@ -82,18 +96,46 @@ public class MainPagePresenterImplementer implements MainPagePresenter
     public void showNoNetworkDialog()
     {
         AlertDialog.Builder alert = new AlertDialog.Builder(context);
-        alert.setMessage("No network is available");
-        alert.setTitle("Internet Detection");
-        alert.setCancelable(false);
-        alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+        View myView  = LayoutInflater.from(context).inflate(R.layout.main_screen_dialog, null);
+        alert.setView(myView);
+        final Dialog dialog = alert.create();
+        dialog.setCancelable(false);
+        myView.findViewById(R.id.btnClose).setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-
-                dialogInterface.dismiss();
+            public void onClick(View view) {
+                dialog.dismiss();
                 mainPageView.closeActivity();
+
             }
         });
 
+
         alert.show();
+    }
+
+    @Override
+    public void updateToken(final FirebaseAuth mAuth)
+    {
+
+         if(mAuth != null) {
+             // get the device token
+             FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(new OnSuccessListener<InstanceIdResult>() {
+                 @Override
+                 public void onSuccess(InstanceIdResult instanceIdResult) {
+
+                     if (mAuth.getCurrentUser().getUid() != null) {
+                         // update the device token whe user logged into app
+                         DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference()
+                                 .child("Users").child(mAuth.getCurrentUser().getUid());
+
+                         Map<String, Object> updateToken = new HashMap<>();
+                         updateToken.put("device_token", instanceIdResult.getToken());
+
+                         dbRef.updateChildren(updateToken);
+                     }
+
+                 }
+             });
+         }
     }
 }

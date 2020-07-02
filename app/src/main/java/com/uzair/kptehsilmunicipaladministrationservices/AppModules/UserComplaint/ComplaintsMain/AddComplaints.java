@@ -3,12 +3,13 @@ package com.uzair.kptehsilmunicipaladministrationservices.AppModules.UserComplai
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.ClipData;
 import android.content.Intent;
@@ -207,7 +208,7 @@ public class AddComplaints extends AppCompatActivity implements AddComplaintsVie
             AlertDialog.Builder alert = new AlertDialog.Builder(AddComplaints.this);
             alert.setView(myView);
 
-            final AlertDialog dialog = alert.create();
+            final Dialog dialog = alert.create();
             dialog.setCancelable(false);
             dialog.setCanceledOnTouchOutside(false);
             dialog.show();

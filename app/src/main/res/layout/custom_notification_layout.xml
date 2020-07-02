@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout"
+    android:layout_width="fill_parent"
+    android:layout_height="90dp"
+    android:padding="10dp" >
+
+    <TextView
+        android:textColor="#000"
+        android:text="Kp TMA Services"
+        android:id="@+id/appName"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="@dimen/margin_16"
+        android:layout_toRightOf="@id/notificationImage"
+        />
+
+
+
+    <ImageView
+        android:src="@mipmap/ic_launcher"
+        android:id="@+id/notificationImage"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="@dimen/margin_6"
+        android:layout_below="@id/appName"
+        />
+    <TextView
+        android:textSize="13dp"
+        android:textColor="#000"
+        android:text="Title"
+        android:id="@+id/notificationTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/notificationImage"
+        android:layout_below="@id/appName"
+        android:layout_marginTop="@dimen/margin_6"
+
+        />
+    <TextView
+        android:textSize="13dp"
+        android:textColor="#000"
+        android:text="Body"
+        android:id="@+id/notificationBody"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/notificationImage"
+        android:layout_below="@id/notificationTitle"
+        />
+</RelativeLayout>

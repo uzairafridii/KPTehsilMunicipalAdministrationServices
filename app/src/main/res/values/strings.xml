@@ -14,7 +14,7 @@
     </string-array>
 
     <string name="app_name">KP TMA Services</string>
-    <string name="map_api_key"></string>
+    <string name="map_api_key">AIzaSyC25fz7R_AYrRD5v6spK89aW9yt2Oiafl4</string>
     <string name="forgot_password">Forgot Password?</string>
     <string name="user_password">Password</string>
     <string name="user_email">Email</string>
@@ -81,5 +81,6 @@
     <string name="name_of_driver">Name of Driver</string>
     <string name="noc_status">Noc Status</string>
     <string name="title_activity_maps">Map</string>
+    <string name="channel_id">channel_id</string>
 
 </resources>

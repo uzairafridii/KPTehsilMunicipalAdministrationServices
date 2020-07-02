@@ -10,4 +10,8 @@ public interface CertificateMainView
 
     void setAdapter(List<CertificateModel> modelList);
 
+    void noItemFound();
+
+    void hideNoItemFoundLayout();
+
 }

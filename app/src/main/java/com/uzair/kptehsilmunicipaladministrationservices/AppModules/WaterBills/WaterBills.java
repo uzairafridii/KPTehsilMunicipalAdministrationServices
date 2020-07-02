@@ -130,7 +130,7 @@ public class WaterBills extends AppCompatActivity implements WaterBillView
     }
 
 
-    // request for permission used for download bill
+    // check permission
     @Override
     public boolean checkStoragePermission() {
 

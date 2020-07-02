@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -31,13 +32,14 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Profile extends AppCompatActivity implements ProfileView
 {
-    private TextView user_name , user_email , user_phone , user_cnic;
+    private TextView user_name , user_email , user_phone , user_cnic , totalComplaints, completedComplaints , pendingCompalints;
     private CircleImageView profileImage;
     private Toolbar mToolbar;
     private ProgressDialog progressDialog;
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabaseRef;
     private ProfilePresenterImplementer profilePresenterImplementer;
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,11 +78,20 @@ public class Profile extends AppCompatActivity implements ProfileView
         profilePresenterImplementer = new ProfilePresenterImplementer(this , getApplicationContext());
         progressDialog = new ProgressDialog(this , R.style.MyAlertDialogStyle);
 
+
+        sharedPreferences  = getSharedPreferences("complaintDetails", MODE_PRIVATE);
         // text views
           user_name = findViewById(R.id.userNameInProfile);
           user_email = findViewById(R.id.emailValueTv);
           user_phone = findViewById(R.id.phoneNUmberValueTv);
           user_cnic = findViewById(R.id.cnicValueTv);
+          completedComplaints  = findViewById(R.id.completedComplaints);
+          totalComplaints  = findViewById(R.id.totalComplaints);
+          pendingCompalints  = findViewById(R.id.pendingComplaints);
+
+          totalComplaints.setText(""+sharedPreferences.getInt("totalComplaints",0));
+          completedComplaints.setText(""+sharedPreferences.getInt("completedComplaints",0));
+          pendingCompalints.setText(""+sharedPreferences.getInt("pendingComplaints",0));
 
         // circle image view
         profileImage  = findViewById(R.id.profile_image);

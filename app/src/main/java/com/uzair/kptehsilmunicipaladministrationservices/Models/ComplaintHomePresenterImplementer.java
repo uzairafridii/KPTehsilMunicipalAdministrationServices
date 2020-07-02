@@ -1,6 +1,7 @@
 package com.uzair.kptehsilmunicipaladministrationservices.Models;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,16 +38,23 @@ public class ComplaintHomePresenterImplementer implements ComplaintHomePresenter
 {
          private ComplaintHomeView complaintHomeView;
          private List<ComplaintModel> list = new ArrayList<>();
+         private int completedComplaints , pendingComplaints , totalComplaints;
+         private Context context;
 
-    public ComplaintHomePresenterImplementer(ComplaintHomeView complaintHomeView) {
+    public ComplaintHomePresenterImplementer(ComplaintHomeView complaintHomeView, Context context) {
         this.complaintHomeView = complaintHomeView;
+        this.context = context;
+        completedComplaints =0;
+        pendingComplaints = 0;
+        totalComplaints = 0;
     }
-
 
 
     @Override
     public void getAllComplaints(DatabaseReference dbRef, FirebaseAuth mAuth)
     {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("complaintDetails", Context.MODE_PRIVATE);
+        final SharedPreferences.Editor editor = sharedPreferences.edit();
 
         if(dbRef != null && mAuth != null)
         {
@@ -56,7 +64,27 @@ public class ComplaintHomePresenterImplementer implements ComplaintHomePresenter
                @Override
                public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s)
                {
+
                    ComplaintModel complaints = dataSnapshot.getValue(ComplaintModel.class);
+
+                   if(complaints.getStatus().equals("Pending"))
+                   {
+                       pendingComplaints = pendingComplaints + 1;
+                       totalComplaints = totalComplaints + 1;
+
+
+                   }else if(complaints.getStatus().equals("Completed"))
+                   {
+                       completedComplaints = completedComplaints  + 1;
+                       totalComplaints = totalComplaints + 1;
+                   }
+
+                   editor.putInt("completedComplaints", completedComplaints);
+                   editor.putInt("pendingComplaints", pendingComplaints);
+                   editor.putInt("totalComplaints", totalComplaints);
+                   editor.apply();
+                   editor.commit();
+
                    list.add(complaints);
 
                    complaintHomeView.setAdapter(list);

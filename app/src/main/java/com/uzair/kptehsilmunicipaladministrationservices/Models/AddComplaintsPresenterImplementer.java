@@ -162,7 +162,7 @@ public class AddComplaintsPresenterImplementer implements AddComplaintsPresenter
                 Map<String, String> notificationData = new HashMap<>();
                 notificationData.put("from", currentUserUid);
 
-                dbRef.child("Notifications").child("ComplaintNotification").child(workerHeadUid)
+                dbRef.child("notifications").child("complaints").child(workerHeadUid)
                         .push().setValue(notificationData).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {

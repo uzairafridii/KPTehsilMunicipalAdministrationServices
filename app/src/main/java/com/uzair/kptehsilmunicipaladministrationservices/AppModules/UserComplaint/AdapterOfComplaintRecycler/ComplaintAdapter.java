@@ -68,7 +68,7 @@ public class ComplaintAdapter extends RecyclerView.Adapter<ComplaintAdapter.MyCo
 
                 if(complaintModel.getStatus().equals("Pending"))
                 {
-                    complaintHomeView.onShowStatusDialog("Sorry your complaint is in Pending");
+                    complaintHomeView.onShowStatusDialog("Ooops!! your complaint is in Pending");
                 }
                 else
                 {

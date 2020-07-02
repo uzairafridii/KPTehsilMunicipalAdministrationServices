@@ -203,7 +203,7 @@ public class UserFeedBackPresenterImplementer implements UserFeedBackPresenter
                         Map<String , String> notificationData = new HashMap<>();
                         notificationData.put("from", uid);
 
-                        dbRef.child("Notifications").child("RatingNotifications")
+                        dbRef.child("notifications").child("rating")
                                 .child(workerHeadUid).push().setValue(notificationData);
                     }
                     @Override

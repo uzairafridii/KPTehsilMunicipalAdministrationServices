@@ -1,9 +1,11 @@
 package com.uzair.kptehsilmunicipaladministrationservices.AppModules.UserComplaint.ComplaintsMain;
 
-import android.app.AlertDialog;
+
+import android.app.Dialog;
 import android.content.Intent;
 
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -14,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,14 +31,13 @@ import com.uzair.kptehsilmunicipaladministrationservices.Views.ComplaintHomeView
 
 import java.util.List;
 
-public class Complaints extends AppCompatActivity implements ComplaintHomeView
-{
+public class Complaints extends AppCompatActivity implements ComplaintHomeView {
 
     private Toolbar mToolbar;
     private RecyclerView complaintRecyclerList;
     private LinearLayoutManager layoutManager;
     private ComplaintAdapter complaintAdapter;
-    private TextView noItemTv;
+    private LinearLayout noItemTv;
     private ComplaintHomePresenterImplementer presenterImplementer;
     //firebase
     private DatabaseReference mComplaintRef;
@@ -47,14 +50,13 @@ public class Complaints extends AppCompatActivity implements ComplaintHomeView
 
         initViews();
 
-        presenterImplementer.getAllComplaints(mComplaintRef , mUserAuth);
+        presenterImplementer.getAllComplaints(mComplaintRef, mUserAuth);
 
     }
 
-    private void initViews()
-    {
+    private void initViews() {
 
-        presenterImplementer = new ComplaintHomePresenterImplementer(this);
+        presenterImplementer = new ComplaintHomePresenterImplementer(this, this);
 
         noItemTv = findViewById(R.id.progressData);
         //recycler view
@@ -87,37 +89,34 @@ public class Complaints extends AppCompatActivity implements ComplaintHomeView
     }
 
     @Override
-    public void noItemTextShow()
-    {
-         noItemTv.setVisibility(View.VISIBLE);
+    public void noItemTextShow() {
+        noItemTv.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void noItemTextHide() {
-        noItemTv.setVisibility(View.INVISIBLE);
+        noItemTv.setVisibility(View.GONE);
     }
 
     @Override
-    public void setAdapter(List<ComplaintModel> list)
-    {
-         complaintAdapter = new ComplaintAdapter(getApplicationContext() , list , this);
-         complaintRecyclerList.setAdapter(complaintAdapter);
+    public void setAdapter(List<ComplaintModel> list) {
+        complaintAdapter = new ComplaintAdapter(getApplicationContext(), list, this);
+        complaintRecyclerList.setAdapter(complaintAdapter);
     }
 
     @Override
-    public void onShowStatusDialog(String message)
-    {
-      successDailog(message);
+    public void onShowStatusDialog(String message) {
+        successDailog(message);
     }
 
 
-    private void successDailog(String message )
-    {
-        View myView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.custom_dialog , null);
+    private void successDailog(String message) {
+        View myView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.custom_dialog, null);
         AlertDialog.Builder alert = new AlertDialog.Builder(Complaints.this);
         alert.setView(myView);
 
-        final AlertDialog dialog = alert.create();
+
+        final Dialog dialog = alert.create();
         dialog.setCancelable(false);
         dialog.setCanceledOnTouchOutside(false);
         dialog.show();
@@ -132,7 +131,6 @@ public class Complaints extends AppCompatActivity implements ComplaintHomeView
             }
         });
     }
-
 
 
 }

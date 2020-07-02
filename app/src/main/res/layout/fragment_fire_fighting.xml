@@ -5,15 +5,14 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="250dp"
-    android:background="#16B4B2B2"
     android:paddingBottom="@dimen/edit_margin"
+
     tools:context=".AppModules.FireFighting.FireFighting">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="@dimen/edit_margin">
-
 
         <View
             android:id="@+id/viewIndicatorFireFighting"
@@ -65,7 +64,7 @@
             android:layout_below="@id/contact_txt_field"
             android:layout_marginLeft="@dimen/edit_margin"
             android:layout_marginRight="@dimen/edit_margin"
-            android:text="03047901748 "
+            android:text="Driver number"
             android:textColor="@color/txt_color"
             android:textSize="20sp" />
 
@@ -92,7 +91,6 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
-
         <ImageButton
             android:id="@+id/notificaty_image_btn"
             android:layout_width="wrap_content"
@@ -115,5 +113,6 @@
             />
 
     </RelativeLayout>
+
 
 </FrameLayout>
