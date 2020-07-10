@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,6 +30,7 @@ import java.util.Map;
 
 public class UserFeedBackPresenterImplementer implements UserFeedBackPresenter
 {
+    private DatabaseReference mDatabaseRef = FirebaseDatabase.getInstance().getReference();
     private UserFeedBackView feedBackView;
     private String pushKey;
     private double total;
@@ -99,12 +101,15 @@ public class UserFeedBackPresenterImplementer implements UserFeedBackPresenter
 
             try {
 
+                // get the worker id from worker list through Worker Name
                 Query query = dbRef.child("Worker List").orderByChild("nameOfWorker").equalTo(workerName);
 
                 query.addChildEventListener(new ChildEventListener() {
                     @Override
                     public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s)
                     {
+                        // get the worker key and pass to the rating method to add rating to
+                        // the worker who done the work
                         pushKey = dataSnapshot.child("pushKey").getValue().toString();
                         addRatingIntoDatabase(rating, comment, imageUrl, uid, pushKey, complaintKey , complaintType);
                     }
@@ -146,6 +151,7 @@ public class UserFeedBackPresenterImplementer implements UserFeedBackPresenter
                                        final String uid , final String pushKey ,
                                        final String complaintKey , final String complaintType)
     {
+        // store rating data in firebase
         final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Ratings");
             final StorageReference imageRef = FirebaseStorage.getInstance().getReference()
                     .child("RatingImages").child(image.getLastPathSegment());
@@ -180,6 +186,8 @@ public class UserFeedBackPresenterImplementer implements UserFeedBackPresenter
                                         addNotificationData(uid , complaintType);
                                         feedBackView.showMessage("Successfully added");
                                         feedBackView.hideProgressBar();
+                                        // call validation method
+                                        addRatingValidation(uid , complaintKey);
                                     }
                                 }
                             });
@@ -192,18 +200,18 @@ public class UserFeedBackPresenterImplementer implements UserFeedBackPresenter
             // send notification data to firebase
     private void addNotificationData(final String uid, String complaintType)
     {
-        final DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference();
-        dbRef.child("WorkersHead").orderByChild("department").equalTo(complaintType)
+        // first get the uid of department head
+        mDatabaseRef.child("WorkersHead").orderByChild("department").equalTo(complaintType)
                 .addChildEventListener(new ChildEventListener() {
                     @Override
                     public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s)
                     {
                         String workerHeadUid = dataSnapshot.child("uid").getValue().toString();
-
+                        // store uid for notification
                         Map<String , String> notificationData = new HashMap<>();
                         notificationData.put("from", uid);
 
-                        dbRef.child("notifications").child("rating")
+                        mDatabaseRef.child("notifications").child("rating")
                                 .child(workerHeadUid).push().setValue(notificationData);
                     }
                     @Override
@@ -221,28 +229,31 @@ public class UserFeedBackPresenterImplementer implements UserFeedBackPresenter
     // update the average rating of workers
     private void updateAverageRating(final String key)
     {
-                 DatabaseReference db  = FirebaseDatabase.getInstance().getReference().child("Ratings");
-                        Query selectQuery =  db.orderByChild("worker_id").equalTo(key);
+        // get the worker id from rating node
+                 DatabaseReference ratingDb  = FirebaseDatabase.getInstance().getReference().child("Ratings");
+                        Query selectQuery =  ratingDb.orderByChild("worker_id").equalTo(key);
 
                         selectQuery.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                                for(DataSnapshot dataSnap : dataSnapshot.getChildren())
+                                // get the all ratings of worker who complete the work
+                                for(DataSnapshot workerRating : dataSnapshot.getChildren())
                                 {
-                                    double rating = Double.parseDouble(dataSnap.child("user_rating").getValue().toString());
+                                    double rating = Double.parseDouble(workerRating.child("user_rating").getValue().toString());
                                     total = total + rating;
                                     counter = counter + 1;
                                 }
 
                                 Log.d("totalRating", "onChildAdded: "+total/counter);
 
-                                DatabaseReference dbRef  = FirebaseDatabase.getInstance().getReference().child("Worker List");
+                                // update the average rating of workers who complete the worker
+                                DatabaseReference updateRating  = FirebaseDatabase.getInstance().getReference().child("Worker List");
 
                                 Map rating  = new HashMap<>();
                                 rating.put("average_rating",String.valueOf(total/counter));
                                 rating.put("total_reviews",String.valueOf(counter));
-                                dbRef.child(key).updateChildren(rating);
+                                updateRating.child(key).updateChildren(rating);
 
 
                             }
@@ -251,5 +262,19 @@ public class UserFeedBackPresenterImplementer implements UserFeedBackPresenter
                           public void onCancelled(@NonNull DatabaseError databaseError) {}});
     }
 
+
+    // add complaint validation means user can add rating only once
+    private void addRatingValidation(String uid , String complainKey)
+    {
+        if(!uid.isEmpty())
+        {
+            Map<String , String> validationData = new HashMap();
+            validationData.put(complainKey , "true");
+
+            mDatabaseRef.child("RatingValidation").child(uid).child(complainKey).setValue(validationData);
+
+        }
+
+    }
 
 }

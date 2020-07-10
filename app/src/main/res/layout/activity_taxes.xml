@@ -12,5 +12,39 @@
     <include layout="@layout/app_tool_bar"
         android:id="@+id/taxes_tool_bar"/>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/taxesDetails"
+        android:layout_below="@id/taxes_tool_bar"
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerInParent="true"
+        android:id="@+id/notFoundData"
+
+        >
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/imageNotFound"
+            android:src="@drawable/not_found"
+            android:layout_gravity="center_horizontal"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/notFoundText"
+            android:text="No Taxes Detail Available"
+            android:layout_gravity="center_horizontal"
+            android:textStyle="bold"
+            />
+
+    </LinearLayout>
+
 
 </RelativeLayout>

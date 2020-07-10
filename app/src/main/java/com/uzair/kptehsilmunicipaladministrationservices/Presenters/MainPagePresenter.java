@@ -15,4 +15,6 @@ public interface MainPagePresenter
 
     void updateToken(FirebaseAuth mAuth);
 
+    void getUserName(DatabaseReference dbRef, FirebaseAuth mAuth);
+
 }

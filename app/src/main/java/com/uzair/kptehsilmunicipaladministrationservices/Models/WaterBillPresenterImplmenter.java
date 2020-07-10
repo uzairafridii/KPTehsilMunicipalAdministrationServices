@@ -107,21 +107,28 @@ public class WaterBillPresenterImplmenter implements WaterBillPresenter
                 public void onResourceReady(Bitmap bitmap, Transition<? super Bitmap> transition) {
                     try {
 
+                        // storage path in memory
                         String storagePath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
                                 +"/WaterBills";
 
+                        // generate random number for image
                         final Random generator = new Random();
                         int n = 10000;
                         n = generator.nextInt(n);
-                        final String fname = "Your Bill-" + n + ".png";
+                        final String fName = "Your Bill-" + n + ".png";
 
+                        // set path in memory
                         File image = new File(storagePath);
 
+                        // if folder not exist then create it
                         if (!image.exists()) {
                             image.mkdirs();
                         }
 
-                        FileOutputStream outputStream = new FileOutputStream(image+"/"+fname);
+                        // store the file in image path and name is fName
+                        FileOutputStream outputStream = new FileOutputStream(image+"/"+fName);
+
+                        //compress the image
                         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
 
                         //write data into destination
@@ -136,8 +143,7 @@ public class WaterBillPresenterImplmenter implements WaterBillPresenter
                     Toast.makeText(context, "Image saved with success at /Pictures/WaterBills", Toast.LENGTH_LONG).show();
                 }
                 @Override
-                public void onLoadCleared(Drawable placeholder) {
-                }
+                public void onLoadCleared(Drawable placeholder) {}
             });
 
 

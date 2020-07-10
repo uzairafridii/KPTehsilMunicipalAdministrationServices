@@ -13,7 +13,6 @@
 
 
     <style name="TextLabel" parent="TextAppearance.AppCompat">
-        <!-- Label color in TRUE state and bar color FALSE and TRUE State -->
         <item name="android:textColorHint">#C0C0C0</item>
         <item name="colorControlActivated">@color/txt_color</item>
     </style>
@@ -23,6 +22,11 @@
         <item name="colorAccent">@color/txt_color</item>
         <item name="dialogCornerRadius">@dimen/edit_margin</item>
 
+    </style>
+
+    <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
 

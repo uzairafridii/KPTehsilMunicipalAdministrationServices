@@ -121,9 +121,9 @@ public class FirebrigadePresenterImplementer implements FirebrigadePresenter
                         view.showProgressDialog();
                         // store data in firebase
                         String date = DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
-                        Map<String, String> fireMap = new HashMap<>();
-                        fireMap.put("lat", String.valueOf(lat));
-                        fireMap.put("lng", String.valueOf(lng));
+                        Map fireMap = new HashMap<>();
+                        fireMap.put("lat", lat);
+                        fireMap.put("lng", lng);
                         fireMap.put("uid", auth.getCurrentUser().getUid());
                         fireMap.put("date", date);
 

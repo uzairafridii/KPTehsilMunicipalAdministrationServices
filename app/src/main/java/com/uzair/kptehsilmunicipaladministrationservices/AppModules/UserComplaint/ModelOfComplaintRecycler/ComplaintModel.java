@@ -4,22 +4,13 @@ import java.util.List;
 
 public class ComplaintModel
 {
-    private String title , description , status, date , pushKey , field;
+    private String title , description , status, date , pushKey , field , uid;
     private List<String> imageUrl;
 
     public ComplaintModel() {
     }
 
-    public ComplaintModel(String title, String description, String status,
-                          String date, String pushKey, String field, List<String> imageUrl) {
-        this.title = title;
-        this.description = description;
-        this.status = status;
-        this.date = date;
-        this.pushKey = pushKey;
-        this.field = field;
-        this.imageUrl = imageUrl;
-    }
+    public String getUid() { return uid; }
 
     public String getField() {
         return field;

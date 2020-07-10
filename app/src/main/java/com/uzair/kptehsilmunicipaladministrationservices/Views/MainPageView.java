@@ -11,5 +11,6 @@ public interface MainPageView
 
     void closeActivity();
 
+    void setUserName(String name);
 
 }

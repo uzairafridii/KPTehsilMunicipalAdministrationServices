@@ -5,19 +5,28 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.uzair.kptehsilmunicipaladministrationservices.AppModules.UserComplaint.ComplaintsMain.UserFeedBack;
 import com.uzair.kptehsilmunicipaladministrationservices.AppModules.UserComplaint.ModelOfComplaintRecycler.ComplaintModel;
 import com.uzair.kptehsilmunicipaladministrationservices.R;
@@ -30,6 +39,7 @@ public class ComplaintAdapter extends RecyclerView.Adapter<ComplaintAdapter.MyCo
     private Context context;
     private List<ComplaintModel> list;
     private ComplaintHomeView complaintHomeView;
+    private  String isAddFeedback;
 
     public ComplaintAdapter(Context context, List<ComplaintModel> list , ComplaintHomeView complaintHomeView) {
         this.context = context;
@@ -61,7 +71,6 @@ public class ComplaintAdapter extends RecyclerView.Adapter<ComplaintAdapter.MyCo
         myComplaintHolder.setComplaintStatus(complaintModel.getStatus());
         myComplaintHolder.setComplaintImage(complaintModel.getImageUrl());
 
-
         myComplaintHolder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,14 +81,11 @@ public class ComplaintAdapter extends RecyclerView.Adapter<ComplaintAdapter.MyCo
                 }
                 else
                 {
-                    Intent intent  = new Intent(context , UserFeedBack.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.putExtra("pushKey" , complaintModel.getPushKey());
-                    intent.putExtra("complaintType" , complaintModel.getField());
-                    context.startActivity(intent);
+                    checkUserAddRatingOrNot(complaintModel.getPushKey(), complaintModel.getField() , complaintModel.getUid());
                 }
 
             }
+
         });
 
     }
@@ -158,5 +164,47 @@ public class ComplaintAdapter extends RecyclerView.Adapter<ComplaintAdapter.MyCo
         }
 
     }
+
+
+
+    // check if user have already add feebfack then he will not add feedback again
+    private void checkUserAddRatingOrNot(final String complaintKey, final String field, String currentUserId)
+    {
+        // check feedback is add or not
+        // if added then user not able to add another feedback
+        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference()
+                                  .child("RatingValidation").child(currentUserId).child(complaintKey);
+
+        dbRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                // get the value whether its
+                if(dataSnapshot.hasChildren()) {
+                    isAddFeedback = dataSnapshot.child(complaintKey).getValue().toString();
+                    Log.d("isAddFeedback", "onChildAdded: " + isAddFeedback);
+                    if (isAddFeedback.equals("true")) {
+                        Toast.makeText(context, "Complaint Feedback is added", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else {
+                    Intent intent = new Intent(context, UserFeedBack.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("pushKey", complaintKey);
+                    intent.putExtra("complaintType", field);
+                    context.startActivity(intent);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {}
+        });
+
+
+
+
+    }
+
 
 }

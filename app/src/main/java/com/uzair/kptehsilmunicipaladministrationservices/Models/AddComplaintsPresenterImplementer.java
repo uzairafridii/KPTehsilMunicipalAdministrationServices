@@ -135,7 +135,7 @@ public class AddComplaintsPresenterImplementer implements AddComplaintsPresenter
                             // add notification data to firebase
                             addNotificationData(fieldOfComplaint , mAuth.getCurrentUser().getUid());
 
-                            addComplaintsView.hideProgressBar();
+
                             addComplaintsView.clearAllFields();
                            // addComplaintsView.showSuccessDialog();
 
@@ -169,7 +169,13 @@ public class AddComplaintsPresenterImplementer implements AddComplaintsPresenter
 
                         if(task.isSuccessful())
                         {
+                            addComplaintsView.hideProgressBar();
                             addComplaintsView.showSuccessDialog();
+                        }
+                        else
+                        {
+                            addComplaintsView.hideProgressBar();
+                            addComplaintsView.showMessage("Something went wrong");
                         }
                     }
                 });

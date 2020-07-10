@@ -1,5 +1,6 @@
 package com.uzair.kptehsilmunicipaladministrationservices.Models;
 
+
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -7,14 +8,20 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.view.LayoutInflater;
 import android.view.View;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 import com.uzair.kptehsilmunicipaladministrationservices.AppModules.Main.MainActivity;
@@ -99,6 +106,7 @@ public class MainPagePresenterImplementer implements MainPagePresenter
         View myView  = LayoutInflater.from(context).inflate(R.layout.main_screen_dialog, null);
         alert.setView(myView);
         final Dialog dialog = alert.create();
+        dialog.setCanceledOnTouchOutside(false);
         dialog.setCancelable(false);
         myView.findViewById(R.id.btnClose).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -137,5 +145,27 @@ public class MainPagePresenterImplementer implements MainPagePresenter
                  }
              });
          }
+    }
+
+    @Override
+    public void getUserName(DatabaseReference dbRef, FirebaseAuth mAuth)
+    {
+        if(dbRef != null && mAuth != null)
+        {
+            dbRef.child("Users").child(mAuth.getCurrentUser().getUid())
+                    .addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                            String name = dataSnapshot.child("user_name").getValue().toString();
+                            mainPageView.setUserName(name);
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {}
+                    });
+        }
+
     }
 }
