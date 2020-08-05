@@ -79,6 +79,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         initViews();
         mapPresenterImplementer.initMap();
 
+        // search view to find search location
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
@@ -137,24 +138,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         }
     }
 
-    // check google services on device
-    @Override
-    public boolean onCheckService()
-    {
-        GoogleApiAvailability googleApi = GoogleApiAvailability.getInstance();
-        int result = googleApi.isGooglePlayServicesAvailable(this);
-
-        if (result == ConnectionResult.SUCCESS) {
-            return true;
-        } else if (googleApi.isUserResolvableError(result)) {
-            Dialog dialog = googleApi.getErrorDialog(this, result, 12, null);
-            dialog.show();
-        } else {
-            Toast.makeText(this, "Play services is require by this application ", Toast.LENGTH_SHORT).show();
-        }
-
-        return false;
-    }
 
     // check enable gps or not
     @Override
@@ -214,7 +197,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 }
                 else
                 {
-                    Toast.makeText(MapActivity.this, "Please try again", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MapActivity.this, "Search your complaint location ", Toast.LENGTH_SHORT).show();
                 }
             }
         });

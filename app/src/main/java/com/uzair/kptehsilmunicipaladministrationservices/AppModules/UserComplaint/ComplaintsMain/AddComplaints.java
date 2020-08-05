@@ -44,12 +44,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static java.lang.Thread.sleep;
 
 public class AddComplaints extends AppCompatActivity implements AddComplaintsView
 {
 
     public static final int REQUEST_CODE = 1;
+    public static final int LOCATION_REQUEST_CODE = 110;
     private Toolbar mToolbar;
     private EditText editTextTitle, editTextDescription;
     private RadioButton sanitation, infrastructure;
@@ -77,7 +77,7 @@ public class AddComplaints extends AppCompatActivity implements AddComplaintsVie
 
     private void initViews() {
 
-        presenterImplementer = new AddComplaintsPresenterImplementer(this);
+        presenterImplementer = new AddComplaintsPresenterImplementer(this , this);
 
         //  app tool bar
         mToolbar = findViewById(R.id.addComplain_tool_bar);
@@ -151,7 +151,7 @@ public class AddComplaints extends AppCompatActivity implements AddComplaintsVie
     public void addLocationClick(View view)
     {
       Intent intent = new Intent(AddComplaints.this , MapActivity.class);
-      startActivityForResult(intent , 110);
+      startActivityForResult(intent , LOCATION_REQUEST_CODE);
     }
 
     @Override
@@ -161,6 +161,7 @@ public class AddComplaints extends AppCompatActivity implements AddComplaintsVie
         //check condition for Gallery image picker request code
         if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
 
+            // get multiple images from gallery
             ClipData clipData = data.getClipData();
             if (clipData != null) {
                 for (int i = 0; i < clipData.getItemCount(); i++) {
@@ -180,7 +181,7 @@ public class AddComplaints extends AppCompatActivity implements AddComplaintsVie
 
 
         // Check location result with an OK result
-        if (requestCode == 110 && resultCode == RESULT_OK && data != null) {
+        if (requestCode == LOCATION_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
 
                 // Get String data from Intent
                 lat = data.getDoubleExtra("lat" , 0.0);
@@ -203,26 +204,6 @@ public class AddComplaints extends AppCompatActivity implements AddComplaintsVie
     }
 
 
-     private void successDailog() {
-            View myView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.custom_dialog_for_complaint , null);
-            AlertDialog.Builder alert = new AlertDialog.Builder(AddComplaints.this);
-            alert.setView(myView);
-
-            final Dialog dialog = alert.create();
-            dialog.setCancelable(false);
-            dialog.setCanceledOnTouchOutside(false);
-            dialog.show();
-
-            myView.findViewById(R.id.btnOk).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    dialog.dismiss();
-                    startActivity(new Intent(AddComplaints.this , Complaints.class));
-                    AddComplaints.this.finish();
-                }
-            });
-        }
-
     @Override
     public void showProgressBar() {
         progressDialog.setMessage("Uploading please wait...");
@@ -237,9 +218,10 @@ public class AddComplaints extends AppCompatActivity implements AddComplaintsVie
     }
 
     @Override
-    public void showSuccessDialog()
+    public void closeActivity()
     {
-       successDailog();
+        startActivity(new Intent(getApplicationContext(), Complaints.class));
+        this.finish();
     }
 
     @Override

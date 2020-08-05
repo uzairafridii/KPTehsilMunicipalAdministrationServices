@@ -104,6 +104,7 @@ public class MainActivity extends AppCompatActivity implements MainPageView
         collapsingToolbarLayout.setTitle(name+" Welcome Here!");
     }
 
+    // check internet connection
     @Override
     protected void onResume() {
         super.onResume();

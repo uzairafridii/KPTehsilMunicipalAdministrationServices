@@ -1,6 +1,7 @@
 package com.uzair.kptehsilmunicipaladministrationservices.AppModules.UserComplaint.AdapterOfComplaintRecycler;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,6 +29,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.uzair.kptehsilmunicipaladministrationservices.AppModules.UserComplaint.ComplaintsMain.Complaints;
 import com.uzair.kptehsilmunicipaladministrationservices.AppModules.UserComplaint.ComplaintsMain.UserFeedBack;
 import com.uzair.kptehsilmunicipaladministrationservices.AppModules.UserComplaint.ModelOfComplaintRecycler.ComplaintModel;
 import com.uzair.kptehsilmunicipaladministrationservices.R;
@@ -60,7 +63,7 @@ public class ComplaintAdapter extends RecyclerView.Adapter<ComplaintAdapter.MyCo
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
-    public void onBindViewHolder(@NonNull MyComplaintHolder myComplaintHolder, int position)
+    public void onBindViewHolder(@NonNull final MyComplaintHolder myComplaintHolder, int position)
     {
         // binding data in views
          final ComplaintModel complaintModel = list.get(position);
@@ -77,7 +80,7 @@ public class ComplaintAdapter extends RecyclerView.Adapter<ComplaintAdapter.MyCo
 
                 if(complaintModel.getStatus().equals("Pending"))
                 {
-                    complaintHomeView.onShowStatusDialog("Ooops!! your complaint is in Pending");
+                    successDailog("Ooops!! your complaint is in Pending");
                 }
                 else
                 {
@@ -183,8 +186,9 @@ public class ComplaintAdapter extends RecyclerView.Adapter<ComplaintAdapter.MyCo
                 if(dataSnapshot.hasChildren()) {
                     isAddFeedback = dataSnapshot.child(complaintKey).getValue().toString();
                     Log.d("isAddFeedback", "onChildAdded: " + isAddFeedback);
+
                     if (isAddFeedback.equals("true")) {
-                        Toast.makeText(context, "Complaint Feedback is added", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Already added feedback", Toast.LENGTH_SHORT).show();
                     }
                 }
                 else {
@@ -195,6 +199,7 @@ public class ComplaintAdapter extends RecyclerView.Adapter<ComplaintAdapter.MyCo
                     context.startActivity(intent);
                 }
 
+
             }
 
             @Override
@@ -202,8 +207,29 @@ public class ComplaintAdapter extends RecyclerView.Adapter<ComplaintAdapter.MyCo
         });
 
 
+    }
 
 
+    private void successDailog(String message) {
+        View myView = LayoutInflater.from(context).inflate(R.layout.custom_dialog, null);
+        AlertDialog.Builder alert = new AlertDialog.Builder(context);
+        alert.setView(myView);
+
+
+        final Dialog dialog = alert.create();
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+
+        TextView textView = myView.findViewById(R.id.message);
+        textView.setText(message);
+
+        myView.findViewById(R.id.btnOk).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
     }
 
 

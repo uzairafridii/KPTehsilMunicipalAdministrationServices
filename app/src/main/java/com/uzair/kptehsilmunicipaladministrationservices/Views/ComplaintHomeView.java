@@ -5,16 +5,13 @@ import com.uzair.kptehsilmunicipaladministrationservices.AppModules.UserComplain
 
 import java.util.List;
 
-public interface ComplaintHomeView
-{
+public interface ComplaintHomeView {
 
     void noItemTextShow();
+
     void noItemTextHide();
 
     void setAdapter(List<ComplaintModel> modelList);
-
-    void onShowStatusDialog(String message);
-
 
 
 }

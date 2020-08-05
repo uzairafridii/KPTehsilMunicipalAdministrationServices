@@ -5,7 +5,7 @@ public interface AddComplaintsView
     void showProgressBar();
     void hideProgressBar();
 
-    void showSuccessDialog();
+    void closeActivity();
     void showMessage(String message);
     void clearAllFields();
 

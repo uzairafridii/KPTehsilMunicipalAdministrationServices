@@ -193,13 +193,9 @@ public class BirthCertificatePresenterImplementer implements BirthCertificatePre
 
     @Override
     public void previewImage(List<Uri> uri) {
-        if (uri.size() > 2)
+        if (uri.size() > 2 || uri.size() < 2)
         {
-            birthView.showMessage("Please select front and back side image only");
-        }
-        else if(uri.size() < 2 )
-        {
-            birthView.showMessage("select front and back side image of cnic");
+            birthView.showMessage("Please select front and back side cnic image");
         }
         else
             {

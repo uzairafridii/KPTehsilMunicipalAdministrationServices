@@ -44,8 +44,6 @@ public class MapPresenterImplementer implements MapPresenter
     @Override
     public void initMap() {
 
-        if (mapView.onCheckService()) {
-
             if (mapView.onGPSEnabled()) {
 
                 if (mapView.onCheckPermission()) {
@@ -60,30 +58,34 @@ public class MapPresenterImplementer implements MapPresenter
                    mapView.onRequestPermission();
                 }
             }
-        }
+
 
 
     }
 
+    // get search location
     @Override
     public void searchLocation(String location)
     {
+        // get the address of search location
         Geocoder geocoder  = new Geocoder(context);
 
         List<Address> addressList = null;
 
         try {
+            // add the addresses in address list of search location
             addressList = geocoder.getFromLocationName(location+" Lachi Kohat Kpk"  ,1);
 
             if(addressList.size() > 0)
             {
+                // get the lat and lng of search location from address
                 Address address = addressList.get(0);
                 mapView.getLatLng(address.getLatitude(), address.getLongitude());
 
             }
             else
             {
-                Toast.makeText(context, "Please enter complete address with teshil and district ", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "Please enter complete address with tehsil and district ", Toast.LENGTH_LONG).show();
             }
         } catch (IOException e) {
             e.printStackTrace();

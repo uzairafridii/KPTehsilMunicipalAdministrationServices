@@ -107,7 +107,7 @@ public class UserFeedBack extends AppCompatActivity implements UserFeedBackView
                 userAuth.getCurrentUser().getUid(), imageUri , complaintPushKey , complaintType);
 
         // if both workers are added then do this
-        if(!workerSecondName.getText().toString().isEmpty()) {
+        if(!workerSecondName.getText().toString().isEmpty() && !workerSecondName.getText().toString().equals("")) {
             presenter.addSecondWorkerRating(ratingRef, String.valueOf(workerRating.getRating()),
                     addCommentEdit.getText().toString(), workerSecondName.getText().toString(),
                     userAuth.getCurrentUser().getUid(), imageUri, complaintPushKey,complaintType);
@@ -132,7 +132,7 @@ public class UserFeedBack extends AppCompatActivity implements UserFeedBackView
     @Override
     public void showMessage(String message) {
 
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 
     @Override

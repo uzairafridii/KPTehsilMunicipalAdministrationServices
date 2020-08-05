@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/margin_6"
+  >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/title"
+        android:text="Confirmation"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:layout_marginTop="@dimen/margin_16"
+        android:layout_centerHorizontal="true"
+
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:id="@+id/view"
+        android:background="@android:color/darker_gray"
+        android:layout_below="@id/title"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="@dimen/margin_6"
+
+        />
+
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/questionMark"
+        android:layout_below="@+id/view"
+        android:layout_marginLeft="@dimen/edit_margin_top"
+        android:layout_marginTop="@dimen/margin_6"
+        android:src="@drawable/question"
+        android:layout_toLeftOf="@+id/body"
+        />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/body"
+        android:text="Do you want to close the app?"
+        android:layout_marginTop="@dimen/margin_16"
+        android:layout_below="@id/view"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="@dimen/margin_6"
+        android:layout_marginBottom="@dimen/margin_6"
+        />
+
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:id="@+id/noButton"
+        android:text="No"
+        android:backgroundTint="@color/txt_color"
+        android:layout_below="@id/questionMark"
+        android:layout_marginTop="@dimen/size_12"
+        android:layout_toRightOf="@id/questionMark"
+        android:layout_marginLeft="@dimen/margin_16"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:id="@+id/yesButton"
+        android:text="Yes"
+        android:backgroundTint="@color/txt_color"
+        android:layout_below="@id/questionMark"
+        android:layout_marginTop="@dimen/size_12"
+        android:layout_marginLeft="@dimen/margin_6"
+       android:layout_toRightOf="@+id/noButton"
+        />
+
+
+
+
+</RelativeLayout>

@@ -1,10 +1,15 @@
 package com.uzair.kptehsilmunicipaladministrationservices.Models;
 
+import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -19,7 +24,9 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.uzair.kptehsilmunicipaladministrationservices.AppModules.UserComplaint.ComplaintsMain.AddComplaints;
+import com.uzair.kptehsilmunicipaladministrationservices.AppModules.UserComplaint.ComplaintsMain.Complaints;
 import com.uzair.kptehsilmunicipaladministrationservices.Presenters.AddComplaintsPresenter;
+import com.uzair.kptehsilmunicipaladministrationservices.R;
 import com.uzair.kptehsilmunicipaladministrationservices.Views.AddComplaintsView;
 
 import java.text.DateFormat;
@@ -34,9 +41,11 @@ public class AddComplaintsPresenterImplementer implements AddComplaintsPresenter
      private AddComplaintsView addComplaintsView;
      private List<String> imageUrls = new ArrayList<>();
      private int counter = 0;
+     private Context context;
 
-    public AddComplaintsPresenterImplementer(AddComplaintsView addComplaintsView) {
+    public AddComplaintsPresenterImplementer(AddComplaintsView addComplaintsView , Context context) {
         this.addComplaintsView = addComplaintsView;
+        this.context = context;
     }
 
     @Override
@@ -108,11 +117,11 @@ public class AddComplaintsPresenterImplementer implements AddComplaintsPresenter
                                    List<String> urls, String titleOfComp , String desc , final String fieldOfComplaint,
                                    double lat , double lng)
     {
-        // if arraylist conatain all urls then upload the data to database
+
+        // reference and current date
         DatabaseReference dbAddCompRef = mDatabaseReference.push();
-
-
         String date = DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
+
         Map dataOfComplaint = new HashMap<>();
         dataOfComplaint.put("imageUrl", urls);
         dataOfComplaint.put("date", date);
@@ -135,9 +144,7 @@ public class AddComplaintsPresenterImplementer implements AddComplaintsPresenter
                             // add notification data to firebase
                             addNotificationData(fieldOfComplaint , mAuth.getCurrentUser().getUid());
 
-
                             addComplaintsView.clearAllFields();
-                           // addComplaintsView.showSuccessDialog();
 
                         } else {
 
@@ -151,17 +158,20 @@ public class AddComplaintsPresenterImplementer implements AddComplaintsPresenter
     // send notification data to firebase
     private void addNotificationData(String fieldOfComplaint , final String currentUserUid)
     {
+        // traverse the departments and get the complaint department head UID
         final DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference();
         dbRef.child("WorkersHead").orderByChild("department").equalTo(fieldOfComplaint)
                 .addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s)
             {
+                // get worker head UID for notification
                 String workerHeadUid = dataSnapshot.child("uid").getValue().toString();
 
                 Map<String, String> notificationData = new HashMap<>();
                 notificationData.put("from", currentUserUid);
 
+                // store notification data in db
                 dbRef.child("notifications").child("complaints").child(workerHeadUid)
                         .push().setValue(notificationData).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
@@ -170,7 +180,7 @@ public class AddComplaintsPresenterImplementer implements AddComplaintsPresenter
                         if(task.isSuccessful())
                         {
                             addComplaintsView.hideProgressBar();
-                            addComplaintsView.showSuccessDialog();
+                            successDailog();
                         }
                         else
                         {
@@ -193,5 +203,26 @@ public class AddComplaintsPresenterImplementer implements AddComplaintsPresenter
 
     }
 
+
+    // complaint successfully added dialog
+    private void successDailog() {
+        final View myView = LayoutInflater.from(context).inflate(R.layout.custom_dialog_for_complaint , null);
+        AlertDialog.Builder alert = new AlertDialog.Builder(context);
+        alert.setView(myView);
+
+        final AlertDialog dialog = alert.create();
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
+
+        myView.findViewById(R.id.btnOk).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+                 addComplaintsView.closeActivity();
+            }
+        });
+
+        dialog.show();
+    }
 
 }

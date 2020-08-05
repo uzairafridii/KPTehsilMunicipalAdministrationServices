@@ -100,37 +100,13 @@ public class Complaints extends AppCompatActivity implements ComplaintHomeView {
 
     @Override
     public void setAdapter(List<ComplaintModel> list) {
-        complaintAdapter = new ComplaintAdapter(getApplicationContext(), list, this);
+        complaintAdapter = new ComplaintAdapter(this, list, this);
         complaintRecyclerList.setAdapter(complaintAdapter);
     }
 
-    @Override
-    public void onShowStatusDialog(String message) {
-        successDailog(message);
-    }
 
 
-    private void successDailog(String message) {
-        View myView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.custom_dialog, null);
-        AlertDialog.Builder alert = new AlertDialog.Builder(Complaints.this);
-        alert.setView(myView);
 
-
-        final Dialog dialog = alert.create();
-        dialog.setCancelable(false);
-        dialog.setCanceledOnTouchOutside(false);
-        dialog.show();
-
-        TextView textView = myView.findViewById(R.id.message);
-        textView.setText(message);
-
-        myView.findViewById(R.id.btnOk).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-            }
-        });
-    }
 
 
 }

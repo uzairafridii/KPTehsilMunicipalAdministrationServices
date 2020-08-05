@@ -53,11 +53,13 @@ public class ComplaintHomePresenterImplementer implements ComplaintHomePresenter
     @Override
     public void getAllComplaints(DatabaseReference dbRef, FirebaseAuth mAuth)
     {
+        // sharedpreference to store user total, completed and pending complaints
         SharedPreferences sharedPreferences = context.getSharedPreferences("complaintDetails", Context.MODE_PRIVATE);
         final SharedPreferences.Editor editor = sharedPreferences.edit();
 
         if(dbRef != null && mAuth != null)
         {
+            // query to get the current user complaints
            Query query = dbRef.orderByChild("uid").equalTo(mAuth.getCurrentUser().getUid());
 
            query.addChildEventListener(new ChildEventListener() {
@@ -79,6 +81,7 @@ public class ComplaintHomePresenterImplementer implements ComplaintHomePresenter
                        totalComplaints = totalComplaints + 1;
                    }
 
+                   // store the compalints here in shared pref
                    editor.putInt("completedComplaints", completedComplaints);
                    editor.putInt("pendingComplaints", pendingComplaints);
                    editor.putInt("totalComplaints", totalComplaints);

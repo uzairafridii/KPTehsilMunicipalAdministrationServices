@@ -47,35 +47,42 @@ public class MainPagePresenterImplementer implements MainPagePresenter
     }
 
 
+    // closing app custom dialog
     @Override
     public void closingDialog() {
+        View myView = LayoutInflater.from(context).inflate(R.layout.custom_closing_dialog, null);
         AlertDialog.Builder alert = new AlertDialog.Builder(context);
-        alert.setMessage("Do you want to close the app?");
-        alert.setTitle("TMA App");
-        alert.setIcon(R.drawable.logo);
-        alert.setCancelable(false);
+        alert.setView(myView);
+        final AlertDialog dialog = alert.create();
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setCancelable(false);
 
-        alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+        // click on yes button of closing dialog
+        myView.findViewById(R.id.yesButton).setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-
+            public void onClick(View view) {
+                dialog.dismiss();
                 mainPageView.closeActivity();
-
-
-            }
-        }).setNeutralButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-
-                dialogInterface.dismiss();
             }
         });
 
-        alert.show();
+        // click on N0 button of closing dialog
+        myView.findViewById(R.id.noButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                dialog.dismiss();
+            }
+        });
+
+
+
+        dialog.show();
 
 
     }
 
+    // set items in home recycler view
     @Override
     public void setHomeRecyclerAdapter() {
         mHomeModel.add(new HomeModel("Complaints", R.drawable.complain));
@@ -84,11 +91,12 @@ public class MainPagePresenterImplementer implements MainPagePresenter
         mHomeModel.add(new HomeModel("Building Noc", R.drawable.noc));
         mHomeModel.add(new HomeModel("Taxes", R.drawable.ic_launcher_background));
         mHomeModel.add(new HomeModel("Certificates", R.drawable.ic_launcher_background));
-        mHomeModel.add(new HomeModel("Profile", R.drawable.avatar));
+        mHomeModel.add(new HomeModel("Profile", R.drawable.avator_colored));
 
         mainPageView.onSetHomeRecyclerAdapter(mHomeModel);
     }
 
+    // check network availability and return boolean value
     @Override
     public boolean isNetworkAvailable()
     {
@@ -99,13 +107,14 @@ public class MainPagePresenterImplementer implements MainPagePresenter
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
+    // no network available dialog
     @Override
     public void showNoNetworkDialog()
     {
         AlertDialog.Builder alert = new AlertDialog.Builder(context);
         View myView  = LayoutInflater.from(context).inflate(R.layout.main_screen_dialog, null);
         alert.setView(myView);
-        final Dialog dialog = alert.create();
+        final AlertDialog dialog = alert.create();
         dialog.setCanceledOnTouchOutside(false);
         dialog.setCancelable(false);
         myView.findViewById(R.id.btnClose).setOnClickListener(new View.OnClickListener() {
@@ -118,9 +127,10 @@ public class MainPagePresenterImplementer implements MainPagePresenter
         });
 
 
-        alert.show();
+        dialog.show();
     }
 
+    // update user device token
     @Override
     public void updateToken(final FirebaseAuth mAuth)
     {
@@ -147,6 +157,7 @@ public class MainPagePresenterImplementer implements MainPagePresenter
          }
     }
 
+    // get user name from database
     @Override
     public void getUserName(DatabaseReference dbRef, FirebaseAuth mAuth)
     {
