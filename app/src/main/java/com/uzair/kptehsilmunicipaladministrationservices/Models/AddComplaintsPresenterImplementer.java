@@ -64,7 +64,7 @@ public class AddComplaintsPresenterImplementer implements AddComplaintsPresenter
         }
         else
         {
-            addComplaintsView.showMessage("Sorry! select image and fill the fields");
+            addComplaintsView.showMessage("Sorry! select image and fill the fields", "info");
         }
 
     }
@@ -148,7 +148,7 @@ public class AddComplaintsPresenterImplementer implements AddComplaintsPresenter
 
                         } else {
 
-                            addComplaintsView.showMessage("Error in uploading");
+                            addComplaintsView.showMessage("Error in uploading", "error");
                             addComplaintsView.hideProgressBar();
                         }
                     }
@@ -185,7 +185,7 @@ public class AddComplaintsPresenterImplementer implements AddComplaintsPresenter
                         else
                         {
                             addComplaintsView.hideProgressBar();
-                            addComplaintsView.showMessage("Something went wrong");
+                            addComplaintsView.showMessage("Something went wrong", "error");
                         }
                     }
                 });

@@ -35,6 +35,8 @@ import com.uzair.kptehsilmunicipaladministrationservices.Views.NocView;
 
 import java.util.List;
 
+import es.dmoral.toasty.Toasty;
+
 public class BuildingNocActivity extends AppCompatActivity implements NocView {
 
     public static final int REQUEST_GALLERY_PHOTO = 1;
@@ -68,7 +70,7 @@ public class BuildingNocActivity extends AppCompatActivity implements NocView {
 
     private void initViews() {
 
-        presenterImplementer = new NocPresenterImplementer(BuildingNocActivity.this);
+        presenterImplementer = new NocPresenterImplementer(this, this);
 
         mProgressDialog = new ProgressDialog(this, R.style.MyAlertDialogStyle);
 
@@ -127,28 +129,6 @@ public class BuildingNocActivity extends AppCompatActivity implements NocView {
         mProgressDialog.dismiss();
     }
 
-    @Override
-    public void showSuccessAlertDialog() {
-        View myView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.custom_dialog_for_complaint, null);
-        AlertDialog.Builder alert = new AlertDialog.Builder(BuildingNocActivity.this);
-        alert.setView(myView);
-
-        final AlertDialog dialog = alert.create();
-        dialog.setCancelable(false);
-        dialog.setCanceledOnTouchOutside(false);
-        dialog.show();
-
-        TextView message = myView.findViewById(R.id.message);
-        message.setText("Congratulation!");
-
-        myView.findViewById(R.id.btnOk).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-            }
-        });
-
-    }
 
     @Override
     public void readDataList(List<NocDataModel> listOfNoc)
@@ -231,9 +211,15 @@ public class BuildingNocActivity extends AppCompatActivity implements NocView {
 
     // error message
     @Override
-    public void showErrorMessage(String error) {
+    public void showErrorMessage(String message , String type) {
 
-        Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
+        if(type.equals("error")) {
+            Toasty.error(this, message, Toasty.LENGTH_SHORT).show();
+        }
+        else if(type.equals("info"))
+        {
+            Toasty.info(this, message, Toasty.LENGTH_LONG).show();
+        }
     }
 
     // clear all fields

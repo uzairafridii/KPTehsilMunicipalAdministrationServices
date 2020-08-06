@@ -32,19 +32,20 @@ import com.uzair.kptehsilmunicipaladministrationservices.Views.UserFeedBackView;
 
 import java.util.List;
 
-public class UserFeedBack extends AppCompatActivity implements UserFeedBackView
-{
+import es.dmoral.toasty.Toasty;
+
+public class UserFeedBack extends AppCompatActivity implements UserFeedBackView {
     public static final int REQUEST_CODE = 110;
     private Toolbar mToolbar;
     private TextView titleOfComplaint, workerFirstName, workerSecondName, dateAndTime;
-    private ImageView feedBackImage , commentImageView;
+    private ImageView feedBackImage, commentImageView;
     private RatingBar workerRating;
     private Uri imageUri;
     private EditText addCommentEdit;
-    private String complaintPushKey , complaintType;
+    private String complaintPushKey, complaintType;
     private ProgressDialog progressDialog;
     private UserFeedBackPresenter presenter;
-    private DatabaseReference dbRef , ratingRef;
+    private DatabaseReference dbRef, ratingRef;
     private FirebaseAuth userAuth;
 
     @Override
@@ -53,17 +54,16 @@ public class UserFeedBack extends AppCompatActivity implements UserFeedBackView
         setContentView(R.layout.activity_user_feed_back);
 
         initViews();
-        presenter.getCompletedWorkDetails( dbRef, complaintPushKey);
+        presenter.getCompletedWorkDetails(dbRef, complaintPushKey);
 
 
     }
 
-    private void initViews()
-    {
+    private void initViews() {
         presenter = new UserFeedBackPresenterImplementer(this);
         complaintPushKey = getIntent().getStringExtra("pushKey");
         complaintType = getIntent().getStringExtra("complaintType");
-        Log.d("complaintKey", "initViews: "+complaintPushKey);
+        Log.d("complaintKey", "initViews: " + complaintPushKey);
 
         titleOfComplaint = findViewById(R.id.feedback_title);
         workerFirstName = findViewById(R.id.first_worker_name);
@@ -81,72 +81,76 @@ public class UserFeedBack extends AppCompatActivity implements UserFeedBackView
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        progressDialog = new ProgressDialog(this , R.style.MyAlertDialogStyle);
+        progressDialog = new ProgressDialog(this, R.style.MyAlertDialogStyle);
 
         userAuth = FirebaseAuth.getInstance();
         dbRef = FirebaseDatabase.getInstance().getReference().child("Feedback Work");
-        ratingRef  = FirebaseDatabase.getInstance().getReference();
+        ratingRef = FirebaseDatabase.getInstance().getReference();
 
 
     }
 
     // add image button click
-    public void addCommentImageButtonClick(View view)
-    {
+    public void addCommentImageButtonClick(View view) {
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
-        startActivityForResult(intent , REQUEST_CODE);
+        startActivityForResult(intent, REQUEST_CODE);
     }
 
     // button submit rating click
-    public void addRatingButtonClick(View view)
-    {
+    public void addRatingButtonClick(View view) {
         // add workers rating
-        presenter.addFirstWorkerRating(ratingRef , String.valueOf(workerRating.getRating()),
-                addCommentEdit.getText().toString(), workerFirstName.getText().toString() ,
-                userAuth.getCurrentUser().getUid(), imageUri , complaintPushKey , complaintType);
+        presenter.addFirstWorkerRating(ratingRef, String.valueOf(workerRating.getRating()),
+                addCommentEdit.getText().toString(), workerFirstName.getText().toString(),
+                userAuth.getCurrentUser().getUid(), imageUri, complaintPushKey, complaintType);
 
         // if both workers are added then do this
-        if(!workerSecondName.getText().toString().isEmpty() && !workerSecondName.getText().toString().equals("")) {
+        if (!workerSecondName.getText().toString().isEmpty() && !workerSecondName.getText().toString().equals("")) {
             presenter.addSecondWorkerRating(ratingRef, String.valueOf(workerRating.getRating()),
                     addCommentEdit.getText().toString(), workerSecondName.getText().toString(),
-                    userAuth.getCurrentUser().getUid(), imageUri, complaintPushKey,complaintType);
+                    userAuth.getCurrentUser().getUid(), imageUri, complaintPushKey, complaintType);
         }
 
     }
 
     // feedback view callbacks method
     @Override
-    public void showProgressBar()
-    {
-         progressDialog.setMessage("Please wait");
-         progressDialog.setCanceledOnTouchOutside(false);
-         progressDialog.show();
+    public void showProgressBar() {
+        progressDialog.setMessage("Please wait");
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
     }
 
     @Override
     public void hideProgressBar() {
-      progressDialog.dismiss();
+        progressDialog.dismiss();
     }
 
     @Override
-    public void showMessage(String message) {
+    public void showMessage(String message, String type) {
 
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+        if (type.equals("success")) {
+            Toasty.success(this, message, Toasty.LENGTH_SHORT).show();
+        } else if (type.equals("error")) {
+            Toasty.error(this, message, Toasty.LENGTH_SHORT).show();
+        } else if (type.equals("info")) {
+            Toasty.info(this, Toasty.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override
     public void onSetDataInTextViews(String title, String firstWorker,
                                      String secondWorker, List<String>
-                                                 imageUrl, String date)
-    {
+                                             imageUrl, String date) {
         titleOfComplaint.setText(title);
         workerFirstName.setText(firstWorker);
-        Log.d("workerS", "onSetDataInTextViews: "+firstWorker +"\n"+secondWorker);
+        Log.d("workerS", "onSetDataInTextViews: " + firstWorker + "\n" + secondWorker);
 
-        if(!secondWorker.isEmpty())
-        { workerSecondName.setText(",\t"+secondWorker);}else
-        {
+        if (!secondWorker.isEmpty()) {
+            workerSecondName.setText(",\t" + secondWorker);
+        } else {
             workerSecondName.setVisibility(View.INVISIBLE);
         }
 
@@ -161,12 +165,10 @@ public class UserFeedBack extends AppCompatActivity implements UserFeedBackView
 
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
-    {
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == REQUEST_CODE && resultCode == RESULT_OK)
-        {
+        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
             imageUri = data.getData();
             commentImageView.setVisibility(View.VISIBLE);
             commentImageView.setImageURI(imageUri);

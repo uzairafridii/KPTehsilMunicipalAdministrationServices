@@ -44,6 +44,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import es.dmoral.toasty.Toasty;
+
 
 public class AddComplaints extends AppCompatActivity implements AddComplaintsView
 {
@@ -225,10 +227,15 @@ public class AddComplaints extends AppCompatActivity implements AddComplaintsVie
     }
 
     @Override
-    public void showMessage(String message)
-    { Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+    public void showMessage(String message, String type) {
+        if (type.equals("info")) {
+         Toasty.info(this,message,Toasty.LENGTH_SHORT).show();
+        } else if (type.equals("error")) {
+            Toasty.error(this,message,Toasty.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+        }
     }
-
     @Override
     public void clearAllFields() {
         editTextTitle.setText("");

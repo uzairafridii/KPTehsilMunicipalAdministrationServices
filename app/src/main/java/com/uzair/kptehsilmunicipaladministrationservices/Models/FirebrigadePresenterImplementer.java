@@ -55,7 +55,7 @@ public class FirebrigadePresenterImplementer implements FirebrigadePresenter
 
             if(!view.checkPhonePermission())
             {
-                view.onErrorMessage("Please enable permission");
+                view.onErrorMessage("Please enable permission", "info");
                 view.requestPermission();
             }
             else {
@@ -66,7 +66,7 @@ public class FirebrigadePresenterImplementer implements FirebrigadePresenter
         }
         else
         {
-            view.onErrorMessage("phone number is empty");
+            view.onErrorMessage("phone number is empty","error");
         }
 
     }
@@ -92,7 +92,7 @@ public class FirebrigadePresenterImplementer implements FirebrigadePresenter
                             }
                             else
                             {
-                                view.onErrorMessage("No Driver Data found");
+                                view.onErrorMessage("No Driver Data found", "info");
                                 view.hideProgressDialog();
                             }
 
@@ -114,7 +114,7 @@ public class FirebrigadePresenterImplementer implements FirebrigadePresenter
                     // if location is 0 then get the user current location
                     if (lat == 0 && lng == 0) {
                         getLastLocation();
-                        view.onErrorMessage("Something went wrong click again");
+                        view.onErrorMessage("Something went wrong click again", "warning");
 
                     }
                     else {
@@ -144,7 +144,7 @@ public class FirebrigadePresenterImplementer implements FirebrigadePresenter
                 }
                 else
                 {
-                    view.onErrorMessage("Turn on GPS");
+                    view.onErrorMessage("Turn on GPS", "info");
                     Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
                     context.startActivity(intent);
                 }
@@ -168,7 +168,7 @@ public class FirebrigadePresenterImplementer implements FirebrigadePresenter
                 if(task.isSuccessful())
                 {
                     view.hideProgressDialog();
-                    view.onErrorMessage("Notification send to TMA Staff");
+                    view.onErrorMessage("Notification send to TMA Staff", "success");
                 }
 
             }
@@ -226,7 +226,7 @@ public class FirebrigadePresenterImplementer implements FirebrigadePresenter
                         }
                 );
             } else {
-                view.onErrorMessage("Turn on location");
+                view.onErrorMessage("Turn on location", "info");
                 Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
                 context.startActivity(intent);
             }
@@ -236,6 +236,7 @@ public class FirebrigadePresenterImplementer implements FirebrigadePresenter
     }
 
 
+    // location call bac method to get the lat and lng of current location
     private LocationCallback mLocationCallback = new LocationCallback() {
         @Override
         public void onLocationResult(LocationResult locationResult) {
@@ -246,6 +247,8 @@ public class FirebrigadePresenterImplementer implements FirebrigadePresenter
         }
     };
 
+
+    // request the location if user current location not found
     @SuppressLint("MissingPermission")
     private void requestNewLocationData(){
 

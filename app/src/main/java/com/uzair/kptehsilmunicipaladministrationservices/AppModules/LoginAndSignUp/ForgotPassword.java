@@ -14,6 +14,8 @@ import com.uzair.kptehsilmunicipaladministrationservices.Presenters.ForgotPasswo
 import com.uzair.kptehsilmunicipaladministrationservices.R;
 import com.uzair.kptehsilmunicipaladministrationservices.Views.ForgotPasswordView;
 
+import es.dmoral.toasty.Toasty;
+
 public class ForgotPassword extends AppCompatActivity implements ForgotPasswordView
 {
 
@@ -53,10 +55,25 @@ public class ForgotPassword extends AppCompatActivity implements ForgotPasswordV
 
 
     @Override
-    public void showMessage(String message)
+    public void showMessage(String message, String type)
     {
+        if(type.equals("info"))
+        {
+            Toasty.info(this,message,Toasty.LENGTH_SHORT).show();
+        }
+        else if(type.equals("warning"))
+        {
+            Toasty.warning(this,message,Toasty.LENGTH_SHORT).show();
+        }
+        else if(type.equals("error"))
+        {
+            Toasty.error(this,message,Toasty.LENGTH_SHORT).show();
+        }else
+        {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
+    }
+
 
     @Override
     public void showProgressBar()

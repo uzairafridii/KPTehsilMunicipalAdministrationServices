@@ -8,7 +8,7 @@ public interface UserFeedBackView
 
     void hideProgressBar();
 
-    void showMessage(String message);
+    void showMessage(String message, String type);
 
     void onSetDataInTextViews(String title, String firstWorker, String secondWorker, List<String> imageUrl, String date);
 

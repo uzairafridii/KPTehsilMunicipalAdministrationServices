@@ -37,6 +37,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import es.dmoral.toasty.Toasty;
+
 public class DeathCertificate extends AppCompatActivity implements AdapterView.OnItemSelectedListener ,
         DeathCertificateView {
 
@@ -149,9 +151,19 @@ public class DeathCertificate extends AppCompatActivity implements AdapterView.O
     }
 
     @Override
-    public void showMessage(String message) {
+    public void showMessage(String message, String type) {
 
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        if (type.equals("error")) {
+            Toasty.error(this, message, Toasty.LENGTH_LONG).show();
+        }
+        else if(type.equals("info"))
+        {
+            Toasty.info(this, message, Toasty.LENGTH_LONG).show();
+        }
+        else if(type.equals("warning"))
+        {
+            Toasty.warning(this, message, Toasty.LENGTH_LONG).show();
+        }
     }
 
     @Override
@@ -271,6 +283,13 @@ public class DeathCertificate extends AppCompatActivity implements AdapterView.O
 
         // clear images array
         cnicImages.clear();
+
+    }
+
+    @Override
+    public void closeActivity()
+    {
+        this.finish();
 
     }
 

@@ -1,8 +1,12 @@
 package com.uzair.kptehsilmunicipaladministrationservices.Models;
 
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -12,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
+import com.uzair.kptehsilmunicipaladministrationservices.AppModules.LoginAndSignUp.Login;
 import com.uzair.kptehsilmunicipaladministrationservices.AppModules.LoginAndSignUp.SignUp;
 import com.uzair.kptehsilmunicipaladministrationservices.Presenters.SignUpPresenter;
 import com.uzair.kptehsilmunicipaladministrationservices.Views.SignUpView;
@@ -22,9 +27,11 @@ import java.util.Map;
 public class SignUpPresenterImplementer implements SignUpPresenter
 {
     private SignUpView signUpView;
+    private Context context;
 
-    public SignUpPresenterImplementer(SignUpView signUpView) {
+    public SignUpPresenterImplementer(SignUpView signUpView, Context context) {
         this.signUpView = signUpView;
+        this.context = context;
     }
 
     @Override
@@ -41,7 +48,7 @@ public class SignUpPresenterImplementer implements SignUpPresenter
                     && !userPassword.isEmpty() && !confirmPassword.isEmpty()) {
                 if (!confirmPassword.equals(userPassword)) {
 
-                    signUpView.showMessage("Password must be same");
+                    signUpView.showMessage("Password must be same", "warning");
 
                 } else { // inner else body start
 
@@ -74,10 +81,10 @@ public class SignUpPresenterImplementer implements SignUpPresenter
                                             }
                                         }); // inner on complete body end
                                     }// if success  body end
-                                    else { // esle success
+                                    else { // else success
 
                                         signUpView.hideProgressBar();
-                                        signUpView.showMessage(task.getException().getMessage());
+                                        signUpView.showMessage(task.getException().getMessage(), "error");
                                     }
                                 }
                             });//outer on complete body end
@@ -85,12 +92,12 @@ public class SignUpPresenterImplementer implements SignUpPresenter
                 } // inner else body end
             }// outer if body end
             else {
-                signUpView.showMessage("All fields are Required");
+                signUpView.showMessage("All fields are Required", "info");
             }
 
         } catch (Exception e)
         {
-            signUpView.showMessage(e.getMessage());
+            signUpView.showMessage(e.getMessage() ,"error");
         }
 
 
@@ -132,11 +139,11 @@ public class SignUpPresenterImplementer implements SignUpPresenter
 
                         if (task.isSuccessful()) {
 
-                          signUpView.showEmailVerificationDialog();
+                          emailVerificationDialog();
                         }
                         else
                         {
-                            signUpView.showMessage("Not Register");
+                            messageDialog("Not Register");
                         }
 
                     }
@@ -145,6 +152,47 @@ public class SignUpPresenterImplementer implements SignUpPresenter
         });
     }
 
+
+    // show alert dialog for error
+    private void messageDialog(String message)
+    {
+        AlertDialog.Builder alert = new AlertDialog.Builder(context);
+        alert.setTitle("Error");
+        alert.setMessage(message);
+        alert.setCancelable(false);
+        alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        alert.show();
+    }
+
+
+    // email verification dialog
+    private void emailVerificationDialog()
+    {
+        AlertDialog.Builder alert = new AlertDialog.Builder(context);
+        alert.setTitle("Check Email");
+        alert.setMessage("Please Verify Your Email ");
+        alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+              signUpView.moveToLoginScreen();
+               dialogInterface.dismiss();
+            }
+        }).setNeutralButton("Verify", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                signUpView.openEmailApp();
+                dialogInterface.dismiss();
+            }
+        });
+        alert.show();
+    }
 
 
 

@@ -28,6 +28,8 @@ import com.uzair.kptehsilmunicipaladministrationservices.Models.LoginPresenterIm
 import com.uzair.kptehsilmunicipaladministrationservices.R;
 import com.uzair.kptehsilmunicipaladministrationservices.Views.LoginView;
 
+import es.dmoral.toasty.Toasty;
+
 public class Login extends AppCompatActivity implements LoginView {
 
     public final static String SAVE_PASSWORD = "user_name_password";
@@ -75,7 +77,7 @@ public class Login extends AppCompatActivity implements LoginView {
     }
 
     private void initViews() {
-        loginPresenterImplementer = new LoginPresenterImplementer(this);
+        loginPresenterImplementer = new LoginPresenterImplementer(this, this);
 
         button = findViewById(R.id.signInBtn);
         createAccountBtn = findViewById(R.id.txtCreateNewAccount);
@@ -116,25 +118,30 @@ public class Login extends AppCompatActivity implements LoginView {
     }
 
     @Override
-    public void showMessage(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    public void showMessage(String message, String type) {
+        if(type.equals("error"))
+        {
+        Toasty.error(this, message, Toasty.LENGTH_SHORT).show();
+       } else if(type.equals("info"))
+        {
+            Toasty.info(this, message, Toasty.LENGTH_LONG).show();
+        }
+
     }
 
-    @Override
-    public void showPasswordErrorDialog(String passwordError) {
-        passwordErrorDialog(passwordError);
-    }
+
 
     @Override
-    public void showEmailDialog(String error) {
-        showCheckEmailVerificationDiaglog(error);
+    public void moveToHomePage() {
+
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_APP_EMAIL);
+        startActivity(intent);
     }
 
     @Override
     public void showSavePassordDialog() {
-
         new StorePasswordBottomSheet(email, password).show(getSupportFragmentManager(), "Save Password Dialog");
-
     }
 
     @Override
@@ -142,47 +149,6 @@ public class Login extends AppCompatActivity implements LoginView {
 
         userEmail.getEditText().setText("");
         userPassword.getEditText().setText("");
-    }
-
-
-    //  alert dialogs
-    private void showCheckEmailVerificationDiaglog(String message) {
-        AlertDialog.Builder alert = new AlertDialog.Builder(this);
-        alert.setTitle("Verify Email");
-        alert.setMessage(message);
-        alert.setCancelable(false);
-        alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-
-                dialogInterface.dismiss();
-
-            }
-        }).setNeutralButton("Verify", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-
-                Intent intent = new Intent(Intent.ACTION_MAIN);
-                intent.addCategory(Intent.CATEGORY_APP_EMAIL);
-                startActivity(intent);
-            }
-        });
-        alert.show();
-
-    }
-
-    private void passwordErrorDialog(String message) {
-        AlertDialog.Builder alert = new AlertDialog.Builder(this);
-        alert.setTitle("Error");
-        alert.setMessage(message);
-        alert.setCancelable(false);
-        alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.dismiss();
-            }
-        });
-        alert.show();
     }
 
 

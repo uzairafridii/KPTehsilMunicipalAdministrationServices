@@ -20,6 +20,8 @@ import com.uzair.kptehsilmunicipaladministrationservices.Models.CertificateTypeP
 import com.uzair.kptehsilmunicipaladministrationservices.R;
 import com.uzair.kptehsilmunicipaladministrationservices.Views.CertificateTypesView;
 
+import es.dmoral.toasty.Toasty;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -71,6 +73,6 @@ public class CertificateBottomSheetDialog extends BottomSheetDialogFragment impl
     @Override
     public void showErrorMessage(String message) {
 
-        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+        Toasty.warning(getContext(), message, Toast.LENGTH_SHORT).show();
     }
 }

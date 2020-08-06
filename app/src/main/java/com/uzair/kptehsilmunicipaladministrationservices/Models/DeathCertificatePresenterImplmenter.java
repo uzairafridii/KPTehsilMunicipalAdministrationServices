@@ -2,8 +2,12 @@ package com.uzair.kptehsilmunicipaladministrationservices.Models;
 
 import android.content.Context;
 import android.net.Uri;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -16,6 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.uzair.kptehsilmunicipaladministrationservices.Presenters.DeathCertificatePresenter;
+import com.uzair.kptehsilmunicipaladministrationservices.R;
 import com.uzair.kptehsilmunicipaladministrationservices.Views.DeathCertificateView;
 
 import java.text.DateFormat;
@@ -79,6 +84,7 @@ public class DeathCertificatePresenterImplmenter implements DeathCertificatePres
                                 // counter is equal to urls arraylist then upload all urls and data
                                 if( counter  == uriList.size()) {
 
+                                    // get user name reference
                                     dbRef.child("Users").child(mAuth.getCurrentUser().getUid())
                                             .addValueEventListener(new ValueEventListener() {
                                                 @Override
@@ -130,11 +136,11 @@ public class DeathCertificatePresenterImplmenter implements DeathCertificatePres
 
                                                                         deathView.onDismissProgressDialog();
                                                                         deathView.clearAllFileds();
-                                                                        deathView.showMessage("SuccessFully Apply");
+                                                                        successDialog("Apply Successfully Done");
 
                                                                     } else {
 
-                                                                        deathView.showMessage("Error in uploading");
+                                                                        deathView.showMessage("Error in uploading", "error");
                                                                         deathView.onDismissProgressDialog();
                                                                     }
                                                                 }
@@ -152,7 +158,7 @@ public class DeathCertificatePresenterImplmenter implements DeathCertificatePres
         }
         else
         {
-            deathView.showMessage("Please cnic and all fields are require");
+            deathView.showMessage("Please cnic and all fields are require", "info");
         }
 
 
@@ -177,18 +183,41 @@ public class DeathCertificatePresenterImplmenter implements DeathCertificatePres
     @Override
     public void previewImage(List<Uri> uri)
     {
-        if (uri.size() > 2)
+        if (uri.size() > 2 || uri.size() < 2)
         {
-            deathView.showMessage("Please select front and back side image only");
-        }
-        else if(uri.size() < 2 )
-        {
-            deathView.showMessage("select front and back side image of cnic");
+            deathView.showMessage("Please select front and back side image", "warning");
         }
         else
         {
             deathView.displayImagePreview(uri);
         }
+
+    }
+
+
+    private void successDialog(String dialogBody)
+    {
+        View myView = LayoutInflater.from(context).inflate(R.layout.custom_dialog_for_complaint, null);
+        AlertDialog.Builder alert = new AlertDialog.Builder(context);
+        alert.setView(myView);
+
+        final AlertDialog dialog = alert.create();
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setCancelable(false);
+
+        TextView body = myView.findViewById(R.id.message);
+        body.setText(dialogBody);
+
+        myView.findViewById(R.id.btnOk).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+                deathView.closeActivity();
+            }
+
+        });
+
+        alert.show();
 
     }
 }

@@ -1,13 +1,16 @@
 package com.uzair.kptehsilmunicipaladministrationservices.Views;
 
-public interface SignUpView
-{
+public interface SignUpView {
 
     void showProgressBar();
+
     void hideProgressBar();
 
     void clearAllFields();
-    void showMessage(String message);
-    void showEmailVerificationDialog();
 
+    void showMessage(String message, String type);
+
+    void openEmailApp();
+
+    void moveToLoginScreen();
 }

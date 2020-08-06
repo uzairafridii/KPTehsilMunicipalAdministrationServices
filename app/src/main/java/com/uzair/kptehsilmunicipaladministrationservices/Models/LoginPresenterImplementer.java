@@ -1,15 +1,10 @@
 package com.uzair.kptehsilmunicipaladministrationservices.Models;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.view.WindowManager;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import androidx.core.app.ActivityCompat;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -21,9 +16,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
-import com.uzair.kptehsilmunicipaladministrationservices.AppModules.BottomSheets.StorePasswordBottomSheet;
-import com.uzair.kptehsilmunicipaladministrationservices.AppModules.LoginAndSignUp.Login;
-import com.uzair.kptehsilmunicipaladministrationservices.AppModules.Main.MainActivity;
 import com.uzair.kptehsilmunicipaladministrationservices.Presenters.LoginPresenter;
 import com.uzair.kptehsilmunicipaladministrationservices.Views.LoginView;
 
@@ -33,8 +25,10 @@ import java.util.Map;
 public class LoginPresenterImplementer implements LoginPresenter {
 
     private LoginView loginView;
+    private Context context;
 
-    public LoginPresenterImplementer(LoginView loginView) {
+    public LoginPresenterImplementer(LoginView loginView, Context context) {
+        this.context = context;
         this.loginView = loginView;
     }
 
@@ -49,7 +43,7 @@ public class LoginPresenterImplementer implements LoginPresenter {
                 loginToApplication(mAuth, email, password, saveEmail, savePassword);
 
             } else {
-                loginView.showMessage("All fields are required");
+                loginView.showMessage("All fields are required", "info");
             }
         } catch (Exception e) {
         }
@@ -113,8 +107,7 @@ public class LoginPresenterImplementer implements LoginPresenter {
                         } else {
                             // show dialog please verify email
                             loginView.hideProgressDialog();
-                            ;
-                            loginView.showEmailDialog("Please Verify Your Email");
+                            showCheckEmailVerificationDiaglog("Please Verify Your Email");
                             loginView.clearAllFields();
 
                         }// end verified email if else
@@ -122,14 +115,14 @@ public class LoginPresenterImplementer implements LoginPresenter {
 
                     } else {
                         loginView.hideProgressDialog();
-                        loginView.showPasswordErrorDialog(task.getException().getMessage());
+                        passwordErrorDialog(task.getException().getMessage());
 
                     } // end check success if else
 
 
                 } catch (Exception e) {
 
-                    loginView.showMessage(e.getMessage());
+                    loginView.showMessage(e.getMessage(), "error");
                     loginView.hideProgressDialog();
 
                 }// end try catch
@@ -140,5 +133,46 @@ public class LoginPresenterImplementer implements LoginPresenter {
         });//  signIn om Completed body end
     }
 
+
+    // show error dialog
+    private void passwordErrorDialog(String message) {
+        AlertDialog.Builder alert = new AlertDialog.Builder(context);
+        alert.setTitle("Error");
+        alert.setMessage(message);
+        alert.setCancelable(false);
+        alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        alert.show();
+    }
+
+    //  alert dialogs for email verification
+    private void showCheckEmailVerificationDiaglog(String message) {
+        AlertDialog.Builder alert = new AlertDialog.Builder(context);
+        alert.setTitle("Verify Email");
+        alert.setMessage(message);
+        alert.setCancelable(false);
+        alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                dialogInterface.dismiss();
+
+            }
+        }).setNeutralButton("Verify", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                dialogInterface.dismiss();
+                loginView.moveToHomePage();
+
+            }
+        });
+        alert.show();
+
+    }
 
 }

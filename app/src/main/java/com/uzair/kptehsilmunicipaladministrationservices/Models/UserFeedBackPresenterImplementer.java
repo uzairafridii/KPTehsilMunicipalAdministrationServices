@@ -134,13 +134,13 @@ public class UserFeedBackPresenterImplementer implements UserFeedBackPresenter
             }
             catch (Exception e)
             {
-                feedBackView.showMessage(e.getMessage());
+                feedBackView.showMessage(e.getMessage(), "error");
                 feedBackView.hideProgressBar();
             }
         }
         else
         {
-            feedBackView.showMessage("Please rating, feedback image and comment is require");
+            feedBackView.showMessage("Please rating, feedback image and comment is require","info");
         }
 
     }
@@ -184,7 +184,7 @@ public class UserFeedBackPresenterImplementer implements UserFeedBackPresenter
                                          */
                                         updateAverageRating(pushKey);
                                         addNotificationData(uid , complaintType);
-                                        feedBackView.showMessage("Successfully added");
+                                        feedBackView.showMessage("Successfully added", "success");
                                         feedBackView.hideProgressBar();
                                         // call validation method
                                         addRatingValidation(uid , complaintKey);

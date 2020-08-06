@@ -43,6 +43,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import es.dmoral.toasty.Toasty;
+
 public class BirthCertificate extends AppCompatActivity implements AdapterView.OnItemSelectedListener,
         BirthCertificateView
 {
@@ -103,7 +105,7 @@ public class BirthCertificate extends AppCompatActivity implements AdapterView.O
         address = findViewById(R.id.addressInBirthCertificate);
 
 
-        birthCertificatePresenter = new BirthCertificatePresenterImplementer(this, getApplicationContext());
+        birthCertificatePresenter = new BirthCertificatePresenterImplementer(this, this);
 
         progressDialog = new ProgressDialog(this, R.style.MyAlertDialogStyle);
         childGender = findViewById(R.id.childGenderInBirthCertificate);
@@ -189,8 +191,18 @@ public class BirthCertificate extends AppCompatActivity implements AdapterView.O
     }
 
     @Override
-    public void showMessage(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+    public void showMessage(String message, String type) {
+        if (type.equals("error")) {
+            Toasty.error(this, message, Toasty.LENGTH_LONG).show();
+        }
+        else if(type.equals("info"))
+        {
+            Toasty.info(this, message, Toasty.LENGTH_LONG).show();
+        }
+        else if(type.equals("warning"))
+        {
+            Toasty.warning(this, message, Toasty.LENGTH_LONG).show();
+        }
     }
 
     @Override
@@ -261,7 +273,10 @@ public class BirthCertificate extends AppCompatActivity implements AdapterView.O
 
     }
 
-    // submit form button click
+    /*
+    *
+    * submit form button click
+     */
     public void submitCertificateForm(View view)
     {
           // first get values from form
@@ -317,6 +332,12 @@ public class BirthCertificate extends AppCompatActivity implements AdapterView.O
         cnicImages.clear();
 
 
+    }
+
+    @Override
+    public void closeActivity()
+    {
+        this.finish();
     }
 
     private void setSpinnerAdapter(Spinner spinner , String[] list)

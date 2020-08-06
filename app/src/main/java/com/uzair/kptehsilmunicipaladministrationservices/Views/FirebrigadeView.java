@@ -2,7 +2,7 @@ package com.uzair.kptehsilmunicipaladministrationservices.Views;
 
 public interface FirebrigadeView
 {
-    void onErrorMessage(String message);
+    void onErrorMessage(String message, String type);
 
     boolean checkPhonePermission();
 

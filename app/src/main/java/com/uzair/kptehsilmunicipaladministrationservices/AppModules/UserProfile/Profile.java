@@ -29,6 +29,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import es.dmoral.toasty.Toasty;
 
 public class Profile extends AppCompatActivity implements ProfileView
 {
@@ -203,7 +204,7 @@ public class Profile extends AppCompatActivity implements ProfileView
     @Override
     public void showErrorMessage(String message) {
 
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        Toasty.error(this, message, Toasty.LENGTH_SHORT).show();
     }
 
 

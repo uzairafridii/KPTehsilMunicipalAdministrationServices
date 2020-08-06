@@ -31,6 +31,8 @@ import com.uzair.kptehsilmunicipaladministrationservices.Models.FirebrigadePrese
 import com.uzair.kptehsilmunicipaladministrationservices.R;
 import com.uzair.kptehsilmunicipaladministrationservices.Views.FirebrigadeView;
 
+import es.dmoral.toasty.Toasty;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -38,16 +40,17 @@ public class FireFighting extends BottomSheetDialogFragment implements Firebriga
 
 
     public static final int REQUEST_CODE = 12;
-    private  View myView;
-    private ImageButton callBtn , notificationBtn;
-    private TextView phoneNumber , driverName;
+    private View myView;
+    private ImageButton callBtn, notificationBtn;
+    private TextView phoneNumber, driverName;
     private FirebrigadePresenterImplementer implementer;
     private String infraHeadUid;
     private ProgressBar progressBar;
     private DatabaseReference dbRef;
     private FirebaseAuth mAuth;
 
-    public FireFighting() {}
+    public FireFighting() {
+    }
 
     // create instance of fire fighting fragment dialog
     public static FireFighting newInstance() {
@@ -70,8 +73,8 @@ public class FireFighting extends BottomSheetDialogFragment implements Firebriga
             @Override
             public void onClick(View view) {
 
-               String number = phoneNumber.getText().toString();
-               implementer.callDriver(number);
+                String number = phoneNumber.getText().toString();
+                implementer.callDriver(number);
 
             }
         });
@@ -81,7 +84,7 @@ public class FireFighting extends BottomSheetDialogFragment implements Firebriga
             @Override
             public void onClick(View view) {
 
-                implementer.sendNotification(dbRef , mAuth , infraHeadUid);
+                implementer.sendNotification(dbRef, mAuth, infraHeadUid);
             }
         });
 
@@ -89,8 +92,7 @@ public class FireFighting extends BottomSheetDialogFragment implements Firebriga
         return myView;
     }
 
-    private void initViews()
-    {
+    private void initViews() {
         implementer = new FirebrigadePresenterImplementer(this, getContext());
 
         progressBar = myView.findViewById(R.id.progresBar);
@@ -111,17 +113,24 @@ public class FireFighting extends BottomSheetDialogFragment implements Firebriga
 
 
     @Override
-    public void onErrorMessage(String message) {
+    public void onErrorMessage(String message, String type) {
 
-        Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+        if (type.equals("info")) {
+            Toasty.info(getContext(), message, Toasty.LENGTH_LONG).show();
+        } else if (type.equals("warning")) {
+            Toasty.warning(getContext(), message, Toasty.LENGTH_SHORT).show();
+        } else if (type.equals("success")) {
+            Toasty.success(getContext(), message, Toasty.LENGTH_SHORT).show();
+        } else if (type.equals("error")) {
+            Toasty.error(getContext(), message, Toasty.LENGTH_LONG).show();
+        }
     }
 
     @Override
     public boolean checkPhonePermission() {
 
         if (ActivityCompat.checkSelfPermission(getContext(),
-                Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED)
-        {
+                Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
             return true;
         }
 
@@ -129,14 +138,13 @@ public class FireFighting extends BottomSheetDialogFragment implements Firebriga
     }
 
     @Override
-    public boolean checkLocationPermission()
-    {
-        if(ActivityCompat.checkSelfPermission(getContext(),
+    public boolean checkLocationPermission() {
+        if (ActivityCompat.checkSelfPermission(getContext(),
                 Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(getContext(),
-                        Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
+                        Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
 
-            return  true;
+            return true;
         }
 
         return false;
@@ -157,9 +165,8 @@ public class FireFighting extends BottomSheetDialogFragment implements Firebriga
     }
 
     @Override
-    public boolean isLocationEnabled()
-    {
-        LocationManager locationManager = (LocationManager)getContext().getSystemService(Context.LOCATION_SERVICE);
+    public boolean isLocationEnabled() {
+        LocationManager locationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(
                 LocationManager.NETWORK_PROVIDER
         );
@@ -170,11 +177,10 @@ public class FireFighting extends BottomSheetDialogFragment implements Firebriga
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
         if (requestCode == REQUEST_CODE && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(getContext(), "Permission granted", Toast.LENGTH_SHORT).show();
-            }
-            else {
-                Toast.makeText(getContext(), "Unable to send notification ", Toast.LENGTH_SHORT).show();
-            }
+            Toast.makeText(getContext(), "Permission granted", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getContext(), "Unable to send notification ", Toast.LENGTH_SHORT).show();
+        }
 
     }
 
@@ -186,15 +192,13 @@ public class FireFighting extends BottomSheetDialogFragment implements Firebriga
     }
 
     @Override
-    public void infraHeadUid(String uid)
-    {
+    public void infraHeadUid(String uid) {
         infraHeadUid = uid;
-        Log.d("uidOfInfra", "infraHeadUid: "+uid);
+        Log.d("uidOfInfra", "infraHeadUid: " + uid);
     }
 
     @Override
-    public void showProgressDialog()
-    {
+    public void showProgressDialog() {
         progressBar.setVisibility(View.VISIBLE);
     }
 

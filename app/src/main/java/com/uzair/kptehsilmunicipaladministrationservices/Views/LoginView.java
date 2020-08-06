@@ -5,10 +5,9 @@ public interface LoginView
 
     void showProgressDialog();
     void hideProgressDialog();
-    void showMessage(String message);
+    void showMessage(String message, String type);
 
-    void showPasswordErrorDialog(String passwordError);
-    void showEmailDialog(String error);
+    void moveToHomePage();
 
     void showSavePassordDialog();
 

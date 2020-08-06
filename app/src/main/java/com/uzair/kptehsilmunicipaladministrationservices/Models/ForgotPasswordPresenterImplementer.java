@@ -29,11 +29,11 @@ public class ForgotPasswordPresenterImplementer implements ForgotPasswordPresent
                         public void onComplete(@NonNull Task<Void> task) {
 
                             if (task.isSuccessful()) {
-                                forgotPasswordView.showMessage("Check Your Email");
+                                forgotPasswordView.showMessage("Check Your Email", "infor");
                                 forgotPasswordView.hideProgressBar();
 
                             } else {
-                                forgotPasswordView.showMessage("Something went wrong");
+                                forgotPasswordView.showMessage("Something went wrong","error");
                                 forgotPasswordView.hideProgressBar();
                             }
 
@@ -43,7 +43,7 @@ public class ForgotPasswordPresenterImplementer implements ForgotPasswordPresent
         }
         else
         {
-            forgotPasswordView.showMessage("Please enter your email");
+            forgotPasswordView.showMessage("Please enter your email","info");
         }
 
     }

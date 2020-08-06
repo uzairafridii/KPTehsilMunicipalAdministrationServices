@@ -65,7 +65,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 {
 
     private GoogleMap mMap;
-    private double currentLat, currentLong , searchPlaceLat , searchPlaceLng;
+    private double searchPlaceLat , searchPlaceLng;
     private FusedLocationProviderClient mLocationService;
     private SearchView searchView;
     private Circle circle;
@@ -189,9 +189,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
                 if (task.getResult() != null) {
                     Location location = task.getResult();
-                    currentLat = location.getLatitude();
-                    currentLong = location.getLongitude();
-
                     setLatLngAndMoveCamera(location.getLongitude(), location.getLatitude(), "Your Current Location");
 
                 }

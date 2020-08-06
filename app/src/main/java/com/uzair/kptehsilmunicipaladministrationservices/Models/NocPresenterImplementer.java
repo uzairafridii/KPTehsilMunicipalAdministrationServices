@@ -1,10 +1,15 @@
 package com.uzair.kptehsilmunicipaladministrationservices.Models;
 
+import android.content.Context;
 import android.net.Uri;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -18,8 +23,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.uzair.kptehsilmunicipaladministrationservices.AppModules.BuildingNoc.BuildingNocActivity;
 import com.uzair.kptehsilmunicipaladministrationservices.AppModules.BuildingNoc.NocDataModel;
 import com.uzair.kptehsilmunicipaladministrationservices.Presenters.NocPresenter;
+import com.uzair.kptehsilmunicipaladministrationservices.R;
 import com.uzair.kptehsilmunicipaladministrationservices.Views.NocView;
 
 import java.text.DateFormat;
@@ -32,8 +39,10 @@ import java.util.Map;
 public class NocPresenterImplementer implements NocPresenter {
     private NocView view;
     private List<NocDataModel> nocList = new ArrayList<>();
+    private Context context;
 
-    public NocPresenterImplementer(NocView view) {
+    public NocPresenterImplementer(NocView view, Context context) {
+        this.context = context;
         this.view = view;
     }
 
@@ -84,13 +93,13 @@ public class NocPresenterImplementer implements NocPresenter {
                                             if (task.isSuccessful()) {
 
                                                 view.hideProgressDialog();
-                                                view.showSuccessAlertDialog();
+                                                showSuccessDialog();
                                                 view.clearAllFields();
 
                                             }
                                             else
                                                 {
-                                                view.showErrorMessage("Database task is incomplete ");
+                                                view.showErrorMessage("Database task is incomplete ", "info");
                                                 view.hideProgressDialog();
 
                                             }
@@ -105,7 +114,7 @@ public class NocPresenterImplementer implements NocPresenter {
                         public void onFailure(@NonNull Exception e) {
 
                             view.hideProgressDialog();
-                            view.showErrorMessage("Storage task is fail");
+                            view.showErrorMessage("Storage task is fail", "info");
                         }
                     });
 
@@ -116,7 +125,7 @@ public class NocPresenterImplementer implements NocPresenter {
 
 
         } else {
-            view.showErrorMessage("Please fill all fields");
+            view.showErrorMessage("Please select image and fill all fields", "error");
         }
 
 
@@ -172,7 +181,7 @@ public class NocPresenterImplementer implements NocPresenter {
     @Override
     public void chooseGalleryClick() {
         if (!view.checkPermission()) {
-            view.showErrorMessage("Please enable the permission");
+            view.showErrorMessage("Please enable the permission", "info");
             view.requestPermission();
         } else {
             view.chooseGallery();
@@ -184,6 +193,31 @@ public class NocPresenterImplementer implements NocPresenter {
     @Override
     public void previewImage(Uri uri) {
         view.displayImagePreview(uri);
+
+    }
+
+    private void showSuccessDialog()
+    {
+        final View myView = LayoutInflater.from(context).inflate(R.layout.custom_dialog_for_complaint , null);
+        AlertDialog.Builder alert = new AlertDialog.Builder(context);
+        alert.setView(myView);
+
+        final AlertDialog dialog = alert.create();
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
+
+        TextView message = myView.findViewById(R.id.message);
+        message.setText("Successfully Apply For NOC");
+
+        myView.findViewById(R.id.btnOk).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+
 
     }
 }

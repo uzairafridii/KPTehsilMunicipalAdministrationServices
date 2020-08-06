@@ -4,10 +4,14 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.net.Uri;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.DatePicker;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -20,6 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.uzair.kptehsilmunicipaladministrationservices.Presenters.BirthCertificatePresenter;
+import com.uzair.kptehsilmunicipaladministrationservices.R;
 import com.uzair.kptehsilmunicipaladministrationservices.Views.BirthCertificateView;
 
 import java.text.DateFormat;
@@ -88,6 +93,7 @@ public class BirthCertificatePresenterImplementer implements BirthCertificatePre
                                 // counter is equal to urls arraylist then upload all urls and data
                                 if( counter  == uriList.size()) {
 
+                                    // get user name and cnic
                                     dbRef.child("Users").child(mAuth.getCurrentUser().getUid())
                                             .addValueEventListener(new ValueEventListener() {
                                                 @Override
@@ -141,11 +147,11 @@ public class BirthCertificatePresenterImplementer implements BirthCertificatePre
 
                                                                         birthView.onDismissProgressDialog();
                                                                         birthView.clearAllFileds();
-                                                                        birthView.showMessage("SuccessFully Apply");
+                                                                        successDialog("Apply Successfully Done");
 
                                                                     } else {
 
-                                                                        birthView.showMessage("Error in uploading");
+                                                                        birthView.showMessage("Error in uploading", "error");
                                                                         birthView.onDismissProgressDialog();
                                                                     }
                                                                 }
@@ -173,12 +179,13 @@ public class BirthCertificatePresenterImplementer implements BirthCertificatePre
         }
         else
         {
-           birthView.showMessage("Please cnic and all fields are required");
+           birthView.showMessage("Please cnic and all fields are required", "info");
         }
 
 
 
     }
+
 
     @Override
     public void onSetSpinnerAdapter()
@@ -195,11 +202,37 @@ public class BirthCertificatePresenterImplementer implements BirthCertificatePre
     public void previewImage(List<Uri> uri) {
         if (uri.size() > 2 || uri.size() < 2)
         {
-            birthView.showMessage("Please select front and back side cnic image");
+            birthView.showMessage("Please select front and back side cnic image", "warning");
         }
         else
             {
             birthView.displayImagePreview(uri);
         }
+    }
+
+    private void successDialog(String dialogBody)
+    {
+        View myView = LayoutInflater.from(context).inflate(R.layout.custom_dialog_for_complaint, null);
+        AlertDialog.Builder alert = new AlertDialog.Builder(context);
+        alert.setView(myView);
+
+        final AlertDialog dialog = alert.create();
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setCancelable(false);
+
+        TextView body = myView.findViewById(R.id.message);
+        body.setText(dialogBody);
+
+        myView.findViewById(R.id.btnOk).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+                birthView.closeActivity();
+            }
+
+        });
+
+        alert.show();
+
     }
 }

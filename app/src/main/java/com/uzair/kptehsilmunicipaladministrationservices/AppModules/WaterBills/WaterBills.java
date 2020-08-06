@@ -23,6 +23,8 @@ import com.uzair.kptehsilmunicipaladministrationservices.Models.WaterBillPresent
 import com.uzair.kptehsilmunicipaladministrationservices.R;
 import com.uzair.kptehsilmunicipaladministrationservices.Views.WaterBillView;
 
+import es.dmoral.toasty.Toasty;
+
 public class WaterBills extends AppCompatActivity implements WaterBillView
 {
     public static final int PERMISSION_CODE = 10 ;
@@ -165,7 +167,7 @@ public class WaterBills extends AppCompatActivity implements WaterBillView
     @Override
     public void showErrorMessage(String error) {
 
-        Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
+        Toasty.error(this, error, Toasty.LENGTH_SHORT).show();
     }
 
 }

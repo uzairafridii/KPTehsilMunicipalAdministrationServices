@@ -30,6 +30,8 @@ import com.uzair.kptehsilmunicipaladministrationservices.Views.SignUpView;
 import java.util.HashMap;
 import java.util.Map;
 
+import es.dmoral.toasty.Toasty;
+
 public class SignUp extends AppCompatActivity implements SignUpView
 {
     private TextInputLayout nameInput , emailInput , phoneInput , cnicInput , passwordInput , confirmPasswordInput;
@@ -88,7 +90,7 @@ public class SignUp extends AppCompatActivity implements SignUpView
     // inflate views
     private void initViews()
     {
-        signUpPresenterImplementer = new SignUpPresenterImplementer(this);
+        signUpPresenterImplementer = new SignUpPresenterImplementer(this, this);
         // input fields
         confirmPasswordInput = findViewById(R.id.userConfirmPasswordTextInputLayout);
         passwordInput        = findViewById(R.id.userPasswordTextInputLayout);
@@ -119,24 +121,6 @@ public class SignUp extends AppCompatActivity implements SignUpView
         finish();
     }
 
-    // show alert dialog
-    
-    // show alert dialog for error
-    private void messageDialog(String message)
-    {
-        AlertDialog.Builder alert = new AlertDialog.Builder(this);
-        alert.setTitle("Error");
-        alert.setMessage(message);
-        alert.setCancelable(false);
-        alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.dismiss();
-            }
-        });
-        alert.show();
-    }
-
 
     @Override
     public void showProgressBar() {
@@ -162,37 +146,39 @@ public class SignUp extends AppCompatActivity implements SignUpView
         confirmPasswordInput.getEditText().setText("");
     }
 
-
     @Override
-    public void showMessage(String message)
+    public void showMessage(String message, String type)
     {
-       messageDialog(message);
+        if(type.equals("info"))
+        {
+            Toasty.info(this,message, Toasty.LENGTH_SHORT).show();
+        }else if(type.equals("warning"))
+        {
+            Toasty.warning(this,message, Toasty.LENGTH_SHORT).show();
+        }
+        else if(type.equals("error"))
+        {
+            Toasty.error(this,message, Toasty.LENGTH_SHORT).show();
+        }
+        else
+        {
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        }
+
     }
 
-    // email verification dialog
     @Override
-    public void showEmailVerificationDialog()
-    {
-        AlertDialog.Builder alert = new AlertDialog.Builder(this);
-        alert.setTitle("Check Email");
-        alert.setMessage("Please Verify Your Email ");
-        alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
+    public void openEmailApp() {
 
-                startActivity(new Intent(SignUp.this , Login.class));
-                SignUp.this.finish();
-
-            }
-        }).setNeutralButton("Verify", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-
-                Intent intent = new Intent(Intent.ACTION_MAIN);
-                intent.addCategory(Intent.CATEGORY_APP_EMAIL);
-                startActivity(intent);
-            }
-        });
-        alert.show();
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_APP_EMAIL);
+        startActivity(intent);
     }
+
+    @Override
+    public void moveToLoginScreen() {
+        startActivity(new Intent(SignUp.this , Login.class));
+        SignUp.this.finish();
+    }
+
 }
