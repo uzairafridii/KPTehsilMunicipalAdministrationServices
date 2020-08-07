@@ -1,15 +1,12 @@
 package com.uzair.kptehsilmunicipaladministrationservices.AppModules.UserComplaint.ComplaintsMain;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.ClipData;
 import android.content.Intent;
@@ -17,32 +14,23 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
-import com.uzair.kptehsilmunicipaladministrationservices.AppModules.UserComplaint.AdapterOfComplaintRecycler.AdapterForImagesRecycler;
+import com.uzair.kptehsilmunicipaladministrationservices.AppModules.UserComplaint.AdapterOfComplaintRecycler.SelectedImageRecyclerAdapter;
 import com.uzair.kptehsilmunicipaladministrationservices.Models.AddComplaintsPresenterImplementer;
 import com.uzair.kptehsilmunicipaladministrationservices.R;
 import com.uzair.kptehsilmunicipaladministrationservices.Views.AddComplaintsView;
 
-import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import es.dmoral.toasty.Toasty;
 
@@ -58,7 +46,7 @@ public class AddComplaints extends AppCompatActivity implements AddComplaintsVie
     private RecyclerView mRecyclerView;
     private ProgressDialog progressDialog;
 
-    private AdapterForImagesRecycler adapter;
+    private SelectedImageRecyclerAdapter adapter;
     private List<Uri> imageUriList;
     private  double lat , lng;
     private AddComplaintsPresenterImplementer presenterImplementer;
@@ -199,7 +187,7 @@ public class AddComplaints extends AppCompatActivity implements AddComplaintsVie
     private void setRecyclerView(List<Uri> uris)
     {
         mRecyclerView = findViewById(R.id.selectImagesRecyclerList);
-        adapter = new AdapterForImagesRecycler(uris , this);
+        adapter = new SelectedImageRecyclerAdapter(uris , this);
         mRecyclerView.setLayoutManager(new GridLayoutManager(this , 3));
         mRecyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();

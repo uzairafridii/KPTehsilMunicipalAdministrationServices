@@ -15,19 +15,19 @@ import com.uzair.kptehsilmunicipaladministrationservices.R;
 
 import java.util.List;
 
-public class AdapterForImagesRecycler extends RecyclerView.Adapter<AdapterForImagesRecycler.MyViewHolder>
+public class SelectedImageRecyclerAdapter extends RecyclerView.Adapter<SelectedImageRecyclerAdapter.MyViewHolder>
 {
     private List<Uri> imagesList;
     private Context context;
 
-    public AdapterForImagesRecycler(List<Uri> imagesList, Context context) {
+    public SelectedImageRecyclerAdapter(List<Uri> imagesList, Context context) {
         this.imagesList = imagesList;
         this.context = context;
     }
 
     @NonNull
     @Override
-    public AdapterForImagesRecycler.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
+    public SelectedImageRecyclerAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
     {
         View myView = LayoutInflater.from(context).inflate(R.layout.design_for_images_recycler , null);
         MyViewHolder  holder = new MyViewHolder(myView);
@@ -35,7 +35,7 @@ public class AdapterForImagesRecycler extends RecyclerView.Adapter<AdapterForIma
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final AdapterForImagesRecycler.MyViewHolder holder, final int position)
+    public void onBindViewHolder(@NonNull final SelectedImageRecyclerAdapter.MyViewHolder holder, final int position)
     {
         final Uri model = imagesList.get(position);
 
