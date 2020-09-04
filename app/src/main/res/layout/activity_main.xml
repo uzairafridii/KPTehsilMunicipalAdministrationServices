@@ -55,7 +55,7 @@
         android:layout_marginBottom="@dimen/edit_margin"
         android:paddingBottom="@dimen/edit_margin"
         android:layout_gravity="center_horizontal"
-
+        android:layout_marginTop="@dimen/edit_margin"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         >
 

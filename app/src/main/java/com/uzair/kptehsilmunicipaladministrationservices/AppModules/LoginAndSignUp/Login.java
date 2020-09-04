@@ -34,7 +34,7 @@ public class Login extends AppCompatActivity implements LoginView {
 
     public final static String SAVE_PASSWORD = "user_name_password";
     private SharedPreferences prefs;
-    private String saveEmail, savedPassword , email , password;
+    private String email , password;
     private Button createAccountBtn;
     private FloatingActionButton button;
     private TextInputLayout userEmail, userPassword;
@@ -61,7 +61,7 @@ public class Login extends AppCompatActivity implements LoginView {
                  password = userPassword.getEditText().getText().toString().trim();
 
                  // call presenterimplemneter login method
-                loginPresenterImplementer.login(mAuth, email, password, saveEmail, savedPassword);
+                loginPresenterImplementer.login(mAuth, email, password);
 
             }
         });
@@ -158,11 +158,11 @@ public class Login extends AppCompatActivity implements LoginView {
         super.onStart();
 
         prefs = getSharedPreferences(SAVE_PASSWORD, MODE_PRIVATE);
-        saveEmail = prefs.getString("email", "");//"No name defined" is the default value.
-        savedPassword = prefs.getString("password", "");
+        email = prefs.getString("email", "");//"No name defined" is the default value.
+        password = prefs.getString("password", "");
 
-        userEmail.getEditText().setText(saveEmail);
-        userPassword.getEditText().setText(savedPassword);
+        userEmail.getEditText().setText(email);
+        userPassword.getEditText().setText(password);
 
 
     }

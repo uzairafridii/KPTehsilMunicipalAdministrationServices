@@ -2,6 +2,7 @@ package com.uzair.kptehsilmunicipaladministrationservices.Models;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -33,27 +34,32 @@ public class LoginPresenterImplementer implements LoginPresenter {
     }
 
     @Override
-    public void login(FirebaseAuth mAuth, String email, String password, String saveEmail, String savePassword) {
+    public void login(FirebaseAuth mAuth, String email, String password) {
 
         try {
-            if (!email.isEmpty() && !password.isEmpty()) {
+            if (!email.isEmpty() && !password.isEmpty())
+            {
+                if(password.length() >= 6 && email.endsWith("gmail.com")) {
 
-                loginView.showProgressDialog();
+                    loginView.showProgressDialog();
 
-                loginToApplication(mAuth, email, password, saveEmail, savePassword);
+                    loginToApplication(mAuth, email, password);
+                }
+
 
             } else {
                 loginView.showMessage("All fields are required", "info");
             }
         } catch (Exception e) {
+            Log.d("TAG", "login: "+e.getMessage());
         }
 
     }
 
 
     // login with email
-    private void loginToApplication(final FirebaseAuth mAuth, final String email, final String password,
-                                    final String savedEmail, final String savedPassword) {
+    private void loginToApplication(final FirebaseAuth mAuth, final String email, final String password) {
+
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -66,7 +72,6 @@ public class LoginPresenterImplementer implements LoginPresenter {
                         // check email is verified or not
                         if (currentUser.isEmailVerified()) {
 
-                            if (!savedEmail.isEmpty() && !savedPassword.isEmpty()) {
 
                                 // get the device token
                                 FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(new OnSuccessListener<InstanceIdResult>() {
@@ -94,14 +99,6 @@ public class LoginPresenterImplementer implements LoginPresenter {
 
                                     }
                                 });
-                            }
-                            else {
-
-                                loginView.hideProgressDialog();
-                                loginView.showSavePassordDialog();
-                                loginView.clearAllFields();
-
-                            }// end save password if else
 
 
                         } else {

@@ -6,8 +6,7 @@ public interface LoginPresenter
 {
 
     void login(FirebaseAuth mAuth , String userEmail ,
-               String userPassword , String saveEmail ,
-               String savePassword);
+               String userPassword);
 
 
 }
