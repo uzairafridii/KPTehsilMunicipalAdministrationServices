@@ -50,7 +50,8 @@ public class SignUpPresenterImplementer implements SignUpPresenter
 
                     signUpView.showMessage("Password must be same", "warning");
 
-                } else { // inner else body start
+                }
+                else { // inner else body start
 
                     signUpView.showProgressBar();
 

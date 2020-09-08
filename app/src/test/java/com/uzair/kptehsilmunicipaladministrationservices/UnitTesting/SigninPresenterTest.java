@@ -1,4 +1,4 @@
-package com.uzair.kptehsilmunicipaladministrationservices;
+package com.uzair.kptehsilmunicipaladministrationservices.UnitTesting;
 
 import android.content.Context;
 
@@ -17,8 +17,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
-public class SigninPresenterTest
-{
+public class SigninPresenterTest {
 
     @Mock
     LoginView loginInView;
@@ -28,7 +27,7 @@ public class SigninPresenterTest
     Context context;
 
     @Before
-    public void setUp() throws Exception{
+    public void setUp() throws Exception {
         presenterImplementer = new LoginPresenterImplementer(loginInView, context);
     }
 
@@ -36,7 +35,7 @@ public class SigninPresenterTest
     @Test
     public void shouldFailedToSignInIfPassIncompleteData() throws Exception {
 
-        presenterImplementer.login(firebaseAuth ,"","");
+        presenterImplementer.login(firebaseAuth, "", "");
 
         verify(loginInView).showMessage("All fields are required", "info");
 
@@ -45,10 +44,10 @@ public class SigninPresenterTest
     @Test
     public void shouldLoginIfPassAllData() throws Exception {
 
-        presenterImplementer.login(firebaseAuth, "uzair@gmail.com","123456");
+        presenterImplementer.login(firebaseAuth, "uzair@gmail.com", "123456");
 
         verify(loginInView).showProgressDialog();
-
     }
+
 
 }
