@@ -2,6 +2,7 @@ package com.uzair.kptehsilmunicipaladministrationservices.Models;
 
 
 import android.app.Dialog;
+import android.app.Notification;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.net.ConnectivityManager;
@@ -85,12 +86,12 @@ public class MainPagePresenterImplementer implements MainPagePresenter
     // set items in home recycler view
     @Override
     public void setHomeRecyclerAdapter() {
-        mHomeModel.add(new HomeModel("Complaints", R.drawable.complain));
-        mHomeModel.add(new HomeModel("Water Bills", R.drawable.bill));
-        mHomeModel.add(new HomeModel("Fire Brigade", R.drawable.fire));
-        mHomeModel.add(new HomeModel("Building Noc", R.drawable.noc));
-        mHomeModel.add(new HomeModel("Taxes", R.drawable.avator_colored));
-        mHomeModel.add(new HomeModel("Certificates", R.drawable.avator_colored));
+        mHomeModel.add(new HomeModel("Complaints", R.drawable.san));
+        mHomeModel.add(new HomeModel("Water Bills", R.drawable.san));
+        mHomeModel.add(new HomeModel("Fire Brigade", R.drawable.san));
+        mHomeModel.add(new HomeModel("Building Noc", R.drawable.san));
+        mHomeModel.add(new HomeModel("Taxes", R.drawable.san));
+        mHomeModel.add(new HomeModel("Certificates", R.drawable.san));
         mHomeModel.add(new HomeModel("Profile", R.drawable.avator_colored));
 
         mainPageView.onSetHomeRecyclerAdapter(mHomeModel);
