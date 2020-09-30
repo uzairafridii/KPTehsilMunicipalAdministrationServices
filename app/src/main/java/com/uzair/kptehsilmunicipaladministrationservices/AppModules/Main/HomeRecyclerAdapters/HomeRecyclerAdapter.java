@@ -16,6 +16,7 @@ import com.uzair.kptehsilmunicipaladministrationservices.AppModules.BuildingNoc.
 import com.uzair.kptehsilmunicipaladministrationservices.AppModules.Certificates.BirthCertificate;
 import com.uzair.kptehsilmunicipaladministrationservices.AppModules.Certificates.CertificatesMain;
 import com.uzair.kptehsilmunicipaladministrationservices.AppModules.FireFighting.FireFighting;
+import com.uzair.kptehsilmunicipaladministrationservices.AppModules.Main.MainActivity;
 import com.uzair.kptehsilmunicipaladministrationservices.AppModules.Main.ModelOfHomeRecycler.HomeModel;
 import com.uzair.kptehsilmunicipaladministrationservices.R;
 import com.uzair.kptehsilmunicipaladministrationservices.AppModules.TaxesDetails.Taxes;
@@ -91,6 +92,11 @@ public class HomeRecyclerAdapter extends RecyclerView.Adapter<HomeRecyclerAdapte
                         FireFighting bottomSheetDialog = FireFighting.newInstance();
                         bottomSheetDialog.show(((AppCompatActivity) ctx).getSupportFragmentManager(), "Bottom Sheet Dialog Fragment");
                         break;
+                    }
+
+                    case "Exit" :
+                    {
+                        MainActivity.exitDialog();
                     }
 
 

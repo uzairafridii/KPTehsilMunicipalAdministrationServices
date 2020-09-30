@@ -62,6 +62,7 @@ public class SignUpPresenterImplementer implements SignUpPresenter
 
                                     if (task.isSuccessful()) { // susscess if
 
+                                        // send link to current user email for verification
                                         mAuth.getCurrentUser().sendEmailVerification()
                                                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override

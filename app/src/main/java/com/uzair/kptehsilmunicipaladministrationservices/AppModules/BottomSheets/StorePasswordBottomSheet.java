@@ -29,6 +29,7 @@ public class StorePasswordBottomSheet extends BottomSheetDialogFragment {
     private TextView password , email;
     private View myView;
     private String receivedPassword, receivedEmail;
+    private SharedPreferences.Editor editor;
 
 
     public StorePasswordBottomSheet(String receivedEmail , String receivedPassword)
@@ -50,7 +51,12 @@ public class StorePasswordBottomSheet extends BottomSheetDialogFragment {
         notSavePassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               startMainActivity();
+
+                editor.remove("email");
+                editor.remove("password");
+                editor.apply();
+
+                startMainActivity();
             }
         });
 
@@ -59,7 +65,6 @@ public class StorePasswordBottomSheet extends BottomSheetDialogFragment {
             @Override
             public void onClick(View view) {
 
-                SharedPreferences.Editor editor = getContext().getSharedPreferences(Login.SAVE_PASSWORD, MODE_PRIVATE).edit();
                 editor.putString("email", receivedEmail);
                 editor.putString("password", receivedPassword);
                 editor.apply();
@@ -72,6 +77,8 @@ public class StorePasswordBottomSheet extends BottomSheetDialogFragment {
         return myView;
     }
 
+
+    // initview views
     private void initViews()
     {
 
@@ -84,6 +91,9 @@ public class StorePasswordBottomSheet extends BottomSheetDialogFragment {
 
         password.setText(receivedPassword);
         email.setText(receivedEmail);
+
+
+        editor = getContext().getSharedPreferences(Login.SAVE_PASSWORD, MODE_PRIVATE).edit();
 
 
     }

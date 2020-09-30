@@ -44,7 +44,7 @@ public class SigninPresenterTest {
     @Test
     public void shouldLoginIfPassAllData() throws Exception {
 
-        presenterImplementer.login(firebaseAuth, "uzair@gmail.com", "123456");
+        presenterImplementer.login(firebaseAuth, "uzair@gmail.com", "123465");
 
         verify(loginInView).showProgressDialog();
     }

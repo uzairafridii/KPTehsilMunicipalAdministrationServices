@@ -82,5 +82,11 @@
     <string name="noc_status">Noc Status</string>
     <string name="title_activity_maps">Map</string>
     <string name="channel_id">channel_id</string>
+    <string name="confirm_password_urdu">پاس ورڈ کی تصدیق</string>
+    <string name="password_urdu">پاس ورڈ</string>
+    <string name="cnic_urdu">شناختی کارڈ نمبر</string>
+    <string name="phone_urdu">فون نمبر</string>
+    <string name="email_urdu">ای میل</string>
+    <string name="name_urdu">نام</string>
 
 </resources>

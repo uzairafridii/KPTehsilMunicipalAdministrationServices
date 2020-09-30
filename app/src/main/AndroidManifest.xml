@@ -23,11 +23,13 @@
         android:theme="@style/AppTheme">
 
         <activity android:name=".SplashScreen">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
 
 
@@ -44,7 +46,7 @@
         <activity
             android:name=".AppModules.Certificates.DeathCertificate"
             android:parentActivityName=".AppModules.Certificates.CertificatesMain"
-            android:screenOrientation="locked" />
+            android:screenOrientation="locked"/>
         <activity
             android:name=".AppModules.Certificates.BirthCertificate"
             android:parentActivityName=".AppModules.Certificates.CertificatesMain"
@@ -52,7 +54,10 @@
         <activity
             android:name=".AppModules.UserProfile.Profile"
             android:parentActivityName=".AppModules.Main.MainActivity"
-            android:screenOrientation="locked" />
+            android:screenOrientation="locked" >
+
+
+        </activity>
         <activity
             android:name=".AppModules.BuildingNoc.BuildingNocActivity"
             android:parentActivityName=".AppModules.Main.MainActivity"

@@ -45,6 +45,10 @@ public class LoginPresenterImplementer implements LoginPresenter {
 
                     loginToApplication(mAuth, email, password);
                 }
+                else
+                {
+                    loginView.showMessage("Gmail and password must be valid", "info");
+                }
 
 
             } else {

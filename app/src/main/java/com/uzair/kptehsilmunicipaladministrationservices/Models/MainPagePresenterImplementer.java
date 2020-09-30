@@ -86,13 +86,14 @@ public class MainPagePresenterImplementer implements MainPagePresenter
     // set items in home recycler view
     @Override
     public void setHomeRecyclerAdapter() {
-        mHomeModel.add(new HomeModel("Complaints", R.drawable.san));
-        mHomeModel.add(new HomeModel("Water Bills", R.drawable.san));
-        mHomeModel.add(new HomeModel("Fire Brigade", R.drawable.san));
-        mHomeModel.add(new HomeModel("Building Noc", R.drawable.san));
-        mHomeModel.add(new HomeModel("Taxes", R.drawable.san));
-        mHomeModel.add(new HomeModel("Certificates", R.drawable.san));
-        mHomeModel.add(new HomeModel("Profile", R.drawable.avator_colored));
+        mHomeModel.add(new HomeModel("Complaints", R.drawable.complain));
+        mHomeModel.add(new HomeModel("Water Bills", R.drawable.water_bill));
+        mHomeModel.add(new HomeModel("Fire Brigade", R.drawable.brigade));
+        mHomeModel.add(new HomeModel("Building Noc", R.drawable.building));
+        mHomeModel.add(new HomeModel("Taxes", R.drawable.tax_details));
+        mHomeModel.add(new HomeModel("Certificates", R.drawable.certificate));
+        mHomeModel.add(new HomeModel("Profile", R.drawable.profile));
+        mHomeModel.add(new HomeModel("Exit", R.drawable.exit));
 
         mainPageView.onSetHomeRecyclerAdapter(mHomeModel);
     }

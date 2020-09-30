@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements MainPageView
     private CollapsingToolbarLayout collapsingToolbarLayout;
     private HomeRecyclerAdapter homeRecyclerAdapter;
     private LinearLayoutManager mGridLayoutManager;
-    private MainPagePresenter mainPagePresenter;
+    private static MainPagePresenter mainPagePresenter;
     private FirebaseAuth mAuth;
     private DatabaseReference dbRef;
 
@@ -79,10 +79,16 @@ public class MainActivity extends AppCompatActivity implements MainPageView
 
     }
 
-    @Override
-    public void onBackPressed()
+
+    // show exit dialog on exit card click
+    public static void exitDialog()
     {
         mainPagePresenter.closingDialog();
+    }
+
+    @Override
+    public void onBackPressed() {
+      //  super.onBackPressed();
     }
 
     @Override
@@ -98,6 +104,7 @@ public class MainActivity extends AppCompatActivity implements MainPageView
         MainActivity.this.finish();
 
     }
+
 
     @Override
     public void setUserName(String name) {

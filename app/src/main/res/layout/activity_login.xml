@@ -20,9 +20,30 @@
         android:textColor="@color/txt_color"
         android:layout_alignParentLeft="true"
         android:gravity="center"
-        android:textSize="25sp"
+        android:textSize="32sp"
         android:textStyle="bold"
         android:text="@string/login_txt"/>
+
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/emailUrduText"
+        android:text="ای میل"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:gravity="right"
+        android:textColor="@color/txt_color"
+        android:layout_marginLeft="@dimen/edit_margin"
+        android:layout_marginRight="@dimen/edit_margin"
+        android:layout_marginTop="@dimen/edit_margin"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtLogin"
+        android:paddingRight="@dimen/margin_6"
+        />
 
     <!-- Email edit text -->
     <com.google.android.material.textfield.TextInputLayout
@@ -33,11 +54,10 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_marginLeft="@dimen/edit_margin"
         android:layout_marginRight="@dimen/edit_margin"
-        android:layout_marginTop="@dimen/edit_margin"
         app:boxStrokeColor="@color/txt_color"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtLogin">
+        app:layout_constraintTop_toBottomOf="@id/emailUrduText">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -56,13 +76,32 @@
     </com.google.android.material.textfield.TextInputLayout>
 
 
+    <TextView
+        android:id="@+id/passwordUrduText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailTextInputLayoutLogin"
+        android:text="پاس ورڈ"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:textColor="@color/txt_color"
+        android:gravity="right"
+        android:layout_marginLeft="@dimen/edit_margin"
+        android:layout_marginRight="@dimen/edit_margin"
+        android:layout_marginTop="@dimen/margin_6"
+        android:paddingRight="@dimen/margin_6"
+
+        />
+
+
     <!-- Password edit text -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/passwordTextInputLayoutLogin"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_below="@id/emailTextInputLayoutLogin"
         android:layout_marginLeft="@dimen/edit_margin"
-        android:layout_marginTop="@dimen/edit_margin"
         android:theme="@style/TextLabel"
         android:layout_marginRight="@dimen/margin_16"
         android:layout_width="match_parent"
@@ -72,7 +111,7 @@
         app:passwordToggleTint="@color/txt_color"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/emailTextInputLayoutLogin"
+        app:layout_constraintTop_toBottomOf="@id/passwordUrduText"
         >
 
         <com.google.android.material.textfield.TextInputEditText
@@ -143,6 +182,8 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/signInBtn"
         />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
