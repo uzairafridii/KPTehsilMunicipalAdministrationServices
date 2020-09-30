@@ -20,58 +20,123 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/urduname"
+                android:text="بچے کا نام"
+                android:textStyle="bold"
+                android:gravity="right"
+                android:textColor="@color/txt_color"
+                android:paddingRight="@dimen/margin_6"
+                android:layout_marginTop="@dimen/margin_16"
+                android:layout_marginRight="@dimen/margin_16"
+                android:layout_marginLeft="@dimen/margin_16"
+                />
+
             <!-- child name edit text -->
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:background="@drawable/edit_txt_bg"
                 android:id="@+id/childNameInBirthCertificate"
                 android:hint="@string/child_name"
+                android:textSize="14sp"
+                android:paddingTop="@dimen/reycler_view_margin"
+                android:paddingBottom="@dimen/reycler_view_margin"
                 android:layout_marginLeft="@dimen/edit_margin"
                 android:layout_marginRight="@dimen/edit_margin"
                 android:layout_marginTop="@dimen/margin_6"
                 android:paddingLeft="@dimen/edit_margin"
                 android:inputType="text"
+                android:layout_below="@+id/urduname"
                 />
 
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/urduchildrelation"
+                android:text="@string/relationInUrdu"
+                android:textStyle="bold"
+                android:gravity="right"
+                android:textColor="@color/txt_color"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                android:layout_below="@+id/childNameInBirthCertificate"
+                />
             <!-- child relation edit text -->
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:background="@drawable/edit_txt_bg"
                 android:id="@+id/childRelationWithApplicantBirthCertificate"
-                android:layout_below="@id/childNameInBirthCertificate"
+                android:layout_below="@id/urduchildrelation"
                 android:hint="@string/child_religion_with_applicant"
+                android:textSize="14sp"
+                android:paddingTop="@dimen/reycler_view_margin"
+                android:paddingBottom="@dimen/reycler_view_margin"
                 android:layout_marginLeft="@dimen/edit_margin"
                 android:layout_marginRight="@dimen/edit_margin"
                 android:layout_marginTop="@dimen/reycler_view_margin"
                 android:paddingLeft="@dimen/edit_margin"
                 android:inputType="text"
                 />
-
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/urdureligion"
+                android:text="@string/religionInUrdu"
+                android:textStyle="bold"
+                android:gravity="right"
+                android:textColor="@color/txt_color"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                android:layout_below="@+id/childRelationWithApplicantBirthCertificate"
+                />
             <!-- child religion edit text -->
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:background="@drawable/edit_txt_bg"
                 android:id="@+id/childReligionInBirthCertificate"
-                android:layout_below="@id/childRelationWithApplicantBirthCertificate"
+                android:layout_below="@id/urdureligion"
                 android:hint="@string/religion"
+                android:textSize="14sp"
+                android:paddingTop="@dimen/reycler_view_margin"
+                android:paddingBottom="@dimen/reycler_view_margin"
                 android:layout_marginLeft="@dimen/edit_margin"
                 android:layout_marginRight="@dimen/edit_margin"
                 android:layout_marginTop="@dimen/reycler_view_margin"
                 android:paddingLeft="@dimen/edit_margin"
                 android:inputType="text"
                 />
-
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/urduFather"
+                android:text="@string/fatherNameInUrdu"
+                android:textStyle="bold"
+                android:gravity="right"
+                android:textColor="@color/txt_color"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                android:layout_below="@+id/childReligionInBirthCertificate"
+                />
             <!-- child father name edit text -->
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:background="@drawable/edit_txt_bg"
                 android:id="@+id/childFatherNameInBirthCertificate"
-                android:layout_below="@id/childReligionInBirthCertificate"
+                android:layout_below="@id/urduFather"
                 android:hint="@string/father_name"
+                android:textSize="14sp"
+                android:paddingTop="@dimen/reycler_view_margin"
+                android:paddingBottom="@dimen/reycler_view_margin"
                 android:layout_marginLeft="@dimen/edit_margin"
                 android:layout_marginRight="@dimen/edit_margin"
                 android:layout_marginTop="@dimen/reycler_view_margin"
@@ -79,14 +144,30 @@
                 android:inputType="text"
                 />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/urduCnic"
+                android:text="@string/fatherCnicUrdu"
+                android:textStyle="bold"
+                android:gravity="right"
+                android:textColor="@color/txt_color"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                android:layout_below="@+id/childFatherNameInBirthCertificate"
+                />
             <!-- child father cnic edit text -->
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:background="@drawable/edit_txt_bg"
                 android:id="@+id/childFatherCnicInBirthCertificate"
-                android:layout_below="@id/childFatherNameInBirthCertificate"
+                android:layout_below="@id/urduCnic"
                 android:hint="@string/father_cnic"
+                android:textSize="14sp"
+                android:paddingTop="@dimen/reycler_view_margin"
+                android:paddingBottom="@dimen/reycler_view_margin"
                 android:layout_marginLeft="@dimen/edit_margin"
                 android:layout_marginRight="@dimen/edit_margin"
                 android:layout_marginTop="@dimen/reycler_view_margin"
@@ -94,29 +175,62 @@
                 android:inputType="number"
                 />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/urduMother"
+                android:text="@string/motherNameInUrdu"
+                android:textStyle="bold"
+                android:gravity="right"
+                android:textColor="@color/txt_color"
+
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                android:layout_below="@+id/childFatherCnicInBirthCertificate"
+                />
             <!-- child mother name edit text -->
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:background="@drawable/edit_txt_bg"
                 android:id="@+id/childMotherNameInBirthCertificate"
-                android:layout_below="@id/childFatherCnicInBirthCertificate"
+                android:layout_below="@id/urduMother"
                 android:hint="@string/mother_name"
+                android:textSize="14sp"
+                android:paddingTop="@dimen/reycler_view_margin"
+                android:paddingBottom="@dimen/reycler_view_margin"
                 android:layout_marginLeft="@dimen/edit_margin"
                 android:layout_marginRight="@dimen/edit_margin"
                 android:layout_marginTop="@dimen/reycler_view_margin"
                 android:paddingLeft="@dimen/edit_margin"
                 android:inputType="text"
                 />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/urduMotherCnic"
+                android:text="@string/motherCnicUrdu"
+                android:textStyle="bold"
+                android:gravity="right"
+                android:textColor="@color/txt_color"
 
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                android:layout_below="@+id/childMotherNameInBirthCertificate"
+                />
             <!-- child mother cnic edit text -->
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:background="@drawable/edit_txt_bg"
                 android:id="@+id/childMotherCnicInBirthCertificate"
-                android:layout_below="@id/childMotherNameInBirthCertificate"
+                android:layout_below="@id/urduMotherCnic"
                 android:hint="@string/mother_cnic"
+                android:textSize="14sp"
+                android:paddingTop="@dimen/reycler_view_margin"
+                android:paddingBottom="@dimen/reycler_view_margin"
                 android:layout_marginLeft="@dimen/edit_margin"
                 android:layout_marginRight="@dimen/edit_margin"
                 android:layout_marginTop="@dimen/reycler_view_margin"
@@ -124,14 +238,31 @@
                 android:inputType="number"
                 />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/urduGrandFatherName"
+                android:text="@string/grandFatherNameUrdu"
+                android:textStyle="bold"
+                android:gravity="right"
+                android:textColor="@color/txt_color"
+
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                android:layout_below="@+id/childMotherCnicInBirthCertificate"
+                />
             <!-- child grand father name edit text -->
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:background="@drawable/edit_txt_bg"
                 android:id="@+id/childGrandFatherNameInBirthCertificate"
-                android:layout_below="@id/childMotherCnicInBirthCertificate"
+                android:layout_below="@id/urduGrandFatherName"
                 android:hint="@string/grand_father_name"
+                android:textSize="14sp"
+                android:paddingTop="@dimen/reycler_view_margin"
+                android:paddingBottom="@dimen/reycler_view_margin"
                 android:layout_marginLeft="@dimen/edit_margin"
                 android:layout_marginRight="@dimen/edit_margin"
                 android:layout_marginTop="@dimen/reycler_view_margin"
@@ -139,29 +270,62 @@
                 android:inputType="text"
                 />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/urduGrandFatherCnic"
+                android:text="@string/grandFatherCnicUrdu"
+                android:textStyle="bold"
+                android:gravity="right"
+                android:textColor="@color/txt_color"
+
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                android:layout_below="@+id/childGrandFatherNameInBirthCertificate"
+                />
             <!-- child grand father cnic edit text -->
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:background="@drawable/edit_txt_bg"
                 android:id="@+id/childGrandFatherCnicInBirthCertificate"
-                android:layout_below="@id/childGrandFatherNameInBirthCertificate"
+                android:layout_below="@id/urduGrandFatherCnic"
                 android:hint="@string/grand_father_cnic"
+                android:textSize="14sp"
+                android:paddingTop="@dimen/reycler_view_margin"
+                android:paddingBottom="@dimen/reycler_view_margin"
                 android:layout_marginLeft="@dimen/edit_margin"
                 android:layout_marginRight="@dimen/edit_margin"
                 android:layout_marginTop="@dimen/reycler_view_margin"
                 android:paddingLeft="@dimen/edit_margin"
                 android:inputType="number"
                 />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/urduDisttOfBirth"
+                android:text="@string/districtInUrdu"
+                android:textStyle="bold"
+                android:gravity="right"
+                android:textColor="@color/txt_color"
 
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                android:layout_below="@+id/childGrandFatherCnicInBirthCertificate"
+                />
             <!-- District of birth  edit text -->
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:background="@drawable/edit_txt_bg"
                 android:id="@+id/childDistrictOfBirthInBirthCertificate"
-                android:layout_below="@id/childGrandFatherCnicInBirthCertificate"
+                android:layout_below="@id/urduDisttOfBirth"
                 android:hint="@string/district_of_birth"
+                android:textSize="14sp"
+                android:paddingTop="@dimen/reycler_view_margin"
+                android:paddingBottom="@dimen/reycler_view_margin"
                 android:layout_marginLeft="@dimen/edit_margin"
                 android:layout_marginRight="@dimen/edit_margin"
                 android:layout_marginTop="@dimen/reycler_view_margin"
@@ -169,15 +333,31 @@
                 android:inputType="text"
                 />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/urduDateOfBirth"
+                android:text="@string/dateOfBirthUrdu"
+                android:textStyle="bold"
+                android:gravity="right"
+                android:textColor="@color/txt_color"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                android:layout_below="@+id/childDistrictOfBirthInBirthCertificate"
+                />
             <!-- Date of birth -->
             <TextView
                 android:onClick="clickOnDateOfBirthField"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:background="@drawable/edit_txt_bg"
                 android:id="@+id/childDateOfBirthInBirthCertificate"
-                android:layout_below="@id/childDistrictOfBirthInBirthCertificate"
+                android:layout_below="@id/urduDateOfBirth"
                 android:hint="@string/date_of_birth"
+                android:textSize="14sp"
+                android:paddingTop="@dimen/reycler_view_margin"
+                android:paddingBottom="@dimen/reycler_view_margin"
                 android:layout_marginLeft="@dimen/edit_margin"
                 android:layout_marginRight="@dimen/edit_margin"
                 android:layout_marginTop="@dimen/reycler_view_margin"
@@ -186,14 +366,30 @@
                 android:inputType="text|date"
                 />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/urduVaccinated"
+                android:text="@string/vaccinateUrdu"
+                android:textStyle="bold"
+                android:gravity="right"
+                android:textColor="@color/txt_color"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                android:layout_below="@+id/childDateOfBirthInBirthCertificate"
+                />
             <!-- Vaccinated   edit text -->
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:background="@drawable/edit_txt_bg"
                 android:id="@+id/childVaccinatedInBirthCertificate"
-                android:layout_below="@id/childDateOfBirthInBirthCertificate"
+                android:layout_below="@id/urduVaccinated"
                 android:hint="@string/vaccinated"
+                android:textSize="14sp"
+                android:paddingTop="@dimen/reycler_view_margin"
+                android:paddingBottom="@dimen/reycler_view_margin"
                 android:layout_marginLeft="@dimen/edit_margin"
                 android:layout_marginRight="@dimen/edit_margin"
                 android:layout_marginTop="@dimen/reycler_view_margin"
@@ -201,14 +397,30 @@
                 android:inputType="text"
                 />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/urduPalceOfBirth"
+                android:text="@string/placeOfBirthUrdu"
+                android:textStyle="bold"
+                android:gravity="right"
+                android:textColor="@color/txt_color"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                android:layout_below="@+id/childVaccinatedInBirthCertificate"
+                />
             <!-- Place of birth edit text -->
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:background="@drawable/edit_txt_bg"
                 android:id="@+id/childPlaceOfBirth"
-                android:layout_below="@id/childVaccinatedInBirthCertificate"
+                android:layout_below="@id/urduPalceOfBirth"
                 android:hint="@string/place_of_birth"
+                android:textSize="14sp"
+                android:paddingTop="@dimen/reycler_view_margin"
+                android:paddingBottom="@dimen/reycler_view_margin"
                 android:layout_marginLeft="@dimen/edit_margin"
                 android:layout_marginRight="@dimen/edit_margin"
                 android:layout_marginTop="@dimen/reycler_view_margin"
@@ -216,14 +428,30 @@
                 android:inputType="text"
                 />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/urduMidWife"
+                android:text="@string/doctorUrdu"
+                android:textStyle="bold"
+                android:gravity="right"
+                android:textColor="@color/txt_color"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                android:layout_below="@+id/childPlaceOfBirth"
+                />
             <!-- Doctor or MidWife name edit text -->
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:background="@drawable/edit_txt_bg"
                 android:id="@+id/doctorOrMidWifeNameInBirthCertificate"
-                android:layout_below="@id/childPlaceOfBirth"
+                android:layout_below="@id/urduMidWife"
                 android:hint="@string/doctor_or_midwife_name"
+                android:textSize="14sp"
+                android:paddingTop="@dimen/reycler_view_margin"
+                android:paddingBottom="@dimen/reycler_view_margin"
                 android:layout_marginLeft="@dimen/edit_margin"
                 android:layout_marginRight="@dimen/edit_margin"
                 android:layout_marginTop="@dimen/reycler_view_margin"
@@ -231,14 +459,30 @@
                 android:inputType="text"
                 />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/urduDisability"
+                android:text="@string/disabilityUrdu"
+                android:textStyle="bold"
+                android:gravity="right"
+                android:textColor="@color/txt_color"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                android:layout_below="@+id/doctorOrMidWifeNameInBirthCertificate"
+                />
             <!-- Disability edit text -->
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:background="@drawable/edit_txt_bg"
                 android:id="@+id/disabilityInBirthCertificate"
-                android:layout_below="@id/doctorOrMidWifeNameInBirthCertificate"
+                android:layout_below="@id/urduDisability"
                 android:hint="@string/disability"
+                android:textSize="14sp"
+                android:paddingTop="@dimen/reycler_view_margin"
+                android:paddingBottom="@dimen/reycler_view_margin"
                 android:layout_marginLeft="@dimen/edit_margin"
                 android:layout_marginRight="@dimen/edit_margin"
                 android:layout_marginTop="@dimen/reycler_view_margin"
@@ -246,14 +490,30 @@
                 android:inputType="text"
                 />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/urduAddress"
+                android:text="@string/addressUrdu"
+                android:textStyle="bold"
+                android:gravity="right"
+                android:textColor="@color/txt_color"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                android:layout_below="@+id/disabilityInBirthCertificate"
+                />
             <!-- Address edit text -->
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:background="@drawable/edit_txt_bg"
                 android:id="@+id/addressInBirthCertificate"
-                android:layout_below="@id/disabilityInBirthCertificate"
+                android:layout_below="@id/urduAddress"
                 android:hint="@string/address"
+                android:textSize="14sp"
+                android:paddingTop="@dimen/reycler_view_margin"
+                android:paddingBottom="@dimen/reycler_view_margin"
                 android:layout_marginLeft="@dimen/edit_margin"
                 android:layout_marginRight="@dimen/edit_margin"
                 android:layout_marginTop="@dimen/reycler_view_margin"
@@ -261,12 +521,25 @@
                 android:inputType="text"
                 />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/urduGender"
+                android:text="@string/genderUrdu"
+                android:textStyle="bold"
+                android:gravity="right"
+                android:textColor="@color/txt_color"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                android:layout_below="@+id/addressInBirthCertificate"
+                />
 
            <androidx.appcompat.widget.AppCompatSpinner
                android:layout_width="match_parent"
                android:layout_height="40dp"
                android:id="@+id/childGenderInBirthCertificate"
-               android:layout_below="@id/addressInBirthCertificate"
+               android:layout_below="@id/urduGender"
                android:hint="Select"
                android:layout_marginLeft="@dimen/edit_margin"
                android:layout_marginRight="@dimen/edit_margin"
@@ -276,11 +549,26 @@
                android:elevation="@dimen/margin_6"
                />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/urduUc"
+                android:text="@string/ucUrdu"
+                android:textStyle="bold"
+                android:gravity="right"
+                android:textColor="@color/txt_color"
+                android:layout_marginLeft="@dimen/edit_margin"
+                android:layout_marginRight="@dimen/edit_margin"
+                android:layout_marginTop="@dimen/reycler_view_margin"
+                android:layout_below="@+id/childGenderInBirthCertificate"
+                />
+
+
             <androidx.appcompat.widget.AppCompatSpinner
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:id="@+id/ucSpinner"
-                android:layout_below="@id/childGenderInBirthCertificate"
+                android:layout_below="@id/urduUc"
                 android:hint="Select"
                 android:layout_marginLeft="@dimen/edit_margin"
                 android:layout_marginRight="@dimen/edit_margin"

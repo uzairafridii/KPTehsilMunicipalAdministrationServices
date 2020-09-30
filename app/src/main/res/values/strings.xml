@@ -88,5 +88,32 @@
     <string name="phone_urdu">فون نمبر</string>
     <string name="email_urdu">ای میل</string>
     <string name="name_urdu">نام</string>
+    <string name="relationInUrdu">بچے کا درخواست دہندہ کے ساتھ  رشتہ</string>
+    <string name="religionInUrdu">مذہب</string>
+    <string name="fatherNameInUrdu">والد کا نام</string>
+    <string name="fatherCnicUrdu">والد شناختی کارڈ نمبر</string>
+    <string name="motherNameInUrdu">ماں کا نام</string>
+    <string name="motherCnicUrdu">ماں کا شناختی کارڈ نمبر</string>
+    <string name="grandFatherNameUrdu">دادا کا نام</string>
+    <string name="grandFatherCnicUrdu">دادا کا شناختی کارڈ نمبر</string>
+    <string name="districtInUrdu">ضلع پیدائش</string>
+    <string name="dateOfBirthUrdu">تاریخ پیدائش</string>
+    <string name="vaccinateUrdu">ویکسینیشن</string>
+    <string name="placeOfBirthUrdu">پیدائش کی جگہ</string>
+    <string name="doctorUrdu">ڈاکٹر / دائی کا نام</string>
+    <string name="disabilityUrdu">معذوری</string>
+    <string name="addressUrdu">پتہ</string>
+    <string name="genderUrdu">جنس</string>
+    <string name="ucUrdu">یونین کونسل</string>
+    <string name="deceasedNameUrdu">مرحوم کا نام</string>
+    <string name="deceaseCnicUrdu">مرحوم کا شناختی کارڈ نمبر </string>
+    <string name="deceaseFatherNameUrdu">مرحوم والد کا نام</string>
+    <string name="deceaseFatherCnicUrdu">والد کا شناختی کارڈ نمبر</string>
+    <string name="deceaseMotherCnicUrdu"> مرحوم کا والدہ کا شناختی کارڈ نمبر</string>
+    <string name="deceaseMotherNameUrdu"> مرحوم کا والدہ کا نام</string>
+    <string name="husbanNameUrdu">شوہر / بیوی کا نام</string>
+    <string name="husbandCnicUrdu">شوہر / بیوی کا شناختی کارڈ نمبر</string>
+    <string name="graveYardUrdu">قبرستان</string>
+    <string name="deceaseDateOfBirth"> مرحوم کا تاریخ پیدائش</string>
 
 </resources>
