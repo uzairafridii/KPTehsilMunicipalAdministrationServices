@@ -2,13 +2,9 @@ package com.uzair.kptehsilmunicipaladministrationservices.AppModules.TaxesDetail
 
 public class TaxesModel
 {
-    private String taxTitle , taxAmount, taxImage;
+    private String taxTitle , taxAmount, imageUrl;
 
     public TaxesModel() {}
-
-    public String getTaxImage() {
-        return taxImage;
-    }
 
     public String getTaxTitle() {
         return taxTitle;
@@ -16,5 +12,9 @@ public class TaxesModel
 
     public String getTaxAmount() {
         return taxAmount;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
     }
 }

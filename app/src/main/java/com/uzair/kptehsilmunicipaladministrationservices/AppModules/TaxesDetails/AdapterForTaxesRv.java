@@ -40,7 +40,7 @@ public class AdapterForTaxesRv extends RecyclerView.Adapter<AdapterForTaxesRv.My
         TaxesModel  model = taxesModelList.get(position);
         holder.title.setText(model.getTaxTitle());
         holder.amount.setText("PKR "+model.getTaxAmount());
-        holder.setTaxLogo(model.getTaxImage());
+        holder.setTaxLogo(model.getImageUrl());
 
 
     }

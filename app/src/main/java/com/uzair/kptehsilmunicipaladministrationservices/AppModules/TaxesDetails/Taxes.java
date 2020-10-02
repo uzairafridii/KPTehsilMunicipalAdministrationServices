@@ -35,6 +35,8 @@ public class Taxes extends AppCompatActivity implements TaxesView
         setContentView(R.layout.activity_taxes);
         initViews();
 
+        presenter.getTaxesList(dbRef);
+
     }
 
     private void initViews()
@@ -53,10 +55,10 @@ public class Taxes extends AppCompatActivity implements TaxesView
         taxesRv = findViewById(R.id.taxesDetails);
         taxesRv.setLayoutManager(new LinearLayoutManager(this));
 
-        dbRef  = FirebaseDatabase.getInstance().getReference().child("TaxesDetail");
+        dbRef  = FirebaseDatabase.getInstance().getReference().child("TaxDetails");
 
         presenter = new TaxesPresenterImplmenter(this);
-        presenter.getTaxesList(dbRef);
+
     }
 
     @Override

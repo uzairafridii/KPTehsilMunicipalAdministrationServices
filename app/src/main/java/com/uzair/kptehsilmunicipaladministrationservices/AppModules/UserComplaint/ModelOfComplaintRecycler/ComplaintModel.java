@@ -7,8 +7,7 @@ public class ComplaintModel
     private String title , description , status, date , pushKey , field , uid;
     private List<String> imageUrl;
 
-    public ComplaintModel() {
-    }
+    public ComplaintModel() {}
 
     public String getUid() { return uid; }
 
