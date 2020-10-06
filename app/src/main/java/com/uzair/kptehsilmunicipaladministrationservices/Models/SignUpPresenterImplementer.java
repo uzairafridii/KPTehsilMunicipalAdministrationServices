@@ -46,9 +46,9 @@ public class SignUpPresenterImplementer implements SignUpPresenter
             if (!userName.isEmpty() && !userEmail.isEmpty()
                     && !userCnic.isEmpty() && !userPhone.isEmpty()
                     && !userPassword.isEmpty() && !confirmPassword.isEmpty()) {
-                if (!confirmPassword.equals(userPassword)) {
+                if (!confirmPassword.equals(userPassword) && userPassword.length() >= 6) {
 
-                    signUpView.showMessage("Password must be same", "warning");
+                    signUpView.showMessage("Password must be same and 6 digits", "warning");
 
                 }
                 else { // inner else body start

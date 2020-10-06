@@ -50,4 +50,23 @@ public class SigninPresenterTest {
     }
 
 
+    @Test
+    public void gmailAndPasswordInValid() throws Exception
+    {
+
+        presenterImplementer.login(firebaseAuth, "uzair@gmail.com", "12");
+
+        verify(loginInView).showMessage("Gmail and password must be valid", "info");
+
+    }
+
+    @Test
+    public void gamilAndPasswordValid()
+    {
+        presenterImplementer.login(firebaseAuth, "uzair@gmail.com", "1235436");
+
+        verify(loginInView).showProgressDialog();
+    }
+
+
 }

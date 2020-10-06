@@ -7,6 +7,7 @@ import android.location.Location;
 import android.net.Uri;
 import android.os.Looper;
 import android.provider.Settings;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -119,27 +120,48 @@ public class FirebrigadePresenterImplementer implements FirebrigadePresenter
                     }
                     else {
                         view.showProgressDialog();
+
                         // store data in firebase
-                        String date = DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
-                        Map fireMap = new HashMap<>();
-                        fireMap.put("lat", lat);
-                        fireMap.put("lng", lng);
-                        fireMap.put("uid", auth.getCurrentUser().getUid());
-                        fireMap.put("date", date);
-
-                        reference.child("Fire Fighting").child("Fire Brigade Request")
-                                .push().setValue(fireMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        final String date = DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
+                          // get the user name who request for fire fighting
+                        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference()
+                                .child("Users").child(auth.getCurrentUser().getUid());
+                        dbRef.addValueEventListener(new ValueEventListener() {
                             @Override
-                            public void onComplete(@NonNull Task<Void> task) {
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                                if (task.isSuccessful()) {
+                                String userName = dataSnapshot.child("user_name").getValue().toString();
 
-                                    // store notification data in firebase
-                                    addNotificationData(auth, uid);
+                                Map fireMap = new HashMap<>();
+                                fireMap.put("lat", lat);
+                                fireMap.put("lng", lng);
+                                fireMap.put("uid", auth.getCurrentUser().getUid());
+                                fireMap.put("date", date);
+                                fireMap.put("userName", userName);
 
-                                }
+                                reference.child("Fire Fighting").child("Fire Brigade Request")
+                                        .push().setValue(fireMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+
+                                        if (task.isSuccessful()) {
+
+                                            // store notification data in firebase
+                                            addNotificationData(auth, uid);
+
+                                        }
+                                    }
+                                });
+
+
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
                             }
                         });
+
                     }
                 }
                 else

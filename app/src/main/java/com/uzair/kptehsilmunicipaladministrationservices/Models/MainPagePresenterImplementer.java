@@ -87,10 +87,10 @@ public class MainPagePresenterImplementer implements MainPagePresenter
     @Override
     public void setHomeRecyclerAdapter() {
         mHomeModel.add(new HomeModel("Complaints", R.drawable.complain));
-        mHomeModel.add(new HomeModel("Water Bills", R.drawable.water_bill));
-        mHomeModel.add(new HomeModel("Fire Brigade", R.drawable.brigade));
-        mHomeModel.add(new HomeModel("Building Noc", R.drawable.building));
-        mHomeModel.add(new HomeModel("Taxes", R.drawable.tax_details));
+        mHomeModel.add(new HomeModel("Water Bills", R.drawable.bill));
+        mHomeModel.add(new HomeModel("Fire Brigade", R.drawable.fire));
+        mHomeModel.add(new HomeModel("Building Noc", R.drawable.noc));
+        mHomeModel.add(new HomeModel("Taxes", R.drawable.tax));
         mHomeModel.add(new HomeModel("Certificates", R.drawable.certificate));
         mHomeModel.add(new HomeModel("Profile", R.drawable.profile));
         mHomeModel.add(new HomeModel("Exit", R.drawable.exit));

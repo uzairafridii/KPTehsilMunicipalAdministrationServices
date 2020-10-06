@@ -47,13 +47,29 @@ public class SignUpTesting {
     {
         presenter.registerToApp(dbRef, mAuth, "d","f","44","32","32","df");
 
-        verify(signUpView).showMessage("Password must be same", "warning");
+        verify(signUpView).showMessage("Password must be same and 6 digits", "warning");
     }
 
     @Test
     public void shouldBePassedIfAllDataPassed() throws Exception
     {
         presenter.registerToApp(dbRef,mAuth, "sd","fs","df","Df","Df","sdf");
+        verify(signUpView).showProgressBar();
+    }
+
+    @Test
+    public void passwordAndGmailInValid() throws Exception
+    {
+        presenter.registerToApp(dbRef,mAuth, "sd","fs","df","uzair10","uzair","sdf");
+
+        verify(signUpView).showMessage("Password must be same and 6 digits", "warning");
+    }
+
+    @Test
+    public void passwordAndGmailValid() throws Exception
+    {
+        presenter.registerToApp(dbRef,mAuth, "sd","fs","df","uzair10","uzair10","sdf");
+
         verify(signUpView).showProgressBar();
     }
 

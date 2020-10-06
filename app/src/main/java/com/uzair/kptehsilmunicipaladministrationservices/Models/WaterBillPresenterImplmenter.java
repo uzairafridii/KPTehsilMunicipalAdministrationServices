@@ -44,7 +44,7 @@ public class WaterBillPresenterImplmenter implements WaterBillPresenter
     @Override
     public void getUserBill(final DatabaseReference databaseReference , String refNumber) {
 
-        if(databaseReference != null && !refNumber.isEmpty())
+        if( databaseReference != null && !refNumber.isEmpty())
         {
 
             view.showProgressDialog();
@@ -61,7 +61,6 @@ public class WaterBillPresenterImplmenter implements WaterBillPresenter
                         String date = dataSnapshot.child("connectionDate").getValue().toString();
                         String location = dataSnapshot.child("connectionAddress").getValue().toString();
                         String imageUrl = dataSnapshot.child("bill_image").getValue().toString();
-                        view.showErrorMessage(name);
                         view.getUserRecord(name , date, location , imageUrl);
                         view.hideProgressDialog();
                         view.clearAllFields();
@@ -117,7 +116,7 @@ public class WaterBillPresenterImplmenter implements WaterBillPresenter
                         n = generator.nextInt(n);
                         final String fName = "Your Bill-" + n + ".png";
 
-                        // set path in memory
+                        // create file in memory
                         File image = new File(storagePath);
 
                         // if folder not exist then create it
