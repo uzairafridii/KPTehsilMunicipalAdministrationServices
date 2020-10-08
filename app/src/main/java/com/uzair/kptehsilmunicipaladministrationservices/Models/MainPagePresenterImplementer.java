@@ -94,6 +94,7 @@ public class MainPagePresenterImplementer implements MainPagePresenter
         mHomeModel.add(new HomeModel("Certificates", R.drawable.certificate));
         mHomeModel.add(new HomeModel("Profile", R.drawable.profile));
         mHomeModel.add(new HomeModel("Exit", R.drawable.exit));
+        mHomeModel.add(new HomeModel("New", R.drawable.exit));
 
         mainPageView.onSetHomeRecyclerAdapter(mHomeModel);
     }
